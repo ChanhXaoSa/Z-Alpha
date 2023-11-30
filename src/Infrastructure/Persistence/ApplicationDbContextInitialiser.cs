@@ -52,6 +52,23 @@ public class ApplicationDbContextInitialiser
 
     public async Task TrySeedAsync()
     {
+
+        // Roles
+        var roles = new List<IdentityRole>
+        {
+            new IdentityRole("Admin"),
+            new IdentityRole("Manager"),
+            new IdentityRole("Customer")
+        };
+        foreach (var role in roles)
+        {
+
+            if (_roleManager.Roles.All(r => r.Name != role.Name))
+            {
+                await _roleManager.CreateAsync(role);
+            }
+        }
+
         // Default roles
         var administratorRole = new IdentityRole("Administrator");
 
