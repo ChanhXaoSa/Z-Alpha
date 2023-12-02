@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Infrastructure.Persistence;
+using CleanArchitecture.Infrastructure.Repositories;
 using CleanArchitecture.WebUI.Services;
 using Microsoft.AspNetCore.Mvc;
 //using NSwag;
@@ -24,14 +25,14 @@ public static class ConfigureServices
         services.AddControllersWithViews();
 
         services.AddRazorPages();
+        services.AddScoped<IAccountRepository, AccountRepository>();
+        /*  services.AddScoped<FluentValidationSchemaProcessor>(provider =>
+          {
+              var validationRules = provider.GetService<IEnumerable<FluentValidationRule>>();
+              var loggerFactory = provider.GetService<ILoggerFactory>();
 
-      /*  services.AddScoped<FluentValidationSchemaProcessor>(provider =>
-        {
-            var validationRules = provider.GetService<IEnumerable<FluentValidationRule>>();
-            var loggerFactory = provider.GetService<ILoggerFactory>();
-
-            return new FluentValidationSchemaProcessor(provider, validationRules, loggerFactory);
-        });*/
+              return new FluentValidationSchemaProcessor(provider, validationRules, loggerFactory);
+          });*/
 
         //Customise default API behaviour
         services.Configure<ApiBehaviorOptions>(options =>

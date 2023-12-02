@@ -4,4 +4,7 @@ namespace CleanArchitecture.Infrastructure.Identity;
 
 public class ApplicationUser : IdentityUser
 {
+    //public string UserName { get; set; } = null!;
+    //public string LastName { get; set; } = null!;
+
 }
