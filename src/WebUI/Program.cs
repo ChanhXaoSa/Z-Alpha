@@ -12,10 +12,6 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
 builder.Services.AddSwaggerGen();
 
-//DI
-builder.Services.AddScoped<IApplicationBuilder, ApplicationBuilder>();
-
-
 
 //JWT
 builder.Services.AddAuthentication(option =>

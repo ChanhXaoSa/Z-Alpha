@@ -2,7 +2,9 @@
 using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.Infrastructure.Repositories;
 using CleanArchitecture.WebUI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 //using NSwag;
 //using NSwag.Generation.Processors.Security;
 //using ZymLabs.NSwag.FluentValidation;
@@ -25,7 +27,13 @@ public static class ConfigureServices
         services.AddControllersWithViews();
 
         services.AddRazorPages();
+
+        //DI
         services.AddScoped<IAccountRepository, AccountRepository>();
+
+
+
+
         /*  services.AddScoped<FluentValidationSchemaProcessor>(provider =>
           {
               var validationRules = provider.GetService<IEnumerable<FluentValidationRule>>();
@@ -38,24 +46,53 @@ public static class ConfigureServices
         services.Configure<ApiBehaviorOptions>(options =>
             options.SuppressModelStateInvalidFilter = true);
 
-      /*  services.AddOpenApiDocument((configure, serviceProvider) =>
+
+        services.AddSwaggerGen(option =>
         {
-            var fluentValidationSchemaProcessor = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<FluentValidationSchemaProcessor>();
-
-            // Add the fluent validations schema processor
-            configure.SchemaProcessors.Add(fluentValidationSchemaProcessor);
-
-            configure.Title = "CleanArchitecture API";
-            configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
+            option.SwaggerDoc("v1", new OpenApiInfo { Title = "Z-Alpha API", Version = "v1" });
+            option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
-                Type = OpenApiSecuritySchemeType.ApiKey,
+                In = ParameterLocation.Header,
+                Description = "Please enter a valid token",
                 Name = "Authorization",
-                In = OpenApiSecurityApiKeyLocation.Header,
-                Description = "Type into the textbox: Bearer {your JWT token}."
+                Type = SecuritySchemeType.Http,
+                BearerFormat = "JWT",
+                Scheme = "Bearer"
             });
+            option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
+        });
 
-            configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
-        });*/
+        /*  services.AddOpenApiDocument((configure, serviceProvider) =>
+          {
+              var fluentValidationSchemaProcessor = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<FluentValidationSchemaProcessor>();
+
+              // Add the fluent validations schema processor
+              configure.SchemaProcessors.Add(fluentValidationSchemaProcessor);
+
+              configure.Title = "CleanArchitecture API";
+              configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
+              {
+                  Type = OpenApiSecuritySchemeType.ApiKey,
+                  Name = "Authorization",
+                  In = OpenApiSecurityApiKeyLocation.Header,
+                  Description = "Type into the textbox: Bearer {your JWT token}."
+              });
+
+              configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
+          });*/
 
         return services;
     }

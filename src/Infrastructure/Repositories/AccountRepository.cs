@@ -16,28 +16,49 @@ namespace CleanArchitecture.Infrastructure.Repositories;
 public class AccountRepository : IAccountRepository
 {
     private readonly IConfiguration configuration;
+    private readonly RoleManager<IdentityRole> roleManager;
     private UserManager<ApplicationUser> userManager;
     private SignInManager<ApplicationUser> signInManager;
 
-    public AccountRepository(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,IConfiguration configuration)
+    public AccountRepository(UserManager<ApplicationUser> userManager,
+        SignInManager<ApplicationUser> signInManager,
+        IConfiguration configuration,
+        RoleManager<IdentityRole> roleManager        
+        )
     {
         this.userManager = userManager;
         this.signInManager = signInManager;
         this.configuration = configuration;
+        this.roleManager = roleManager;
     }
     public async Task<string> SignInAsync(SignInModel model)
     {
-        var signInResult = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+        /*var signInResult = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
         if(!signInResult.Succeeded)
         {
             throw new InvalidOperationException("Sai tên đăng nhập hoặc mật khẩu. Vui lòng thử lại!");
-            return string.Empty;
+            //return string.Empty;
+        }*/
+        var user = await userManager.FindByEmailAsync(model.Email);
+        var passwordCheck = await userManager.CheckPasswordAsync(user, model.Password);
+        if(user == null || passwordCheck == false)
+        {
+            throw new InvalidOperationException("Sai tên đăng nhập hoặc mật khẩu. Vui lòng thử lại!");
         }
+        // Claims
         var authClaims = new List<Claim>
         {
             new Claim(ClaimTypes.Email, model.Email),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
+        //Get role
+        var userRole = await userManager.GetRolesAsync(user);
+        foreach(var role in userRole)
+        {
+            //add role
+            authClaims.Add(new Claim(ClaimTypes.Role, role.ToString()));
+        }
+        //Get Key and token
         var authenKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:SecrectKey"]));
         var token = new JwtSecurityToken(
                 issuer: configuration["JWT:ValidIssuer"],
@@ -55,11 +76,20 @@ public class AccountRepository : IAccountRepository
     {
         var user = new ApplicationUser
         {
-            
             Email = model.Email,
             UserName = model.Email,
-
         };
-        return await userManager.CreateAsync(user, model.Password);
+        var result = await userManager.CreateAsync(user, model.Password);
+        if(result.Succeeded)
+        {
+            // Check role
+            if(!await roleManager.RoleExistsAsync(AppRole.Customer))
+            {
+                await roleManager.CreateAsync(new IdentityRole(AppRole.Customer));
+            }
+            await userManager.AddToRoleAsync(user, AppRole.Customer);
+        }
+
+        return result;
     }
 }

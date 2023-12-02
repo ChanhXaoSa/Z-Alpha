@@ -22,7 +22,7 @@ public class AuthController : ControllerBase
         {
             return Ok(result.Succeeded);
         }
-        return Unauthorized();
+        return BadRequest("Đăng ký thất bại!");
     }
 
     [HttpPost("SignIn")]
@@ -31,7 +31,7 @@ public class AuthController : ControllerBase
         var result = await accountRepository.SignInAsync(model);
         if (string.IsNullOrEmpty(result))
         {
-            return Unauthorized();
+            return BadRequest("Sai tên đăng nhập hoặc mật khẩu!");
         }
         return Ok(result);
     }

@@ -3,21 +3,24 @@ using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
 using CleanArchitecture.Application.TodoLists.Commands.UpdateTodoList;
 using CleanArchitecture.Application.TodoLists.Queries.ExportTodos;
 using CleanArchitecture.Application.TodoLists.Queries.GetTodos;
+using CleanArchitecture.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.WebUI.Controllers;
 
-[Authorize]
+
 public class TodoListsController : ApiControllerBase
 {
     [HttpGet]
+    //[Authorize(Roles ="Customer")]
     public async Task<ActionResult<TodosVm>> Get()
     {
         return await Mediator.Send(new GetTodosQuery());
     }
 
     [HttpGet("{id}")]
+
     public async Task<FileResult> Get(int id)
     {
         var vm = await Mediator.Send(new ExportTodosQuery { ListId = id });
@@ -26,6 +29,7 @@ public class TodoListsController : ApiControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Customer")]
     public async Task<ActionResult<int>> Create(CreateTodoListCommand command)
     {
         return await Mediator.Send(command);
