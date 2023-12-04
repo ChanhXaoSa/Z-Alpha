@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CleanArchitecture.Domain.Entities;
-internal class Transaction
+public class Transaction : BaseAuditableEntity
 {
+
 }

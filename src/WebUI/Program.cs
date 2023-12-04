@@ -12,7 +12,6 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
 builder.Services.AddSwaggerGen();
 
-
 //JWT
 builder.Services.AddAuthentication(option =>
 {
@@ -32,9 +31,6 @@ builder.Services.AddAuthentication(option =>
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecrectKey"]))
     };
 });
-
-
-
 
 var app = builder.Build();
 

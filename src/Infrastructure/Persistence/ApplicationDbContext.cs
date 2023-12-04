@@ -5,6 +5,7 @@ using CleanArchitecture.Infrastructure.Identity;
 using CleanArchitecture.Infrastructure.Persistence.Interceptors;
 using Duende.IdentityServer.EntityFramework.Options;
 using MediatR;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -31,10 +32,23 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
 
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
 
+    public DbSet<AnswersForEntranceTest> AnswersForEntranceTests { get; set; }
+    public DbSet<Comment> Comments { get; set; }
+    public DbSet<EntranceTest> EntranceTests { get; set; }
+    public DbSet<ManagerAccount> ManagerAccounts { get; set; }
+    public DbSet<Pack> Packs { get; set; }
+    public DbSet<PackInfo> PacksInfo { get; set; }
+    public DbSet<PaymentMethod> PaymentMethods { get; set; }
+    public DbSet<Post> Posts { get; set; }
+    public DbSet<PostTag> PostTags { get; set; }
+    public DbSet<RepComment> RepComments { get; set; }
+    public DbSet<Tag> Tags { get; set; }
+    public DbSet<Transaction> Transactions { get; set; }
+    public DbSet<WishListPost> WishListPosts { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
         base.OnModelCreating(builder);
     }
 
