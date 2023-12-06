@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CleanArchitecture.Domain.Identity;
-public class ApplicationUser : BaseAuditableEntity
+public class UserAccount : BaseAuditableEntity
 {
     public string? FullName { get; set; }
     public DateTime BirthDay { get; set; }
