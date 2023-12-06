@@ -58,7 +58,8 @@ public class ApplicationDbContextInitialiser
         {
             new IdentityRole("Admin"),
             new IdentityRole("Manager"),
-            new IdentityRole("Customer")
+            new IdentityRole("Customer"),
+            new IdentityRole("Expert")
         };
         foreach (var role in roles)
         {
@@ -90,7 +91,7 @@ public class ApplicationDbContextInitialiser
         }
 
         // Default data
-        // Seed, if necessary
+        /*// Seed, if necessary
         if (!_context.TodoLists.Any())
         {
             _context.TodoLists.Add(new TodoList
@@ -106,6 +107,6 @@ public class ApplicationDbContextInitialiser
             });
 
             await _context.SaveChangesAsync();
-        }
+        }*/
     }
 }
