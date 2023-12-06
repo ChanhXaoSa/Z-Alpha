@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CleanArchitecture.Domain.Identity;
-public class ApplicationUser : IdentityUser
+public class ApplicationUser : BaseAuditableEntity
 {
     public string? FullName { get; set; }
     public DateTime BirthDay { get; set; }
@@ -17,7 +17,7 @@ public class ApplicationUser : IdentityUser
     public string? AvatarUrl { get; set; }
     public UserStatus Status { get; set; }
 
-    public Guid? ManagerAccountId { get; set; }
+
     public virtual ManagerAccount? ManagerAccount { get; set; }
     public IList<Transaction>? Transactions { get; private set; }
 }

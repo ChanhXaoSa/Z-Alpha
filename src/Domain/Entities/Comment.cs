@@ -9,8 +9,8 @@ namespace CleanArchitecture.Domain.Entities;
 public class Comment : BaseAuditableEntity
 {
     [ForeignKey("ApplicationUser")]
-    public string ApplicationUserId { get; set; }
+    public Guid ApplicationUserId { get; set; }
     [ForeignKey("Post")]
-    public string? PostId { get; set; }   
+    public Guid? PostId { get; set; }   
     public string? CommentContent { get; set; }
 }

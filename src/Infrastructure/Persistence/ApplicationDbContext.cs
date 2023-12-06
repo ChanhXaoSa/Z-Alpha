@@ -30,6 +30,21 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<TodoList> TodoLists => Set<TodoList>();
 
     public DbSet<TodoItem> TodoItems => Set<TodoItem>();
+    public DbSet<AnswersForEntranceTest> AnswersForEntranceTests => Set<AnswersForEntranceTest>();
+    public DbSet<Comment>  Comments => Set<Comment>();
+    public DbSet<EntranceTest> EntranceTests => Set<EntranceTest>();
+    public DbSet<InteractWithPosts> InteractWithPosts => Set<InteractWithPosts>();
+    public DbSet<ManagerAccount> ManagerAccounts => Set<ManagerAccount>();
+    public DbSet<Pack> Packs => Set<Pack>();
+    public DbSet<PackInfo> PackInfos => Set<PackInfo>();
+    public DbSet<PaymentMethod> PaymentMethods => Set<PaymentMethod>(); 
+    public DbSet<Post> Posts => Set<Post>();
+    public DbSet<PostTag> PostTags => Set<PostTag>();
+    public DbSet<RepComment> RepComments => Set<RepComment>();
+    public DbSet<Tag>  Tags => Set<Tag>();
+    public DbSet<Transaction> Transactions => Set<Transaction>();
+    public DbSet<WishListPost> WishListPosts => Set<WishListPost>();
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

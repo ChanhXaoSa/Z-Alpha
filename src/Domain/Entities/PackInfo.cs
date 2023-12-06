@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CleanArchitecture.Domain.Entities;
-internal class PackInfo
+public class PackInfo :BaseAuditableEntity
 {
 }
