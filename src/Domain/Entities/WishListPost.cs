@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace CleanArchitecture.Domain.Entities;
 public class WishListPost : BaseAuditableEntity
 {
-    [ForeignKey("ApplicationUser")]
-    public string ApplicationUserId { get; set; }
+    [ForeignKey("UserAccount")]
+    public Guid UserAccountId { get; set; }
     [ForeignKey("Post")]
     public Guid PostId { get; set; }
 }

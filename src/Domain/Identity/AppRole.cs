@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Infrastructure.Identity;
+namespace CleanArchitecture.Domain.Identity;
 public static class AppRole
 {
     public static string Admin = "Administrator";

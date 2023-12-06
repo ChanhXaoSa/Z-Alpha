@@ -1,13 +1,18 @@
-﻿using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Domain.Enums;
-using Microsoft.AspNetCore.Identity;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CleanArchitecture.Infrastructure.Identity;
+using CleanArchitecture.Domain.Identity;
 
-public class ApplicationUser : IdentityUser
+
+namespace CleanArchitecture.Domain.Entities;
+public class UserAccount : BaseAuditableEntity
 {
-    //public string UserName { get; set; } = null!;
-    //public string LastName { get; set; } = null!;
+    [ForeignKey("ApplicationUser")]
+    public string ApplicationUserId { get; set; }
     public string? FullName { get; set; }
     public DateTime BirthDay { get; set; }
     public string? Address { get; set; }
@@ -17,7 +22,8 @@ public class ApplicationUser : IdentityUser
     public string? AvatarUrl { get; set; }
     public UserStatus Status { get; set; }
 
-    public Guid? ManagerAccountId { get; set; }
+
     public virtual ManagerAccount? ManagerAccount { get; set; }
     public IList<Transaction>? Transactions { get; private set; }
+    public virtual ApplicationUser ApplicationUser { get; set; }
 }

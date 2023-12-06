@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
 
-using CleanArchitecture.Infrastructure.Identity;
+using CleanArchitecture.Domain.Identity;
 using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.Infrastructure.Persistence.Interceptors;
 using CleanArchitecture.Infrastructure.Services;

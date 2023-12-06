@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace CleanArchitecture.Domain.Entities;
 public class Post : BaseAuditableEntity
 {
-    [ForeignKey("ApplicationUser")]
-    public string ApplicationUserId { get; set; }
+    [ForeignKey("UserAccount")]
+    public Guid UserAccountID { get; set; }
     public string? PostTitle { get; set; }
     public string? PostBody { get; set; }
     public string? PostImagesUrl { get; set; }

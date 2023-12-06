@@ -4,12 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Domain.Identity;
 
 namespace CleanArchitecture.Domain.Entities;
 public class ManagerAccount : BaseAuditableEntity
 {
-    [ForeignKey("ApplicationUser")]
-    public int ApplicationUserId { get; set; }
-    public virtual ApplicationUser? ApplicationUser { get; set; }
+    [ForeignKey("UserAccount")]
+    public Guid UserAccountId { get; set; }
+    public virtual UserAccount? UserAccount { get; set; }
 }

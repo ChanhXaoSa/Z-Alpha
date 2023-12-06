@@ -1,7 +1,8 @@
 ﻿using System.Reflection;
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Infrastructure.Identity;
+
+using CleanArchitecture.Domain.Identity;
 using CleanArchitecture.Infrastructure.Persistence.Interceptors;
 using Duende.IdentityServer.EntityFramework.Options;
 using MediatR;
@@ -42,6 +43,8 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<Tag>  Tags => Set<Tag>();
     public DbSet<Transaction> Transactions => Set<Transaction>();
     public DbSet<WishListPost> WishListPosts => Set<WishListPost>();
+
+    public DbSet<UserAccount> UserAccounts => Set<UserAccount>();
 
 
 

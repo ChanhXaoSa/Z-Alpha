@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace CleanArchitecture.Domain.Entities;
 public class RepComment : BaseAuditableEntity
 {
-    [ForeignKey("ApplicationUser")]
-    public string ApplicationUserId { get; set; }
+    [ForeignKey("UserAccount")]
+    public Guid UserAccountId { get; set; }
     [ForeignKey("Comment")]
     public Guid CommentId { get; set; }
 }
