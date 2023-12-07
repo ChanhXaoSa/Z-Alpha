@@ -108,6 +108,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PackName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PackInfomation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PackPrice = table.Column<double>(type: "float", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -124,6 +127,8 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PaymentMethodName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PaymentMethodStatus = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -160,8 +165,8 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PostTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostBody = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PostBody = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PostImagesUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NumberOfLikes = table.Column<int>(type: "int", nullable: true),
                     NumberOfDisLikes = table.Column<int>(type: "int", nullable: true),
@@ -182,6 +187,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TagName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -198,13 +204,16 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BirthDay = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDay = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsPremium = table.Column<int>(type: "int", nullable: false),
+                    IsPremium = table.Column<int>(type: "int", nullable: true),
                     Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AvatarUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Wallet = table.Column<double>(type: "float", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -406,6 +415,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PostId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    InteractPostStatus = table.Column<int>(type: "int", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -453,16 +463,12 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PackInfos",
+                name: "PackDetail",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PackId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PackName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PackInfomation = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PackPrice = table.Column<double>(type: "float", nullable: true),
-                    PackStatus = table.Column<int>(type: "int", nullable: false),
                     StartDay = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDay = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -473,15 +479,15 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PackInfos", x => x.Id);
+                    table.PrimaryKey("PK_PackDetail", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PackInfos_Packs_PackId",
+                        name: "FK_PackDetail_Packs_PackId",
                         column: x => x.PackId,
                         principalTable: "Packs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PackInfos_UserAccount_UserAccountId",
+                        name: "FK_PackDetail_UserAccount_UserAccountId",
                         column: x => x.UserAccountId,
                         principalTable: "UserAccount",
                         principalColumn: "Id",
@@ -495,6 +501,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PaymentMethodId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Money = table.Column<double>(type: "float", nullable: false),
+                    TransactionFee = table.Column<double>(type: "float", nullable: false),
+                    Balance = table.Column<double>(type: "float", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -549,12 +559,14 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RepComments",
+                name: "UserInteractComments",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CommentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    InteractComment = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -563,15 +575,15 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RepComments", x => x.Id);
+                    table.PrimaryKey("PK_UserInteractComments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RepComments_Comments_CommentId",
+                        name: "FK_UserInteractComments_Comments_CommentId",
                         column: x => x.CommentId,
                         principalTable: "Comments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RepComments_UserAccount_UserAccountId",
+                        name: "FK_UserInteractComments_UserAccount_UserAccountId",
                         column: x => x.UserAccountId,
                         principalTable: "UserAccount",
                         principalColumn: "Id",
@@ -700,13 +712,13 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 column: "UserAccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PackInfos_PackId",
-                table: "PackInfos",
+                name: "IX_PackDetail_PackId",
+                table: "PackDetail",
                 column: "PackId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PackInfos_UserAccountId",
-                table: "PackInfos",
+                name: "IX_PackDetail_UserAccountId",
+                table: "PackDetail",
                 column: "UserAccountId");
 
             migrationBuilder.CreateIndex(
@@ -740,16 +752,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 column: "TagId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RepComments_CommentId",
-                table: "RepComments",
-                column: "CommentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RepComments_UserAccountId",
-                table: "RepComments",
-                column: "UserAccountId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Transactions_PaymentMethodId",
                 table: "Transactions",
                 column: "PaymentMethodId");
@@ -757,6 +759,16 @@ namespace CleanArchitecture.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Transactions_UserAccountId",
                 table: "Transactions",
+                column: "UserAccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserInteractComments_CommentId",
+                table: "UserInteractComments",
+                column: "CommentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserInteractComments_UserAccountId",
+                table: "UserInteractComments",
                 column: "UserAccountId");
 
             migrationBuilder.CreateIndex(
@@ -804,7 +816,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 name: "ManagerAccounts");
 
             migrationBuilder.DropTable(
-                name: "PackInfos");
+                name: "PackDetail");
 
             migrationBuilder.DropTable(
                 name: "PersistedGrants");
@@ -813,10 +825,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 name: "PostTags");
 
             migrationBuilder.DropTable(
-                name: "RepComments");
+                name: "Transactions");
 
             migrationBuilder.DropTable(
-                name: "Transactions");
+                name: "UserInteractComments");
 
             migrationBuilder.DropTable(
                 name: "WishListPosts");
@@ -840,10 +852,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 name: "Tags");
 
             migrationBuilder.DropTable(
-                name: "Comments");
+                name: "PaymentMethods");
 
             migrationBuilder.DropTable(
-                name: "PaymentMethods");
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "UserAccount");

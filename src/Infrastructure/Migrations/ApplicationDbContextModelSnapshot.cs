@@ -161,6 +161,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("InteractPostStatus")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -237,12 +240,22 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PackInfomation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PackName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("PackPrice")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.ToTable("Packs");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.PackInfo", b =>
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.PackDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -269,18 +282,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<Guid>("PackId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("PackInfomation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PackName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("PackPrice")
-                        .HasColumnType("float");
-
-                    b.Property<int>("PackStatus")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("StartDay")
                         .HasColumnType("datetime2");
 
@@ -293,7 +294,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.HasIndex("UserAccountId");
 
-                    b.ToTable("PackInfos");
+                    b.ToTable("PackDetail");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.PaymentMethod", b =>
@@ -316,6 +317,13 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentMethodName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaymentMethodStatus")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -353,12 +361,14 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PostBody")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostImagesUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostTitle")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -402,42 +412,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.ToTable("PostTags");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.RepComment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CommentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UserAccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("UserAccountId");
-
-                    b.ToTable("RepComments");
-                });
-
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Tag", b =>
                 {
                     b.Property<Guid>("Id")
@@ -459,6 +433,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TagName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
@@ -470,10 +448,16 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<double>("Balance")
+                        .HasColumnType("float");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
@@ -485,8 +469,14 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Money")
+                        .HasColumnType("float");
+
                     b.Property<Guid>("PaymentMethodId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("TransactionFee")
+                        .HasColumnType("float");
 
                     b.Property<Guid>("UserAccountId")
                         .HasColumnType("uniqueidentifier");
@@ -498,6 +488,49 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasIndex("UserAccountId");
 
                     b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.UserInteractComment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CommentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("InteractComment")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserAccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("UserAccountId");
+
+                    b.ToTable("UserInteractComments");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.WishListPost", b =>
@@ -551,7 +584,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("AvatarUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("BirthDay")
+                    b.Property<DateTime?>("BirthDay")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Created")
@@ -560,13 +593,18 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("IsPremium")
+                    b.Property<int?>("IsPremium")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("LastModified")
@@ -575,11 +613,18 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<double>("Wallet")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -998,16 +1043,16 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Navigation("UserAccount");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.PackInfo", b =>
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.PackDetail", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.Pack", "Pack")
-                        .WithMany("PackInfos")
+                        .WithMany("PackDetails")
                         .HasForeignKey("PackId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
-                        .WithMany("PackInfos")
+                        .WithMany("PackDetails")
                         .HasForeignKey("UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1036,25 +1081,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.RepComment", b =>
-                {
-                    b.HasOne("CleanArchitecture.Domain.Entities.Comment", "Comment")
-                        .WithMany("RepComments")
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
-                        .WithMany("RepComments")
-                        .HasForeignKey("UserAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comment");
-
-                    b.Navigation("UserAccount");
-                });
-
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Transaction", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.PaymentMethod", "PaymentMethod")
@@ -1070,6 +1096,25 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("PaymentMethod");
+
+                    b.Navigation("UserAccount");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.UserInteractComment", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.Entities.Comment", "Comment")
+                        .WithMany("UserInteractComments")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
+                        .WithMany("UserInteractComments")
+                        .HasForeignKey("UserAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
 
                     b.Navigation("UserAccount");
                 });
@@ -1146,7 +1191,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Comment", b =>
                 {
-                    b.Navigation("RepComments");
+                    b.Navigation("UserInteractComments");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.CustomerAccount", b =>
@@ -1161,7 +1206,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Pack", b =>
                 {
-                    b.Navigation("PackInfos");
+                    b.Navigation("PackDetails");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.PaymentMethod", b =>
@@ -1193,11 +1238,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Navigation("ManagerAccounts");
 
-                    b.Navigation("PackInfos");
-
-                    b.Navigation("RepComments");
+                    b.Navigation("PackDetails");
 
                     b.Navigation("Transactions");
+
+                    b.Navigation("UserInteractComments");
 
                     b.Navigation("WishListPosts");
                 });
