@@ -13,5 +13,5 @@ public class CustomerAccount : BaseAuditableEntity
     [ForeignKey("UserAccount")]
     public Guid UserAccountId { get; set; }
     public virtual UserAccount? UserAccount { get; set; }
-     public virtual IList<AnswersForEntranceTest>? AnswersForEntranceTest { get; set; }
+    public virtual IList<AnswersForEntranceTest>? AnswersForEntranceTests { get; set; }
 }

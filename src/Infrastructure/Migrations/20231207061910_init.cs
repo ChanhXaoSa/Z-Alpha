@@ -377,7 +377,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CustomerAccount",
+                name: "CustomerAccounts",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -390,9 +390,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CustomerAccount", x => x.Id);
+                    table.PrimaryKey("PK_CustomerAccounts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CustomerAccount_UserAccount_UserAccountId",
+                        name: "FK_CustomerAccounts_UserAccount_UserAccountId",
                         column: x => x.UserAccountId,
                         principalTable: "UserAccount",
                         principalColumn: "Id",
@@ -596,9 +596,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_AnswersForEntranceTests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AnswersForEntranceTests_CustomerAccount_CustomerAccountId",
+                        name: "FK_AnswersForEntranceTests_CustomerAccounts_CustomerAccountId",
                         column: x => x.CustomerAccountId,
-                        principalTable: "CustomerAccount",
+                        principalTable: "CustomerAccounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -664,8 +664,8 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerAccount_UserAccountId",
-                table: "CustomerAccount",
+                name: "IX_CustomerAccounts_UserAccountId",
+                table: "CustomerAccounts",
                 column: "UserAccountId");
 
             migrationBuilder.CreateIndex(
@@ -822,7 +822,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 name: "WishListPosts");
 
             migrationBuilder.DropTable(
-                name: "CustomerAccount");
+                name: "CustomerAccounts");
 
             migrationBuilder.DropTable(
                 name: "EntranceTests");

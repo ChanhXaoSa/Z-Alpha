@@ -42,6 +42,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<Tag>  Tags => Set<Tag>();
     public DbSet<Transaction> Transactions => Set<Transaction>();
     public DbSet<WishListPost> WishListPosts => Set<WishListPost>();
+    public DbSet<CustomerAccount> CustomerAccounts => Set<CustomerAccount>();
 
 
 

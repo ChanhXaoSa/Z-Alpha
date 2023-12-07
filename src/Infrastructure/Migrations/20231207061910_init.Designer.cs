@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231207050643_init")]
+    [Migration("20231207061910_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -123,7 +123,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.HasIndex("UserAccountId");
 
-                    b.ToTable("CustomerAccount");
+                    b.ToTable("CustomerAccounts");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.EntranceTest", b =>
@@ -935,13 +935,13 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.AnswersForEntranceTest", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.CustomerAccount", "CustomerAccount")
-                        .WithMany("AnswersForEntranceTest")
+                        .WithMany("AnswersForEntranceTests")
                         .HasForeignKey("CustomerAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CleanArchitecture.Domain.Entities.EntranceTest", null)
-                        .WithMany("AnswersForEntranceTest")
+                        .WithMany("AnswersForEntranceTests")
                         .HasForeignKey("EntranceTestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -963,7 +963,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.CustomerAccount", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
-                        .WithMany("CustomerAccount")
+                        .WithMany("CustomerAccounts")
                         .HasForeignKey("UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -993,7 +993,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.ManagerAccount", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
-                        .WithMany("ManagerAccount")
+                        .WithMany("ManagerAccounts")
                         .HasForeignKey("UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1004,13 +1004,13 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.PackInfo", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.Pack", "Pack")
-                        .WithMany("PackInfo")
+                        .WithMany("PackInfos")
                         .HasForeignKey("PackId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
-                        .WithMany("PackInfo")
+                        .WithMany("PackInfos")
                         .HasForeignKey("UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1029,7 +1029,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("CleanArchitecture.Domain.Entities.Tag", "Tag")
-                        .WithMany("PostTag")
+                        .WithMany("PostTags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1061,7 +1061,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Transaction", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.PaymentMethod", "PaymentMethod")
-                        .WithMany("Transaction")
+                        .WithMany("Transactions")
                         .HasForeignKey("PaymentMethodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1154,22 +1154,22 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.CustomerAccount", b =>
                 {
-                    b.Navigation("AnswersForEntranceTest");
+                    b.Navigation("AnswersForEntranceTests");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.EntranceTest", b =>
                 {
-                    b.Navigation("AnswersForEntranceTest");
+                    b.Navigation("AnswersForEntranceTests");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Pack", b =>
                 {
-                    b.Navigation("PackInfo");
+                    b.Navigation("PackInfos");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.PaymentMethod", b =>
                 {
-                    b.Navigation("Transaction");
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Post", b =>
@@ -1185,18 +1185,18 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Tag", b =>
                 {
-                    b.Navigation("PostTag");
+                    b.Navigation("PostTags");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Identity.UserAccount", b =>
                 {
-                    b.Navigation("CustomerAccount");
+                    b.Navigation("CustomerAccounts");
 
                     b.Navigation("InteractWithPosts");
 
-                    b.Navigation("ManagerAccount");
+                    b.Navigation("ManagerAccounts");
 
-                    b.Navigation("PackInfo");
+                    b.Navigation("PackInfos");
 
                     b.Navigation("RepComments");
 

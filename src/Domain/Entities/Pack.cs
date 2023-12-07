@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 namespace CleanArchitecture.Domain.Entities;
 public class Pack : BaseAuditableEntity
 {
-    public virtual IList<PackInfo>? PackInfo { get; set; }
+    public virtual IList<PackInfo>? PackInfos { get; set; }
 }

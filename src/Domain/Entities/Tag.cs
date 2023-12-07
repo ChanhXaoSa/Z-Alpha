@@ -8,5 +8,5 @@ using CleanArchitecture.Domain.Identity;
 namespace CleanArchitecture.Domain.Entities;
 public class Tag : BaseAuditableEntity
 {
-    public virtual IList<PostTag>? PostTag { get; set; }
+    public virtual IList<PostTag>? PostTags { get; set; }
 }
