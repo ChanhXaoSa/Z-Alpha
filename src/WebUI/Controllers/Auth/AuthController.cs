@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Infrastructure.Repositories;
+using CleanArchitecture.WebUI.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Model;
@@ -6,7 +7,7 @@ using WebUI.Model;
 namespace WebUI.Controllers.Auth;
 [Route("api/[controller]")]
 [ApiController]
-public class AuthController : ControllerBase
+public class AuthController : ApiControllerBase
 {
     private IAccountRepository accountRepository;
 
