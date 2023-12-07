@@ -9,12 +9,15 @@ using CleanArchitecture.Domain.Identity;
 namespace CleanArchitecture.Domain.Entities;
 public class Comment : BaseAuditableEntity
 {
-    [ForeignKey("UserAccount")]
+
+
+ /*   [ForeignKey("UserAccount")]
     public Guid UserAccountId { get; set; }
+    public virtual UserAccount? UserAccount { get; set; }*/
+
     [ForeignKey("Post")]
-    public Guid? PostId { get; set; }   
-    public string? CommentContent { get; set; }
+    public Guid PostId { get; set; }
+    public virtual Post? Post { get; set; }
 
     public IList<RepComment>? RepComments { get; private set; }
-    public IList<UserAccount>? UserAccounts { get; private set; }
 }

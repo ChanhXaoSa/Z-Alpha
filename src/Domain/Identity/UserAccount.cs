@@ -21,6 +21,11 @@ public class UserAccount : BaseAuditableEntity
     public virtual IList<ManagerAccount>? ManagerAccount { get; set; }
     public virtual IList<CustomerAccount>? CustomerAccount { get; set; }
     public virtual IList<PackInfo>? PackInfo { get; set; }
-    public virtual IList<Post>? Posts { get; set; }
-    public IList<Transaction>? Transactions { get; private set; }
+    // Bị vòng
+    //public virtual IList<Post>? Posts { get; set; }
+    public IList<Transaction>? Transactions { get;  set; }
+    public IList<InteractWithPosts>? InteractWithPosts { get;  set; }
+    public IList<WishListPost>? WishListPosts { get;  set; }
+    //public IList<Comment>? Comments { get; set; }
+    public IList<RepComment>? RepComments { get; set; }
 }

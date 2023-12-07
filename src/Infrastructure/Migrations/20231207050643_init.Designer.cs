@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231207044540_init")]
+    [Migration("20231207050643_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -70,9 +70,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CommentContent")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
@@ -88,10 +85,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("PostId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserAccountId")
+                    b.Property<Guid>("PostId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -179,7 +173,17 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserAccountId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("UserAccountId");
 
                     b.ToTable("InteractWithPosts");
                 });
@@ -360,12 +364,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("PostTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserAccountId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserAccountId");
 
                     b.ToTable("Posts");
                 });
@@ -436,6 +435,8 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CommentId");
+
+                    b.HasIndex("UserAccountId");
 
                     b.ToTable("RepComments");
                 });
@@ -531,6 +532,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("UserAccountId");
+
                     b.ToTable("WishListPosts");
                 });
 
@@ -551,9 +556,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Property<DateTime>("BirthDay")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("CommentId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -579,17 +581,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("RepCommentId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("RepCommentId");
 
                     b.ToTable("UserAccount");
                 });
@@ -956,9 +951,13 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Comment", b =>
                 {
-                    b.HasOne("CleanArchitecture.Domain.Entities.Post", null)
+                    b.HasOne("CleanArchitecture.Domain.Entities.Post", "Post")
                         .WithMany("Comments")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.CustomerAccount", b =>
@@ -968,6 +967,25 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasForeignKey("UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("UserAccount");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.InteractWithPosts", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.Entities.Post", "Post")
+                        .WithMany("InteractWithPosts")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
+                        .WithMany("InteractWithPosts")
+                        .HasForeignKey("UserAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
 
                     b.Navigation("UserAccount");
                 });
@@ -1002,17 +1020,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Navigation("UserAccount");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.Post", b =>
-                {
-                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
-                        .WithMany("Posts")
-                        .HasForeignKey("UserAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserAccount");
-                });
-
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.PostTag", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.Post", "Post")
@@ -1034,11 +1041,21 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.RepComment", b =>
                 {
-                    b.HasOne("CleanArchitecture.Domain.Entities.Comment", null)
+                    b.HasOne("CleanArchitecture.Domain.Entities.Comment", "Comment")
                         .WithMany("RepComments")
                         .HasForeignKey("CommentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
+                        .WithMany("RepComments")
+                        .HasForeignKey("UserAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("UserAccount");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Transaction", b =>
@@ -1060,15 +1077,23 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Navigation("UserAccount");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Identity.UserAccount", b =>
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.WishListPost", b =>
                 {
-                    b.HasOne("CleanArchitecture.Domain.Entities.Comment", null)
-                        .WithMany("UserAccounts")
-                        .HasForeignKey("CommentId");
+                    b.HasOne("CleanArchitecture.Domain.Entities.Post", "Post")
+                        .WithMany("WishListPosts")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("CleanArchitecture.Domain.Entities.RepComment", null)
-                        .WithMany("UserAccounts")
-                        .HasForeignKey("RepCommentId");
+                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
+                        .WithMany("WishListPosts")
+                        .HasForeignKey("UserAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+
+                    b.Navigation("UserAccount");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1125,8 +1150,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Comment", b =>
                 {
                     b.Navigation("RepComments");
-
-                    b.Navigation("UserAccounts");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.CustomerAccount", b =>
@@ -1153,12 +1176,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("PostTags");
-                });
+                    b.Navigation("InteractWithPosts");
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.RepComment", b =>
-                {
-                    b.Navigation("UserAccounts");
+                    b.Navigation("PostTags");
+
+                    b.Navigation("WishListPosts");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Tag", b =>
@@ -1170,13 +1192,17 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 {
                     b.Navigation("CustomerAccount");
 
+                    b.Navigation("InteractWithPosts");
+
                     b.Navigation("ManagerAccount");
 
                     b.Navigation("PackInfo");
 
-                    b.Navigation("Posts");
+                    b.Navigation("RepComments");
 
                     b.Navigation("Transactions");
+
+                    b.Navigation("WishListPosts");
                 });
 #pragma warning restore 612, 618
         }
