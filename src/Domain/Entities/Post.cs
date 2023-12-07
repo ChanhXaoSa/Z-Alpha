@@ -15,8 +15,8 @@ public class Post : BaseAuditableEntity
     public virtual UserAccount? UserAccount { get; set; }*/
     
 
-    public string? PostTitle { get; set; }
-    public string? PostBody { get; set; }
+    public string PostTitle { get; set; }
+    public string PostBody { get; set; }
     public string? PostImagesUrl { get; set; }
     public int? NumberOfLikes { get; set; }
     public int? NumberOfDisLikes { get; set; }

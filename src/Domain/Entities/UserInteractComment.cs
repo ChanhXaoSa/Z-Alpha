@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 using CleanArchitecture.Domain.Identity;
 
 namespace CleanArchitecture.Domain.Entities;
-public class RepComment : BaseAuditableEntity
+public class UserInteractComment : BaseAuditableEntity
 {
 
     [ForeignKey("UserAccount")]
     public Guid UserAccountId { get; set; }
-    public virtual UserAccount? UserAccount { get; set; }
+    public virtual UserAccount UserAccount { get; set; }
     [ForeignKey("Comment")]
     public Guid CommentId { get; set; }
     public virtual Comment? Comment { get; set; }
+    public InteractComment InteractComment { get; set; }
+    public string Description { get; set; }
 }

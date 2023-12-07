@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace CleanArchitecture.Domain.Entities;
 public class EntranceTest : BaseAuditableEntity
 {
+    // Chưa làm nha
     public virtual IList<AnswersForEntranceTest>? AnswersForEntranceTests { get; set; }
 }

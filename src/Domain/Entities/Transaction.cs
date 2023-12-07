@@ -15,4 +15,8 @@ public class Transaction : BaseAuditableEntity
     [ForeignKey("PaymentMethod")]
     public Guid PaymentMethodId { get; set; }
     public virtual PaymentMethod? PaymentMethod { get; set; }
+    public string? Description { get; set; }
+    public double Money { get; set; }
+    public double TransactionFee { get; set; }
+    public double Balance { get; set; }
 }

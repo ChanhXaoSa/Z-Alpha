@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CleanArchitecture.Domain.Enums;
-public enum PackStatus
+public enum InteractPostStatus
 {
-    UnActive = 0,
-    Active = 1,
+    None = 0,
+    Like = 1,
+    Dislike = 2,
 }

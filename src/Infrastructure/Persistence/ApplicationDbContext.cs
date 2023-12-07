@@ -34,11 +34,11 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     public DbSet<InteractWithPosts> InteractWithPosts => Set<InteractWithPosts>();
     public DbSet<ManagerAccount> ManagerAccounts => Set<ManagerAccount>();
     public DbSet<Pack> Packs => Set<Pack>();
-    public DbSet<PackInfo> PackInfos => Set<PackInfo>();
+    public DbSet<PackDetail> PackDetail => Set<PackDetail>();
     public DbSet<PaymentMethod> PaymentMethods => Set<PaymentMethod>(); 
     public DbSet<Post> Posts => Set<Post>();
     public DbSet<PostTag> PostTags => Set<PostTag>();
-    public DbSet<RepComment> RepComments => Set<RepComment>();
+    public DbSet<UserInteractComment> UserInteractComments => Set<UserInteractComment>();
     public DbSet<Tag>  Tags => Set<Tag>();
     public DbSet<Transaction> Transactions => Set<Transaction>();
     public DbSet<WishListPost> WishListPosts => Set<WishListPost>();
