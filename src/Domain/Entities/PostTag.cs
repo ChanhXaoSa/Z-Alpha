@@ -12,4 +12,5 @@ public class PostTag : BaseAuditableEntity
     public Guid PostId { get; set; }
     [ForeignKey("Tag")]
     public Guid TagId { get; set;}
+    public IList<Tag>? Tags { get; private set; }
 }

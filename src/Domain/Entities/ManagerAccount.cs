@@ -11,5 +11,9 @@ public class ManagerAccount : BaseAuditableEntity
 {
     [ForeignKey("UserAccount")]
     public Guid UserAccountId { get; set; }
-    public virtual UserAccount? ApplicationUser { get; set; }
+    public virtual UserAccount? UserAccount { get; set; }
+
+    public IList<Comment>? Comments { get; private set; }
+    public IList<Post>? Posts { get; private set; }
+    public IList<WishListPost>? WishListPosts { get; private set; }
 }

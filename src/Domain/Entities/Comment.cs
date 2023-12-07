@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CleanArchitecture.Domain.Identity;
 
 namespace CleanArchitecture.Domain.Entities;
 public class Comment : BaseAuditableEntity
@@ -15,5 +16,5 @@ public class Comment : BaseAuditableEntity
     public string? CommentContent { get; set; }
 
     public IList<RepComment>? RepComments { get; private set; }
-    public IList<ManagerAccount>? ManagerAccounts { get; private set; }
+    public IList<UserAccount>? UserAccounts { get; private set; }
 }

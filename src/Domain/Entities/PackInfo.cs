@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CleanArchitecture.Domain.Identity;
 
 namespace CleanArchitecture.Domain.Entities;
 public class PackInfo : BaseAuditableEntity
@@ -15,5 +16,5 @@ public class PackInfo : BaseAuditableEntity
     public DateTime EndDay { get; set; }
 
     public IList<Pack>? PostTags { get; private set; }
-    public IList<ManagerAccount>? ManagerAccounts { get; private set; }
+    public IList<UserAccount>? UserAccounts { get; private set; }
 }
