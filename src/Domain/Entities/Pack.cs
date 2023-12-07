@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,10 +8,8 @@ using System.Threading.Tasks;
 namespace CleanArchitecture.Domain.Entities;
 public class Pack : BaseAuditableEntity
 {
-    public string? PackName { get; set; }
-    public string? PackInfomation { get; set;}
-    public double? PackPrice { get; set; }
-    public PackStatus PackStatus { get; set; }
-    public DateTime StartDay { get; set; }
-    public DateTime EndDay { get; set; }
+    [ForeignKey("UserAccount")]
+    public Guid UserAccountId { get; set; }
+    [ForeignKey("Pack")]
+    public Guid PackId { get; set; }
 }

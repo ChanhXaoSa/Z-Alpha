@@ -17,4 +17,5 @@ public class Post : BaseAuditableEntity
     public int? NumberOfDisLikes { get; set; }
     public AnonymousStatus AnonymousStatus { get; set; }
     public IList<PostTag>? PostTags { get; private set; }
+    public IList<Comment>? Comments { get; private set; }
 }

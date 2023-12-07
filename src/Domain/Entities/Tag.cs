@@ -8,4 +8,5 @@ namespace CleanArchitecture.Domain.Entities;
 public class Tag : BaseAuditableEntity
 {
     public string TagName { get; set; }
+    public IList<PostTag>? PostTags { get; private set; }
 }

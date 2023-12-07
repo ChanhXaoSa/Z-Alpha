@@ -12,4 +12,5 @@ public class RepComment : BaseAuditableEntity
     public Guid UserAccountId { get; set; }
     [ForeignKey("Comment")]
     public Guid CommentId { get; set; }
+    public IList<ManagerAccount>? ManagerAccounts { get; private set; }
 }
