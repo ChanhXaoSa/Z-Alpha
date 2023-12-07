@@ -7,4 +7,5 @@ using System.Threading.Tasks;
 namespace CleanArchitecture.Domain.Entities;
 public class PaymentMethod : BaseAuditableEntity
 {
+    public virtual IList<Transaction>? Transaction { get; set; }
 }

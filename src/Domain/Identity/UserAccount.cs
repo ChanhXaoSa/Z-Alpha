@@ -18,6 +18,9 @@ public class UserAccount : BaseAuditableEntity
     public UserStatus Status { get; set; }
 
 
-    public virtual ManagerAccount? ManagerAccount { get; set; }
+    public virtual IList<ManagerAccount>? ManagerAccount { get; set; }
+    public virtual IList<CustomerAccount>? CustomerAccount { get; set; }
+    public virtual IList<PackInfo>? PackInfo { get; set; }
+    public virtual IList<Post>? Posts { get; set; }
     public IList<Transaction>? Transactions { get; private set; }
 }

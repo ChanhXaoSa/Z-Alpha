@@ -12,24 +12,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AnswersForEntranceTests",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EntranceTestId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AnswersForEntranceTests", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -138,16 +120,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PackInfos",
+                name: "Packs",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PackName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PackInfomation = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PackPrice = table.Column<double>(type: "float", nullable: true),
-                    PackStatus = table.Column<int>(type: "int", nullable: false),
-                    StartDay = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDay = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -156,7 +132,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PackInfos", x => x.Id);
+                    table.PrimaryKey("PK_Packs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -196,34 +172,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Posts",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PostTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostBody = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostImagesUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NumberOfLikes = table.Column<int>(type: "int", nullable: true),
-                    NumberOfDisLikes = table.Column<int>(type: "int", nullable: true),
-                    AnonymousStatus = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Posts", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Tags",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TagName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -233,30 +185,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tags", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserAccount",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BirthDay = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsPremium = table.Column<int>(type: "int", nullable: false),
-                    Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AvatarUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserAccount", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -384,13 +312,13 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Packs",
+                name: "AnswersForEntranceTests",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PackId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PackInfoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    EntranceTestId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -399,12 +327,13 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Packs", x => x.Id);
+                    table.PrimaryKey("PK_AnswersForEntranceTests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Packs_PackInfos_PackInfoId",
-                        column: x => x.PackInfoId,
-                        principalTable: "PackInfos",
-                        principalColumn: "Id");
+                        name: "FK_AnswersForEntranceTests_EntranceTests_EntranceTestId",
+                        column: x => x.EntranceTestId,
+                        principalTable: "EntranceTests",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -424,11 +353,207 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RepComments",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CommentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RepComments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Posts_PostId",
-                        column: x => x.PostId,
-                        principalTable: "Posts",
+                        name: "FK_RepComments_Comments_CommentId",
+                        column: x => x.CommentId,
+                        principalTable: "Comments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserAccount",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BirthDay = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsPremium = table.Column<int>(type: "int", nullable: false),
+                    Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AvatarUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CommentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    RepCommentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserAccount", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserAccount_Comments_CommentId",
+                        column: x => x.CommentId,
+                        principalTable: "Comments",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_UserAccount_RepComments_RepCommentId",
+                        column: x => x.RepCommentId,
+                        principalTable: "RepComments",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CustomerAccount",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerAccount", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CustomerAccount_UserAccount_UserAccountId",
+                        column: x => x.UserAccountId,
+                        principalTable: "UserAccount",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ManagerAccounts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ManagerAccounts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ManagerAccounts_UserAccount_UserAccountId",
+                        column: x => x.UserAccountId,
+                        principalTable: "UserAccount",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PackInfos",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PackId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PackName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PackInfomation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PackPrice = table.Column<double>(type: "float", nullable: true),
+                    PackStatus = table.Column<int>(type: "int", nullable: false),
+                    StartDay = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDay = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PackInfos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PackInfos_Packs_PackId",
+                        column: x => x.PackId,
+                        principalTable: "Packs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PackInfos_UserAccount_UserAccountId",
+                        column: x => x.UserAccountId,
+                        principalTable: "UserAccount",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Posts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PostTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostBody = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostImagesUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NumberOfLikes = table.Column<int>(type: "int", nullable: true),
+                    NumberOfDisLikes = table.Column<int>(type: "int", nullable: true),
+                    AnonymousStatus = table.Column<int>(type: "int", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Posts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Posts_UserAccount_UserAccountId",
+                        column: x => x.UserAccountId,
+                        principalTable: "UserAccount",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transactions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PaymentMethodId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Transactions_PaymentMethods_PaymentMethodId",
+                        column: x => x.PaymentMethodId,
+                        principalTable: "PaymentMethods",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transactions_UserAccount_UserAccountId",
+                        column: x => x.UserAccountId,
+                        principalTable: "UserAccount",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -461,92 +586,15 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Transactions",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transactions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Transactions_UserAccount_UserAccountId",
-                        column: x => x.UserAccountId,
-                        principalTable: "UserAccount",
-                        principalColumn: "Id");
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_AnswersForEntranceTests_CustomerAccountId",
+                table: "AnswersForEntranceTests",
+                column: "CustomerAccountId");
 
-            migrationBuilder.CreateTable(
-                name: "RepComments",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CommentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RepComments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RepComments_Comments_CommentId",
-                        column: x => x.CommentId,
-                        principalTable: "Comments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ManagerAccounts",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CommentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    PackInfoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    RepCommentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ManagerAccounts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ManagerAccounts_Comments_CommentId",
-                        column: x => x.CommentId,
-                        principalTable: "Comments",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_ManagerAccounts_PackInfos_PackInfoId",
-                        column: x => x.PackInfoId,
-                        principalTable: "PackInfos",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_ManagerAccounts_RepComments_RepCommentId",
-                        column: x => x.RepCommentId,
-                        principalTable: "RepComments",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_ManagerAccounts_UserAccount_UserAccountId",
-                        column: x => x.UserAccountId,
-                        principalTable: "UserAccount",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_AnswersForEntranceTests_EntranceTestId",
+                table: "AnswersForEntranceTests",
+                column: "EntranceTestId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -593,6 +641,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CustomerAccount_UserAccountId",
+                table: "CustomerAccount",
+                column: "UserAccountId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DeviceCodes_DeviceCode",
                 table: "DeviceCodes",
                 column: "DeviceCode",
@@ -609,30 +662,19 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 column: "Use");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ManagerAccounts_CommentId",
-                table: "ManagerAccounts",
-                column: "CommentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ManagerAccounts_PackInfoId",
-                table: "ManagerAccounts",
-                column: "PackInfoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ManagerAccounts_RepCommentId",
-                table: "ManagerAccounts",
-                column: "RepCommentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ManagerAccounts_UserAccountId",
                 table: "ManagerAccounts",
-                column: "UserAccountId",
-                unique: true);
+                column: "UserAccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Packs_PackInfoId",
-                table: "Packs",
-                column: "PackInfoId");
+                name: "IX_PackInfos_PackId",
+                table: "PackInfos",
+                column: "PackId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PackInfos_UserAccountId",
+                table: "PackInfos",
+                column: "UserAccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_ConsumedTime",
@@ -655,6 +697,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 columns: new[] { "SubjectId", "SessionId", "Type" });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Posts_UserAccountId",
+                table: "Posts",
+                column: "UserAccountId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PostTags_PostId",
                 table: "PostTags",
                 column: "PostId");
@@ -670,14 +717,48 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 column: "CommentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Transactions_PaymentMethodId",
+                table: "Transactions",
+                column: "PaymentMethodId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Transactions_UserAccountId",
                 table: "Transactions",
                 column: "UserAccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserAccount_CommentId",
+                table: "UserAccount",
+                column: "CommentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserAccount_RepCommentId",
+                table: "UserAccount",
+                column: "RepCommentId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_AnswersForEntranceTests_CustomerAccount_CustomerAccountId",
+                table: "AnswersForEntranceTests",
+                column: "CustomerAccountId",
+                principalTable: "CustomerAccount",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Comments_Posts_PostId",
+                table: "Comments",
+                column: "PostId",
+                principalTable: "Posts",
+                principalColumn: "Id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Comments_Posts_PostId",
+                table: "Comments");
+
             migrationBuilder.DropTable(
                 name: "AnswersForEntranceTests");
 
@@ -700,9 +781,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 name: "DeviceCodes");
 
             migrationBuilder.DropTable(
-                name: "EntranceTests");
-
-            migrationBuilder.DropTable(
                 name: "InteractWithPosts");
 
             migrationBuilder.DropTable(
@@ -712,10 +790,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 name: "ManagerAccounts");
 
             migrationBuilder.DropTable(
-                name: "Packs");
-
-            migrationBuilder.DropTable(
-                name: "PaymentMethods");
+                name: "PackInfos");
 
             migrationBuilder.DropTable(
                 name: "PersistedGrants");
@@ -730,28 +805,37 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 name: "WishListPosts");
 
             migrationBuilder.DropTable(
+                name: "CustomerAccount");
+
+            migrationBuilder.DropTable(
+                name: "EntranceTests");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "RepComments");
-
-            migrationBuilder.DropTable(
-                name: "PackInfos");
+                name: "Packs");
 
             migrationBuilder.DropTable(
                 name: "Tags");
 
             migrationBuilder.DropTable(
-                name: "UserAccount");
-
-            migrationBuilder.DropTable(
-                name: "Comments");
+                name: "PaymentMethods");
 
             migrationBuilder.DropTable(
                 name: "Posts");
+
+            migrationBuilder.DropTable(
+                name: "UserAccount");
+
+            migrationBuilder.DropTable(
+                name: "RepComments");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
         }
     }
 }

@@ -8,8 +8,5 @@ using System.Threading.Tasks;
 namespace CleanArchitecture.Domain.Entities;
 public class Pack : BaseAuditableEntity
 {
-    [ForeignKey("UserAccount")]
-    public Guid UserAccountId { get; set; }
-    [ForeignKey("Pack")]
-    public Guid PackId { get; set; }
+    public virtual IList<PackInfo>? PackInfo { get; set; }
 }

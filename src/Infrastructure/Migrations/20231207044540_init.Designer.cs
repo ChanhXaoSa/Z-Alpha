@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231207041003_init")]
+    [Migration("20231207044540_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -40,6 +40,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("CustomerAccountId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("EntranceTestId")
                         .HasColumnType("uniqueidentifier");
 
@@ -53,6 +56,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerAccountId");
+
+                    b.HasIndex("EntranceTestId");
 
                     b.ToTable("AnswersForEntranceTests");
                 });
@@ -92,6 +99,37 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasIndex("PostId");
 
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.CustomerAccount", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserAccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserAccountId");
+
+                    b.ToTable("CustomerAccount");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.EntranceTest", b =>
@@ -152,9 +190,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CommentId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
@@ -170,25 +205,12 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("PackInfoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("RepCommentId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("UserAccountId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("PackInfoId");
-
-                    b.HasIndex("RepCommentId");
-
-                    b.HasIndex("UserAccountId")
-                        .IsUnique();
+                    b.HasIndex("UserAccountId");
 
                     b.ToTable("ManagerAccounts");
                 });
@@ -214,18 +236,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PackId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("PackInfoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserAccountId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PackInfoId");
 
                     b.ToTable("Packs");
                 });
@@ -254,6 +265,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("PackId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("PackInfomation")
                         .HasColumnType("nvarchar(max)");
 
@@ -269,7 +283,14 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<DateTime>("StartDay")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("UserAccountId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PackId");
+
+                    b.HasIndex("UserAccountId");
 
                     b.ToTable("PackInfos");
                 });
@@ -343,6 +364,8 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserAccountId");
 
                     b.ToTable("Posts");
                 });
@@ -438,10 +461,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TagName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
@@ -468,10 +487,15 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserAccountId")
+                    b.Property<Guid>("PaymentMethodId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserAccountId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PaymentMethodId");
 
                     b.HasIndex("UserAccountId");
 
@@ -528,6 +552,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<DateTime>("BirthDay")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CommentId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
@@ -552,10 +579,17 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("RepCommentId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("RepCommentId");
 
                     b.ToTable("UserAccount");
                 });
@@ -903,6 +937,23 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.AnswersForEntranceTest", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.Entities.CustomerAccount", "CustomerAccount")
+                        .WithMany("AnswersForEntranceTest")
+                        .HasForeignKey("CustomerAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CleanArchitecture.Domain.Entities.EntranceTest", null)
+                        .WithMany("AnswersForEntranceTest")
+                        .HasForeignKey("EntranceTestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CustomerAccount");
+                });
+
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Comment", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.Post", null)
@@ -910,49 +961,75 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasForeignKey("PostId");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.ManagerAccount", b =>
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.CustomerAccount", b =>
                 {
-                    b.HasOne("CleanArchitecture.Domain.Entities.Comment", null)
-                        .WithMany("ManagerAccounts")
-                        .HasForeignKey("CommentId");
-
-                    b.HasOne("CleanArchitecture.Domain.Entities.PackInfo", null)
-                        .WithMany("ManagerAccounts")
-                        .HasForeignKey("PackInfoId");
-
-                    b.HasOne("CleanArchitecture.Domain.Entities.RepComment", null)
-                        .WithMany("ManagerAccounts")
-                        .HasForeignKey("RepCommentId");
-
-                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "ApplicationUser")
-                        .WithOne("ManagerAccount")
-                        .HasForeignKey("CleanArchitecture.Domain.Entities.ManagerAccount", "UserAccountId")
+                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
+                        .WithMany("CustomerAccount")
+                        .HasForeignKey("UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ApplicationUser");
+                    b.Navigation("UserAccount");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.Pack", b =>
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.ManagerAccount", b =>
                 {
-                    b.HasOne("CleanArchitecture.Domain.Entities.PackInfo", null)
-                        .WithMany("PostTags")
-                        .HasForeignKey("PackInfoId");
+                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
+                        .WithMany("ManagerAccount")
+                        .HasForeignKey("UserAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserAccount");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.PackInfo", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.Entities.Pack", "Pack")
+                        .WithMany("PackInfo")
+                        .HasForeignKey("PackId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
+                        .WithMany("PackInfo")
+                        .HasForeignKey("UserAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pack");
+
+                    b.Navigation("UserAccount");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.Post", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
+                        .WithMany("Posts")
+                        .HasForeignKey("UserAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserAccount");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.PostTag", b =>
                 {
-                    b.HasOne("CleanArchitecture.Domain.Entities.Post", null)
+                    b.HasOne("CleanArchitecture.Domain.Entities.Post", "Post")
                         .WithMany("PostTags")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CleanArchitecture.Domain.Entities.Tag", null)
-                        .WithMany("PostTags")
+                    b.HasOne("CleanArchitecture.Domain.Entities.Tag", "Tag")
+                        .WithMany("PostTag")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Post");
+
+                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.RepComment", b =>
@@ -966,9 +1043,32 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Transaction", b =>
                 {
-                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", null)
+                    b.HasOne("CleanArchitecture.Domain.Entities.PaymentMethod", "PaymentMethod")
+                        .WithMany("Transaction")
+                        .HasForeignKey("PaymentMethodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
                         .WithMany("Transactions")
-                        .HasForeignKey("UserAccountId");
+                        .HasForeignKey("UserAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PaymentMethod");
+
+                    b.Navigation("UserAccount");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Identity.UserAccount", b =>
+                {
+                    b.HasOne("CleanArchitecture.Domain.Entities.Comment", null)
+                        .WithMany("UserAccounts")
+                        .HasForeignKey("CommentId");
+
+                    b.HasOne("CleanArchitecture.Domain.Entities.RepComment", null)
+                        .WithMany("UserAccounts")
+                        .HasForeignKey("RepCommentId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1024,16 +1124,29 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Comment", b =>
                 {
-                    b.Navigation("ManagerAccounts");
-
                     b.Navigation("RepComments");
+
+                    b.Navigation("UserAccounts");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.PackInfo", b =>
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.CustomerAccount", b =>
                 {
-                    b.Navigation("ManagerAccounts");
+                    b.Navigation("AnswersForEntranceTest");
+                });
 
-                    b.Navigation("PostTags");
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.EntranceTest", b =>
+                {
+                    b.Navigation("AnswersForEntranceTest");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.Pack", b =>
+                {
+                    b.Navigation("PackInfo");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Domain.Entities.PaymentMethod", b =>
+                {
+                    b.Navigation("Transaction");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Post", b =>
@@ -1045,17 +1158,23 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.RepComment", b =>
                 {
-                    b.Navigation("ManagerAccounts");
+                    b.Navigation("UserAccounts");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Tag", b =>
                 {
-                    b.Navigation("PostTags");
+                    b.Navigation("PostTag");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Identity.UserAccount", b =>
                 {
+                    b.Navigation("CustomerAccount");
+
                     b.Navigation("ManagerAccount");
+
+                    b.Navigation("PackInfo");
+
+                    b.Navigation("Posts");
 
                     b.Navigation("Transactions");
                 });

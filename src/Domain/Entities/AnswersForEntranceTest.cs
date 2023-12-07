@@ -10,5 +10,8 @@ public class AnswersForEntranceTest : BaseAuditableEntity
 {
     [ForeignKey("EntranceTest")]
     public Guid EntranceTestId { get; set; }
-    public string? Answer { get; set; } 
+    public string? Answer { get; set; }
+    [ForeignKey("CustomerAccount")]
+    public Guid CustomerAccountId { get; set; }
+    public virtual CustomerAccount? CustomerAccount { get; set; }
 }
