@@ -19,11 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="AnswersForEntranceTest\Commands\CreateAnswersForEntranceTest\" />
-      <Folder Include="AnswersForEntranceTest\Commands\DeleteAnswersForEntranceTest\" />
-      <Folder Include="AnswersForEntranceTest\Commands\UpdateAnswersForEntranceTest\" />
-      <Folder Include="AnswersForEntranceTest\Queries\GetAllAnswersForEntranceTest\" />
-      <Folder Include="AnswersForEntranceTest\Queries\GetAnswersForEntranceTestId\" />
       <Folder Include="Comment\Commands\CreateComment\" />
       <Folder Include="Comment\Commands\DeleteComment\" />
       <Folder Include="Comment\Commands\UpdateComment\" />
