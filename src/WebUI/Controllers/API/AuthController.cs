@@ -1,7 +1,7 @@
-﻿ using CleanArchitecture.Infrastructure.Repositories;
-using CleanArchitecture.WebUI.Controllers;
+﻿using CleanArchitecture.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebUI.Controllers.API;
 using WebUI.Model;
 
 namespace WebUI.Controllers.Auth;

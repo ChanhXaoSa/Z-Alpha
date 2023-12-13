@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Text;
 using CleanArchitecture.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSession();
 
 //JWT
 builder.Services.AddAuthentication(option =>
@@ -37,16 +39,21 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
-    app.UseMigrationsEndPoint();
-
-    // Initialise and seed database
-    using (var scope = app.Services.CreateScope())
+    //app.UseDeveloperExceptionPage();
+    //app.UseMigrationsEndPoint();
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
     {
-        var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
-        await initialiser.InitialiseAsync();
-        await initialiser.SeedAsync();
-    }
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API V1");
+        c.RoutePrefix = "swagger";
+    });
+    // Initialise and seed database
+    //using (var scope = app.Services.CreateScope())
+    //{
+    //    var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
+    //    await initialiser.InitialiseAsync();
+    //    await initialiser.SeedAsync();
+    //}
 }
 else
 {
@@ -58,12 +65,7 @@ app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API V1");
-    c.RoutePrefix = string.Empty;
-});
+
 
 //app.UseSwaggerUi3(settings =>
 //{
@@ -76,13 +78,27 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseIdentityServer();
 app.UseAuthorization();
+app.UseSession();
+app.UseCookiePolicy(new CookiePolicyOptions
+{
+    HttpOnly = HttpOnlyPolicy.Always,
+    Secure = CookieSecurePolicy.Always,
+});
 
-app.MapControllerRoute(
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
+});
+
+app.MapDefaultControllerRoute();
+//app.MapControllerRoute(
+//    name: "area",
+//    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
-app.MapFallbackToFile("index.html");
+//app.MapFallbackToFile("index.html");
 
 app.Run();

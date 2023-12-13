@@ -1,7 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using System.Text.Json.Serialization;
+using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.Infrastructure.Repositories;
+using CleanArchitecture.WebUI.Filters;
 using CleanArchitecture.WebUI.Services;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
@@ -21,10 +24,22 @@ public static class ConfigureServices
 
         services.AddHttpContextAccessor();
 
+        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
         services.AddHealthChecks()
             .AddDbContextCheck<ApplicationDbContext>();
 
-        services.AddControllersWithViews();
+        services.AddDistributedMemoryCache();
+
+        services.AddControllersWithViews(options =>
+            options.Filters.Add<ApiExceptionFilterAttribute>())
+                .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
+
+        services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        });
 
         services.AddRazorPages();
 
