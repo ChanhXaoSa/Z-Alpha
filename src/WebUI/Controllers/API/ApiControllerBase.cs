@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CleanArchitecture.WebUI.Controllers;
+namespace WebUI.Controllers.API;
 
 [ApiController]
 [ApiExceptionFilter]
