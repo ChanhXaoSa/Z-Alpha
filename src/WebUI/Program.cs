@@ -85,14 +85,17 @@ app.UseCookiePolicy(new CookiePolicyOptions
     Secure = CookieSecurePolicy.Always,
 });
 
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action=Index}/{id?}");
+});
 
 app.MapDefaultControllerRoute();
-app.MapControllerRoute(
-    name: "area",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "area",
+//    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
