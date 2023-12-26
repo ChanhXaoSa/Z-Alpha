@@ -11,7 +11,7 @@ public class UserInteractComment : BaseAuditableEntity
 {
 
     [ForeignKey("UserAccount")]
-    public Guid UserAccountId { get; set; }
+    public string UserAccountId { get; set; }
     public virtual UserAccount UserAccount { get; set; }
     [ForeignKey("Comment")]
     public Guid CommentId { get; set; }

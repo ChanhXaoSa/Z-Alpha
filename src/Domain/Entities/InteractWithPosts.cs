@@ -10,7 +10,7 @@ namespace CleanArchitecture.Domain.Entities;
 public class InteractWithPosts : BaseAuditableEntity
 {
     [ForeignKey("UserAccount")]
-    public Guid UserAccountId { get; set; }
+    public string UserAccountId { get; set; }
     public virtual UserAccount UserAccount { get; set; }
     [ForeignKey("Post")]
     public Guid PostId { get; set; }

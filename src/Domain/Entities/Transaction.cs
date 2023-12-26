@@ -10,7 +10,7 @@ namespace CleanArchitecture.Domain.Entities;
 public class Transaction : BaseAuditableEntity
 {
     [ForeignKey("UserAccount")]
-    public Guid UserAccountId { get; set; }
+    public string UserAccountId { get; set; }
     public virtual UserAccount? UserAccount { get; set; }
     [ForeignKey("PaymentMethod")]
     public Guid PaymentMethodId { get; set; }

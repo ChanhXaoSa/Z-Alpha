@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
 namespace CleanArchitecture.Domain.Identity;
-public class UserAccount : BaseAuditableEntity
+public class UserAccount : IdentityUser
 {
     public string Email { get; set; }
     public string FirstName { get; set; }

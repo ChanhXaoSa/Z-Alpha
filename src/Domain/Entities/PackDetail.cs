@@ -10,7 +10,7 @@ namespace CleanArchitecture.Domain.Entities;
 public class PackDetail : BaseAuditableEntity
 {
     [ForeignKey("UserAccount")]
-    public Guid UserAccountId { get; set; }
+    public string UserAccountId { get; set; }
     public virtual UserAccount? UserAccount { get; set; }
     [ForeignKey("Pack")]
     public Guid PackId { get; set; }

@@ -10,7 +10,7 @@ namespace CleanArchitecture.Domain.Entities;
 public class ManagerAccount : BaseAuditableEntity
 {
     [ForeignKey("UserAccount")]
-    public Guid UserAccountId { get; set; }
+    public string UserAccountId { get; set; }
     public virtual UserAccount? UserAccount { get; set; }
 
    

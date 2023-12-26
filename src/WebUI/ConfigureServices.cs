@@ -1,11 +1,13 @@
 ﻿using System.Text.Json.Serialization;
 using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Domain.Identity;
 using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.Infrastructure.Repositories;
 using CleanArchitecture.WebUI.Filters;
 using CleanArchitecture.WebUI.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 //using NSwag;
@@ -18,6 +20,12 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddWebUIServices(this IServiceCollection services)
     {
+        services.AddIdentity<UserAccount, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
+        services.AddScoped<UserManager<UserAccount>>();
+
         services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.AddScoped<ICurrentUserService, CurrentUserService>();
