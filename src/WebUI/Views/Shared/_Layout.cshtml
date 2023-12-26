@@ -27,14 +27,9 @@
 
         .ImageLogo{
             position: absolute;
-            top: 0;
-            left: 0;
-           
-            bottom: 0;
-            width: 5rem;
-            height: 3rem;
-            margin: auto 0;
-            margin-left: 1.5rem;
+            width: 4.5vw;
+          
+            margin: auto ;
         }
 
 
@@ -59,13 +54,13 @@
             outline: none;
             border-radius: 25px;
             transition: all .5s ease-in-out;
-            background-color: yellow;
+            background-color: #008CA1;
             padding-right: 40px;
             color: black;
         }
 
             .input-search::placeholder {
-                color: black;
+                color: wheat;
                 font-size: 16px;
                 font-weight: 100;
             }
@@ -81,25 +76,41 @@
             border-radius: 50%;
             position: absolute;
             right: 0px;
-            color: black;
+            color: wheat;
             background-color: transparent;
             pointer-events: painted;
         }
 
             .btn-search:focus ~ .input-search {
-                width: 300px;
+                width: 22vw;
                 border-radius: 0px;
                 background-color: transparent;
                 border-bottom: 1px solid black;
-                transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+                transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);  
             }
 
         .input-search:focus {
-            width: 300px;
+            width: 22vw;
             border-radius: 0px;
             background-color: transparent;
             border-bottom: 1px solid black;
             transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+        }
+
+        .boxtext {
+           /*  background-color: #008CA1; */
+      
+            margin: 0 0.05em;
+            text-align: center;
+            width: 10vw;
+            height: 50px;
+            font-size: 14px;
+            font-family: Inter;
+            font-weight: 800;
+            word-wrap: break-word;
+            display: flex;
+            align-items: center; 
+            justify-content: center
         }
        
     </style>
@@ -113,20 +124,39 @@
                 <div class="" style="width: 100%; height: 60px; left: 0px; top: 0px; padding:5px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; position: absolute; background: #FFFDAB"></div>
 
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-1">
-                            <img class="ImageLogo col" style="" src="https://sohanews.sohacdn.com/thumb_w/660/160588918557773824/2023/4/13/edit-nhung-hanh-dong-la-lung-ma-loai-cho-thuong-lam-16813809545881762859708.png" />
+                <div class="" >
+                    <div class="row" style="height:60px;">
+                        <div class="col-1" style=" height:60px; display: flex; align-items:center; justify-content:center;">
+                            <img class="ImageLogo" style="" src="https://sohanews.sohacdn.com/thumb_w/660/160588918557773824/2023/4/13/edit-nhung-hanh-dong-la-lung-ma-loai-cho-thuong-lam-16813809545881762859708.png" />
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-3" style="height:60px;">
                             <div class="search-box">
                                 <button class="btn-search"><i class="fas fa-search"></i></button>
                                 <input type="text" class="input-search" placeholder="Type to Search...">
                             </div>
 
                         </div>
+                        <div class="col-4">
+                            <div style="position: absolute;">
+                                @* Back ground sau cái chữ*@
+                                @*  <div class="Background1" style="width: 114px; height: 50px; left: 562px; top: 0px; position: absolute; background: #FFADAB"></div>
+                                <div class="Background2" style="width: 127px; height: 50px; left: 790px; top: 0px; position: absolute; background: #FFFDAB"></div>
+                                <div class="Background3" style="width: 114px; height: 50px; left: 676px; top: 0px; position: absolute; background: #FFADAB"></div> *@
+                                <div class="row" style=" display: flex;justify-content: space-around; align-items: center;">
+                                    <div class="boxtext col-3" >Newfeed</div>
+                                    <div class="boxtext col-3" >Category</div>
+                                    <div class="boxtext col-3" >Recommend</div>
+                                    <div class="boxtext col-3" >Newpost</div>
+                                </div>
+                            </div>
+                          
+                         </div>
                        
+                         <div class="col-4">
+                             dksahldahsld
+
+                         </div>
                     </div>
                 </div>
 
