@@ -18,4 +18,22 @@
         <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="InteractWithPosts\Commands\CreateInteractWithPosts\" />
+      <Folder Include="InteractWithPosts\Commands\DeleteInteractWithPosts\" />
+      <Folder Include="InteractWithPosts\Commands\UpdateInteractWithPosts\" />
+      <Folder Include="InteractWithPosts\Queries\GetAllInteractWithPosts\" />
+      <Folder Include="InteractWithPosts\Queries\GetInteractWithPostsById\" />
+      <Folder Include="PaymentMethod\Commands\CreatePaymentMethod\" />
+      <Folder Include="PaymentMethod\Commands\DeletePaymentMethod\" />
+      <Folder Include="PaymentMethod\Commands\UpdatePaymentMethod\" />
+      <Folder Include="PaymentMethod\Queries\GetAllPaymentMethod\" />
+      <Folder Include="PaymentMethod\Queries\GetPaymentMethodById\" />
+      <Folder Include="UserInteractComment\Commands\CreateUserInteractComment\" />
+      <Folder Include="UserInteractComment\Commands\DeleteUserInteractComment\" />
+      <Folder Include="UserInteractComment\Commands\UpdateUserInteractComment\" />
+      <Folder Include="UserInteractComment\Queries\GetAllUserInteractComment\" />
+      <Folder Include="UserInteractComment\Queries\GetUserInteractCommentById\" />
+    </ItemGroup>
+
 </Project>

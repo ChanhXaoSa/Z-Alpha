@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Domain.Identity;
 using CleanArchitecture.Infrastructure.Identity;
@@ -65,4 +66,6 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
 
         return await base.SaveChangesAsync(cancellationToken);
     }
+
+    public DbSet<T> Get<T>() where T : BaseAuditableEntity => Set<T>();
 }
