@@ -20,11 +20,11 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddWebUIServices(this IServiceCollection services)
     {
-        services.AddIdentity<UserAccount, IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
+        //services.AddIdentity<UserAccount, IdentityRole>()
+        //    .AddEntityFrameworkStores<ApplicationDbContext>()
+        //    .AddDefaultTokenProviders();
 
-        services.AddScoped<UserManager<UserAccount>>();
+        //services.AddScoped<UserManager<UserAccount>>();
 
         services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -52,7 +52,7 @@ public static class ConfigureServices
         services.AddRazorPages();
 
         //DI
-        services.AddScoped<IAccountRepository, AccountRepository>();
+        //services.AddScoped<IAccountRepository, AccountRepository>();
 
 
 

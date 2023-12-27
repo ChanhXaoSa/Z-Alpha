@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using CleanArchitecture.Domain.Identity;
 using CleanArchitecture.Infrastructure.Identity;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Identity;
@@ -17,11 +18,11 @@ public class AccountRepository : IAccountRepository
 {
     private readonly IConfiguration configuration;
     private readonly RoleManager<IdentityRole> roleManager;
-    private UserManager<ApplicationUser> userManager;
-    private SignInManager<ApplicationUser> signInManager;
+    private UserManager<UserAccount> userManager;
+    private SignInManager<UserAccount> signInManager;
 
-    public AccountRepository(UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager,
+    public AccountRepository(UserManager<UserAccount> userManager,
+        SignInManager<UserAccount> signInManager,
         IConfiguration configuration,
         RoleManager<IdentityRole> roleManager        
         )
@@ -74,7 +75,7 @@ public class AccountRepository : IAccountRepository
 
     public async Task<IdentityResult> SignUpAsync(SignUpModel model)
     {
-        var user = new ApplicationUser
+        var user = new UserAccount
         {
             Email = model.Email,
             UserName = model.Email,
