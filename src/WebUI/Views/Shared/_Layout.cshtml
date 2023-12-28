@@ -102,7 +102,7 @@
       
             margin: 0 0.05em;
             text-align: center;
-            width: 10vw;
+            width: 8vw;
             height: 50px;
             font-size: 14px;
             font-family: Inter;
@@ -113,6 +113,105 @@
             justify-content: center
         }
        
+        .EllipseImg{
+            width: 50px;
+            height: 50px;  
+            padding: 0px;
+            position: absolute;
+            border-radius: 50%;
+            margin:5px;
+        }
+    
+        
+        /* CSS */
+        .button-62 {
+            background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+            border: 0;
+            border-radius: 10px;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 2.5;
+            outline: transparent;
+            padding: 0 1rem;
+            text-align: center;
+            text-decoration: none;
+            transition: box-shadow .2s ease-in-out;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+        }
+
+        .button-62:not([disabled]):focus {
+            box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+        }
+
+        .button-62:not([disabled]):hover {
+            box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+        }
+       
+        /* CSS */
+        .button-61 {
+            align-items: center;
+            appearance: none;
+            border-radius: 10px;
+            border-style: none;
+            box-shadow: rgba(0, 0, 0, .2) 0 3px 1px -2px,rgba(0, 0, 0, .14) 0 2px 2px 0,rgba(0, 0, 0, .12) 0 1px 5px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: Roboto,sans-serif;
+            font-size: .875rem;
+            font-weight: 500;
+            height: 36px;
+            justify-content: center;
+            letter-spacing: .0892857em;
+            line-height: normal;
+            min-width: 64px;
+            outline: none;
+            overflow: visible;
+            padding: 0 16px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            will-change: transform,opacity;
+        }
+
+        .button-61:hover {
+            box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+        }
+
+        .button-61:disabled {
+            background-color: rgba(0, 0, 0, .12);
+            box-shadow: rgba(0, 0, 0, .2) 0 0 0 0, rgba(0, 0, 0, .14) 0 0 0 0, rgba(0, 0, 0, .12) 0 0 0 0;
+            color: rgba(0, 0, 0, .37);
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .button-61:not(:disabled) {
+            background-color: #6200ee;
+        }
+
+        .button-61:focus {
+            box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+        }
+
+        .button-61:active {
+            box-shadow: rgba(0, 0, 0, .2) 0 5px 5px -3px, rgba(0, 0, 0, .14) 0 8px 10px 1px, rgba(0, 0, 0, .12) 0 3px 14px 2px;
+            background: #A46BF5;
+        }
     </style>
    
 
@@ -143,7 +242,7 @@
                                 @*  <div class="Background1" style="width: 114px; height: 50px; left: 562px; top: 0px; position: absolute; background: #FFADAB"></div>
                                 <div class="Background2" style="width: 127px; height: 50px; left: 790px; top: 0px; position: absolute; background: #FFFDAB"></div>
                                 <div class="Background3" style="width: 114px; height: 50px; left: 676px; top: 0px; position: absolute; background: #FFADAB"></div> *@
-                                <div class="row" style=" display: flex;justify-content: space-around; align-items: center;">
+                                <div class="row" style=" display: flex;">
                                     <div class="boxtext col-3" >Newfeed</div>
                                     <div class="boxtext col-3" >Category</div>
                                     <div class="boxtext col-3" >Recommend</div>
@@ -152,11 +251,24 @@
                             </div>
                           
                          </div>
-                       
-                         <div class="col-4">
-                             dksahldahsld
-
+                         <div class="col-1">
+                             @*  vinh*@
                          </div>
+                         <div class="col-3">
+                            <div class="row" style=" display: flex;">
+                                <img class="EllipseImg" src="https://sohanews.sohacdn.com/thumb_w/660/160588918557773824/2023/4/13/edit-nhung-hanh-dong-la-lung-ma-loai-cho-thuong-lam-16813809545881762859708.png" />
+                                <div class="" style=" margin-left:56px; margin-top: 10px; position: absolute; color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Windino</div>
+                                <div class="" style=" margin-left:56px; margin-top: 30px; position: absolute; color: #F08E17; font-size: 8px; font-family: Inter; font-weight: 400; word-wrap: break-word">Freemium</div>
+                                <div style=" position: absolute; margin-left:126px;">
+                                    <button class="button-61" style="width:10vw; height: 26px; margin-top:3px; display: block;"> Membership</button>
+                                    <button class="button-62" style="width:10vw; margin-top:2px; display: block;"> Sign Out</button>
+                                </div>
+                            </div>
+                         </div>
+
+                        
+
+                        
                     </div>
                 </div>
 
