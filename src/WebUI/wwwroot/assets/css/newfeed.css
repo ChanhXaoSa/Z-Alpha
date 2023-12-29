@@ -5,18 +5,34 @@
     border-radius: 10px;
     border: 1px solid #ccc; /* Add a 1px solid border with a light gray color */
     text-align: center; /* Center the text horizontally */
-    font-size: 12px; /* Set the font size of the text */
+   
     padding: 0.5vw; /* Add padding for better visual appearance */
-    margin : 0.2vw;
+    margin: 0.2vw;
     overflow: hidden; /* Hide overflowing content */
+    font-size: 12px;
+    font-family: Inter;
+    font-weight: 500;
+    word-wrap: break-word
 }
 .box {
-    border-radius: 5px;
+    border-radius: 7px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 2vw;
-    margin: 3vw 0;
+    margin: 1vh 0;
     flex-wrap: wrap;
 }
-.TiltePost{
-    margin: 15px 0;
+.boxDetail {
+    border-radius: 7px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 2vw;
+    margin: 0 0 2vh 0;
+    flex-wrap: wrap;
 }
+.TiltePost {
+    margin: 15px 0;
+    font-size: 15px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word
+}
+
