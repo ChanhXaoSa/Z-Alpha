@@ -1,0 +1,22 @@
+
+.textbox {
+    display: inline-block;
+    background-color: #EFD037; /* Set the background color */
+    border-radius: 10px;
+    border: 1px solid #ccc; /* Add a 1px solid border with a light gray color */
+    text-align: center; /* Center the text horizontally */
+    font-size: 12px; /* Set the font size of the text */
+    padding: 0.5vw; /* Add padding for better visual appearance */
+    margin : 0.2vw;
+    overflow: hidden; /* Hide overflowing content */
+}
+.box {
+    border-radius: 5px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 2vw;
+    margin: 3vw 0;
+    flex-wrap: wrap;
+}
+.TiltePost{
+    margin: 15px 0;
+}
