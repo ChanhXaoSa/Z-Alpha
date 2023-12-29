@@ -102,7 +102,7 @@
       
             margin: 0 0.05em;
             text-align: center;
-            width: 10vw;
+            width: 8vw;
             height: 50px;
             font-size: 14px;
             font-family: Inter;
@@ -113,6 +113,105 @@
             justify-content: center
         }
        
+        .EllipseImg{
+            width: 50px;
+            height: 50px;  
+            padding: 0px;
+            position: absolute;
+            border-radius: 50%;
+            margin:5px;
+        }
+    
+        
+        /* CSS */
+        .button-62 {
+            background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+            border: 0;
+            border-radius: 10px;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 2.5;
+            outline: transparent;
+            padding: 0 1rem;
+            text-align: center;
+            text-decoration: none;
+            transition: box-shadow .2s ease-in-out;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+        }
+
+        .button-62:not([disabled]):focus {
+            box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+        }
+
+        .button-62:not([disabled]):hover {
+            box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+        }
+       
+        /* CSS */
+        .button-61 {
+            align-items: center;
+            appearance: none;
+            border-radius: 10px;
+            border-style: none;
+            box-shadow: rgba(0, 0, 0, .2) 0 3px 1px -2px,rgba(0, 0, 0, .14) 0 2px 2px 0,rgba(0, 0, 0, .12) 0 1px 5px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: Roboto,sans-serif;
+            font-size: .875rem;
+            font-weight: 500;
+            height: 36px;
+            justify-content: center;
+            letter-spacing: .0892857em;
+            line-height: normal;
+            min-width: 64px;
+            outline: none;
+            overflow: visible;
+            padding: 0 16px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            will-change: transform,opacity;
+        }
+
+        .button-61:hover {
+            box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+        }
+
+        .button-61:disabled {
+            background-color: rgba(0, 0, 0, .12);
+            box-shadow: rgba(0, 0, 0, .2) 0 0 0 0, rgba(0, 0, 0, .14) 0 0 0 0, rgba(0, 0, 0, .12) 0 0 0 0;
+            color: rgba(0, 0, 0, .37);
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .button-61:not(:disabled) {
+            background-color: #6200ee;
+        }
+
+        .button-61:focus {
+            box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+        }
+
+        .button-61:active {
+            box-shadow: rgba(0, 0, 0, .2) 0 5px 5px -3px, rgba(0, 0, 0, .14) 0 8px 10px 1px, rgba(0, 0, 0, .12) 0 3px 14px 2px;
+            background: #A46BF5;
+        }
     </style>
    
 
@@ -1236,7 +1335,7 @@
                                 @*  <div class="Background1" style="width: 114px; height: 50px; left: 562px; top: 0px; position: absolute; background: #FFADAB"></div>
                                 <div class="Background2" style="width: 127px; height: 50px; left: 790px; top: 0px; position: absolute; background: #FFFDAB"></div>
                                 <div class="Background3" style="width: 114px; height: 50px; left: 676px; top: 0px; position: absolute; background: #FFADAB"></div> *@
-                                <div class="row" style=" display: flex;justify-content: space-around; align-items: center;">
+                                <div class="row" style=" display: flex;">
                                     <div class="boxtext col-3" >Newfeed</div>
                                     <div class="boxtext col-3" >Category</div>
                                     <div class="boxtext col-3" >Recommend</div>
@@ -1245,11 +1344,24 @@
                             </div>
                           
                          </div>
-                       
-                         <div class="col-4">
-                             dksahldahsld
-
+                         <div class="col-1">
+                             @*  vinh*@
                          </div>
+                         <div class="col-3">
+                            <div class="row" style=" display: flex;">
+                                <img class="EllipseImg" src="https://sohanews.sohacdn.com/thumb_w/660/160588918557773824/2023/4/13/edit-nhung-hanh-dong-la-lung-ma-loai-cho-thuong-lam-16813809545881762859708.png" />
+                                <div class="" style=" margin-left:56px; margin-top: 10px; position: absolute; color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Windino</div>
+                                <div class="" style=" margin-left:56px; margin-top: 30px; position: absolute; color: #F08E17; font-size: 8px; font-family: Inter; font-weight: 400; word-wrap: break-word">Freemium</div>
+                                <div style=" position: absolute; margin-left:126px;">
+                                    <button class="button-61" style="width:10vw; height: 26px; margin-top:3px; display: block;"> Membership</button>
+                                    <button class="button-62" style="width:10vw; margin-top:2px; display: block;"> Sign Out</button>
+                                </div>
+                            </div>
+                         </div>
+
+                        
+
+                        
                     </div>
                 </div>
 
@@ -1267,42 +1379,54 @@
 
     <footer>
         <div class="FooterRow" style=" height: 396px; position: relative">
-            <div class="Rectangle88" style="width: 100%; height: 396px; left: 0px; top: 0px; position: absolute; background: #FFFDAB"></div>
-            <div class="CUHIThNgGP" style="left: 840px; top: 76px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Câu hỏi thường gặp</div>
-            <div class="IUKhoNSDNg" style="left: 584px; top: 112px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Điều khoản sử dụng</div>
-            <div class="ACh" style="left: 109px; top: 44px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Địa chỉ</div>
-            <div class="LE2a7NgD1D1LongThNhMThNhPhThCThNhPhHChMinhViTNam" style="width: 399px; left: 109px; top: 70px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ,<br />Thành Phố Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam</div>
-            <div class="Hotline" style="left: 109px; top: 134px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Hotline</div>
-            <div class="0007" style="left: 109px; top: 156px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">1900 0007</div>
-            <div class="Email" style="left: 109px; top: 198px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Email</div>
-            <div class="ZalphasupportGmailCom" style="left: 109px; top: 220px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">zalphasupport@gmail.com</div>
-            <div class="Mail" style="width: 24px; height: 24px; left: 80px; top: 194px; position: absolute">
-                <div class="BoundingBox" style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute; background: #D9D9D9"></div>
-                <div class="Mail" style="width: 20px; height: 16px; left: 2px; top: 4px; position: absolute; background: #2364AA"></div>
+            <div style="width: 100%; height: 250px; left: 0px; top: 0px; position: absolute; background: #FFFDAB"></div>
+            <div class="row">
+                <div class="col-4" style="padding:4vh 5vw;">  
+              
+                    <div style=" position: absolute; display:block; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Địa chỉ</div>
+                    <br />
+                    <div style=" position: absolute; display:block; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ,<br />Thành Phố Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam</div>
+                    <br />
+                    <br />
+                    <div style=" position: absolute; display:block; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Hotline</div>
+                    <br />
+                    <div style=" position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">1900 0007</div>
+                    <br />
+                    <div style=" position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Email</div>
+                    <br />
+                    <div style=" position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">zalphasupport@gmail.com</div>
+
+                </div>
+                <div class="col-2" style="padding:4vh 5vw;">
+                    <div style="position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Về chúng tôi</div>
+                    <br />
+                    <div style=" position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Chính sách bảo mật</div>
+                    <br />
+                    <div style=" position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Điều khoản sử dụng</div>
+                </div>
+                <div class="col-2" style="padding:4vh 5vw;">
+
+                    <div style=" position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Đăng ký cộng tác viên</div>
+                    <br />
+                    <div style=" position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Câu hỏi thường gặp</div>
+                    <br />
+                    <div style=" position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Tải app mobile</div>
+                    <br />
+                    
+                </div>
+                <div class="col-4" style="padding:4vh 5vw;">
+                    <div style=" position: absolute;">
+                        <i class="fa-brands fa-square-facebook fa-2xl" style="color:#DEA941; margin:0 0.5vw;"></i>
+                     
+                        <i class="fa-brands fa-square-instagram fa-2xl" style="color:#DEA941; margin:0 0.5vw;"></i>
+                      
+                        <i class="fa-brands fa-square-x-twitter fa-2xl" style="color:#DEA941; margin:0 0.5vw;"></i>
+                    </div>
+                </div>
+
             </div>
-            <div class="VChNgTI" style="left: 584px; top: 40px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Về chúng tôi</div>
-            <div class="ChNhSChBOMT" style="left: 584px; top: 76px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Chính sách bảo mật</div>
-            <div class="NgKCNgTCViN" style="left: 840px; top: 40px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Đăng ký cộng tác viên</div>
-            <div class="TIAppMobile" style="left: 840px; top: 112px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">Tải app mobile</div>
-            <div class="Rectangle91" style="width: 40px; height: 40px; left: 1111px; top: 40px; position: absolute; background: #DEA941; border-radius: 10px"></div>
-            <div class="Rectangle93" style="width: 40px; height: 40px; left: 1211px; top: 40px; position: absolute; background: #DEA941; border-radius: 10px"></div>
-            <div class="Rectangle92" style="width: 40px; height: 40px; left: 1161px; top: 40px; position: absolute; background: #DEA941; border-radius: 10px"></div>
-            <div class="RiFacebookFill" style="width: 30px; height: 30px; left: 897px; top: 228px; position: absolute"></div>
-            <div class="Vector" style="width: 13.12px; height: 25px; left: 1124.25px; top: 47.25px; position: absolute; background: white"></div>
-            <div class="Vector" style="width: 10px; height: 10px; left: 1176px; top: 55px; position: absolute; background: white"></div>
-            <div class="Vector" style="width: 30px; height: 30px; left: 1166px; top: 45px; position: absolute; background: white"></div>
-            <div class="Vector" style="width: 30px; height: 27.12px; left: 1216px; top: 46.44px; position: absolute; background: white"></div>
-            <div class="TeenyiconsInstagramSolid" style="width: 30px; height: 30px; left: 947px; top: 228px; position: absolute"></div>
-            <div class="SimpleIconsX" style="width: 30px; height: 30px; left: 997px; top: 228px; position: absolute"></div>
-            <div class="Copyright2023AllRightsReserved" style="left: 594px; top: 359px; position: absolute; color: #2364AA; font-size: 14px; font-family: Inter; font-weight: 500; word-wrap: break-word">Copyright ©2023 All Rights Reserved</div>
-            <div class="LocationOn" style="width: 24px; height: 24px; left: 80px; top: 40px; position: absolute">
-                <div class="BoundingBox" style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute; background: #D9D9D9"></div>
-                <div class="LocationOn" style="width: 16px; height: 20px; left: 4px; top: 2px; position: absolute; background: #2364AA"></div>
-            </div>
-            <div class="Call" style="width: 24px; height: 24px; left: 80px; top: 130px; position: absolute">
-                <div class="BoundingBox" style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute; background: #D9D9D9"></div>
-                <div class="Call" style="width: 18px; height: 18px; left: 3px; top: 3px; position: absolute; background: #2364AA"></div>
-            </div>
+
+            
         </div>
     </footer>
 
