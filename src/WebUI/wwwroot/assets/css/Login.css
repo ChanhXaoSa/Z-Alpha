@@ -4,12 +4,13 @@
 
 body {
     font-size: 14px;
+    background: linear-gradient(rgba(255,241,232,1), rgba(46,239,226,1));
+    background-size:cover;
 }
 
-.v81_1279 {
+.LoginContent {
     width: 100%;
-    height: 1024px;
-    background: linear-gradient(rgba(255,241,232,1), rgba(46,239,226,1));
+    height: 100vh;
     opacity: 1;
     position: relative;
     top: 0px;
@@ -17,31 +18,31 @@ body {
     overflow: hidden;
 }
 
-.v81_1281 {
+.hoacuc {
     width: 546px;
     height: 505px;
-    background: url("../images/v81_1281.png");
+    background: url("../images/hoacuc.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     opacity: 1;
     position: absolute;
     top: 185px;
-    left: 653px;
+    right: 50px;
     overflow: hidden;
 }
 
-.v81_1349 {
-    width: 230px;
-    height: 174px;
-    background: url("../images/v81_1349.png");
+.logo {
+    width: 150px;
+    height: 120px;
+    background: url("../images/logo.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     opacity: 1;
     position: absolute;
     top: 56px;
-    left: 63px;
+    left: 105px;
     overflow: hidden;
 }
 
