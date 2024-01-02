@@ -35,4 +35,72 @@
     font-weight: 400;
     word-wrap: break-word
 }
+.hashtag p {
+    color: blue;
+    font-size: 13px;
+    font-family: Inter;
+    font-weight: 400;
 
+    display: inline;
+}
+.PostText {
+    font-size: 14px;
+    font-family: Inter;
+    font-weight: 400;
+}
+.PushTextBox {
+    color: #2364AA;
+    background-color: #ECD6B2;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+    width: 8vw;
+    padding: 0.5vw;
+    margin: 0.2vw;
+    overflow: hidden;
+    font-size: 12px;
+    font-family: Inter;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+    .PushTextBox i,
+    .PushTextBox p {
+        display: inline; /* Set both <i> and <p> to inline */
+        margin: 0; /* Remove default margin for both elements */
+    }
+
+/* CSS */
+.button-62 {
+    background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+    border: 0;
+    border-radius: 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0px;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    width: 6vw;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+
+    .button-62:not([disabled]):focus {
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #FF6C37, .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+    }
+
+.button-62:not([disabled]):hover {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
