@@ -1,0 +1,2347 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Recommend";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Recommend</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400%2C500%2C600" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600" />
+</head>
+<body>
+    <div class="auto-group-9xmf-sL9">
+        <div class="auto-group-jjym-NXo">
+            <p class="tm-kim-theo-tn-sjT">TÌM KIẾM THEO TÊN</p>
+            <img class="auto-group-4tch-mpq" src="./assets/auto-group-4tch.png" />
+            <p class="tm-kim-theo-th-UjF">TÌM KIẾM THEO THẺ</p>
+            <div class="auto-group-brvk-CQM">
+                <div class="auto-group-rn6h-en9">
+                    <input class="auto-group-wght-bBb" type="checkbox" />
+                    <p class="hc-ng-KNV">Học đường</p>
+                </div>
+                <div class="auto-group-w1f3-pq3">
+                    <input class="rectangle-80-MKB" type="checkbox" />
+                    <p class="gia-nh-s2d">Gia đình</p>
+                </div>
+                <div class="auto-group-mlbx-bDX">
+                    <div class="rectangle-79-LS1">
+                    </div>
+                    <p class="cng-vic-fjB">Công việc</p>
+                </div>
+                <div class="auto-group-bei1-Cz1">
+                    <div class="rectangle-78-xCV">
+                    </div>
+                    <p class="tnh-cm-Gys">Tình cảm</p>
+                </div>
+                <div class="auto-group-fzpy-Ccd">
+                    <img class="auto-group-cgeh-Lyj" src="./assets/auto-group-cgeh.png" />
+                    <p class="bn-b-gGu">Bạn bè</p>
+                </div>
+                <div class="auto-group-v2tf-14H">
+                    <img class="auto-group-czch-9RP" src="./assets/auto-group-czch.png" />
+                    <p class="ng-trang-la-UTf">Đồng trang lứa</p>
+                </div>
+                <div class="auto-group-lwnq-zgu">
+                    <div class="rectangle-74-8o7">
+                    </div>
+                    <p class="stress-4gm">Stress</p>
+                </div>
+                <div class="auto-group-hdim-oPT">
+                    <div class="rectangle-73-xGM">
+                    </div>
+                    <p class="p-lc-5rm">Áp lực</p>
+                </div>
+                <div class="auto-group-qatp-Di5">
+                    <div class="rectangle-72-xff">
+                    </div>
+                    <p class="sc-kho-6G5">Sức khoẻ</p>
+                </div>
+                <div class="auto-group-xhcr-D5o">
+                    <div class="rectangle-70-9k9">
+                    </div>
+                    <p class="ng-nghip-gk5">Đồng nghiệp</p>
+                </div>
+                <div class="auto-group-bru7-1GZ">
+                    <div class="rectangle-75-wg1">
+                    </div>
+                    <p class="mi-trng-sZf">Môi trường</p>
+                </div>
+                <div class="auto-group-qabo-cGM">
+                    <div class="rectangle-71-ZSV">
+                    </div>
+                    <p class="nhy-cm-hYh">Nhạy cảm</p>
+                </div>
+            </div>
+            <p class="tm-kim-theo-v-tr-rK7">TÌM KIẾM THEO VỊ TRÍ</p>
+            <div class="auto-group-bmzo-Lzy">
+                <p class="tp-h-ch-minh-F6M">TP. Hồ Chí Minh</p>
+                <img class="keyboardarrowdown-9Sd" src="./assets/keyboardarrowdown-S1B.png" />
+            </div>
+        </div>
+        <div class="auto-group-bzho-TTK">
+            <div class="auto-group-qlry-bJd">
+                <p class="sp-xp-theo-j9w">Sắp xếp theo</p>
+                <div class="auto-group-1dlh-Dqo">Lượt bình luận</div>
+                <div class="auto-group-bbmo-hky">Lượt đánh giá</div>
+                <div class="auto-group-k93j-n1j">
+                    <p class="trnh--huP">Trình độ</p>
+                    <img class="keyboardarrowdown-pDK" src="./assets/keyboardarrowdown-2Yd.png" />
+                </div>
+            </div>
+            <div class="auto-group-roty-Kvm">
+                <div class="psychologistcard-3Ly">
+                    <img class="rectangle-85-XG9" src="./assets/rectangle-85-oQy.png" />
+                    <div class="frame-1-3EV">
+                        <p class="tn-NXf">Psy. Trần Phát</p>
+                        <img class="checkcircle-Jw7" src="./assets/checkcircle-BoT.png" />
+                    </div>
+                    <p class="a-ch-SnR">Tp. Hồ Chí Minh</p>
+                    <div class="auto-group-qg1s-xkm">
+                        <img class="image-7-5qP" src="./assets/image-7-dyP.png" />
+                        <p class="s-lng-ReM">(83)</p>
+                    </div>
+                    <div class="auto-group-kbed-jf3">
+                        <img class="chat-G9B" src="./assets/chat-Bwj.png" />
+                        <p class="s-bnh-lun-zay">Đã viết 2k7 bình luận</p>
+                    </div>
+                    <div class="auto-group-d8jy-KNM">
+                        <img class="arrowselectortool-TDf" src="./assets/arrowselectortool.png" />
+                        <p class="s-truy-cp-BfT">Có 501 truy cập</p>
+                    </div>
+                </div>
+                <div class="psychologistcard-6Gd">
+                    <img class="rectangle-85-axV" src="./assets/rectangle-85-SkD.png" />
+                    <div class="frame-1-VZf">
+                        <p class="tn-DVf">Dr. Phương Phạm</p>
+                        <img class="checkcircle-kkV" src="./assets/checkcircle-8g5.png" />
+                    </div>
+                    <p class="a-ch-HkR">Đồng Nai</p>
+                    <div class="auto-group-etbf-Q4M">
+                        <img class="image-7-Kx1" src="./assets/image-7-39w.png" />
+                        <p class="s-lng-fky">(43)</p>
+                    </div>
+                    <div class="auto-group-nrsv-ad3">
+                        <img class="chat-ufK" src="./assets/chat-e7f.png" />
+                        <p class="s-bnh-lun-TRw">Đã viết 2k3 bình luận</p>
+                    </div>
+                    <div class="auto-group-emft-Bcq">
+                        <img class="arrowselectortool-82H" src="./assets/arrowselectortool-N45.png" />
+                        <p class="s-truy-cp-riy">Có 313 lượt truy cập</p>
+                    </div>
+                </div>
+                <div class="psychologistcard-y2u">
+                    <img class="rectangle-85-4q3" src="./assets/rectangle-85-U8V.png" />
+                    <div class="frame-1-Bem">Psy. Tran Wind</div>
+                    <p class="a-ch-Fed">Hà Nội</p>
+                    <div class="auto-group-j7tj-mcy">
+                        <img class="image-7-J77" src="./assets/image-7-8iH.png" />
+                        <p class="s-lng-oJm">(16)</p>
+                    </div>
+                    <div class="auto-group-hfzw-Cbo">
+                        <img class="chat-7yf" src="./assets/chat-rTo.png" />
+                        <p class="s-bnh-lun-Sm3">Đã viết 1k9 bình luận</p>
+                    </div>
+                    <div class="auto-group-813k-Mt1">
+                        <img class="arrowselectortool-gfP" src="./assets/arrowselectortool-6Z3.png" />
+                        <p class="s-truy-cp-pFo">Có 101 lượt truy cập</p>
+                    </div>
+                </div>
+            </div>
+            <div class="auto-group-adkb-uY9">
+                <div class="psychologistcard-1r5">
+                    <img class="rectangle-85-iEh" src="./assets/rectangle-85-Je1.png" />
+                    <div class="frame-1-QdK">
+                        <p class="tn-8pD">Psy. Hoàng Yến</p>
+                        <img class="checkcircle-U7P" src="./assets/checkcircle-Emb.png" />
+                    </div>
+                    <p class="a-ch-bxh">Hải Phòng</p>
+                    <div class="auto-group-rgof-K81">
+                        <img class="image-7-341" src="./assets/image-7-g4V.png" />
+                        <p class="s-lng-Nry">(122)</p>
+                    </div>
+                    <div class="auto-group-jdu1-tqK">
+                        <img class="chat-E8V" src="./assets/chat.png" />
+                        <p class="s-bnh-lun-Anq">Đã viết 1k5 bình luận</p>
+                    </div>
+                    <div class="auto-group-bygy-5eu">
+                        <img class="arrowselectortool-CzR" src="./assets/arrowselectortool-u57.png" />
+                        <p class="s-truy-cp-Laq">Có 250 truy cập</p>
+                    </div>
+                </div>
+                <div class="psychologistcard-RMP">
+                    <img class="rectangle-85-gHK" src="./assets/rectangle-85-4G5.png" />
+                    <div class="frame-1-BE5">Psy. Nam Hoàng</div>
+                    <p class="a-ch-TBb">Đồng Nai</p>
+                    <div class="auto-group-n8jh-NJZ">
+                        <img class="image-7-6VT" src="./assets/image-7-KKj.png" />
+                        <p class="s-lng-SpD">(94)</p>
+                    </div>
+                    <div class="auto-group-csfs-Nhs">
+                        <img class="chat-6tm" src="./assets/chat-eku.png" />
+                        <p class="s-bnh-lun-3JD">Đã viết 1k bình luận</p>
+                    </div>
+                    <div class="auto-group-vps1-mV7">
+                        <img class="arrowselectortool-UuK" src="./assets/arrowselectortool-rRs.png" />
+                        <p class="s-truy-cp-pTP">Có 222 lượt truy cập</p>
+                    </div>
+                </div>
+                <div class="psychologistcard-XMo">
+                    <img class="rectangle-85-Rxy" src="./assets/rectangle-85-ey3.png" />
+                    <div class="auto-group-jyid-kEZ">
+                        <div class="frame-1-GTo">Dr. Tân Trường</div>
+                        <img class="checkcircle-YgD" src="./assets/checkcircle.png" />
+                    </div>
+                    <p class="a-ch-g1j">Hà Nội</p>
+                    <div class="auto-group-g73j-Pgq">
+                        <img class="image-7-iUD" src="./assets/image-7-xBF.png" />
+                        <p class="s-lng-TRo">(61)</p>
+                    </div>
+                    <div class="auto-group-ff9w-nDB">
+                        <img class="chat-uHo" src="./assets/chat-vGD.png" />
+                        <p class="s-bnh-lun-qx9">Đã viết 920 bình luận</p>
+                    </div>
+                    <div class="auto-group-sp1f-mau">
+                        <img class="arrowselectortool-hzM" src="./assets/arrowselectortool-JLu.png" />
+                        <p class="s-truy-cp-SS9">Có 101 lượt truy cập</p>
+                    </div>
+                </div>
+            </div>
+            <div class="auto-group-ibt1-Yzy">
+                <div class="psychologistcard-5ED">
+                    <img class="rectangle-85-yaV" src="./assets/rectangle-85-Wmj.png" />
+                    <div class="frame-1-gzh">
+                        <p class="tn-2Ym">Psy. Thomas Trần</p>
+                        <img class="checkcircle-A9B" src="./assets/checkcircle-i4m.png" />
+                    </div>
+                    <p class="a-ch-tqs">Tp. Hồ Chí Minh</p>
+                    <div class="auto-group-vugu-1vV">
+                        <img class="image-7-9Wu" src="./assets/image-7-8rh.png" />
+                        <p class="s-lng-JPo">(917)</p>
+                    </div>
+                    <div class="auto-group-g1gq-Qxd">
+                        <img class="chat-LbP" src="./assets/chat-yS5.png" />
+                        <p class="s-bnh-lun-t77">Đã viết 300 bình luận</p>
+                    </div>
+                    <div class="auto-group-zxmb-1Sd">
+                        <img class="arrowselectortool-8GM" src="./assets/arrowselectortool-Ley.png" />
+                        <p class="s-truy-cp-sDw">Có 501 truy cập</p>
+                    </div>
+                </div>
+                <div class="psychologistcard-yXs">
+                    <img class="rectangle-85-UzR" src="./assets/rectangle-85-oqf.png" />
+                    <div class="frame-1-Pbb">
+                        <p class="tn-Ww7">Dr. Trinh Mai</p>
+                        <img class="checkcircle-3w3" src="./assets/checkcircle-f97.png" />
+                    </div>
+                    <p class="a-ch-zLV">Đồng Nai</p>
+                    <div class="auto-group-4uvd-uyF">
+                        <img class="image-7-SCV" src="./assets/image-7-juw.png" />
+                        <p class="s-lng-Nbw">(4)</p>
+                    </div>
+                    <div class="auto-group-qsvz-heD">
+                        <img class="chat-S61" src="./assets/chat-bSV.png" />
+                        <p class="s-bnh-lun-nQm">Đã viết 105 bình luận</p>
+                    </div>
+                    <div class="auto-group-unzr-Wbf">
+                        <img class="arrowselectortool-2a1" src="./assets/arrowselectortool-17K.png" />
+                        <p class="s-truy-cp-ZK3">Có 10 lượt truy cập</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="auto-group-kmks-Fhf">
+            <div class="psychologistcard-azq">
+                <img class="rectangle-85-6CV" src="./assets/rectangle-85.png" />
+                <div class="frame-1-bf3">
+                    <p class="tn-vxD">Psy. Đặng Mai</p>
+                    <img class="checkcircle-s6m" src="./assets/checkcircle-hqP.png" />
+                </div>
+                <p class="a-ch-zSH">Địa chỉ</p>
+                <div class="auto-group-kcvy-hrV">
+                    <img class="image-7-ELd" src="./assets/image-7.png" />
+                    <p class="s-lng-mbT">(17)</p>
+                </div>
+                <div class="auto-group-cyjw-hV7">
+                    <img class="chat-21b" src="./assets/chat-87X.png" />
+                    <p class="s-bnh-lun-kyB">Đã viết 1k3 bình luận</p>
+                </div>
+                <div class="auto-group-tjdk-HTK">
+                    <img class="arrowselectortool-R3j" src="./assets/arrowselectortool-p6H.png" />
+                    <p class="s-truy-cp-9VX">Có 20 lượt truy cập</p>
+                </div>
+            </div>
+            <div class="psychologistcard-46h">
+                <img class="rectangle-85-aKw" src="./assets/rectangle-85-YXX.png" />
+                <div class="frame-1-VC1">
+                    <p class="tn-ajF">Psy. Trang Hoàng</p>
+                    <img class="checkcircle-uWd" src="./assets/checkcircle-iTf.png" />
+                </div>
+                <p class="a-ch-2bF">Địa chỉ</p>
+                <div class="auto-group-6erb-Lbw">
+                    <img class="image-7-GVb" src="./assets/image-7-pSq.png" />
+                    <p class="s-lng-cJZ">(51)</p>
+                </div>
+                <div class="auto-group-rbwk-8Gu">
+                    <img class="chat-eW9" src="./assets/chat-TjB.png" />
+                    <p class="s-bnh-lun-yYR">Đã viết 621 bình luận</p>
+                </div>
+                <div class="auto-group-n8rz-6d3">
+                    <img class="arrowselectortool-pJ9" src="./assets/arrowselectortool-7vD.png" />
+                    <p class="s-truy-cp-kBo">Có 182 lượt truy cập</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+
+        html {
+            font-size: 62.5%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        input {
+            border: none;
+        }
+
+        body {
+            width: auto;
+        }
+
+        .auto-group-9xmf-sL9 {
+            margin: 3rem 0rem 6.9rem 3.75rem;
+            height: 91.3rem;
+            display: flex;
+            align-items: flex-start;
+            flex-shrink: 0;
+        }
+
+            .auto-group-9xmf-sL9 .auto-group-jjym-NXo {
+                margin: 0.5rem 8.9rem 0rem 0rem;
+                width: 26.65rem;
+                flex-shrink: 0;
+            }
+
+                .auto-group-9xmf-sL9 .auto-group-jjym-NXo .tm-kim-theo-tn-sjT {
+                    margin-bottom: 1rem;
+                    width: 100%;
+                    text-align: center;
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                    line-height: 1.2125;
+                    color: #000000;
+                    font-family: Inter, 'Source Sans Pro';
+                    white-space: nowrap;
+                }
+
+                .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-4tch-mpq {
+                    margin: 0rem 0rem 2.7rem 0.05rem;
+                    width: 26.6rem;
+                    height: 3.7rem;
+                    position: relative;
+                    object-fit: contain;
+                    vertical-align: top;
+                }
+
+                .auto-group-9xmf-sL9 .auto-group-jjym-NXo .tm-kim-theo-th-UjF {
+                    margin-bottom: 1.1rem;
+                    width: 100%;
+                    text-align: center;
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                    line-height: 1.2125;
+                    color: #000000;
+                    font-family: Inter, 'Source Sans Pro';
+                    white-space: nowrap;
+                }
+
+                .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM {
+                    margin: 0rem 0rem 2.7rem 0.05rem;
+                    box-sizing: border-box;
+                    padding: 2.9rem 2.8rem 2.4rem 2.8rem;
+                    width: 26.6rem;
+                    row-gap: 2.4rem;
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #ffffff;
+                    border-radius: 1rem;
+                }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-rn6h-en9 {
+                        margin-right: 10.5rem;
+                        width: calc(100% - 10.5rem);
+                        display: flex;
+                        align-items: flex-end;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-rn6h-en9 .auto-group-wght-bBb {
+                            margin-right: 1.1rem;
+                            width: 2rem;
+                            height: 2rem;
+                            object-fit: contain;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-rn6h-en9 .hc-ng-KNV {
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-w1f3-pq3 {
+                        margin-right: 12.3rem;
+                        width: calc(100% - 12.3rem);
+                        display: flex;
+                        align-items: flex-end;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-w1f3-pq3 .rectangle-80-MKB {
+                            margin-right: 1.1rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border: solid 0.1rem #000000;
+                            box-sizing: border-box;
+                            background-color: #f8f8f8;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-w1f3-pq3 .gia-nh-s2d {
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-mlbx-bDX {
+                        margin-right: 11.1rem;
+                        width: calc(100% - 11.1rem);
+                        display: flex;
+                        align-items: flex-end;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-mlbx-bDX .rectangle-79-LS1 {
+                            margin-right: 1.1rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border: solid 0.1rem #000000;
+                            box-sizing: border-box;
+                            background-color: #f8f8f8;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-mlbx-bDX .cng-vic-fjB {
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-bei1-Cz1 {
+                        margin-right: 11.7rem;
+                        width: calc(100% - 11.7rem);
+                        display: flex;
+                        align-items: flex-end;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-bei1-Cz1 .rectangle-78-xCV {
+                            margin-right: 1.1rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border: solid 0.1rem #000000;
+                            box-sizing: border-box;
+                            background-color: #f8f8f8;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-bei1-Cz1 .tnh-cm-Gys {
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-fzpy-Ccd {
+                        margin-right: 13.2rem;
+                        width: calc(100% - 13.2rem);
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-fzpy-Ccd .auto-group-cgeh-Lyj {
+                            margin-right: 1.1rem;
+                            width: 2rem;
+                            height: 2rem;
+                            object-fit: contain;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-fzpy-Ccd .bn-b-gGu {
+                            margin-top: 0.1rem;
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-v2tf-14H {
+                        margin-right: 7.8rem;
+                        width: calc(100% - 7.8rem);
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-v2tf-14H .auto-group-czch-9RP {
+                            margin-right: 1.2rem;
+                            width: 2rem;
+                            height: 2rem;
+                            object-fit: contain;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-v2tf-14H .ng-trang-la-UTf {
+                            margin-bottom: 0.1rem;
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-lwnq-zgu {
+                        margin-right: 13.5rem;
+                        width: calc(100% - 13.5rem);
+                        display: flex;
+                        align-items: flex-end;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-lwnq-zgu .rectangle-74-8o7 {
+                            margin-right: 1.2rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border: solid 0.1rem #000000;
+                            box-sizing: border-box;
+                            background-color: #f8f8f8;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-lwnq-zgu .stress-4gm {
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-hdim-oPT {
+                        margin-right: 13.5rem;
+                        width: calc(100% - 13.5rem);
+                        display: flex;
+                        align-items: flex-end;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-hdim-oPT .rectangle-73-xGM {
+                            margin-right: 1.2rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border: solid 0.1rem #000000;
+                            box-sizing: border-box;
+                            background-color: #f8f8f8;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-hdim-oPT .p-lc-5rm {
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-qatp-Di5 {
+                        margin-right: 11.5rem;
+                        width: calc(100% - 11.5rem);
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-qatp-Di5 .rectangle-72-xff {
+                            margin-right: 1.2rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border: solid 0.1rem #000000;
+                            box-sizing: border-box;
+                            background-color: #f8f8f8;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-qatp-Di5 .sc-kho-6G5 {
+                            margin-top: 0.1rem;
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-xhcr-D5o {
+                        margin-right: 9.1rem;
+                        width: calc(100% - 9.1rem);
+                        display: flex;
+                        align-items: flex-end;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-xhcr-D5o .rectangle-70-9k9 {
+                            margin-right: 1.2rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border: solid 0.1rem #000000;
+                            box-sizing: border-box;
+                            background-color: #f8f8f8;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-xhcr-D5o .ng-nghip-gk5 {
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-bru7-1GZ {
+                        margin-right: 10.5rem;
+                        width: calc(100% - 10.5rem);
+                        display: flex;
+                        align-items: flex-end;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-bru7-1GZ .rectangle-75-wg1 {
+                            margin-right: 1.1rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border: solid 0.1rem #000000;
+                            box-sizing: border-box;
+                            background-color: #f8f8f8;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-bru7-1GZ .mi-trng-sZf {
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-qabo-cGM {
+                        margin-right: 11.1rem;
+                        width: calc(100% - 11.1rem);
+                        display: flex;
+                        align-items: flex-end;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-qabo-cGM .rectangle-71-ZSV {
+                            margin-right: 1.1rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border: solid 0.1rem #000000;
+                            box-sizing: border-box;
+                            background-color: #f8f8f8;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-brvk-CQM .auto-group-qabo-cGM .nhy-cm-hYh {
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                .auto-group-9xmf-sL9 .auto-group-jjym-NXo .tm-kim-theo-v-tr-rK7 {
+                    margin-bottom: 1rem;
+                    width: 100%;
+                    text-align: center;
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                    line-height: 1.2125;
+                    color: #000000;
+                    font-family: Inter, 'Source Sans Pro';
+                    white-space: nowrap;
+                }
+
+                .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-bmzo-Lzy {
+                    margin-left: 0.05rem;
+                    box-sizing: border-box;
+                    padding: 0.7rem 0.6rem 0.6rem 0.8rem;
+                    width: calc(100% - 0.05rem);
+                    display: flex;
+                    align-items: center;
+                    background-color: #ffffff;
+                    border-radius: 1rem;
+                }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-bmzo-Lzy .tp-h-ch-minh-F6M {
+                        margin: 0rem 12.1rem 0.1rem 0rem;
+                        font-size: 1.4rem;
+                        font-weight: 500;
+                        line-height: 1.2125;
+                        color: #000000;
+                        font-family: Inter, 'Source Sans Pro';
+                        white-space: nowrap;
+                        flex-shrink: 0;
+                    }
+
+                    .auto-group-9xmf-sL9 .auto-group-jjym-NXo .auto-group-bmzo-Lzy .keyboardarrowdown-9Sd {
+                        opacity: 0.3;
+                        width: 2.4rem;
+                        height: 2.4rem;
+                        position: relative;
+                        object-fit: contain;
+                        vertical-align: top;
+                        flex-shrink: 0;
+                    }
+
+            .auto-group-9xmf-sL9 .auto-group-bzho-TTK {
+                margin-right: 4rem;
+                width: 60.9rem;
+                height: 100%;
+                flex-shrink: 0;
+            }
+
+                .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-qlry-bJd {
+                    margin-bottom: 2rem;
+                    height: 3.4rem;
+                    display: flex;
+                    align-items: center;
+                }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-qlry-bJd .sp-xp-theo-j9w {
+                        margin: 0.1rem 2.7rem 0rem 0rem;
+                        text-align: center;
+                        font-size: 1.4rem;
+                        font-weight: 500;
+                        line-height: 1.2125;
+                        color: #000000;
+                        font-family: Inter, 'Source Sans Pro';
+                        white-space: nowrap;
+                        flex-shrink: 0;
+                    }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-qlry-bJd .auto-group-1dlh-Dqo {
+                        margin-right: 2.8rem;
+                        width: 15.2rem;
+                        height: 100%;
+                        text-align: center;
+                        font-size: 1.4rem;
+                        font-weight: 600;
+                        line-height: 1.2125;
+                        color: #ffffff;
+                        font-family: Inter, 'Source Sans Pro';
+                        white-space: nowrap;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: #2364aa;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-qlry-bJd .auto-group-bbmo-hky {
+                        margin-right: 2.8rem;
+                        width: 15.2rem;
+                        height: 100%;
+                        text-align: center;
+                        font-size: 1.4rem;
+                        font-weight: 600;
+                        line-height: 1.2125;
+                        color: #000000;
+                        font-family: Inter, 'Source Sans Pro';
+                        white-space: nowrap;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: #ffffff;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-qlry-bJd .auto-group-k93j-n1j {
+                        box-sizing: border-box;
+                        padding: 0.5rem 0.4rem 0.5rem 1.5rem;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        background-color: #ffffff;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-qlry-bJd .auto-group-k93j-n1j .trnh--huP {
+                            margin: 0.1rem 2.3rem 0rem 0rem;
+                            font-size: 1.4rem;
+                            font-weight: 600;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-qlry-bJd .auto-group-k93j-n1j .keyboardarrowdown-pDK {
+                            opacity: 0.3;
+                            width: 2.4rem;
+                            height: 2.4rem;
+                            position: relative;
+                            object-fit: contain;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm {
+                    margin: 0rem 0rem 3.8rem 0.1rem;
+                    height: 26.1rem;
+                    display: flex;
+                    column-gap: 4rem;
+                    align-items: center;
+                }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly {
+                        box-sizing: border-box;
+                        padding: 0.9rem 2.3rem 1.8rem 1.7rem;
+                        width: 17.6rem;
+                        height: 100%;
+                        cursor: pointer;
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: #ffffff;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .rectangle-85-XG9 {
+                            margin: 0rem 0rem 0.6rem 0.6rem;
+                            width: 13rem;
+                            height: 13rem;
+                            object-fit: cover;
+                            vertical-align: top;
+                            border-radius: 1rem;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .frame-1-3EV {
+                            margin: 0rem 2.1rem 0.6rem 0.6rem;
+                            width: calc(100% - 2.7rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .frame-1-3EV .tn-NXf {
+                                margin-right: 0.1rem;
+                                font-size: 1.3rem;
+                                font-weight: 600;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .frame-1-3EV .checkcircle-Jw7 {
+                                width: 1.6rem;
+                                height: 1.6rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .a-ch-SnR {
+                            margin: 0rem 5.6rem 0.5rem 0rem;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .auto-group-qg1s-xkm {
+                            margin: 0rem 3.6rem 0.732rem 0rem;
+                            width: calc(100% - 3.6rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .auto-group-qg1s-xkm .image-7-5qP {
+                                width: 8.2rem;
+                                height: 1.8684rem;
+                                object-fit: cover;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .auto-group-qg1s-xkm .s-lng-ReM {
+                                margin-top: 0.0316rem;
+                                font-size: 0.9rem;
+                                font-weight: 400;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .auto-group-kbed-jf3 {
+                            margin: 0rem 3.1rem 0.4rem 0.5rem;
+                            width: calc(100% - 3.6rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .auto-group-kbed-jf3 .chat-G9B {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .auto-group-kbed-jf3 .s-bnh-lun-zay {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .auto-group-d8jy-KNM {
+                            margin: 0rem 5.1rem 0rem 0.5rem;
+                            width: calc(100% - 5.6rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .auto-group-d8jy-KNM .arrowselectortool-TDf {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-3Ly .auto-group-d8jy-KNM .s-truy-cp-BfT {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd {
+                        box-sizing: border-box;
+                        padding: 0.9rem 2.3rem 1.8rem 1.7rem;
+                        width: 17.6rem;
+                        height: 100%;
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: #ffffff;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .rectangle-85-axV {
+                            margin: 0rem 0rem 0.6rem 0.6rem;
+                            width: 13rem;
+                            height: 13rem;
+                            object-fit: cover;
+                            vertical-align: top;
+                            border-radius: 1rem;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .frame-1-VZf {
+                            margin: 0rem 0.2rem 0.6rem 0.6rem;
+                            width: calc(100% - 0.8rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .frame-1-VZf .tn-DVf {
+                                font-size: 1.3rem;
+                                font-weight: 600;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .frame-1-VZf .checkcircle-kkV {
+                                width: 1.6rem;
+                                height: 1.6rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .a-ch-HkR {
+                            margin: 0rem 8.4rem 0.5rem 0rem;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .auto-group-etbf-Q4M {
+                            margin: 0rem 3.5rem 0.732rem 0rem;
+                            width: calc(100% - 3.5rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .auto-group-etbf-Q4M .image-7-Kx1 {
+                                width: 8.2rem;
+                                height: 1.8684rem;
+                                object-fit: cover;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .auto-group-etbf-Q4M .s-lng-fky {
+                                margin-top: 0.0316rem;
+                                font-size: 0.9rem;
+                                font-weight: 400;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .auto-group-nrsv-ad3 {
+                            margin: 0rem 3rem 0.4rem 0.5rem;
+                            width: calc(100% - 3.5rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .auto-group-nrsv-ad3 .chat-ufK {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .auto-group-nrsv-ad3 .s-bnh-lun-TRw {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .auto-group-emft-Bcq {
+                            margin: 0rem 3.4rem 0rem 0.5rem;
+                            width: calc(100% - 3.9rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .auto-group-emft-Bcq .arrowselectortool-82H {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-6Gd .auto-group-emft-Bcq .s-truy-cp-riy {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u {
+                        box-sizing: border-box;
+                        padding: 0.9rem 2.3rem 1.8rem 1.7rem;
+                        width: 17.6rem;
+                        height: 100%;
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: #ffffff;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .rectangle-85-4q3 {
+                            margin: 0rem 0rem 0.6rem 0.6rem;
+                            width: 13rem;
+                            height: 13rem;
+                            object-fit: cover;
+                            vertical-align: top;
+                            border-radius: 1rem;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .frame-1-Bem {
+                            margin: 0rem 3rem 0.6rem 0rem;
+                            width: 9.4rem;
+                            height: 1.6rem;
+                            font-size: 1.3rem;
+                            font-weight: 600;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .a-ch-Fed {
+                            margin: 0rem 9.5rem 0.5rem 0rem;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .auto-group-j7tj-mcy {
+                            margin: 0rem 3.7rem 0.732rem 0rem;
+                            width: calc(100% - 3.7rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .auto-group-j7tj-mcy .image-7-J77 {
+                                width: 8.2rem;
+                                height: 1.8684rem;
+                                object-fit: cover;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .auto-group-j7tj-mcy .s-lng-oJm {
+                                margin-top: 0.0316rem;
+                                font-size: 0.9rem;
+                                font-weight: 400;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .auto-group-hfzw-Cbo {
+                            margin: 0rem 3.2rem 0.4rem 0.5rem;
+                            width: calc(100% - 3.7rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .auto-group-hfzw-Cbo .chat-7yf {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .auto-group-hfzw-Cbo .s-bnh-lun-Sm3 {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .auto-group-813k-Mt1 {
+                            margin: 0rem 3.5rem 0rem 0.5rem;
+                            width: calc(100% - 4rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .auto-group-813k-Mt1 .arrowselectortool-gfP {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-roty-Kvm .psychologistcard-y2u .auto-group-813k-Mt1 .s-truy-cp-pFo {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 {
+                    margin: 0rem 0rem 3.8rem 0.1rem;
+                    height: 26.1rem;
+                    display: flex;
+                    column-gap: 4rem;
+                    align-items: center;
+                }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 {
+                        box-sizing: border-box;
+                        padding: 0.9rem 2.3rem 1.8rem 1.7rem;
+                        width: 17.6rem;
+                        height: 100%;
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: #ffffff;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .rectangle-85-iEh {
+                            margin: 0rem 0rem 0.6rem 0.6rem;
+                            width: 13rem;
+                            height: 13rem;
+                            object-fit: cover;
+                            vertical-align: top;
+                            border-radius: 1rem;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .frame-1-QdK {
+                            margin: 0rem 1.3rem 0.6rem 0.6rem;
+                            width: calc(100% - 1.9rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .frame-1-QdK .tn-8pD {
+                                margin-right: 0.1rem;
+                                font-size: 1.3rem;
+                                font-weight: 600;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .frame-1-QdK .checkcircle-U7P {
+                                width: 1.6rem;
+                                height: 1.6rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .a-ch-bxh {
+                            margin: 0rem 8rem 0.5rem 0rem;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .auto-group-rgof-K81 {
+                            margin: 0rem 3.2rem 0.732rem 0rem;
+                            width: calc(100% - 3.2rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .auto-group-rgof-K81 .image-7-341 {
+                                width: 8.2rem;
+                                height: 1.8684rem;
+                                object-fit: cover;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .auto-group-rgof-K81 .s-lng-Nry {
+                                margin-top: 0.0316rem;
+                                font-size: 0.9rem;
+                                font-weight: 400;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .auto-group-jdu1-tqK {
+                            margin: 0rem 3.2rem 0.4rem 0.5rem;
+                            width: calc(100% - 3.7rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .auto-group-jdu1-tqK .chat-E8V {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .auto-group-jdu1-tqK .s-bnh-lun-Anq {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .auto-group-bygy-5eu {
+                            margin: 0rem 5rem 0rem 0.5rem;
+                            width: calc(100% - 5.5rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .auto-group-bygy-5eu .arrowselectortool-CzR {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-1r5 .auto-group-bygy-5eu .s-truy-cp-Laq {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP {
+                        box-sizing: border-box;
+                        padding: 0.9rem 2.3rem 1.8rem 1.7rem;
+                        width: 17.6rem;
+                        height: 100%;
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: #ffffff;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .rectangle-85-gHK {
+                            margin: 0rem 0rem 0.6rem 0.6rem;
+                            width: 13rem;
+                            height: 13rem;
+                            object-fit: cover;
+                            vertical-align: top;
+                            border-radius: 1rem;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .frame-1-BE5 {
+                            margin: 0rem 2.1rem 0.6rem 0rem;
+                            width: 10.3rem;
+                            height: 1.6rem;
+                            font-size: 1.3rem;
+                            font-weight: 600;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .a-ch-TBb {
+                            margin: 0rem 8.4rem 0.5rem 0rem;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .auto-group-n8jh-NJZ {
+                            margin: 0rem 3.6rem 0.732rem 0rem;
+                            width: calc(100% - 3.6rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .auto-group-n8jh-NJZ .image-7-6VT {
+                                width: 8.2rem;
+                                height: 1.8684rem;
+                                object-fit: cover;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .auto-group-n8jh-NJZ .s-lng-SpD {
+                                margin-top: 0.0316rem;
+                                font-size: 0.9rem;
+                                font-weight: 400;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .auto-group-csfs-Nhs {
+                            margin: 0rem 3.7rem 0.4rem 0.5rem;
+                            width: calc(100% - 4.2rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .auto-group-csfs-Nhs .chat-6tm {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .auto-group-csfs-Nhs .s-bnh-lun-3JD {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .auto-group-vps1-mV7 {
+                            margin: 0rem 3.3rem 0rem 0.5rem;
+                            width: calc(100% - 3.8rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .auto-group-vps1-mV7 .arrowselectortool-UuK {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-RMP .auto-group-vps1-mV7 .s-truy-cp-pTP {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo {
+                        box-sizing: border-box;
+                        padding: 0.9rem 2.3rem 1.8rem 1.7rem;
+                        width: 17.6rem;
+                        height: 100%;
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: #ffffff;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .rectangle-85-Rxy {
+                            margin: 0rem 0rem 0.6rem 0.6rem;
+                            width: 13rem;
+                            height: 13rem;
+                            object-fit: cover;
+                            vertical-align: top;
+                            border-radius: 1rem;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-jyid-kEZ {
+                            margin: 0rem 1.5rem 0.6rem 0rem;
+                            width: 10.9rem;
+                            height: 1.6rem;
+                            position: relative;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-jyid-kEZ .frame-1-GTo {
+                                width: 9.5rem;
+                                height: 1.6rem;
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                                font-size: 1.3rem;
+                                font-weight: 600;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-jyid-kEZ .checkcircle-YgD {
+                                width: 1.6rem;
+                                height: 1.6rem;
+                                position: absolute;
+                                left: 9.3rem;
+                                top: 0;
+                                object-fit: contain;
+                                vertical-align: top;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .a-ch-g1j {
+                            margin: 0rem 9.5rem 0.5rem 0rem;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-g73j-Pgq {
+                            margin: 0rem 3.7rem 0.732rem 0rem;
+                            width: calc(100% - 3.7rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-g73j-Pgq .image-7-iUD {
+                                width: 8.2rem;
+                                height: 1.8684rem;
+                                object-fit: cover;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-g73j-Pgq .s-lng-TRo {
+                                margin-top: 0.0316rem;
+                                font-size: 0.9rem;
+                                font-weight: 400;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-ff9w-nDB {
+                            margin: 0rem 3rem 0.4rem 0.5rem;
+                            width: calc(100% - 3.5rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-ff9w-nDB .chat-uHo {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-ff9w-nDB .s-bnh-lun-qx9 {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-sp1f-mau {
+                            margin: 0rem 3.5rem 0rem 0.5rem;
+                            width: calc(100% - 4rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-sp1f-mau .arrowselectortool-hzM {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-adkb-uY9 .psychologistcard-XMo .auto-group-sp1f-mau .s-truy-cp-SS9 {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy {
+                    margin: 0rem 21.6rem 0rem 0.1rem;
+                    width: calc(100% - 21.7rem);
+                    height: 26.1rem;
+                    display: flex;
+                    align-items: center;
+                }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED {
+                        margin-right: 4rem;
+                        box-sizing: border-box;
+                        padding: 0.9rem 2.2rem 1.8rem 1.7rem;
+                        width: 17.6rem;
+                        height: 100%;
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: #ffffff;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .rectangle-85-yaV {
+                            margin: 0rem 0rem 0.6rem 0.5rem;
+                            width: 13rem;
+                            height: 13rem;
+                            object-fit: cover;
+                            vertical-align: top;
+                            border-radius: 1rem;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .frame-1-gzh {
+                            margin: 0rem 0rem 0.6rem 0.6rem;
+                            width: calc(100% - 0.6rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .frame-1-gzh .tn-2Ym {
+                                margin-right: 0.1rem;
+                                font-size: 1.3rem;
+                                font-weight: 600;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .frame-1-gzh .checkcircle-A9B {
+                                width: 1.6rem;
+                                height: 1.6rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .a-ch-tqs {
+                            margin: 0rem 5.7rem 0.5rem 0rem;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .auto-group-vugu-1vV {
+                            margin: 0rem 3.3rem 0.732rem 0rem;
+                            width: calc(100% - 3.3rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .auto-group-vugu-1vV .image-7-9Wu {
+                                width: 8.2rem;
+                                height: 1.8684rem;
+                                object-fit: cover;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .auto-group-vugu-1vV .s-lng-JPo {
+                                margin-top: 0.0316rem;
+                                font-size: 0.9rem;
+                                font-weight: 400;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .auto-group-g1gq-Qxd {
+                            margin: 0rem 3rem 0.4rem 0.5rem;
+                            width: calc(100% - 3.5rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .auto-group-g1gq-Qxd .chat-LbP {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .auto-group-g1gq-Qxd .s-bnh-lun-t77 {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .auto-group-zxmb-1Sd {
+                            margin: 0rem 5.2rem 0rem 0.5rem;
+                            width: calc(100% - 5.7rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .auto-group-zxmb-1Sd .arrowselectortool-8GM {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-5ED .auto-group-zxmb-1Sd .s-truy-cp-sDw {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                    .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs {
+                        box-sizing: border-box;
+                        padding: 0.9rem 2.3rem 1.8rem 1.7rem;
+                        width: 17.6rem;
+                        height: 100%;
+                        align-items: center;
+                        display: flex;
+                        flex-direction: column;
+                        background-color: #ffffff;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .rectangle-85-UzR {
+                            margin: 0rem 0rem 0.6rem 0.6rem;
+                            width: 13rem;
+                            height: 13rem;
+                            object-fit: cover;
+                            vertical-align: top;
+                            border-radius: 1rem;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .frame-1-Pbb {
+                            margin: 0rem 3.2rem 0.6rem 0.6rem;
+                            width: calc(100% - 3.8rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .frame-1-Pbb .tn-Ww7 {
+                                margin-right: 0.3rem;
+                                font-size: 1.3rem;
+                                font-weight: 600;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .frame-1-Pbb .checkcircle-3w3 {
+                                width: 1.6rem;
+                                height: 1.6rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .a-ch-zLV {
+                            margin: 0rem 8.4rem 0.5rem 0rem;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .auto-group-4uvd-uyF {
+                            margin: 0rem 4.1rem 0.732rem 0rem;
+                            width: calc(100% - 4.1rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .auto-group-4uvd-uyF .image-7-SCV {
+                                width: 8.2rem;
+                                height: 1.8684rem;
+                                object-fit: cover;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .auto-group-4uvd-uyF .s-lng-Nbw {
+                                margin-top: 0.0316rem;
+                                font-size: 0.9rem;
+                                font-weight: 400;
+                                line-height: 1.2125;
+                                color: #000000;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .auto-group-qsvz-heD {
+                            margin: 0rem 3.1rem 0.4rem 0.5rem;
+                            width: calc(100% - 3.6rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .auto-group-qsvz-heD .chat-S61 {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .auto-group-qsvz-heD .s-bnh-lun-nQm {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+                        .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .auto-group-unzr-Wbf {
+                            margin: 0rem 3.9rem 0rem 0.5rem;
+                            width: calc(100% - 4.4rem);
+                            display: flex;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .auto-group-unzr-Wbf .arrowselectortool-2a1 {
+                                margin-right: 0.4rem;
+                                width: 1.5rem;
+                                height: 1.5rem;
+                                position: relative;
+                                object-fit: contain;
+                                vertical-align: top;
+                                flex-shrink: 0;
+                            }
+
+                            .auto-group-9xmf-sL9 .auto-group-bzho-TTK .auto-group-ibt1-Yzy .psychologistcard-yXs .auto-group-unzr-Wbf .s-truy-cp-ZK3 {
+                                margin-bottom: 0.1rem;
+                                font-size: 0.8rem;
+                                font-weight: 500;
+                                line-height: 1.2125;
+                                color: #11d02f;
+                                font-family: Inter, 'Source Sans Pro';
+                                white-space: nowrap;
+                                flex-shrink: 0;
+                            }
+
+            .auto-group-9xmf-sL9 .auto-group-kmks-Fhf {
+                margin-top: 5.4rem;
+                width: 17.6rem;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                flex-shrink: 0;
+            }
+
+                .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq {
+                    margin-bottom: 3.8rem;
+                    box-sizing: border-box;
+                    padding: 0.9rem 2.3rem 1.8rem 1.7rem;
+                    width: 100%;
+                    align-items: center;
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #ffffff;
+                    border-radius: 1rem;
+                    flex-shrink: 0;
+                }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .rectangle-85-6CV {
+                        margin: 0rem 0rem 0.6rem 0.6rem;
+                        width: 13rem;
+                        height: 13rem;
+                        object-fit: cover;
+                        vertical-align: top;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .frame-1-bf3 {
+                        margin: 0rem 2.2rem 0.6rem 0.6rem;
+                        width: calc(100% - 2.8rem);
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .frame-1-bf3 .tn-vxD {
+                            font-size: 1.3rem;
+                            font-weight: 600;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .frame-1-bf3 .checkcircle-s6m {
+                            width: 1.6rem;
+                            height: 1.6rem;
+                            position: relative;
+                            object-fit: contain;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .a-ch-zSH {
+                        margin: 0rem 9.4rem 0.5rem 0rem;
+                        font-size: 0.9rem;
+                        font-weight: 400;
+                        line-height: 1.2125;
+                        color: #000000;
+                        font-family: Inter, 'Source Sans Pro';
+                        white-space: nowrap;
+                        flex-shrink: 0;
+                    }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .auto-group-kcvy-hrV {
+                        margin: 0rem 3.8rem 0.732rem 0rem;
+                        width: calc(100% - 3.8rem);
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .auto-group-kcvy-hrV .image-7-ELd {
+                            width: 8.2rem;
+                            height: 1.8684rem;
+                            object-fit: cover;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .auto-group-kcvy-hrV .s-lng-mbT {
+                            margin-top: 0.0316rem;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .auto-group-cyjw-hV7 {
+                        margin: 0rem 3.1rem 0.4rem 0.5rem;
+                        width: calc(100% - 3.6rem);
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .auto-group-cyjw-hV7 .chat-21b {
+                            margin-right: 0.4rem;
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            position: relative;
+                            object-fit: contain;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .auto-group-cyjw-hV7 .s-bnh-lun-kyB {
+                            margin-bottom: 0.1rem;
+                            font-size: 0.8rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #11d02f;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .auto-group-tjdk-HTK {
+                        margin: 0rem 3.8rem 0rem 0.5rem;
+                        width: calc(100% - 4.3rem);
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .auto-group-tjdk-HTK .arrowselectortool-R3j {
+                            margin-right: 0.4rem;
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            position: relative;
+                            object-fit: contain;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-azq .auto-group-tjdk-HTK .s-truy-cp-9VX {
+                            margin-bottom: 0.1rem;
+                            font-size: 0.8rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #11d02f;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h {
+                    box-sizing: border-box;
+                    padding: 0.9rem 2.3rem 1.8rem 1.7rem;
+                    width: 100%;
+                    align-items: center;
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #ffffff;
+                    border-radius: 1rem;
+                    flex-shrink: 0;
+                }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .rectangle-85-aKw {
+                        margin: 0rem 0rem 0.6rem 0.6rem;
+                        width: 13rem;
+                        height: 13rem;
+                        object-fit: cover;
+                        vertical-align: top;
+                        border-radius: 1rem;
+                        flex-shrink: 0;
+                    }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .frame-1-VC1 {
+                        margin: 0rem 0.1rem 0.6rem 0.6rem;
+                        width: calc(100% - 0.7rem);
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .frame-1-VC1 .tn-ajF {
+                            margin-right: 0.2rem;
+                            font-size: 1.3rem;
+                            font-weight: 600;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .frame-1-VC1 .checkcircle-uWd {
+                            width: 1.6rem;
+                            height: 1.6rem;
+                            position: relative;
+                            object-fit: contain;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .a-ch-2bF {
+                        margin: 0rem 9.4rem 0.5rem 0rem;
+                        font-size: 0.9rem;
+                        font-weight: 400;
+                        line-height: 1.2125;
+                        color: #000000;
+                        font-family: Inter, 'Source Sans Pro';
+                        white-space: nowrap;
+                        flex-shrink: 0;
+                    }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .auto-group-6erb-Lbw {
+                        margin: 0rem 3.7rem 0.732rem 0rem;
+                        width: calc(100% - 3.7rem);
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .auto-group-6erb-Lbw .image-7-GVb {
+                            width: 8.2rem;
+                            height: 1.8684rem;
+                            object-fit: cover;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .auto-group-6erb-Lbw .s-lng-cJZ {
+                            margin-top: 0.0316rem;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .auto-group-rbwk-8Gu {
+                        margin: 0rem 3.1rem 0.4rem 0.5rem;
+                        width: calc(100% - 3.6rem);
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .auto-group-rbwk-8Gu .chat-eW9 {
+                            margin-right: 0.4rem;
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            position: relative;
+                            object-fit: contain;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .auto-group-rbwk-8Gu .s-bnh-lun-yYR {
+                            margin-bottom: 0.1rem;
+                            font-size: 0.8rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #11d02f;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .auto-group-n8rz-6d3 {
+                        margin: 0rem 3.4rem 0rem 0.5rem;
+                        width: calc(100% - 3.9rem);
+                        display: flex;
+                        align-items: center;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .auto-group-n8rz-6d3 .arrowselectortool-pJ9 {
+                            margin-right: 0.4rem;
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            position: relative;
+                            object-fit: contain;
+                            vertical-align: top;
+                            flex-shrink: 0;
+                        }
+
+                        .auto-group-9xmf-sL9 .auto-group-kmks-Fhf .psychologistcard-46h .auto-group-n8rz-6d3 .s-truy-cp-kBo {
+                            margin-bottom: 0.1rem;
+                            font-size: 0.8rem;
+                            font-weight: 500;
+                            line-height: 1.2125;
+                            color: #11d02f;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+    </style>
+</body>
+</html>

@@ -7,7 +7,23 @@ public class SpychologistController : ControllerBaseMVC
     {
         return View();
     }
+
     public IActionResult Info()
+    {
+        return View();
+    }
+
+    public IActionResult PsychologistComment()
+    {
+        return View();
+    }
+
+    public IActionResult PsychologistPost()
+    {
+        return View();
+    }
+
+    public IActionResult PsychologistRating()
     {
         return View();
     }
