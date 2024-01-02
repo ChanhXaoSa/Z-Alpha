@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebUI.Controllers.MVC;
-public class SpychologistController : Controller
+public class SpychologistController : ControllerBaseMVC
 {
     public IActionResult Index()
     {
