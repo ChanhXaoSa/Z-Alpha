@@ -9,13 +9,13 @@ using CleanArchitecture.Application.Common.Interfaces;
 using MediatR;
 
 namespace CleanArchitecture.Application.CustomerAccount.Commands.UpdateCustomerAccount;
-public record UpdateCustomerAccountCommands : IRequest<Guid>
+public record UpdateCustomerAccountCommands : IRequest<string>
 {
-    public Guid Id { get; init; }
-    public Guid UserAccountId { get; set; }
+    public string Id { get; init; }
+    public string UserAccountId { get; set; }
 }
 
-public class UpdateCustomerAccountCommandsHandler : IRequestHandler<UpdateCustomerAccountCommands, Guid>
+public class UpdateCustomerAccountCommandsHandler : IRequestHandler<UpdateCustomerAccountCommands, string>
 {
     private readonly IApplicationDbContext _context;
 
@@ -24,7 +24,7 @@ public class UpdateCustomerAccountCommandsHandler : IRequestHandler<UpdateCustom
         _context = context;
     }
 
-    public async Task<Guid> Handle(UpdateCustomerAccountCommands request, CancellationToken cancellationToken)
+    public async Task<string> Handle(UpdateCustomerAccountCommands request, CancellationToken cancellationToken)
     {
         var customer = await _context.Get<Domain.Entities.CustomerAccount>()
             .FindAsync(new object[] { request.Id }, cancellationToken);
@@ -38,6 +38,6 @@ public class UpdateCustomerAccountCommandsHandler : IRequestHandler<UpdateCustom
 
         await _context.SaveChangesAsync(cancellationToken);
 
-        return customer.Id;
+        return customer.Id.ToString();
     }
 }

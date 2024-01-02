@@ -10,7 +10,7 @@ namespace CleanArchitecture.Application.PackDetail.Commands.CreatePackDetail;
 
 public class CreatePackDetailsCommands : IRequest<Guid>
 {
-    public Guid UserAccountId { get; set; }
+    public string UserAccountId { get; set; }
     public Guid PackId { get; set; }
     public DateTime StartDay { get; set; }
     public DateTime EndDay { get; set; }
