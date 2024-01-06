@@ -285,7 +285,7 @@ body {
                         background-size: 100% 100%;
                         background-repeat: no-repeat;
                         background-position: center;
-                        background-image: url('../assets/rectangle-86-bg-twP.png');
+                        background-image: url('.~/assets/images/rectangle-86-bg-twP.png');
                         border-radius: 1rem;
                         flex-shrink: 0;
                     }
@@ -382,7 +382,7 @@ body {
                             background-size: 100% 100%;
                             background-repeat: no-repeat;
                             background-position: center;
-                            background-image: url('../assets/ellipse-9-bg-q6V.png');
+                            background-image: url('.~/assets/images/ellipse-9-bg-q6V.png');
                             border-radius: 2.5rem;
                             flex-shrink: 0;
                         }
