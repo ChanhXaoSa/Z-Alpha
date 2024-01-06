@@ -9,6 +9,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\assets\css\newpost.css" />
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\Application\Application.csproj" />
         <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
