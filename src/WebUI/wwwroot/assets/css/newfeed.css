@@ -5,9 +5,8 @@
     border-radius: 10px;
     border: 1px solid #ccc; /* Add a 1px solid border with a light gray color */
     text-align: center; /* Center the text horizontally */
-   
-    padding: 0.5vw; /* Add padding for better visual appearance */
-    margin: 0.2vw;
+    padding: 0.2vw 0.5vw; /* Add padding for better visual appearance */
+    margin: 0 0.2vw;
     overflow: hidden; /* Hide overflowing content */
     font-size: 12px;
     font-family: Inter;
@@ -41,7 +40,7 @@
    margin: 2.2vh 0;
 }
 .TiltePost {
-    margin: 15px 0;
+    margin: 6px 0 16px 0;
     font-size: 15px;
     font-family: Inter;
     font-weight: 400;
