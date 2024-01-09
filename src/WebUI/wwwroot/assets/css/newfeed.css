@@ -17,24 +17,28 @@
 .box {
     border-radius: 7px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: 2vw;
-    margin: 1vh 0;
+    padding: 1vw 2vw 1vw 2vw;
+    margin: 0.5vh 0;
     flex-wrap: wrap;
 }
 .boxDetail {
     border-radius: 7px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: 2vw;
-    margin: 1vh 0;
+    padding: 1vw 2vw 1vw 2vw;
+    margin: 0.5vh 0;
     flex-wrap: wrap;
 }
 .boxComment {
     background-color: #E8FBFB;
     border-radius: 7px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: 2vw;
-    margin: 1vh 0;
+    padding: 1vw 2vw 1vw 2vw;
+    /*margin: 0 0 1vh 0;*/
+    margin:1vh;
     flex-wrap: wrap;
+}
+.br{
+   margin: 2.2vh 0;
 }
 .TiltePost {
     margin: 15px 0;
