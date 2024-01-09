@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebUI.Controllers.MVC;
-public class UserController : ControllerBaseMVC
+public class NewPostController : ControllerBaseMVC
 {
-    public IActionResult Index()
+    public IActionResult NewPost()
     {
         return View();
     }
-
-    public IActionResult Info()
+  
+    public IActionResult NewPostPsychologist()
     {
         return View();
     }
