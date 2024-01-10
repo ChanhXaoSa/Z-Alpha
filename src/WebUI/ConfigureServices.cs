@@ -33,7 +33,7 @@ public static class ConfigureServices
 
         services.AddHttpContextAccessor();
 
-        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         services.AddHealthChecks()
             .AddDbContextCheck<ApplicationDbContext>();

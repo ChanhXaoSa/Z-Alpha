@@ -38,7 +38,8 @@ public static class ConfigureServices
         services
             .AddDefaultIdentity<UserAccount>()
             .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
         services.AddIdentityServer()
             .AddApiAuthorization<UserAccount, ApplicationDbContext>();
