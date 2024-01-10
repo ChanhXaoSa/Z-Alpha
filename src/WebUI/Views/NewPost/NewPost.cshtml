@@ -13,7 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <title>My Post</title>
-    <link rel="stylesheet" href="~/assets/css/newpost.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400%2C500%2C600" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600" />
 </head>
@@ -23,7 +22,7 @@
             <div class="auto-group-subb-Pe5">
                 <div class="rectangle-15-8bf">
                 </div>
-                <p class="thm-nh--TP3">Thêm ảnh +</p>
+                <button class="thm-nh--TP3">Thêm ảnh +</button>
             </div>
             <div class="auto-group-yqad-vXX">
                 <div class="auto-group-nrkd-TXT">
@@ -34,18 +33,24 @@
                     <p class="ti-a-5--h4R">( Tối đa 5 )</p>
                 </div>
                 <div class="auto-group-un4m-cx5">
-                    <img class="keyboardarrowdown-Yaq" src="~/assets/images/keyboardarrowdown-12M.png" />
+                    <img class="keyboardarrowdown-Yaq" src="./assets/keyboardarrowdown-12M.png" />
                 </div>
-                <div class="auto-group-ruqp-FVF">Đăng</div>
+                <button class="auto-group-ruqp-FVF">Đăng</button>
             </div>
         </div>
         <div class="information-box-Xhf">
-            <p class="text-e1b">Bạn cần được giải đáp câu hỏi? Muốn nhận lời khuyên? Hay chỉ đơn giản là giải bày, chia sẽ suy nghĩ của mình? Hãy nói cụ thể hơn.</p>
+            <textarea class="text-e1b" contenteditable="true" type="text" placeholder="Bạn cần được giải đáp câu hỏi? Muốn nhận lời khuyên? Hay chỉ đơn giản là giải bày, chia sẽ suy nghĩ của mình? Hãy nói cụ thể hơn."></textarea >
         </div>
-        <div class="auto-group-lcpm-9j3">Tóm tắt vấn đề của bạn bằng một câu ngắn gọn</div>
+        <input class="auto-group-lcpm-9j3" contenteditable="true" type="text" placeholder="Tóm tắt vấn đề của bạn bằng một câu ngắn gọn">
         <div class="auto-group-awrd-zUm">
-            <p class="trung-bnh-621">Trung bình</p>
-            <img class="keyboardarrowdown-CKw" src="~/assets/images/keyboardarrowdown.png" />
+            <select class="trung-bnh-621" style="-webkit-appearance: none; -moz-appearance: none;">
+                <option value="1">Rất Tệ</option>
+                <option value="2">Tệ</option>
+                <option value="3" )>Trung Bình</option>
+                <option value="4" )>Tốt</option>
+                <option value="5" )>Rất Tốt</option>
+            </select>
+            <img class="keyboardarrowdown-CKw" src="./assets/keyboardarrowdown.png" />
         </div>
         <p class="hy-nh-gi-tnh-trng-tm-l-hin-ti-ca-bn-thn-uVF">Hãy đánh giá tình trạng tâm lí hiện tại của bản thân </p>
         <p class="tiu--nJ9">
@@ -53,8 +58,8 @@
             <span class="tiu--nJ9-sub-1">*</span>
         </p>
         <div class="auto-group-tiu5-jsb">
-            <img class="vector-65s" src="~/assets/images/vector-ixm.png" />
-            <img class="vector-cK7" src="~/assets/images/vector.png" />
+            <img class="vector-65s" src="./assets/vector-ixm.png" />
+            <img class="vector-cK7" src="./assets/vector.png" />
             <p class="mi-ngi-hiu-r-hn-v-vn-ca-bn-hy-lm-sng-t-nhng-thng-tin-sau-nh-KzD">Để mọi người hiểu rõ hơn về vấn đề của bạn, hãy làm sáng tỏ những thông tin sau nhé! </p>
         </div>
         <p class="bn-ang-cm-thy-th-no--mbK">
@@ -65,7 +70,453 @@
             <span class="chng-ti-c-th-gip-c-g-cho-bn--9VP-sub-0">Chúng tôi có thể giúp được gì cho bạn? </span>
             <span class="chng-ti-c-th-gip-c-g-cho-bn--9VP-sub-1">*</span>
         </p>
-        <div class="information-box-GTX">Vì sao vậy? Hãy viết nó ra nào!</div>
+        <div class="information-box-GTX">
+            <textarea class="text-e1b" contenteditable="true" type="text" placeholder="Vì sao vậy? Hãy viết nó ra nào!"></textarea>            
+        </div>
     </div>
+
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        input {
+            border: none;
+        }
+
+        body {
+            width: auto;
+        }
+
+        .auto-group-wz8m-AWR {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            height: 94.1rem;            
+            background-color: #ffffff;
+            border-radius: 2.5rem;
+            margin-bottom: 2rem;
+            width: 68.4%;
+            left: 16rem;
+        }
+
+            .auto-group-wz8m-AWR .auto-group-rshb-GJZ {
+                width: 76.6rem;
+                height: 23.9rem;
+                position: absolute;
+                left: -20.5%;
+                top: 67.3rem;
+                display: flex;
+                align-items: center;
+            }
+
+                .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-subb-Pe5 {
+                    margin-right: 2.4rem;
+                    width: 37.8rem;
+                    height: 100%;
+                    left: 24%;
+                    position: relative;
+                    border: solid 0.05rem #1e32e6;
+                    box-sizing: border-box;
+                    background-color: #ffffff;
+                    border-radius: 1.5rem;
+                    flex-shrink: 0;
+                }
+
+                    .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-subb-Pe5 .rectangle-15-8bf {
+                        width: 13.2rem;
+                        height: 3.6rem;
+                        position: absolute;
+                        left: 12.3rem;
+                        top: 10.7rem;
+                        background-color: #2bc9ff;
+                        border-radius: 4rem;
+                    }
+
+                    .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-subb-Pe5 .thm-nh--TP3 {
+                        width: 10.4rem;
+                        height: 2.2rem;
+                        position: absolute;
+                        left: 14rem;
+                        top: 11.3rem;
+                        font-size: 1.8rem;
+                        font-weight: 500;
+                        line-height: 1.2125;
+                        color: #ffffff;
+                        font-family: Inter, 'Source Sans Pro';
+                        white-space: nowrap;
+                        background: none;
+                        outline: none;
+                        border: none;
+                    }
+
+                .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-yqad-vXX {
+                    width: 36.4rem;
+                    height: 100%;
+                    align-items: flex-end;
+                    display: flex;
+                    flex-direction: column;
+                    flex-shrink: 0;
+                    position: relative;
+                    left: 24%;
+                }
+
+                    .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-yqad-vXX .auto-group-nrkd-TXT {
+                        box-sizing: border-box;
+                        padding: 0rem 0.1rem 0.8rem 0.1rem;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-yqad-vXX .auto-group-nrkd-TXT .chn-th--ByF {
+                            margin-bottom: 0.4rem;
+                            font-size: 2rem;
+                            font-weight: 600;
+                            line-height: 1.2125;
+                            color: #000000;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            display: flex;
+                            align-items: baseline;
+                            flex-shrink: 0;
+                        }
+
+                            .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-yqad-vXX .auto-group-nrkd-TXT .chn-th--ByF .chn-th--ByF-sub-0 {
+                            }
+
+                            .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-yqad-vXX .auto-group-nrkd-TXT .chn-th--ByF .chn-th--ByF-sub-1 {
+                                font-size: 2rem;
+                                font-weight: 600;
+                                line-height: 1.2125;
+                                color: #dd2e44;
+                                font-family: Inter, 'Source Sans Pro';
+                            }
+
+                        .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-yqad-vXX .auto-group-nrkd-TXT .ti-a-5--h4R {
+                            font-size: 1.4rem;
+                            font-weight: 400;
+                            line-height: 1.2125;
+                            color: #aeabb5;
+                            font-family: Inter, 'Source Sans Pro';
+                            white-space: nowrap;
+                            flex-shrink: 0;
+                        }
+
+                    .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-yqad-vXX .auto-group-un4m-cx5 {
+                        margin-bottom: 10.5rem;
+                        box-sizing: border-box;
+                        padding: 0.9rem 1rem 0.5rem 32.4rem;
+                        width: 100%;
+                        left: 17%;
+                        border: solid 0.05rem #1e32e6;
+                        background-color: #ffffff;
+                        border-radius: 1.5rem;
+                        flex-shrink: 0;
+                    }
+
+                        .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-yqad-vXX .auto-group-un4m-cx5 .keyboardarrowdown-Yaq {
+                            width: 3rem;
+                            height: 3rem;
+                            object-fit: contain;
+                            vertical-align: top;
+                        }
+
+                    .auto-group-wz8m-AWR .auto-group-rshb-GJZ .auto-group-yqad-vXX .auto-group-ruqp-FVF {
+                        margin-right: 1rem;
+                        width: 13.2rem;
+                        height: 3.6rem;
+                        font-size: 1.8rem;
+                        font-weight: 500;
+                        line-height: 1.2125;
+                        left: 17%;
+                        color: #ffffff;
+                        font-family: Inter, 'Source Sans Pro';
+                        white-space: nowrap;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: #2bc9ff;
+                        border-radius: 4rem;
+                        flex-shrink: 0;
+                        outline: none;
+                        border: none;
+                    }
+
+            .auto-group-wz8m-AWR .information-box-Xhf {
+                box-sizing: border-box;
+                padding: 1.4rem 1.6rem 1.4rem 1.7rem;
+                width: 76.4rem;
+                height: 12.9rem;
+                position: absolute;
+                left: 2.5%;
+                top: 34.1rem;
+                border: solid 0.05rem #1e32e6;
+                background-color: #ffffff;
+                border-radius: 1.5rem;
+            }
+
+                .auto-group-wz8m-AWR .information-box-Xhf .text-e1b {
+                    max-width: 73.1rem;
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    box-sizing: border-box;
+                    text-align: left;
+                    vertical-align: top;
+                    font-size: 1.4rem;
+                    font-weight: 400;
+                    line-height: 1.2125;
+                    color: black;
+                    font-family: Inter, 'Source Sans Pro';
+                    text-overflow: clip;
+                    text-align: left;
+                    white-space: normal;
+                    outline: none;
+                }
+
+            .auto-group-wz8m-AWR .auto-group-lcpm-9j3 {
+                box-sizing: border-box;
+                padding: 1.4rem 1.7rem 1.3rem 1.7rem;
+                width: 76.4rem;
+                height: 4.4rem;
+                position: absolute;
+                left: 2.5%;
+                top: 51.7rem;
+                font-size: 1.4rem;
+                font-weight: 400;
+                line-height: 1.2125;
+                color: black;
+                font-family: Inter, 'Source Sans Pro';
+                white-space: nowrap;
+                border: solid 0.05rem #1e32e6;
+                background-color: #ffffff;
+                border-radius: 1.5rem;
+            }
+
+            .auto-group-wz8m-AWR .auto-group-awrd-zUm {
+                box-sizing: border-box;
+                padding: 0.9rem 0.8rem 0.5rem 1.7rem;
+                width: 76.4rem;
+                height: 4.4rem;
+                position: absolute;
+                left: 2.5%;
+                top: 61.2rem;
+                display: flex;
+                align-items: center;
+                border: solid 0.05rem #1e32e6;
+                background-color: #ffffff;
+                border-radius: 1.5rem;
+                justify-content: space-between
+            }
+
+                .auto-group-wz8m-AWR .auto-group-awrd-zUm .trung-bnh-621 {                    
+                    font-size: 1.6rem;
+                    width: 95%;
+                    font-weight: 400;
+                    line-height: 1.2125;
+                    color: #000000;
+                    font-family: Inter, 'Source Sans Pro';
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                    border: none;
+                    outline: none;
+                }
+
+                .auto-group-wz8m-AWR .auto-group-awrd-zUm .keyboardarrowdown-CKw {
+                    width: 3rem;
+                    height: 3rem;
+                    object-fit: contain;
+                    vertical-align: top;
+                    flex-shrink: 0;
+                }
+
+            .auto-group-wz8m-AWR .hy-nh-gi-tnh-trng-tm-l-hin-ti-ca-bn-thn-uVF {
+                width: 50.4rem;
+                height: 2.5rem;
+                position: absolute;
+                left: 2.5%;
+                top: 57.8rem;
+                font-size: 2rem;
+                font-weight: 600;
+                line-height: 1.2125;
+                color: #000000;
+                font-family: Inter, 'Source Sans Pro';
+                white-space: nowrap;
+            }
+
+            .auto-group-wz8m-AWR .tiu--nJ9 {
+                width: 9.1rem;
+                height: 2.5rem;
+                position: absolute;
+                left: 2.5%;
+                top: 48.3rem;
+                font-size: 2rem;
+                font-weight: 600;
+                line-height: 1.2125;
+                color: #000000;
+                font-family: Inter, 'Source Sans Pro';
+                white-space: nowrap;
+                display: flex;
+                align-items: baseline;
+            }
+
+                .auto-group-wz8m-AWR .tiu--nJ9 .tiu--nJ9-sub-0 {
+                }
+
+                .auto-group-wz8m-AWR .tiu--nJ9 .tiu--nJ9-sub-1 {
+                    font-size: 2rem;
+                    font-weight: 600;
+                    line-height: 1.2125;
+                    color: #dd2e44;
+                    font-family: Inter, 'Source Sans Pro';
+                }
+
+            .auto-group-wz8m-AWR .auto-group-tiu5-jsb {
+                width: 73.9rem;
+                height: 4.9rem;
+                position: absolute;
+                left: 1.8rem;
+                top: 3.1rem;
+            }
+
+                .auto-group-wz8m-AWR .auto-group-tiu5-jsb .vector-65s {
+                    width: 2rem;
+                    height: 2rem;
+                    position: absolute;
+                    left: 12%;
+                    top: 2.6rem;
+                    object-fit: contain;
+                    vertical-align: top;
+                }
+
+                .auto-group-wz8m-AWR .auto-group-tiu5-jsb .vector-cK7 {
+                    width: 2rem;
+                    height: 2rem;
+                    position: absolute;
+                    left: 15.5%;
+                    top: 2.6rem;
+                    object-fit: contain;
+                    vertical-align: top;
+                }
+
+                .auto-group-wz8m-AWR .auto-group-tiu5-jsb .mi-ngi-hiu-r-hn-v-vn-ca-bn-hy-lm-sng-t-nhng-thng-tin-sau-nh-KzD {
+                    width: 73.9rem;
+                    height: 4.9rem;
+                    position: absolute;                   
+                    font-size: 2rem;
+                    font-weight: 400;
+                    line-height: 1.2125;
+                    color: #000000;
+                    font-family: Inter, 'Source Sans Pro';
+                }
+
+            .auto-group-wz8m-AWR .bn-ang-cm-thy-th-no--mbK {
+                width: 29.9rem;
+                height: 2.5rem;
+                position: absolute;
+                left: 1.8rem;
+                top: 12.3rem;
+                font-size: 2rem;
+                font-weight: 400;
+                line-height: 1.2102272034;
+                color: #000000;
+                font-family: Inter, 'Source Sans Pro';
+                white-space: nowrap;
+                display: flex;
+                align-items: baseline;
+            }
+
+                .auto-group-wz8m-AWR .bn-ang-cm-thy-th-no--mbK .bn-ang-cm-thy-th-no--mbK-sub-0 {
+                    font-size: 2rem;
+                    font-weight: 600;
+                    line-height: 1.2125;
+                    position: absolute;
+                    color: #000000;
+                    font-family: Inter, 'Source Sans Pro';
+                }
+
+                .auto-group-wz8m-AWR .bn-ang-cm-thy-th-no--mbK .bn-ang-cm-thy-th-no--mbK-sub-1 {
+                    font-size: 2rem;
+                    font-weight: 600;
+                    line-height: 1.2125;
+                    position: absolute;
+                    left: 91.5%;
+                    color: #dd2e44;
+                    font-family: Inter, 'Source Sans Pro';
+                }
+
+            .auto-group-wz8m-AWR .chng-ti-c-th-gip-c-g-cho-bn--9VP {
+                width: 40rem;
+                height: 2.5rem;
+                position: absolute;
+                left: 2.5%;
+                top: 30.3rem;
+                font-size: 2rem;
+                font-weight: 600;
+                line-height: 1.2125;
+                color: #000000;
+                font-family: Inter, 'Source Sans Pro';
+                white-space: nowrap;
+                display: flex;
+                align-items: baseline;
+            }
+
+                .auto-group-wz8m-AWR .chng-ti-c-th-gip-c-g-cho-bn--9VP .chng-ti-c-th-gip-c-g-cho-bn--9VP-sub-0 {
+                }
+
+                .auto-group-wz8m-AWR .chng-ti-c-th-gip-c-g-cho-bn--9VP .chng-ti-c-th-gip-c-g-cho-bn--9VP-sub-1 {
+                    font-size: 2rem;
+                    font-weight: 600;
+                    line-height: 1.2125;
+                    color: #dd2e44;
+                    font-family: Inter, 'Source Sans Pro';
+                }
+
+            .auto-group-wz8m-AWR .information-box-GTX {
+                box-sizing: border-box;
+                padding: 1.4rem 1.7rem;
+                width: 76.4rem;
+                height: 12.9rem;
+                position: absolute;
+                left: 2.5%;
+                top: 16.1rem;
+                font-size: 1.4rem;
+                font-weight: 400;
+                line-height: 1.2125;
+                color: #aeabb5;
+                font-family: Inter, 'Source Sans Pro';
+                white-space: nowrap;
+                border: solid 0.05rem #1e32e6;
+                background-color: #ffffff;
+                border-radius: 1.5rem;
+            }
+
+            .auto-group-wz8m-AWR .information-box-GTX .text-e1b 
+            {
+                    max-width: 73.1rem;
+                    width: 100%;
+                    height: 100%;
+                    box-sizing: border-box;
+                    text-align: left;
+                    vertical-align: top;
+                    font-size: 1.4rem;
+                    font-weight: 400;
+                    line-height: 1.2125;
+                    color: black;
+                    font-family: Inter, 'Source Sans Pro';
+                    text-overflow: clip;
+                    text-align: left;
+                    white-space: normal;
+                    border: none;
+                    outline: none;
+            }
+    </style>
 </body>
 </html>
