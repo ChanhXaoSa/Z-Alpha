@@ -26,6 +26,7 @@ public static class ConfigureServices
 
         //services.AddScoped<UserManager<UserAccount>>();
 
+
         services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.AddScoped<ICurrentUserService, CurrentUserService>();
