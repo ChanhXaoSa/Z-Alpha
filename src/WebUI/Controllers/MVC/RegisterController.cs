@@ -1,5 +1,8 @@
-﻿namespace WebUI.Controllers.MVC;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class RegisterController
+namespace WebUI.Controllers.MVC;
+
+public class RegisterController : ControllerBaseMVC
 {
+    public IActionResult index() { return View(); }
 }
