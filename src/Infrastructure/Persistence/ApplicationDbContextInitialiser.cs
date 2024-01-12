@@ -71,7 +71,7 @@ public class ApplicationDbContextInitialiser
             }
         }
 
-        // Default roles
+        //Default roles
         var administratorRole = new IdentityRole("Administrator");
 
         if (_roleManager.Roles.All(r => r.Name != administratorRole.Name))
@@ -79,7 +79,7 @@ public class ApplicationDbContextInitialiser
             await _roleManager.CreateAsync(administratorRole);
         }
 
-        // Default users
+        //Default users
         var administrator = new UserAccount { UserName = "administrator@localhost", Email = "administrator@localhost" };
 
         if (_userManager.Users.All(u => u.UserName != administrator.UserName))
@@ -87,7 +87,7 @@ public class ApplicationDbContextInitialiser
             await _userManager.CreateAsync(administrator, "Administrator1!");
             if (!string.IsNullOrWhiteSpace(administratorRole.Name))
             {
-                await _userManager.AddToRolesAsync(administrator, new [] { administratorRole.Name });
+                await _userManager.AddToRolesAsync(administrator, new[] { administratorRole.Name });
             }
         }
 
