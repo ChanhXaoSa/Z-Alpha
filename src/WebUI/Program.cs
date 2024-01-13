@@ -40,21 +40,21 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //app.UseDeveloperExceptionPage();
-    //app.UseMigrationsEndPoint();
+    app.UseDeveloperExceptionPage();
+    app.UseMigrationsEndPoint();
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API V1");
         c.RoutePrefix = "swagger";
     });
-    // Initialise and seed database
-    //using (var scope = app.Services.CreateScope())
-    //{
-    //    var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
-    //    await initialiser.InitialiseAsync();
-    //    await initialiser.SeedAsync();
-    //}
+    //Initialise and seed database
+    using (var scope = app.Services.CreateScope())
+    {
+        var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
+        await initialiser.InitialiseAsync();
+        await initialiser.SeedAsync();
+    }
 }
 else
 {
@@ -78,7 +78,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();
-//app.UseIdentityServer();
+app.UseIdentityServer();
 app.UseAuthorization();
 app.UseSession();
 app.UseCookiePolicy(new CookiePolicyOptions
@@ -101,6 +101,6 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
-//app.MapFallbackToFile("index.html");
+app.MapFallbackToFile("index.html");
 
 app.Run();
