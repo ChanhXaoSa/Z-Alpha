@@ -29,6 +29,6 @@ public class UserAccount : IdentityUser
     public IList<Transaction>? Transactions { get;  set; }
     public IList<InteractWithPosts>? InteractWithPosts { get;  set; }
     public IList<WishListPost>? WishListPosts { get;  set; }
-    //public IList<Comment>? Comments { get; set; }
-    public IList<UserInteractComment>? UserInteractComments { get; set; }
+    public IList<Comment>? Comments { get; set; }
+    //public IList<UserInteractComment>? UserInteractComments { get; set; }
 }

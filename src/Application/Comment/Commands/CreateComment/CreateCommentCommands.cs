@@ -11,7 +11,7 @@ namespace CleanArchitecture.Application.Comment.Commands.CreateComment;
 public class CreateCommentCommands : IRequest<Guid>
 {
     public Guid PostId { get; set; }
-    public IList<UserInteractComment>? UserInteractComments { get; private set; }
+    //public IList<UserInteractComment>? UserInteractComments { get; private set; }
 }
 
 public class CreateCommentCommandsHandler : IRequestHandler<CreateCommentCommands, Guid>

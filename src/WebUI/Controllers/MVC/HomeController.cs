@@ -4,5 +4,8 @@ namespace WebUI.Controllers.MVC;
 
 public class HomeController : ControllerBaseMVC
 {
-    public IActionResult index() { return View(); }
+    public IActionResult index() 
+    { 
+        return View(); 
+    }
 }

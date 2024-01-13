@@ -12,7 +12,7 @@ public class CommentModel : IMapFrom<Domain.Entities.Comment>
 {
     [ForeignKey("Post")]
     public Guid PostId { get; set; }
-    public IList<UserInteractComment>? UserInteractComments { get; private set; }
+    //public IList<UserInteractComment>? UserInteractComments { get; private set; }
 }
 
 

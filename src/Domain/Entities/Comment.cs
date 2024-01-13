@@ -10,9 +10,22 @@ namespace CleanArchitecture.Domain.Entities;
 public class Comment : BaseAuditableEntity
 {
 
+    [ForeignKey("UserAccount")]
+    public string UserAccountId { get; set; }
+    public virtual UserAccount UserAccount { get; set; }
+    [ForeignKey("Comment")]
+    public Guid? ReplyCommentId { get; set; }
+    public virtual Comment? ReplyComment { get; set; }
+
     [ForeignKey("Post")]
     public Guid PostId { get; set; }
     public virtual Post? Post { get; set; }
 
-    public IList<UserInteractComment>? UserInteractComments { get; private set; }
+
+
+    public string Description { get; set; }
+
+    
+
+    
 }
