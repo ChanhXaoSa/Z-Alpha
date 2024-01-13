@@ -7,9 +7,4 @@ public class RecommendController : ControllerBaseMVC
     {
         return View();
     }
-
-    public IActionResult Recommend()
-    {
-        return View();
-    }
 }
