@@ -1,0 +1,296 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Register Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model CleanArchitecture.Application.Common.Models.RegisterViewModel
+@* @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers *@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <link href="~/assets/css/Login.css" rel="stylesheet" />
+    <title>Register</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <div class="wrap-login100">
+                    <img class="logo mb-4" src="./assets/images/logo.png" />
+                    <form method="post" action="register">
+                        @if (Model != null)
+                        {
+                            <div class="wave-group mb-3">
+                                <input name="Email" required="" type="text" class="input" value="@Model.Email">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">E</span>
+                                    <span class="label-char" style="--index: 1">m</span>
+                                    <span class="label-char" style="--index: 2">a</span>
+                                    <span class="label-char" style="--index: 3">i</span>
+                                    <span class="label-char" style="--index: 4">l</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Username" required="" type="text" class="input" value="@Model.Username">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">U</span>
+                                    <span class="label-char" style="--index: 1">s</span>
+                                    <span class="label-char" style="--index: 2">e</span>
+                                    <span class="label-char" style="--index: 3">r</span>
+                                    <span class="label-char" style="--index: 4">n</span>
+                                    <span class="label-char" style="--index: 5">a</span>
+                                    <span class="label-char" style="--index: 6">m</span>
+                                    <span class="label-char" style="--index: 7">e</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Firstname" required="" type="text" class="input" value="@Model.FirstName">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">F</span>
+                                    <span class="label-char" style="--index: 1">i</span>
+                                    <span class="label-char" style="--index: 2">r</span>
+                                    <span class="label-char" style="--index: 3">s</span>
+                                    <span class="label-char" style="--index: 4">t</span>
+                                    <span class="label-char" style="--index: 5">&nbsp;</span>
+                                    <span class="label-char" style="--index: 6">n</span>
+                                    <span class="label-char" style="--index: 7">a</span>
+                                    <span class="label-char" style="--index: 8">m</span>
+                                    <span class="label-char" style="--index: 9">e</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Lastname" required="" type="text" class="input" value="@Model.Lastname">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">L</span>
+                                    <span class="label-char" style="--index: 1">a</span>
+                                    <span class="label-char" style="--index: 2">s</span>
+                                    <span class="label-char" style="--index: 3">t</span>
+                                    <span class="label-char" style="--index: 4">&nbsp;</span>
+                                    <span class="label-char" style="--index: 5">n</span>
+                                    <span class="label-char" style="--index: 6">a</span>
+                                    <span class="label-char" style="--index: 7">m</span>
+                                    <span class="label-char" style="--index: 8">e</span>
+                                </label>
+                            </div>
+                            <div class="wave-group birthday mb-3">
+                                <input name="Birthday" required="" type="date" class="input" value="@Model.Birthday">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">B</span>
+                                    <span class="label-char" style="--index: 1">i</span>
+                                    <span class="label-char" style="--index: 2">r</span>
+                                    <span class="label-char" style="--index: 3">t</span>
+                                    <span class="label-char" style="--index: 4">h</span>
+                                    <span class="label-char" style="--index: 5">d</span>
+                                    <span class="label-char" style="--index: 6">a</span>
+                                    <span class="label-char" style="--index: 7">y</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Address" required="" type="text" class="input" value="@Model.Address">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">A</span>
+                                    <span class="label-char" style="--index: 1">d</span>
+                                    <span class="label-char" style="--index: 2">d</span>
+                                    <span class="label-char" style="--index: 3">r</span>
+                                    <span class="label-char" style="--index: 4">e</span>
+                                    <span class="label-char" style="--index: 5">s</span>
+                                    <span class="label-char" style="--index: 6">s</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Phone" required="" type="number" class="input" value="@Model.Phone">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">P</span>
+                                    <span class="label-char" style="--index: 1">h</span>
+                                    <span class="label-char" style="--index: 2">o</span>
+                                    <span class="label-char" style="--index: 3">n</span>
+                                    <span class="label-char" style="--index: 4">e</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Password" required="" type="password" class="input" value="@Model.Password">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">P</span>
+                                    <span class="label-char" style="--index: 1">a</span>
+                                    <span class="label-char" style="--index: 2">s</span>
+                                    <span class="label-char" style="--index: 3">s</span>
+                                    <span class="label-char" style="--index: 3">w</span>
+                                    <span class="label-char" style="--index: 3">o</span>
+                                    <span class="label-char" style="--index: 3">r</span>
+                                    <span class="label-char" style="--index: 3">d</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="ConfirmPassword" required="" type="password" class="input" value="@Model.ConfirmPassword">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">R</span>
+                                    <span class="label-char" style="--index: 1">e</span>
+                                    <span class="label-char" style="--index: 2">t</span>
+                                    <span class="label-char" style="--index: 3">y</span>
+                                    <span class="label-char" style="--index: 4">p</span>
+                                    <span class="label-char" style="--index: 5">e</span>
+                                    <span class="label-char" style="--index: 6">&nbsp;</span>
+                                    <span class="label-char" style="--index: 7">p</span>
+                                    <span class="label-char" style="--index: 8">a</span>
+                                    <span class="label-char" style="--index: 9">s</span>
+                                    <span class="label-char" style="--index: 10">s</span>
+                                    <span class="label-char" style="--index: 11">w</span>
+                                    <span class="label-char" style="--index: 12">o</span>
+                                    <span class="label-char" style="--index: 13">r</span>
+                                    <span class="label-char" style="--index: 14">d</span>
+                                </label>
+                            </div>
+                        } else
+                        {
+                            <div class="wave-group mb-3">
+                                <input name="Email" required="" type="text" class="input">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">E</span>
+                                    <span class="label-char" style="--index: 1">m</span>
+                                    <span class="label-char" style="--index: 2">a</span>
+                                    <span class="label-char" style="--index: 3">i</span>
+                                    <span class="label-char" style="--index: 4">l</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Username" required="" type="text" class="input">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">U</span>
+                                    <span class="label-char" style="--index: 1">s</span>
+                                    <span class="label-char" style="--index: 2">e</span>
+                                    <span class="label-char" style="--index: 3">r</span>
+                                    <span class="label-char" style="--index: 4">n</span>
+                                    <span class="label-char" style="--index: 5">a</span>
+                                    <span class="label-char" style="--index: 6">m</span>
+                                    <span class="label-char" style="--index: 7">e</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Firstname" required="" type="text" class="input">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">F</span>
+                                    <span class="label-char" style="--index: 1">i</span>
+                                    <span class="label-char" style="--index: 2">r</span>
+                                    <span class="label-char" style="--index: 3">s</span>
+                                    <span class="label-char" style="--index: 4">t</span>
+                                    <span class="label-char" style="--index: 5">&nbsp;</span>
+                                    <span class="label-char" style="--index: 6">n</span>
+                                    <span class="label-char" style="--index: 7">a</span>
+                                    <span class="label-char" style="--index: 8">m</span>
+                                    <span class="label-char" style="--index: 9">e</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Lastname" required="" type="text" class="input">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">L</span>
+                                    <span class="label-char" style="--index: 1">a</span>
+                                    <span class="label-char" style="--index: 2">s</span>
+                                    <span class="label-char" style="--index: 3">t</span>
+                                    <span class="label-char" style="--index: 4">&nbsp;</span>
+                                    <span class="label-char" style="--index: 5">n</span>
+                                    <span class="label-char" style="--index: 6">a</span>
+                                    <span class="label-char" style="--index: 7">m</span>
+                                    <span class="label-char" style="--index: 8">e</span>
+                                </label>
+                            </div>
+                            <div class="wave-group birthday mb-3">
+                                <input name="Birthday" required="" type="date" class="input">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">B</span>
+                                    <span class="label-char" style="--index: 1">i</span>
+                                    <span class="label-char" style="--index: 2">r</span>
+                                    <span class="label-char" style="--index: 3">t</span>
+                                    <span class="label-char" style="--index: 4">h</span>
+                                    <span class="label-char" style="--index: 5">d</span>
+                                    <span class="label-char" style="--index: 6">a</span>
+                                    <span class="label-char" style="--index: 7">y</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Address" required="" type="text" class="input">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">A</span>
+                                    <span class="label-char" style="--index: 1">d</span>
+                                    <span class="label-char" style="--index: 2">d</span>
+                                    <span class="label-char" style="--index: 3">r</span>
+                                    <span class="label-char" style="--index: 4">e</span>
+                                    <span class="label-char" style="--index: 5">s</span>
+                                    <span class="label-char" style="--index: 6">s</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Phone" required="" type="number" class="input">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">P</span>
+                                    <span class="label-char" style="--index: 1">h</span>
+                                    <span class="label-char" style="--index: 2">o</span>
+                                    <span class="label-char" style="--index: 3">n</span>
+                                    <span class="label-char" style="--index: 4">e</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="Password" required="" type="password" class="input">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">P</span>
+                                    <span class="label-char" style="--index: 1">a</span>
+                                    <span class="label-char" style="--index: 2">s</span>
+                                    <span class="label-char" style="--index: 3">s</span>
+                                    <span class="label-char" style="--index: 3">w</span>
+                                    <span class="label-char" style="--index: 3">o</span>
+                                    <span class="label-char" style="--index: 3">r</span>
+                                    <span class="label-char" style="--index: 3">d</span>
+                                </label>
+                            </div>
+                            <div class="wave-group mb-3">
+                                <input name="ConfirmPassword" required="" type="password" class="input">
+                                <span class="bar"></span>
+                                <label class="label">
+                                    <span class="label-char" style="--index: 0">R</span>
+                                    <span class="label-char" style="--index: 1">e</span>
+                                    <span class="label-char" style="--index: 2">t</span>
+                                    <span class="label-char" style="--index: 3">y</span>
+                                    <span class="label-char" style="--index: 4">p</span>
+                                    <span class="label-char" style="--index: 5">e</span>
+                                    <span class="label-char" style="--index: 6">&nbsp;</span>
+                                    <span class="label-char" style="--index: 7">p</span>
+                                    <span class="label-char" style="--index: 8">a</span>
+                                    <span class="label-char" style="--index: 9">s</span>
+                                    <span class="label-char" style="--index: 10">s</span>
+                                    <span class="label-char" style="--index: 11">w</span>
+                                    <span class="label-char" style="--index: 12">o</span>
+                                    <span class="label-char" style="--index: 13">r</span>
+                                    <span class="label-char" style="--index: 14">d</span>
+                                </label>
+                            </div>
+                        }
+                        <button>
+                            <span>Đăng kí</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

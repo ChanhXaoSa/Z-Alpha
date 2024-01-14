@@ -1,5 +1,5 @@
 ﻿html {
-    font-size: 62.5%;
+    font-size: 100%;
 }
 
 ul, li {
@@ -15,7 +15,7 @@ body {
 }
 
 .auto-group-qyhb-1t9 {
-    margin: 3rem 8.6rem 13.9rem 3.8rem;
+    margin: 3rem 8.6rem 13.9rem 0rem;
     width: calc(100% - 12.4rem);
     height: 71.8rem;
     display: flex;
@@ -74,7 +74,7 @@ body {
             width: 100%;
             display: flex;
             align-items: center;
-            background-color: #ffffff;
+            background-color: #F2F3F8;
             border-radius: 2rem;
             flex-shrink: 0;
         }
@@ -108,7 +108,7 @@ body {
             width: 100%;
             display: flex;
             align-items: center;
-            background-color: #ffffff;
+            background-color: #F2F3F8;
             border-radius: 2rem;
             flex-shrink: 0;
         }
@@ -141,7 +141,7 @@ body {
             height: 7rem;
             display: flex;
             align-items: center;
-            background-color: #ffffff;
+            background-color: #F2F3F8;
             border-radius: 2rem;
             flex-shrink: 0;
         }

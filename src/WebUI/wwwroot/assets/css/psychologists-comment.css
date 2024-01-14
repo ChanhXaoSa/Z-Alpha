@@ -236,7 +236,7 @@ body {
 
                 .auto-group-cnjx-ecm .auto-group-x8pf-BEd .auto-group-zdmw-yAV .auto-group-vdft-U7F .tag-1ss {
                     margin: 0rem 1rem 0.4rem 0rem;
-                    width: 9.9rem;
+                    width: auto;
                     height: 3.3rem;
                     text-align: center;
                     font-size: 1.4rem;
@@ -250,7 +250,6 @@ body {
                     justify-content: center;
                     background-color: #efd037;
                     border-radius: 1rem;
-                    flex-shrink: 0;
                 }
 
                 .auto-group-cnjx-ecm .auto-group-x8pf-BEd .auto-group-zdmw-yAV .auto-group-vdft-U7F .tag-fhX {

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231226064314_init")]
-    partial class init
+    [Migration("20240113120659_updatedb")]
+    partial class updatedb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,6 +76,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -88,9 +92,20 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<Guid>("PostId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ReplyCommentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserAccountId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PostId");
+
+                    b.HasIndex("ReplyCommentId");
+
+                    b.HasIndex("UserAccountId");
 
                     b.ToTable("Comments");
                 });
@@ -381,6 +396,32 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Posts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("75da058c-13cf-4027-9962-8e4c00ec297c"),
+                            AnonymousStatus = 1,
+                            Created = new DateTime(2024, 1, 13, 19, 6, 59, 218, DateTimeKind.Local).AddTicks(1032),
+                            IsDeleted = false,
+                            NumberOfDisLikes = 10,
+                            NumberOfLikes = 100,
+                            PostBody = "Nội dung bài đăng test thử ",
+                            PostImagesUrl = "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C",
+                            PostTitle = "Nội dung bài đăng test 1"
+                        },
+                        new
+                        {
+                            Id = new Guid("55b7d164-ebb7-466e-a7d8-d2c1cbed3d30"),
+                            AnonymousStatus = 1,
+                            Created = new DateTime(2024, 1, 13, 19, 6, 59, 218, DateTimeKind.Local).AddTicks(1047),
+                            IsDeleted = false,
+                            NumberOfDisLikes = 10,
+                            NumberOfLikes = 100,
+                            PostBody = "Nội dung bài đăng test thử ",
+                            PostImagesUrl = "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C",
+                            PostTitle = "Nội dung bài đăng test 1"
+                        });
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.PostTag", b =>
@@ -498,50 +539,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.UserInteractComment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CommentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("InteractComment")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserAccountId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("UserAccountId");
-
-                    b.ToTable("UserInteractComments");
-                });
-
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.WishListPost", b =>
                 {
                     b.Property<Guid>("Id")
@@ -612,14 +609,12 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("IsPremium")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -980,7 +975,21 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CleanArchitecture.Domain.Entities.Comment", "ReplyComment")
+                        .WithMany()
+                        .HasForeignKey("ReplyCommentId");
+
+                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Post");
+
+                    b.Navigation("ReplyComment");
+
+                    b.Navigation("UserAccount");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.CustomerAccount", b =>
@@ -997,7 +1006,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.InteractWithPosts", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.Post", "Post")
-                        .WithMany("InteractWithPosts")
+                        .WithMany()
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1081,25 +1090,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Navigation("UserAccount");
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.UserInteractComment", b =>
-                {
-                    b.HasOne("CleanArchitecture.Domain.Entities.Comment", "Comment")
-                        .WithMany("UserInteractComments")
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
-                        .WithMany("UserInteractComments")
-                        .HasForeignKey("UserAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comment");
-
-                    b.Navigation("UserAccount");
-                });
-
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.WishListPost", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.Post", "Post")
@@ -1170,11 +1160,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Domain.Entities.Comment", b =>
-                {
-                    b.Navigation("UserInteractComments");
-                });
-
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.CustomerAccount", b =>
                 {
                     b.Navigation("AnswersForEntranceTests");
@@ -1199,8 +1184,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("InteractWithPosts");
-
                     b.Navigation("PostTags");
 
                     b.Navigation("WishListPosts");
@@ -1213,6 +1196,8 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             modelBuilder.Entity("CleanArchitecture.Domain.Identity.UserAccount", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("CustomerAccounts");
 
                     b.Navigation("InteractWithPosts");
@@ -1222,8 +1207,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Navigation("PackDetails");
 
                     b.Navigation("Transactions");
-
-                    b.Navigation("UserInteractComments");
 
                     b.Navigation("WishListPosts");
                 });

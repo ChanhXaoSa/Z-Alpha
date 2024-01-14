@@ -26,13 +26,14 @@ public static class ConfigureServices
 
         //services.AddScoped<UserManager<UserAccount>>();
 
+
         services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.AddScoped<ICurrentUserService, CurrentUserService>();
 
         services.AddHttpContextAccessor();
 
-        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         services.AddHealthChecks()
             .AddDbContextCheck<ApplicationDbContext>();
