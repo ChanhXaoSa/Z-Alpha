@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@using CleanArchitecture.Domain.Identity;
+
+@inject SignInManager<UserAccount> _signInManager;
+@inject UserManager<UserAccount> _userManager;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -236,29 +242,49 @@
                          <div class="col-1">
 
                          </div>
-                         <div class="col-3">
-                             <div class="row">
-                                <div class="col-5">
-                                    @*  vinh*@
-                                    <div class="row" style=" position: relative;">
-                                        <img class="EllipseImg" src="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg" />
-                                        <div class="" style=" padding:10px 0px 0px 64px; position: absolute; color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Windino</div>
-                                        <div class="" style=" padding:30px 0px 0px 64px; position: absolute; color: #F08E17; font-size: 10px; font-family: Inter; font-weight: 400; word-wrap: break-word">Freemium</div>
+                         @if (_signInManager.IsSignedIn(User))
+                        {
+                            <div class="col-3">
+                                <div class="row">
+                                    <div class="col-5">
+                                        @*  vinh*@
+                                        <div class="row" style=" position: relative;">
+                                            <img class="EllipseImg" src="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg" />
+                                            <div class="" style=" padding:10px 0px 0px 64px; position: absolute; color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Windino</div>
+                                            <div class="" style=" padding:30px 0px 0px 64px; position: absolute; color: #F08E17; font-size: 10px; font-family: Inter; font-weight: 400; word-wrap: break-word">Freemium</div>
 
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <div class="row" style=" position: relative;">
-                                        <div style=" position: absolute;">
-                                            <button class="buttonHeader" style="width:7vw; height: 20px; margin-top:4.5px; margin-left: 4vw; display: block; font-size: 10px;"> Membership</button>
-                                            <button class="buttonHeader" style="width:7vw; height: 20px; margin-top:6px;   margin-left: 4vw; display: block; font-size: 10px; background-color: #9ACFC3;"> Sign Out</button>
                                         </div>
                                     </div>
+                                    <div class="col-7">
+                                        <div class="row" style=" position: relative;">
+                                            <div style=" position: absolute;">
+                                                <button class="buttonHeader" style="width:7vw; height: 20px; margin-top:4.5px; margin-left: 4vw; display: block; font-size: 10px;"> Membership</button>
+                                                <a href="~/logout" class="buttonHeader" style="width:7vw; height: 20px; margin-top:6px;   margin-left: 4vw; display: block; font-size: 10px; background-color: #9ACFC3;"> Sign Out</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                             </div>
+                            </div>
+                        } else
+                        {
+                            <div class="col-2">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row" style=" position: relative;">
+                                            <div style=" position: absolute;">
+                                                <a href="~/Login" class="buttonHeader" style="width:7vw; height: 20px; margin-top:4.5px; margin-left: 4vw; display: block; font-size: 10px;"> Sign In</a>
+                                                <a href="~/Register" class="buttonHeader" style="width:7vw; height: 20px; margin-top:6px;   margin-left: 4vw; display: block; font-size: 10px; background-color: #9ACFC3;">Sign up</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                         </div>
+                                </div>
+
+                            </div>
+                        }
+
 
                         
 
