@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CleanArchitecture.Domain.Enums;
 public enum InteractPostStatus
 {
-    None = 0,
+    Create = 0,
     Like = 1,
     Dislike = 2,
 }

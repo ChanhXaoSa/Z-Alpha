@@ -22,7 +22,7 @@ public class Post : BaseAuditableEntity
     public int? NumberOfDisLikes { get; set; }
     public AnonymousStatus AnonymousStatus { get; set; }
     public IList<PostTag>? PostTags { get;  set; }
-    //public IList<InteractWithPosts>? InteractWithPosts { get;  set; }
+    public IList<InteractWithPosts>? InteractWithPosts { get;  set; }
     public IList<WishListPost>? WishListPosts { get;  set; }
     public IList<Comment>? Comments { get;  set; }
 }

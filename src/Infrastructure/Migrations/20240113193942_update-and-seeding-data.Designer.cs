@@ -4,6 +4,7 @@ using CleanArchitecture.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleanArchitecture.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240113193942_update-and-seeding-data")]
+    partial class updateandseedingdata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,7 +113,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("65191898-080f-4c24-b39a-653e57323400"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8353),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(3023),
                             Description = "Nội dung comment",
                             IsDeleted = false,
                             PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
@@ -119,7 +122,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("cca90e51-b859-4830-8fcf-989163aaa4d9"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8358),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(3029),
                             Description = "Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle",
                             IsDeleted = false,
                             PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
@@ -128,7 +131,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("981c2b78-2662-4929-ab07-75e36d58e9bb"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8361),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(3034),
                             Description = "Nội dung comment test",
                             IsDeleted = false,
                             PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
@@ -232,26 +235,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasIndex("UserAccountId");
 
                     b.ToTable("InteractWithPosts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("61291732-1599-46e4-93e2-01aa8fca3801"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8377),
-                            InteractPostStatus = 0,
-                            IsDeleted = false,
-                            PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
-                            UserAccountId = "871a809a-b3fa-495b-9cc2-c5d738a866cf"
-                        },
-                        new
-                        {
-                            Id = new Guid("795154a3-aa8a-4337-8f45-35529a400fd3"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8382),
-                            InteractPostStatus = 0,
-                            IsDeleted = false,
-                            PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
-                            UserAccountId = "424ab531-d60a-487e-9625-a74a7f5747be"
-                        });
                 });
 
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.ManagerAccount", b =>
@@ -448,7 +431,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         {
                             Id = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
                             AnonymousStatus = 1,
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8256),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(2870),
                             IsDeleted = false,
                             NumberOfDisLikes = 10,
                             NumberOfLikes = 100,
@@ -460,7 +443,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         {
                             Id = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
                             AnonymousStatus = 1,
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8280),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(2943),
                             IsDeleted = false,
                             NumberOfDisLikes = 10,
                             NumberOfLikes = 100,
@@ -509,7 +492,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("647b2bd5-ea1b-42a6-a92e-8263fb160754"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8328),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(2997),
                             IsDeleted = false,
                             PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
                             TagId = new Guid("150b7aba-a76f-40b2-b7e5-19961bda108f")
@@ -517,7 +500,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("5d7deaf1-d72b-457e-bf56-877a89d37fac"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8332),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(3001),
                             IsDeleted = false,
                             PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
                             TagId = new Guid("6598d9c2-ef4d-4295-a06a-e45a3cfc7b9d")
@@ -525,7 +508,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("bcc26154-4ca0-4b51-808a-911bb4e09447"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8336),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(3004),
                             IsDeleted = false,
                             PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
                             TagId = new Guid("79a50b87-3bb3-4acc-b164-ef5795db17e3")
@@ -565,28 +548,28 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("150b7aba-a76f-40b2-b7e5-19961bda108f"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8301),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(2965),
                             IsDeleted = false,
                             TagName = "Học đường"
                         },
                         new
                         {
                             Id = new Guid("2b3a61bf-1543-4e9f-900b-d4901be7e78c"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8304),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(2973),
                             IsDeleted = false,
                             TagName = "Công việc"
                         },
                         new
                         {
                             Id = new Guid("6598d9c2-ef4d-4295-a06a-e45a3cfc7b9d"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8306),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(2976),
                             IsDeleted = false,
                             TagName = "Gia đình"
                         },
                         new
                         {
                             Id = new Guid("79a50b87-3bb3-4acc-b164-ef5795db17e3"),
-                            Created = new DateTime(2024, 1, 14, 14, 26, 28, 673, DateTimeKind.Local).AddTicks(8308),
+                            Created = new DateTime(2024, 1, 14, 2, 39, 42, 428, DateTimeKind.Local).AddTicks(2979),
                             IsDeleted = false,
                             TagName = "Xã hội"
                         });
@@ -778,14 +761,14 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         {
                             Id = "871a809a-b3fa-495b-9cc2-c5d738a866cf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4744d20a-dd52-4ca8-8dcd-4bfeb3a6ccd6",
+                            ConcurrencyStamp = "8a06d124-67a2-4734-a0b5-c71027fa0093",
                             Email = "vinhtc191@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Tran",
                             LastName = "Vinh",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7411781f-3485-4c57-8807-f2264a66cbcb",
+                            SecurityStamp = "15ed186a-18ee-4aa1-9624-f0414d158d2a",
                             Status = 1,
                             TwoFactorEnabled = false,
                             Wallet = 10000000.0
@@ -794,14 +777,14 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         {
                             Id = "424ab531-d60a-487e-9625-a74a7f5747be",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0d89dc8f-235f-4115-9d46-0aaa873a1426",
+                            ConcurrencyStamp = "84e3d970-3a85-4bf6-bcbb-f2289a68805f",
                             Email = "test@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Chan",
                             LastName = "Dinh",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d673a412-0f9b-4b18-bbcf-af5d26c99019",
+                            SecurityStamp = "8f09b226-7a29-4fdf-853c-4a50a0864b48",
                             Status = 1,
                             TwoFactorEnabled = false,
                             Wallet = 1000.0
@@ -1142,7 +1125,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.InteractWithPosts", b =>
                 {
                     b.HasOne("CleanArchitecture.Domain.Entities.Post", "Post")
-                        .WithMany("InteractWithPosts")
+                        .WithMany()
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1319,8 +1302,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Domain.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("InteractWithPosts");
 
                     b.Navigation("PostTags");
 
