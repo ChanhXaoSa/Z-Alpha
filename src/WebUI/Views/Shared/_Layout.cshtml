@@ -242,7 +242,7 @@
                          <div class="col-1">
 
                          </div>
-                         @if (_signInManager.IsSignedIn(User))
+                         @if (User.Identity.IsAuthenticated)
                         {
                             <div class="col-3">
                                 <div class="row">
