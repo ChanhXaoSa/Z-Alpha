@@ -170,6 +170,24 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
 
 
         );
+        builder.Entity<InteractWithPosts>()
+       .HasData(
+           new InteractWithPosts
+           {
+               Id = new Guid("61291732-1599-46e4-93e2-01aa8fca3801"),
+               UserAccountId = "871a809a-b3fa-495b-9cc2-c5d738a866cf",
+               PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
+               InteractPostStatus = InteractPostStatus.Create
+           },
+            new InteractWithPosts
+            {
+                Id = new Guid("795154a3-aa8a-4337-8f45-35529a400fd3"),
+                UserAccountId = "424ab531-d60a-487e-9625-a74a7f5747be",
+                PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
+                InteractPostStatus = InteractPostStatus.Create
+            }
+
+       );
 
 
 
