@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Entities;
+using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Domain.Entities;
 using MediatR;
 
-namespace CleanArchitecture.Application.AnswersForEntranceTest.Commands.CreateAnswersForEntranceTest;
+namespace ZAlpha.Application.AnswersForEntranceTest.Commands.CreateAnswersForEntranceTest;
 public class CreateAnswersForEntranceTestCommands : IRequest<Guid>
 {
     public Guid EntranceTestId { get; set; }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Post.Queries.GetPostById;
+namespace ZAlpha.Application.Post.Queries.GetPostById;
 internal class GetPostByIdQueries
 {
 }

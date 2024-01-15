@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Pack.Queries.GetPackById;
+namespace ZAlpha.Application.Pack.Queries.GetPackById;
 internal class GetPackByIdQueries
 {
 }

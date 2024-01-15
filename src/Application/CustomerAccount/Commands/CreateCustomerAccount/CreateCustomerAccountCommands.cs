@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.AnswersForEntranceTest.Commands.CreateAnswersForEntranceTest;
-using CleanArchitecture.Application.Common.Interfaces;
+using ZAlpha.Application.AnswersForEntranceTest.Commands.CreateAnswersForEntranceTest;
+using ZAlpha.Application.Common.Interfaces;
 using MediatR;
 
-namespace CleanArchitecture.Application.CustomerAccount.Commands.CreateCustomerAccount;
+namespace ZAlpha.Application.CustomerAccount.Commands.CreateCustomerAccount;
 public class CreateCustomerAccountCommands : IRequest<string>
 {
     public string UserAccountId { get; set; }

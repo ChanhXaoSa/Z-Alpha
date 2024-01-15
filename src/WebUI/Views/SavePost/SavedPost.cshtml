@@ -24,20 +24,20 @@
                 <div class="auto-group-9xty-x37">
                     <div class="rectangle-23-4bw">
                     </div>
-                    <p class="thng-tin-c-nhn-NMj">Thông tin cá nhân</p>
+                    <div class="thng-tin-c-nhn-NMj">@Html.ActionLink("Thông tin cá nhân", "Info", "User", null, htmlAttributes: new {@style="color: black; text-decoration: none"})</div>
                     <img class="image-9-ea9" src="./assets/image-9.png" />
                 </div>
                 <div class="auto-group-mqem-BKB">
                     <img class="person-GLd" src="./assets/person-k1B.png" />
-                    <p class="bi-vit-ca-ti-bNu">Bài viết của tôi</p>
+                    <div class="bi-vit-ca-ti-bNu">@Html.ActionLink("Bài viết của tôi", "Index", "MyPost", null, htmlAttributes: new {@style="color: black; text-decoration: none"})</div>
                 </div>
                 <div class="auto-group-qmhx-sbK">
                     <img class="commentbank-YxM" src="./assets/commentbank-WwP.png" />
-                    <p class="bi-vit-lu-gof">Bài viết đã lưu</p>
+                    <div class="bi-vit-lu-gof">@Html.ActionLink("Bài viết đã lưu", "SavedPost", "SavePost", null, htmlAttributes: new {@style="color: black; text-decoration: none"})</div>
                 </div>
                 <div class="auto-group-cu8q-aPF">
                     <img class="monetizationon-HHf" src="./assets/monetizationon-K3B.png" />
-                    <p class="lch-s-giao-dch-cKw">Thanh toán</p>
+                    <div class="lch-s-giao-dch-cKw">@Html.ActionLink("Thanh toán", "Transaction", "Transaction", null, htmlAttributes: new {@style="color: black; text-decoration: none"})</div>                    
                 </div>
             </div>
         </div>
@@ -198,6 +198,10 @@
                             font-family: Inter, 'Source Sans Pro';
                             white-space: nowrap;
                         }
+
+                            .auto-group-zvft-k3X .auto-group-nxxm-r6Z .account-information-UNq .auto-group-9xty-x37 .thng-tin-c-nhn-NMj .thng-tin-c-nhn-NMj-a {
+                                color: black;
+                            }
 
                         .auto-group-zvft-k3X .auto-group-nxxm-r6Z .account-information-UNq .auto-group-9xty-x37 .image-9-ea9 {
                             width: 6rem;

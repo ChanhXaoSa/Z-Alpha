@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Domain.Entities;
+using ZAlpha.Application.Common.Mappings;
+using ZAlpha.Domain.Entities;
 
-namespace CleanArchitecture.Application.Comment.Queries.GetComment;
+namespace ZAlpha.Application.Comment.Queries.GetComment;
 public class CommentModel : IMapFrom<Domain.Entities.Comment>
 {
     [ForeignKey("Post")]

@@ -2,19 +2,21 @@
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>CleanArchitecture.Domain</RootNamespace>
-        <AssemblyName>CleanArchitecture.Domain</AssemblyName>
+        <RootNamespace>ZAlpha.Domain</RootNamespace>
+        <AssemblyName>ZAlpha.Domain</AssemblyName>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" Version="12.0.1" />
-      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.7" />
+      <Compile Remove="Events\**" />
+      <EmbeddedResource Remove="Events\**" />
+      <None Remove="Events\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Events\" />
+      <PackageReference Include="MediatR" Version="12.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.7" />
     </ItemGroup>
 
 </Project>

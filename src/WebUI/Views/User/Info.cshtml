@@ -19,19 +19,19 @@
         <div class="account-information-5dX">
             <div class="auto-group-kar3-yiu">
                 <img class="image-5-WD3" src="./assets/image-5.png" />
-                <p class="thng-tin-c-nhn-SMb">Thông tin cá nhân</p>
+                <div class="thng-tin-c-nhn-SMb">@Html.ActionLink("Thông tin cá nhân", "Info", "User", null, htmlAttributes: new {@style="color: black; text-decoration: none; font-size: 1.2vw"})</div>
             </div>
             <div class="auto-group-uhvf-wZF">
                 <img class="person-5QZ" src="./assets/person.png" />
-                <p class="bi-vit-ca-ti-QBw">Bài viết của tôi</p>
+                <div class="bi-vit-ca-ti-QBw">@Html.ActionLink("Bài viết của tôi", "Index", "MyPost", null, htmlAttributes: new {@style="color: black; text-decoration: none; font-size: 1.2vw"})</div>
             </div>
             <div class="auto-group-bdpk-5J5">
                 <img class="commentbank-c37" src="./assets/commentbank.png" />
-                <p class="bi-vit-lu-vZb">Bài viết đã lưu</p>
+                <div class="bi-vit-lu-vZb">@Html.ActionLink("Bài viết đã lưu", "SavedPost", "SavePost", null, htmlAttributes: new {@style="color: black; text-decoration: none; font-size: 1.2vw"})</div>
             </div>
             <div class="auto-group-hznm-1b3">
                 <img class="monetizationon-9BT" src="./assets/monetizationon-wXb.png" />
-                <p class="lch-s-giao-dch-H2m">Thanh toán</p>
+                <div class="lch-s-giao-dch-H2m">@Html.ActionLink("Thanh toán", "Transaction", "Transaction", null, htmlAttributes: new {@style="color: black; text-decoration: none; font-size: 1.2vw"})</div>
             </div>
         </div>
         <!-- Menu end-->
@@ -80,11 +80,11 @@
                     </div>
                 </div>
                 <div class="auto-group-oagd-E9b">
-                    <div class="rectangle-58-MV7">
-                    </div>
-                    <p class="item--5vu">.............</p>
-                    <img class="edit-button-asf" src="./assets/edit-button-fyX.png" />
                     <p class="mt-khu-X2D">Mật khẩu</p>
+                    <div class="rectangle-58-MV7">
+                        <p class="item--5vu">...............</p>
+                        <img class="edit-button-asf" src="./assets/edit-button.png" />
+                    </div>
                 </div>
             </div>
             <div class="auto-group-tez1-Qrh">
@@ -130,8 +130,8 @@
             margin-right: 4.7rem;
             margin-left: -10vw;
             box-sizing: border-box;
-            padding: 3.4rem 1.6rem 18.4rem 1.6rem;
-            width: 34.8rem;
+            padding: 3.4rem 1.6rem 1.6rem 1.6rem;
+            width: 30%;
             row-gap: 2.5rem;
             align-items: center;
             display: flex;
@@ -153,9 +153,11 @@
             }
 
                 .auto-group-nkgm-aAy .account-information-5dX .auto-group-kar3-yiu .image-5-WD3 {
-                    margin-right: 1.6rem;
-                    width: 6rem;
-                    height: 6rem;
+                    margin-right: 1rem;
+                    margin-left: 0.3rem;
+                    max-width: 5rem;
+                    width: 100%;
+                    height: 5rem;
                     object-fit: cover;
                     vertical-align: top;
                     flex-shrink: 0;
@@ -184,9 +186,11 @@
             }
 
                 .auto-group-nkgm-aAy .account-information-5dX .auto-group-uhvf-wZF .person-5QZ {
-                    margin-right: 1.5rem;
-                    width: 6rem;
-                    height: 6rem;
+                    margin-right: 1rem;
+                    margin-left: 0.3rem;
+                    max-width: 5rem;
+                    width: 100%;
+                    height: 5rem;
                     cursor: pointer;
                     position: relative;
                     object-fit: contain;
@@ -218,9 +222,11 @@
             }
 
                 .auto-group-nkgm-aAy .account-information-5dX .auto-group-bdpk-5J5 .commentbank-c37 {
-                    margin-right: 1.5rem;
-                    width: 6rem;
-                    height: 6rem;
+                    margin-right: 1rem;
+                    margin-left: 0.3rem;
+                    max-width: 5rem;
+                    width: 100%;
+                    height: 5rem;
                     cursor: pointer;
                     position: relative;
                     object-fit: contain;
@@ -252,9 +258,11 @@
             }
 
                 .auto-group-nkgm-aAy .account-information-5dX .auto-group-hznm-1b3 .monetizationon-9BT {
-                    margin-right: 1.5rem;
-                    width: 6rem;
-                    height: 6rem;
+                    margin-right: 1rem;
+                    margin-left: 0.3rem;
+                    max-width: 5rem;
+                    width: 100%;
+                    height: 5rem;
                     cursor: pointer;
                     position: relative;
                     object-fit: contain;
@@ -275,7 +283,7 @@
                 }
 
         .auto-group-nkgm-aAy .auto-group-6jwb-Zky {
-            width: 88.1rem;
+            width: 80%;
             height: 100%;
             position: relative;
             background: linear-gradient(236.41deg, #f8f1ec 0%, #93eeea 100%);
@@ -301,8 +309,10 @@
                 }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-s23x-hcH .auto-group-ahft-cz9 .rectangle-53-mMF {
-                        width: 10.8rem;
-                        height: 10.8rem;
+                        max-width: 10.8rem;
+                        max-height: 10.8rem;
+                        width: 100%;
+                        height: 100%;
                         position: absolute;
                         left: 0;
                         top: 0;
@@ -311,8 +321,10 @@
                     }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-s23x-hcH .auto-group-ahft-cz9 .edit-button-i1b {
-                        width: 2.5rem;
-                        height: 2.5rem;
+                        max-width: 2.5rem;
+                        max-height: 2.5rem;
+                        width: 100%;
+                        height: 100%;
                         position: absolute;
                         left: 9rem;
                         top: 9.1rem;
@@ -339,7 +351,7 @@
                             margin-bottom: 0.7rem;
                             width: 100%;
                             text-align: center;
-                            font-size: 2.8rem;
+                            font-size: 1.7vw;
                             font-weight: 600;
                             line-height: 1.2125;
                             color: #000000;
@@ -350,7 +362,7 @@
                         .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-s23x-hcH .auto-group-zbf3-duF .auto-group-mrym-aZb .freemium-2wP {
                             width: 100%;
                             text-align: center;
-                            font-size: 1.7rem;
+                            font-size: 0.9vw;
                             font-weight: 500;
                             line-height: 1.2125;
                             color: #2d75cb;
@@ -360,38 +372,41 @@
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-s23x-hcH .auto-group-zbf3-duF .edit-button-mPB {
                         margin-top: 0.8rem;
-                        width: 2.5rem;
-                        height: 2.5rem;
+                        max-width: 2.5rem;
+                        max-height: 2.5rem;
+                        width: 100%;
+                        height: 100%;
                         object-fit: contain;
                         vertical-align: top;
                         flex-shrink: 0;
                     }
 
             .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-maht-tih {
-                width: 79.5rem;
+                width: 100%;
                 height: 4.3rem;
                 position: absolute;
-                left: 4.2rem;
                 top: 27.6rem;
-                display: flex;
+                display: flex; 
+                justify-content: space-around;
                 align-items: center;
             }
 
                 .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-maht-tih .auto-group-3g8d-dRP {
-                    margin-right: 8.9rem;
                     box-sizing: border-box;
                     padding: 0.9rem 1.1rem 0.9rem 1.5rem;
+                    width: 40%;
                     height: 100%;
                     display: flex;
                     align-items: center;
+                    justify-content: space-between;
                     background-color: #ffffff;
                     border-radius: 1rem;
                     flex-shrink: 0;
                 }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-maht-tih .auto-group-3g8d-dRP .trn-xun-phong-8sw {
-                        margin-right: 17.8rem;
-                        font-size: 1.5rem;
+                        margin: 0px 0px 0px 0px;
+                        font-size: 1vw;
                         font-weight: 500;
                         line-height: 1.2125;
                         color: #908d8d;
@@ -401,8 +416,10 @@
                     }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-maht-tih .auto-group-3g8d-dRP .edit-button-3k1 {
-                        width: 2.5rem;
-                        height: 2.5rem;
+                        max-width: 2.5rem;
+                        max-height: 2.5rem;
+                        width: 100%;
+                        height: 100%;
                         object-fit: contain;
                         vertical-align: top;
                         flex-shrink: 0;
@@ -410,9 +427,11 @@
 
                 .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-maht-tih .auto-group-xbky-mR7 {
                     box-sizing: border-box;
-                    padding: 0.8rem 1.7rem 1rem 1rem;
+                    padding: 0.9rem 1.1rem 0.9rem 1.5rem;
+                    width: 40%;
                     height: 100%;
                     display: flex;
+                    justify-content: space-between;
                     align-items: center;
                     background-color: #ffffff;
                     border-radius: 1rem;
@@ -420,7 +439,7 @@
                 }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-maht-tih .auto-group-xbky-mR7 .item-2002-6CV {
-                        margin: 0.2rem 26.3rem 0rem 0rem;
+                        margin: 0px 0px 0px 0px;
                         font-size: 1.5rem;
                         font-weight: 500;
                         line-height: 1.2125;
@@ -439,29 +458,30 @@
                     }
 
             .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-bkud-jFT {
-                width: 79.5rem;
+                width: 100%;
                 height: 4.3rem;
                 position: absolute;
-                left: 4.2rem;
                 top: 62rem;
                 display: flex;
+                justify-content: space-around;
                 align-items: center;
             }
 
                 .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-bkud-jFT .auto-group-24vk-3mw {
-                    margin-right: 8.9rem;
                     box-sizing: border-box;
                     padding: 0.9rem 1.1rem 0.9rem 1.5rem;
+                    width: 40%;
                     height: 100%;
                     display: flex;
                     align-items: center;
+                    justify-content: space-between;
                     background-color: #ffffff;
                     border-radius: 1rem;
                     flex-shrink: 0;
                 }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-bkud-jFT .auto-group-24vk-3mw .item-0393644813-NJR {
-                        margin-right: 20.8rem;
+                        margin: 0px;
                         font-size: 1.5rem;
                         font-weight: 500;
                         line-height: 1.2125;
@@ -481,17 +501,19 @@
 
                 .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-bkud-jFT .auto-group-eoho-bws {
                     box-sizing: border-box;
-                    padding: 1.1rem 1.1rem 0.8rem 1rem;
+                    padding: 0.9rem 1.1rem 0.9rem 1.5rem;
+                    width: 40%;
                     height: 100%;
                     display: flex;
                     align-items: center;
                     background-color: #ffffff;
+                    justify-content: space-between;
                     border-radius: 1rem;
                     flex-shrink: 0;
                 }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-bkud-jFT .auto-group-eoho-bws .sinh-vin-uSm {
-                        margin: 0rem 24.2rem 0.3rem 0rem;
+                        margin: 0px;
                         font-size: 1.5rem;
                         font-weight: 500;
                         line-height: 1.2125;
@@ -511,24 +533,23 @@
                     }
 
             .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-w4pm-8qK {
-                width: 79.5rem;
+                width: 100%;
                 height: 7.1rem;
                 position: absolute;
-                left: 4.2rem;
                 top: 42rem;
                 display: flex;
-                align-items: flex-end;
+                align-items: center;
+                justify-content: space-around;
             }
 
                 .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-w4pm-8qK .auto-group-djad-GRj {
-                    margin-right: 8.9rem;
-                    width: 35.3rem;
+                    width: 40%;
                     flex-shrink: 0;
                 }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-w4pm-8qK .auto-group-djad-GRj .email-CaH {
                         margin-bottom: 1rem;
-                        font-size: 1.3rem;
+                        font-size: 1vw;
                         font-weight: 700;
                         line-height: 1.2125;
                         color: #070ea8;
@@ -538,17 +559,18 @@
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-w4pm-8qK .auto-group-djad-GRj .auto-group-qs1x-8iq {
                         box-sizing: border-box;
-                        padding: 1rem 1.1rem 0.8rem 1.5rem;
+                        padding: 0.9rem 1.1rem 0.9rem 1.5rem;
                         width: 100%;
                         display: flex;
                         align-items: center;
                         background-color: #ffffff;
                         border-radius: 1rem;
+                        justify-content: space-between;
                     }
 
                         .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-w4pm-8qK .auto-group-djad-GRj .auto-group-qs1x-8iq .windtran02gmailcom-dfb {
-                            margin-right: 13.1rem;
-                            font-size: 1.5rem;
+                            margin: 0px;
+                            font-size: 1vw;
                             font-weight: 500;
                             line-height: 1.2125;
                             color: #908d8d;
@@ -566,53 +588,50 @@
                         }
 
                 .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-w4pm-8qK .auto-group-oagd-E9b {
-                    width: 35.3rem;
+                    width: 40%;
                     height: 100%;
-                    position: relative;
                     flex-shrink: 0;
                 }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-w4pm-8qK .auto-group-oagd-E9b .rectangle-58-MV7 {
-                        width: 35.3rem;
+                        width: 40%;
                         height: 4.3rem;
                         position: absolute;
-                        left: 0;
-                        top: 2.8rem;
+                        padding: 0.9rem 1.1rem 0.9rem 1.5rem;
+                        top: 2.35rem;
                         background-color: #ffffff;
                         border-radius: 1rem;
+                        display: flex;
+                        justify-content: space-between;
                     }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-w4pm-8qK .auto-group-oagd-E9b .item--5vu {
-                        width: 21rem;
-                        height: 7rem;
-                        position: absolute;
-                        left: 1.2rem;
-                        top: 0;
-                        font-size: 5.7rem;
+                        margin: 0px;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 1.6rem;
+                        -webkit-text-security: disc;
                         font-weight: 500;
-                        line-height: 1.2125;
+                        /* line-height: 1.2125; */
                         color: #000000;
                         font-family: Inter, 'Source Sans Pro';
                         white-space: nowrap;
                     }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-w4pm-8qK .auto-group-oagd-E9b .edit-button-asf {
-                        width: 2.5rem;
-                        height: 2.5rem;
-                        position: absolute;
-                        left: 31.1rem;
-                        top: 3.7rem;
+                        max-width: 2.5rem;
+                        max-height: 2.5rem;
+                        width: 100%;
+                        height: 100%;
                         object-fit: contain;
                         vertical-align: top;
                     }
 
                     .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-w4pm-8qK .auto-group-oagd-E9b .mt-khu-X2D {
-                        width: 6.2rem;
+                        width: 40%;
                         height: 1.6rem;
                         position: absolute;
-                        left: 0;
-                        top: 0.2rem;
-                        font-size: 1.3rem;
+                        font-size: 1vw;
                         font-weight: 700;
                         line-height: 1.2125;
                         color: #070ea8;
@@ -621,19 +640,20 @@
                     }
 
             .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-tez1-Qrh {
-                width: 50.45rem;
+                width: 100%;
                 height: 1.6rem;
                 position: absolute;
-                left: 4.15rem;
                 top: 24.6rem;
                 display: flex;
                 align-items: center;
+                left: -15.5%;
+                justify-content: space-around;
             }
 
                 .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-tez1-Qrh .h-v-tn-wLq {
-                    margin-right: 38.15rem;
+                    margin: 0px;
                     text-align: center;
-                    font-size: 1.3rem;
+                    font-size: 1vw;
                     font-weight: 700;
                     line-height: 1.2125;
                     color: #070ea8;
@@ -643,7 +663,8 @@
                 }
 
                 .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-tez1-Qrh .nm-sinh-dzM {
-                    font-size: 1.3rem;
+                    margin: 0px;
+                    font-size: 1vw;
                     font-weight: 700;
                     line-height: 1.2125;
                     color: #070ea8;
@@ -653,18 +674,20 @@
                 }
 
             .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-mrx9-yHX {
-                width: 52.7rem;
+                width: 100%;
                 height: 1.6rem;
                 position: absolute;
-                left: 4.2rem;
                 top: 59.4rem;
                 display: flex;
                 align-items: center;
+                left: -14%;
+                justify-content: space-around;
+
             }
 
                 .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-mrx9-yHX .s-in-thoi-6d3 {
-                    margin-right: 35.5rem;
-                    font-size: 1.3rem;
+                    margin: 0px;
+                    font-size: 1vw;
                     font-weight: 700;
                     line-height: 1.2125;
                     color: #070ea8;
@@ -674,7 +697,8 @@
                 }
 
                 .auto-group-nkgm-aAy .auto-group-6jwb-Zky .auto-group-mrx9-yHX .ngh-nghip-dN5 {
-                    font-size: 1.3rem;
+                    margin: 0px;
+                    font-size: 1vw;
                     font-weight: 700;
                     line-height: 1.2125;
                     color: #070ea8;

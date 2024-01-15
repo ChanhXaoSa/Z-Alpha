@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Common.Interfaces;
+using ZAlpha.Application.Common.Interfaces;
 using MediatR;
 
-namespace CleanArchitecture.Application.Pack.Commands.CreatePack;
+namespace ZAlpha.Application.Pack.Commands.CreatePack;
 
 public class CreatePackCommands : IRequest<Guid>
 {

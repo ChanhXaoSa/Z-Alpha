@@ -2,11 +2,23 @@
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>CleanArchitecture.Application</RootNamespace>
-        <AssemblyName>CleanArchitecture.Application</AssemblyName>
+        <RootNamespace>ZAlpha.Application</RootNamespace>
+        <AssemblyName>ZAlpha.Application</AssemblyName>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="InteractWithPosts\**" />
+      <Compile Remove="PaymentMethod\**" />
+      <Compile Remove="UserInteractComment\**" />
+      <EmbeddedResource Remove="InteractWithPosts\**" />
+      <EmbeddedResource Remove="PaymentMethod\**" />
+      <EmbeddedResource Remove="UserInteractComment\**" />
+      <None Remove="InteractWithPosts\**" />
+      <None Remove="PaymentMethod\**" />
+      <None Remove="UserInteractComment\**" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
@@ -16,24 +28,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Domain\Domain.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="InteractWithPosts\Commands\CreateInteractWithPosts\" />
-      <Folder Include="InteractWithPosts\Commands\DeleteInteractWithPosts\" />
-      <Folder Include="InteractWithPosts\Commands\UpdateInteractWithPosts\" />
-      <Folder Include="InteractWithPosts\Queries\GetAllInteractWithPosts\" />
-      <Folder Include="InteractWithPosts\Queries\GetInteractWithPostsById\" />
-      <Folder Include="PaymentMethod\Commands\CreatePaymentMethod\" />
-      <Folder Include="PaymentMethod\Commands\DeletePaymentMethod\" />
-      <Folder Include="PaymentMethod\Commands\UpdatePaymentMethod\" />
-      <Folder Include="PaymentMethod\Queries\GetAllPaymentMethod\" />
-      <Folder Include="PaymentMethod\Queries\GetPaymentMethodById\" />
-      <Folder Include="UserInteractComment\Commands\CreateUserInteractComment\" />
-      <Folder Include="UserInteractComment\Commands\DeleteUserInteractComment\" />
-      <Folder Include="UserInteractComment\Commands\UpdateUserInteractComment\" />
-      <Folder Include="UserInteractComment\Queries\GetAllUserInteractComment\" />
-      <Folder Include="UserInteractComment\Queries\GetUserInteractCommentById\" />
     </ItemGroup>
 
 </Project>

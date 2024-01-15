@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.WebUI.Filters;
+﻿using ZAlpha.WebUI.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Domain.Entities;
+namespace ZAlpha.Domain.Entities;
 public class Pack : BaseAuditableEntity
 {
 

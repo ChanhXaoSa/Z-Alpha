@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using CleanArchitecture.Application.AnswersForEntranceTest.Queries.GetAnswersForEntranceTest;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Domain.Entities;
+using ZAlpha.Application.AnswersForEntranceTest.Queries.GetAnswersForEntranceTest;
+using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.Common.Models;
+using ZAlpha.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Application.CustomerAccount.Queries.GetAllCustomerAccount;
+namespace ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
 
 public class GetCustomerAccountRequest : IRequest<PaginatedList<CustomerAccountModel>>
 {

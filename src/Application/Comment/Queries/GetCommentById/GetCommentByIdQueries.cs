@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Comment.Queries.GetCommentById;
+namespace ZAlpha.Application.Comment.Queries.GetCommentById;
 internal class GetCommentByIdQueries
 {
 }

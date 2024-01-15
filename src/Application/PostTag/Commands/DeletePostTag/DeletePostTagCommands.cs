@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.PostTag.Commands.DeletePostTag;
+namespace ZAlpha.Application.PostTag.Commands.DeletePostTag;
 internal class DeletePostTagCommands
 {
 }

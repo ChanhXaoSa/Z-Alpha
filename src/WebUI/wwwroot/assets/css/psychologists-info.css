@@ -1,5 +1,5 @@
 ﻿html {
-    font-size: 100%;
+    font-size: 62.5%;
 }
 
 ul, li {
@@ -15,8 +15,8 @@ body {
 }
 
 .auto-group-qyhb-1t9 {
-    margin: 3rem 8.6rem 13.9rem 0rem;
-    width: calc(100% - 12.4rem);
+    margin: 3rem 8.6rem 13.9rem 6.1rem;
+    width: calc(100% - 14.7rem);
     height: 71.8rem;
     display: flex;
     align-items: flex-start;
@@ -24,7 +24,7 @@ body {
 }
 
     .auto-group-qyhb-1t9 .account-information-7gH {
-        margin: 0.5rem 8.7rem 0rem 0rem;
+        margin-right: 6.4rem;
         box-sizing: border-box;
         padding: 3.4rem 1.6rem 18.4rem 1.6rem;
         width: 34.8rem;

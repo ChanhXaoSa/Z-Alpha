@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Domain.Enums;
+using ZAlpha.Application.Common.Mappings;
+using ZAlpha.Domain.Entities;
+using ZAlpha.Domain.Enums;
 
-namespace CleanArchitecture.Application.Post.Queries.GetAllPost;
+namespace ZAlpha.Application.Post.Queries.GetAllPost;
 public class PostModel : IMapFrom<Domain.Entities.Post>
 {
     public string PostTitle { get; set; }
@@ -18,5 +18,5 @@ public class PostModel : IMapFrom<Domain.Entities.Post>
     public AnonymousStatus AnonymousStatus { get; set; }
     public DateTime Created { get; set; }
     public IList<InteractWithPosts>? InteractWithPosts { get; set; }
-    public IList<CleanArchitecture.Domain.Entities.PostTag>? PostTags { get; set; }
+    public IList<ZAlpha.Domain.Entities.PostTag>? PostTags { get; set; }
 }

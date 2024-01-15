@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using WebUI.Model;
 
-namespace CleanArchitecture.Infrastructure.Repositories;
+namespace ZAlpha.Infrastructure.Repositories;
 public interface IAccountRepository
 {
     public Task<IdentityResult> SignUpAsync(SignUpModel model);

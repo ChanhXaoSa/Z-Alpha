@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Post.Queries.GetPostByFilter;
+namespace ZAlpha.Application.Post.Queries.GetPostByFilter;
 internal class GetPostByFiltterQueries
 {
 }

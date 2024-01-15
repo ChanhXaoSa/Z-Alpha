@@ -1,18 +1,18 @@
 ﻿using System.Reflection;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Domain.Enums;
-using CleanArchitecture.Domain.Identity;
-using CleanArchitecture.Infrastructure.Identity;
-using CleanArchitecture.Infrastructure.Persistence.Interceptors;
+using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Domain.Common;
+using ZAlpha.Domain.Entities;
+using ZAlpha.Domain.Identity;
+using ZAlpha.Infrastructure.Identity;
+using ZAlpha.Infrastructure.Persistence.Interceptors;
 using Duende.IdentityServer.EntityFramework.Options;
 using MediatR;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using ZAlpha.Domain.Enums;
 
-namespace CleanArchitecture.Infrastructure.Persistence;
+namespace ZAlpha.Infrastructure.Persistence;
 
 public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApplicationDbContext
 {

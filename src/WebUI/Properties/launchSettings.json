@@ -12,7 +12,7 @@
     }
   },
   "profiles": {
-    "CleanArchitecture.WebUI": {
+    "ZAlpha.WebUI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "Home",

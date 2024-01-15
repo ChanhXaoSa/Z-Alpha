@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.CustomerAccount.Queries.GetCustomerAccountById;
+namespace ZAlpha.Application.CustomerAccount.Queries.GetCustomerAccountById;
 internal class GetCustomerAccountByIdQueries
 {
 }

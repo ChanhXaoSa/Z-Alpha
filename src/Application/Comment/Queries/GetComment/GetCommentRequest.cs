@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using CleanArchitecture.Application.Comment.Queries.GetComment;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Application.CustomerAccount.Queries.GetAllCustomerAccount;
+using ZAlpha.Application.Comment.Queries.GetComment;
+using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.Common.Models;
+using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Application.Comment.Queries.GetAllComment;
+namespace ZAlpha.Application.Comment.Queries.GetAllComment;
 public class GetCommentRequest : IRequest<PaginatedList<CommentModel>>
 {
     public int Page { get; set; }

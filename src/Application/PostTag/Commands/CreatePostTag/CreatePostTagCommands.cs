@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.PostTag.Commands.CreatePostTag;
+namespace ZAlpha.Application.PostTag.Commands.CreatePostTag;
 internal class CreatePostTagCommands
 {
 }

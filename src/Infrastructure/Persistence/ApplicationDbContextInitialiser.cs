@@ -1,11 +1,11 @@
-﻿using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Domain.Identity;
-using CleanArchitecture.Infrastructure.Identity;
+﻿using ZAlpha.Domain.Entities;
+using ZAlpha.Domain.Identity;
+using ZAlpha.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitecture.Infrastructure.Persistence;
+namespace ZAlpha.Infrastructure.Persistence;
 
 public class ApplicationDbContextInitialiser
 {

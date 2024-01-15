@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Domain.Identity;
+using ZAlpha.Application.Common.Mappings;
+using ZAlpha.Domain.Identity;
 
-namespace CleanArchitecture.Application.CustomerAccount.Queries.GetAllCustomerAccount;
+namespace ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
 public class CustomerAccountModel : IMapFrom<Domain.Entities.CustomerAccount>
 {
     public Guid Id { get; set; }

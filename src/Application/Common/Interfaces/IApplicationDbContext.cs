@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Entities;
+﻿using ZAlpha.Domain.Common;
+using ZAlpha.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Application.Common.Interfaces;
+namespace ZAlpha.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {

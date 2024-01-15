@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Tag.Queries.GetTag;
-using CleanArchitecture.Domain.Entities;
+using ZAlpha.Application.Common.Exceptions;
+using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.Tag.Queries.GetTag;
+using ZAlpha.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Application.Tag.Queries.GetTagById;
-
-
+namespace ZAlpha.Application.Tag.Queries.GetTagById;
 public class GetTagByIdQueries : IRequest<TagModel>
 {
     public Guid Id { get; set; }

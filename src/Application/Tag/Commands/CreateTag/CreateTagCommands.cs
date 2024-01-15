@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Tag.Commands.CreateTag;
+namespace ZAlpha.Application.Tag.Commands.CreateTag;
 internal class CreateTagCommands
 {
 }

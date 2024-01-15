@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Application.Common.Interfaces;
+﻿namespace ZAlpha.Application.Common.Interfaces;
 
 public interface IDateTime
 {

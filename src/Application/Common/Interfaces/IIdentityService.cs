@@ -1,6 +1,6 @@
-﻿using CleanArchitecture.Application.Common.Models;
+﻿using ZAlpha.Application.Common.Models;
 
-namespace CleanArchitecture.Application.Common.Interfaces;
+namespace ZAlpha.Application.Common.Interfaces;
 
 public interface IIdentityService
 {
