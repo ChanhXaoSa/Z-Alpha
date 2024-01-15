@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Domain.Exceptions;
-using CleanArchitecture.Domain.ValueObjects;
+﻿using ZAlpha.Domain.Exceptions;
+using ZAlpha.Domain.ValueObjects;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace CleanArchitecture.Domain.UnitTests.ValueObjects;
+namespace ZAlpha.Domain.UnitTests.ValueObjects;
 
 public class ColourTests
 {
