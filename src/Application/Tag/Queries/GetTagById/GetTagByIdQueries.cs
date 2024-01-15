@@ -12,7 +12,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace ZAlpha.Application.Tag.Queries.GetTagById;
-internal class GetTagByIdQueries
+public class GetTagByIdQueries : IRequest<TagModel>
 {
     public Guid Id { get; set; }
 

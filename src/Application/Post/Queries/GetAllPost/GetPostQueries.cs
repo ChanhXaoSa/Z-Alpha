@@ -12,7 +12,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace ZAlpha.Application.Post.Queries.GetAllPost;
-internal class GetPostQueries
+public class GetPostQueries : IRequest<PaginatedList<PostModel>>
 {
     public int Page { get; set; }
     public int Size { get; set; }
