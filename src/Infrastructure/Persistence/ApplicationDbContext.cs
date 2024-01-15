@@ -10,6 +10,7 @@ using MediatR;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using ZAlpha.Domain.Enums;
 
 namespace ZAlpha.Infrastructure.Persistence;
 

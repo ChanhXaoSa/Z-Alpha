@@ -1,6 +1,6 @@
-﻿using CleanArchitecture.Application.Post.Queries.GetAllPost;
-using CleanArchitecture.Application.Tag.Queries.GetTagById;
-using CleanArchitecture.Domain.Entities;
+﻿using ZAlpha.Application.Post.Queries.GetAllPost;
+using ZAlpha.Application.Tag.Queries.GetTagById;
+using ZAlpha.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebUI.Controllers.MVC;

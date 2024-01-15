@@ -9,12 +9,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" Version="12.0.1" />
-      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.7" />
+      <Compile Remove="Events\**" />
+      <EmbeddedResource Remove="Events\**" />
+      <None Remove="Events\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Events\" />
+      <PackageReference Include="MediatR" Version="12.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.7" />
     </ItemGroup>
 
 </Project>

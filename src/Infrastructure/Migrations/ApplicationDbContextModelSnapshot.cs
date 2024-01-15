@@ -1155,11 +1155,11 @@ namespace ZAlpha.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CleanArchitecture.Domain.Entities.Comment", "ReplyComment")
+                    b.HasOne("ZAlpha.Domain.Entities.Comment", "ReplyComment")
                         .WithMany()
                         .HasForeignKey("ReplyCommentId");
 
-                    b.HasOne("CleanArchitecture.Domain.Identity.UserAccount", "UserAccount")
+                    b.HasOne("ZAlpha.Domain.Identity.UserAccount", "UserAccount")
                         .WithMany("Comments")
                         .HasForeignKey("UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
