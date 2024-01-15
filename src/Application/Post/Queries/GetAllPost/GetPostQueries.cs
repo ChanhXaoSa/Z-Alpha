@@ -7,6 +7,7 @@ using AutoMapper;
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Common.Models;
 using CleanArchitecture.Application.Pack.Queries.GetPack;
+using CleanArchitecture.Domain.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,7 +33,12 @@ public class GetPostQueriesHandler : IRequestHandler<GetPostQueries, PaginatedLi
     public async Task<PaginatedList<PostModel>> Handle(GetPostQueries request, CancellationToken cancellationToken)
     {
         var listPost = _context.Get<Domain.Entities.Post>()
-            .Where(x => x.IsDeleted == false).AsNoTracking();
+            .Where(x => x.IsDeleted == false)
+            .Include(o=>o.PostTags)
+            .ThenInclude(o=>o.Tag)
+            .Include(o=>o.InteractWithPosts)//.Where(i=>i.InteractWithPosts.InteractPostStatus == InteractPostStatus.Create)
+            .ThenInclude(o=>o.UserAccount)
+            .AsNoTracking();
 
         var map = _mapper.ProjectTo<PostModel>(listPost);
 
