@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Common.Interfaces;
+using ZAlpha.Application.Common.Interfaces;
 using MediatR;
 
-namespace CleanArchitecture.Application.EntranceTest.Commands.CreateEntranceTest;
+namespace ZAlpha.Application.EntranceTest.Commands.CreateEntranceTest;
 public class CreateEntranceTestCommands : IRequest<Guid>
 {
 

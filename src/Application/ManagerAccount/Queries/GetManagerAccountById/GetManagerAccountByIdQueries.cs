@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.ManagerAccount.Queries.GetManagerAccountById;
+namespace ZAlpha.Application.ManagerAccount.Queries.GetManagerAccountById;
 internal class GetManagerAccountByIdQueries
 {
 }

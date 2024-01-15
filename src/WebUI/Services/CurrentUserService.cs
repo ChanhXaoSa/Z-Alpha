@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 
-using CleanArchitecture.Application.Common.Interfaces;
+using ZAlpha.Application.Common.Interfaces;
 
-namespace CleanArchitecture.WebUI.Services;
+namespace ZAlpha.WebUI.Services;
 
 public class CurrentUserService : ICurrentUserService
 {

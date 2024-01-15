@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Post.Queries.GetAllPost;
+namespace ZAlpha.Application.Post.Queries.GetAllPost;
 internal class GetPostQueries
 {
 }

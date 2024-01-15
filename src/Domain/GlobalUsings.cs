@@ -1,6 +1,6 @@
-﻿global using CleanArchitecture.Domain.Common;
-global using CleanArchitecture.Domain.Entities;
-global using CleanArchitecture.Domain.Enums;
-/*global using CleanArchitecture.Domain.Events;*/
-global using CleanArchitecture.Domain.Exceptions;
-global using CleanArchitecture.Domain.ValueObjects;
+﻿global using ZAlpha.Domain.Common;
+global using ZAlpha.Domain.Entities;
+global using ZAlpha.Domain.Enums;
+/*global using ZAlpha.Domain.Events;*/
+global using ZAlpha.Domain.Exceptions;
+global using ZAlpha.Domain.ValueObjects;

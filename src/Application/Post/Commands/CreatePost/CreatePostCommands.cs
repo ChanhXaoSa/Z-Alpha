@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Post.Commands.CreatePost;
+namespace ZAlpha.Application.Post.Commands.CreatePost;
 internal class CreatePostCommands
 {
 }

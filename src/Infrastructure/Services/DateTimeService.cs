@@ -1,6 +1,6 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using ZAlpha.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Infrastructure.Services;
+namespace ZAlpha.Infrastructure.Services;
 
 public class DateTimeService : IDateTime
 {

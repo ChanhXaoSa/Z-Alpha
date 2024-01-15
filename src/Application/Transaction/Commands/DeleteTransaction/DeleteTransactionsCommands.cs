@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Transaction.Commands.DeleteTransaction;
+namespace ZAlpha.Application.Transaction.Commands.DeleteTransaction;
 internal class DeleteTransactionsCommands
 {
 }

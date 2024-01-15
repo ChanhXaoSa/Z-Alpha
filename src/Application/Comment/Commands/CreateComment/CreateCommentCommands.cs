@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Entities;
+using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Domain.Entities;
 using MediatR;
 
-namespace CleanArchitecture.Application.Comment.Commands.CreateComment;
+namespace ZAlpha.Application.Comment.Commands.CreateComment;
 public class CreateCommentCommands : IRequest<Guid>
 {
     public Guid PostId { get; set; }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Common.Models;
+namespace ZAlpha.Application.Common.Models;
 public class RegisterViewModel
 {
     [Required]

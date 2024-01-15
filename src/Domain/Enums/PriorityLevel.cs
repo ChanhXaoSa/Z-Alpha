@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Domain.Enums;
+﻿namespace ZAlpha.Domain.Enums;
 
 public enum PriorityLevel
 {

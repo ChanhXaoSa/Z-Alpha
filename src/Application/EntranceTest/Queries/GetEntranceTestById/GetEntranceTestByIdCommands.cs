@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.EntranceTest.Queries.GetEntranceTestById;
+namespace ZAlpha.Application.EntranceTest.Queries.GetEntranceTestById;
 internal class GetEntranceTestByIdCommands
 {
 }

@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Identity;
-using CleanArchitecture.Infrastructure.Identity;
-using CleanArchitecture.Infrastructure.Persistence;
-using CleanArchitecture.Infrastructure.Persistence.Interceptors;
-using CleanArchitecture.Infrastructure.Services;
+﻿using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Domain.Identity;
+using ZAlpha.Infrastructure.Identity;
+using ZAlpha.Infrastructure.Persistence;
+using ZAlpha.Infrastructure.Persistence.Interceptors;
+using ZAlpha.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;

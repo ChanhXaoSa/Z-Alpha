@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Post.Commands.DeletePost;
+namespace ZAlpha.Application.Post.Commands.DeletePost;
 internal class DeletePostCommands
 {
 }

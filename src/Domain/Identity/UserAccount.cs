@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace CleanArchitecture.Domain.Identity;
+namespace ZAlpha.Domain.Identity;
 public class UserAccount : IdentityUser
 {
     public string Email { get; set; }

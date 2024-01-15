@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using CleanArchitecture.Application.AnswersForEntranceTest.Queries.GetAnswersForEntranceTest;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
+using ZAlpha.Application.AnswersForEntranceTest.Queries.GetAnswersForEntranceTest;
+using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.Common.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Application.EntranceTest.Queries.GetAllEntranceTest;
+namespace ZAlpha.Application.EntranceTest.Queries.GetAllEntranceTest;
 
 public class GetEntranceTestRequest : IRequest<PaginatedList<EntranceTestModel>>
 {
