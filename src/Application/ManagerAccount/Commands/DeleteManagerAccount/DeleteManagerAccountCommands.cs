@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.ManagerAccount.Commands.DeleteManagerAccount;
+namespace ZAlpha.Application.ManagerAccount.Commands.DeleteManagerAccount;
 internal class DeleteManagerAccountCommands
 {
 }

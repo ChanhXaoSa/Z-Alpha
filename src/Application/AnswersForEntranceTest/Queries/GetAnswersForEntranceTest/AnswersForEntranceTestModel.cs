@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Common.Mappings;
+using ZAlpha.Application.Common.Mappings;
 
-namespace CleanArchitecture.Application.AnswersForEntranceTest.Queries.GetAnswersForEntranceTest;
+namespace ZAlpha.Application.AnswersForEntranceTest.Queries.GetAnswersForEntranceTest;
 public class AnswersForEntranceTestModel : IMapFrom<Domain.Entities.AnswersForEntranceTest>
 {
     public Guid Id { get; set; }

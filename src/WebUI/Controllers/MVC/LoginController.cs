@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using CleanArchitecture.Domain.Identity;
-using CleanArchitecture.Application.Common.Interfaces;
+using ZAlpha.Domain.Identity;
+using ZAlpha.Application.Common.Interfaces;
 using System.Security.Claims;
 
 namespace WebUI.Controllers.MVC;

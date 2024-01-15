@@ -1,10 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Common;
+﻿using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Interceptors;
+namespace ZAlpha.Infrastructure.Persistence.Interceptors;
 
 public class AuditableEntitySaveChangesInterceptor : SaveChangesInterceptor
 {

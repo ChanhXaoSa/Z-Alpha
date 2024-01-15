@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Transaction.Queries.GetTransactionById;
+namespace ZAlpha.Application.Transaction.Queries.GetTransactionById;
 internal class GetTransactionByIdQueries
 {
 }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.AnswersForEntranceTest.Commands.DeleteAnswersForEntranceTest;
-using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces;
+using ZAlpha.Application.AnswersForEntranceTest.Commands.DeleteAnswersForEntranceTest;
+using ZAlpha.Application.Common.Exceptions;
+using ZAlpha.Application.Common.Interfaces;
 using MediatR;
 
-namespace CleanArchitecture.Application.CustomerAccount.Commands.DeleteCustomerAccount;
+namespace ZAlpha.Application.CustomerAccount.Commands.DeleteCustomerAccount;
 public record DeleteCustomerAccountCommands : IRequest<bool>
 {
     public Guid Id { get; init; }

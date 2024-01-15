@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Infrastructure.Repositories;
+﻿using ZAlpha.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Controllers.API;

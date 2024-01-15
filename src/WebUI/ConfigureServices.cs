@@ -1,10 +1,10 @@
 ﻿using System.Text.Json.Serialization;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Identity;
-using CleanArchitecture.Infrastructure.Persistence;
-using CleanArchitecture.Infrastructure.Repositories;
-using CleanArchitecture.WebUI.Filters;
-using CleanArchitecture.WebUI.Services;
+using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Domain.Identity;
+using ZAlpha.Infrastructure.Persistence;
+using ZAlpha.Infrastructure.Repositories;
+using ZAlpha.WebUI.Filters;
+using ZAlpha.WebUI.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -106,7 +106,7 @@ public static class ConfigureServices
               // Add the fluent validations schema processor
               configure.SchemaProcessors.Add(fluentValidationSchemaProcessor);
 
-              configure.Title = "CleanArchitecture API";
+              configure.Title = "ZAlpha API";
               configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
               {
                   Type = OpenApiSecuritySchemeType.ApiKey,

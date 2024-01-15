@@ -11,10 +11,8 @@ using CleanArchitecture.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Application.Tag.Queries.GetTagById;
-
-
-public class GetTagByIdQueries : IRequest<TagModel>
+namespace ZAlpha.Application.Tag.Queries.GetTagById;
+internal class GetTagByIdQueries
 {
     public Guid Id { get; set; }
 

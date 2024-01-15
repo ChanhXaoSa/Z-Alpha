@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces;
+using ZAlpha.Application.Common.Exceptions;
+using ZAlpha.Application.Common.Interfaces;
 using MediatR;
 
-namespace CleanArchitecture.Application.AnswersForEntranceTest.Commands.UpdateAnswersForEntranceTest;
+namespace ZAlpha.Application.AnswersForEntranceTest.Commands.UpdateAnswersForEntranceTest;
 public record UpdateAnswersForEntranceTestCommands : IRequest<Guid>
 {
     public Guid Id { get; init; }

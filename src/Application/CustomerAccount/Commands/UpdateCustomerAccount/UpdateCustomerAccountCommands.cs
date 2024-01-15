@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.AnswersForEntranceTest.Commands.UpdateAnswersForEntranceTest;
-using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces;
+using ZAlpha.Application.AnswersForEntranceTest.Commands.UpdateAnswersForEntranceTest;
+using ZAlpha.Application.Common.Exceptions;
+using ZAlpha.Application.Common.Interfaces;
 using MediatR;
 
-namespace CleanArchitecture.Application.CustomerAccount.Commands.UpdateCustomerAccount;
+namespace ZAlpha.Application.CustomerAccount.Commands.UpdateCustomerAccount;
 public record UpdateCustomerAccountCommands : IRequest<string>
 {
     public string Id { get; init; }

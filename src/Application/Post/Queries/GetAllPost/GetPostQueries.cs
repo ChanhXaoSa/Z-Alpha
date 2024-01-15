@@ -11,9 +11,8 @@ using CleanArchitecture.Domain.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Application.Post.Queries.GetAllPost;
-
-public class GetPostQueries : IRequest<PaginatedList<PostModel>>
+namespace ZAlpha.Application.Post.Queries.GetAllPost;
+internal class GetPostQueries
 {
     public int Page { get; set; }
     public int Size { get; set; }

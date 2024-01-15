@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
-using CleanArchitecture.Infrastructure.Persistence;
+using ZAlpha.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Identity;

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces;
+using ZAlpha.Application.Common.Exceptions;
+using ZAlpha.Application.Common.Interfaces;
 using MediatR;
 
-namespace CleanArchitecture.Application.Pack.Commands.UpdatePack;
+namespace ZAlpha.Application.Pack.Commands.UpdatePack;
 
 public record UpdatePackCommands : IRequest<Guid>
 {

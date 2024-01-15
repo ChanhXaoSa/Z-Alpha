@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>CleanArchitecture.Infrastructure</RootNamespace>
-        <AssemblyName>CleanArchitecture.Infrastructure</AssemblyName>
+        <RootNamespace>ZAlpha.Infrastructure</RootNamespace>
+        <AssemblyName>ZAlpha.Infrastructure</AssemblyName>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>

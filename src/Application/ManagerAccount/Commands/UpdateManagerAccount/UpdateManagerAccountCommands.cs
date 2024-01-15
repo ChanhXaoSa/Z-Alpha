@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.ManagerAccount.Commands.UpdateManagerAccount;
+namespace ZAlpha.Application.ManagerAccount.Commands.UpdateManagerAccount;
 internal class UpdateManagerAccountCommands
 {
 }

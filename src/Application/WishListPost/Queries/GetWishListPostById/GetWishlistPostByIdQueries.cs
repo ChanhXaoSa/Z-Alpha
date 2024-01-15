@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.WishListPost.Queries.GetWishListPostById;
+namespace ZAlpha.Application.WishListPost.Queries.GetWishListPostById;
 internal class GetWishlistPostByIdQueries
 {
 }

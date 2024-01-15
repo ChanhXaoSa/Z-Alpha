@@ -5,15 +5,15 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArchitecture.Domain.Identity;
-using CleanArchitecture.Infrastructure.Identity;
+using ZAlpha.Domain.Identity;
+using ZAlpha.Infrastructure.Identity;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using WebUI.Model;
 
-namespace CleanArchitecture.Infrastructure.Repositories;
+namespace ZAlpha.Infrastructure.Repositories;
 public class AccountRepository : IAccountRepository
 {
     private readonly IConfiguration configuration;

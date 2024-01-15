@@ -1,11 +1,11 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Domain.Identity;
+﻿using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.Common.Models;
+using ZAlpha.Domain.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Infrastructure.Identity;
+namespace ZAlpha.Infrastructure.Identity;
 
 public class IdentityService : IIdentityService
 {

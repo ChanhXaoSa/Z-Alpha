@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 using ZAlpha.Domain.Identity;
 
 namespace ZAlpha.Domain.Entities;
-public class WishListPost : BaseAuditableEntity
+public class UserInteractComment : BaseAuditableEntity
 {
+
     [ForeignKey("UserAccount")]
     public string UserAccountId { get; set; }
     public virtual UserAccount UserAccount { get; set; }
-    [ForeignKey("Post")]
-    public Guid PostId { get; set; }
-    public virtual Post Post { get; set; }
-
-
+    [ForeignKey("Comment")]
+    public Guid CommentId { get; set; }
+    public virtual Comment? Comment { get; set; }
+    public InteractComment InteractComment { get; set; }
+    public string Description { get; set; }
 }

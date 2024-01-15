@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.PostTag.Queries.GetAllPostTag;
+namespace ZAlpha.Application.PostTag.Queries.GetAllPostTag;
 internal class GetPostTagQueries
 {
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Tag.Queries.GetTag;
+namespace ZAlpha.Application.Tag.Queries.GetTag;
 internal class GetTagQueries
 {
 }
