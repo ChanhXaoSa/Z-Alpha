@@ -31,8 +31,8 @@ body {
     .auto-group-mb81-DS5 .account-information-i7w {
         margin-right: 6.4rem;
         box-sizing: border-box;
-        padding: 2.5rem 0.5rem 18.4rem 0.5rem;
-        width: 34.8rem;
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+        width: auto;
         row-gap: 2.5rem;
         align-items: center;
         display: flex;
