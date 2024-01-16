@@ -20,7 +20,7 @@
             <div class="col-12 col-md-6">
                 <div class="wrap-login100">
                     <img class="logo mb-4" src="./assets/images/logo.png" />
-                    <form method="post" action="register">
+                    <form method="post">
                         @if (Model != null)
                         {
                             <div class="wave-group mb-3">
@@ -79,8 +79,8 @@
                                     <span class="label-char" style="--index: 8">e</span>
                                 </label>
                             </div>
-                            <div class="wave-group birthday mb-3">
-                                <input name="Birthday" required="" type="date" class="input" value="@Model.Birthday">
+                            <div class="wave-group-birthday birthday mb-3">
+                                <input name="Birthday" required="" type="date" class="input" value="@Model.Birthday.ToString("MM/dd/yyyy")">
                                 <span class="bar"></span>
                                 <label class="label">
                                     <span class="label-char" style="--index: 0">B</span>
@@ -117,6 +117,7 @@
                                     <span class="label-char" style="--index: 4">e</span>
                                 </label>
                             </div>
+                            
                             <div class="wave-group mb-3">
                                 <input name="Password" required="" type="password" class="input" value="@Model.Password">
                                 <span class="bar"></span>
@@ -151,6 +152,29 @@
                                     <span class="label-char" style="--index: 13">r</span>
                                     <span class="label-char" style="--index: 14">d</span>
                                 </label>
+                            </div>
+                            <div class="container-radio">
+                                <div class="radio-tile-group">
+                                    <div class="input-container">
+                                        <input id="walk" class="radio-button" type="radio" name="radio" value="Customer">
+                                        <div class="radio-tile">
+                                            <div class="icon walk-icon">
+                                                <span class="fa fa-user"></span>
+                                            </div>
+                                            <label for="walk" class="radio-tile-label">Customer</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-container">
+                                        <input id="drive" class="radio-button" type="radio" name="radio" value="Psychologist">
+                                        <div class="radio-tile">
+                                            <div class="icon car-icon">
+                                                <span class="fa fa-user-doctor"></span>
+                                            </div>
+                                            <label for="drive" class="radio-tile-label">Psychologist</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         } else
                         {
@@ -210,7 +234,7 @@
                                     <span class="label-char" style="--index: 8">e</span>
                                 </label>
                             </div>
-                            <div class="wave-group birthday mb-3">
+                            <div class="wave-group-birthday birthday mb-3">
                                 <input name="Birthday" required="" type="date" class="input">
                                 <span class="bar"></span>
                                 <label class="label">
@@ -283,9 +307,33 @@
                                     <span class="label-char" style="--index: 14">d</span>
                                 </label>
                             </div>
+                            <label class="radio-first-label">Type of Account</label>
+                            <div class="container-radio">
+                                <div class="radio-tile-group">
+                                    <div class="input-container">
+                                        <input id="walk" class="radio-button" type="radio" name="radio" value="Customer">
+                                        <div class="radio-tile">
+                                            <div class="icon walk-icon">
+                                                <span class="fa fa-user"></span>
+                                            </div>
+                                            <label for="walk" class="radio-tile-label">Customer</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-container">
+                                        <input id="drive" class="radio-button" type="radio" name="radio" value="Psychologist">
+                                        <div class="radio-tile">
+                                            <div class="icon car-icon">
+                                                <span class="fa fa-user-doctor"></span>
+                                            </div>
+                                            <label for="drive" class="radio-tile-label">Psychologist</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         }
                         <button>
-                            <span>Đăng kí</span>
+                            <span>Register</span>
                         </button>
                     </form>
                 </div>

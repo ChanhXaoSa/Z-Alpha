@@ -122,19 +122,19 @@ public class ApplicationDbContextInitialiser
             await _userManager.AddToRolesAsync(customer, new[] { customerRole.Name });
         }
 
-        var expertRole = new IdentityRole("Expert");
+        var psychologistRole = new IdentityRole("Psychologist");
 
-        if (_roleManager.Roles.All(r => r.Name != expertRole.Name))
+        if (_roleManager.Roles.All(r => r.Name != psychologistRole.Name))
         {
-            await _roleManager.CreateAsync(expertRole);
+            await _roleManager.CreateAsync(psychologistRole);
         }
 
-        var expert = new UserAccount { UserName = "expert@localhost", Email = "expert@localhost" };
+        var expert = new UserAccount { UserName = "psychologist@localhost", Email = "psychologist@localhost" };
 
         if (_userManager.Users.All(u => u.UserName != expert.UserName))
         {
-            await _userManager.CreateAsync(expert, "Expert1!");
-            await _userManager.AddToRolesAsync(expert, new[] { expertRole.Name });
+            await _userManager.CreateAsync(expert, "Psychologist1!");
+            await _userManager.AddToRolesAsync(expert, new[] { psychologistRole.Name });
         }
         await _context.SaveChangesAsync();
         // Default data

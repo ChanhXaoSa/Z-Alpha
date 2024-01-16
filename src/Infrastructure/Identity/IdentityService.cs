@@ -43,6 +43,24 @@ public class IdentityService : IIdentityService
         return (result.ToApplicationResult(), user.Id);
     }
 
+    public async Task<(Result Result, string UserId)> CreateNewUserAsync(string email, string userName, string firstName, string lastName, DateTime birthday, string address, string phone, string password)
+    {
+        var user = new UserAccount
+        {
+            UserName = userName,
+            Email = email,
+            FirstName = firstName,
+            LastName = lastName,
+            BirthDay = birthday,
+            Address = address,
+            Phone = phone,
+        };
+
+        var result = await _userManager.CreateAsync(user, password);
+
+        return (result.ToApplicationResult(), user.Id);
+    }
+
     public async Task<bool> IsInRoleAsync(string userId, string role)
     {
         var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
@@ -78,5 +96,19 @@ public class IdentityService : IIdentityService
         var result = await _userManager.DeleteAsync(user);
 
         return result.ToApplicationResult();
+    }
+
+    public async Task<UserAccount> GetUserAsync(string userId)
+    {
+        var user = await _userManager.Users.FirstAsync(u => u.Id == userId);
+
+        return user;
+    }
+
+    public async Task<UserAccount> GetUserByEmailAsync(string email)
+    {
+        var user = await _userManager.Users.FirstAsync(u => u.Email == email);
+
+        return user;
     }
 }
