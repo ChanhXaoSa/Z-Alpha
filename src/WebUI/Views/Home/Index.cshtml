@@ -27,7 +27,8 @@
             <div class="box">
                 <div>
                     <div style="position:relative ;">
-                        <i style="position: absolute; top:10px; right:10px;" class="fa-solid fa-arrow-up-wide-short fa-l"></i>
+                        <i style="position: absolute; top:10px; right:10px;" class="fa-regular fa-bookmark"></i>
+                        @* <i style="position: absolute; top:10px; right:10px;" class="fa-solid fa-arrow-up-wide-short fa-l"></i> *@
                         <br />
                     </div>
                     @foreach (var postTag in item.PostTags)
@@ -83,18 +84,18 @@
                 </div>
                 <div class="row" style="margin-top:2vh;">
                     <div class="col-2">
-                        <button class="button-2" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-up"></i> Push</button>
+                        <button class="button-2" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-up"></i> 100 Push</button>
                     </div>
                     <div class="col-2">
-                        <button class="button-62" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-down"></i> Hide</button>
+                        <button class="button-62" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-down"></i> 99 Hide</button>
                     </div>
 
                     <div class="col-6">
-                        <button class="button-10" style="width: 20vw;  font-size: 14px;" role="button"> Comment </button>
+                        <button class="button-10" style="width: 20vw;  font-size: 14px;" role="button"> Detail </button>
                     </div>
-                    <div class="col-2">
+                   @*  <div class="col-2">
                         <button class="button-10" style="width: 6vw;  font-size: 14px;" role="button"> Save </button>
-                    </div>
+                    </div> *@
                 </div>
             </div>
         }
@@ -105,8 +106,10 @@
 
 
 
-
-        @*-----------------------------------------------------------------------*@
+        <br />
+        template
+        <br />
+        @*----------------- từ khúc này trở xuống là template đừng xóa------------------------------------------------------*@
         @*-------------post 2 (detail)-----------*@
         <div class="box">
             <div>
