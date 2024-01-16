@@ -20,9 +20,9 @@ body {
 }
 
 .auto-group-mb81-DS5 {
-    margin: 3rem 8.6rem 8.7rem 6.1rem;
-    width: calc(100% - 14.7rem);
-    height: 105.7rem;
+    margin: 3rem 8.6rem 15.9rem 6.1rem;
+    width: auto;
+    height: auto;
     display: flex;
     align-items: flex-start;
     flex-shrink: 0;
