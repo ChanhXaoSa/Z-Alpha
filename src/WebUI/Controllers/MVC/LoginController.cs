@@ -46,11 +46,21 @@ public class LoginController : ControllerBaseMVC
     {
         if (ModelState.IsValid)
         {
-            var result = await _signInManager.PasswordSignInAsync(Email, Password, false, false);
-            var user = HttpContext.User;
-            if (result.Succeeded)
+            var user = await _identityService.GetUserByEmailAsync(Email);
+            if (user == null)
             {
-                return RedirectToAction("Index", "Home");
+                var result = await _signInManager.PasswordSignInAsync(Email, Password, false, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            } else
+            {
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, Password, false, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
         }
         return View();

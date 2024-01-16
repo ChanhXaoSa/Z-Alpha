@@ -1,4 +1,5 @@
 ﻿using ZAlpha.Application.Common.Models;
+using ZAlpha.Domain.Identity;
 
 namespace ZAlpha.Application.Common.Interfaces;
 
@@ -14,5 +15,9 @@ public interface IIdentityService
 
     Task<(Result Result, string UserId)> CreateNewUserAsync(string email, string userName, string firstName, string lastName, DateTime birthday, string address, string phone, string password);
 
+    Task<UserAccount> GetUserByEmailAsync(string email);
+
     Task<Result> DeleteUserAsync(string userId);
+
+    Task<UserAccount> GetUserAsync(string userId);
 }

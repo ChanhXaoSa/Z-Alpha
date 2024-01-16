@@ -97,4 +97,18 @@ public class IdentityService : IIdentityService
 
         return result.ToApplicationResult();
     }
+
+    public async Task<UserAccount> GetUserAsync(string userId)
+    {
+        var user = await _userManager.Users.FirstAsync(u => u.Id == userId);
+
+        return user;
+    }
+
+    public async Task<UserAccount> GetUserByEmailAsync(string email)
+    {
+        var user = await _userManager.Users.FirstAsync(u => u.Email == email);
+
+        return user;
+    }
 }
