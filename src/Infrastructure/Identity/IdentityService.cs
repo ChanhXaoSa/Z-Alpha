@@ -43,6 +43,24 @@ public class IdentityService : IIdentityService
         return (result.ToApplicationResult(), user.Id);
     }
 
+    public async Task<(Result Result, string UserId)> CreateNewUserAsync(string email, string userName, string firstName, string lastName, DateTime birthday, string address, string phone, string password)
+    {
+        var user = new UserAccount
+        {
+            UserName = userName,
+            Email = email,
+            FirstName = firstName,
+            LastName = lastName,
+            BirthDay = birthday,
+            Address = address,
+            Phone = phone,
+        };
+
+        var result = await _userManager.CreateAsync(user, password);
+
+        return (result.ToApplicationResult(), user.Id);
+    }
+
     public async Task<bool> IsInRoleAsync(string userId, string role)
     {
         var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
