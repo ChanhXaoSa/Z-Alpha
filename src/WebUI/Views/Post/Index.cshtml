@@ -5,8 +5,14 @@
     ViewBag.Title = "Post Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using ZAlpha.Application.Comment.Queries.GetComment;
+@using ZAlpha.Application.Common.Models;
 @using ZAlpha.Application.Post.Queries.GetAllPost;
+@using ZAlpha.Application.Comment.Queries.GetAllComment;
 @model PostModel;
+@{
+    PaginatedList<CommentModel> listComment = ViewBag.listComment;
+}
 <head>
     <link href="./assets/css/post-detail.css" rel="stylesheet" />
 </head>
@@ -93,8 +99,29 @@
                 <div class="boxComment">
                     <div id="scroll" style=" overflow:auto;  display:flex; justify-content:center;">                       
                         <div style="width:90%;">
+                            @foreach (var item in listComment.Items)
+                            {
+                                @*---------Div Comment--------*@
+                                <div style="row">
+                                    <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
+                                    <div class="DivComment">
+                                        <div style="font-size:13px">
+                                            @item.Description
+                                        </div>
+                                        <div class="button-comment">
+                                            <div style="">
+                                                <button type="button" class="btn btn-success rounded-circle"><i class="fa-solid fa-arrow-up"></i></button>
+                                                <button type="button" class="btn btn-warning rounded-circle"><i class="fa-solid fa-arrow-down"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
                             @*---------Div Comment--------*@
-                            <div style="row">
+                            @* <div style="row">
                                 <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
                                 <div class="DivComment">
                                     <div style="font-size:13px">
@@ -107,45 +134,20 @@
                                         </div>
                                     </div>
                                 </div>                           
-                            </div>
-                            @*---------Div Comment--------*@
-                            <div style="row">
-                                <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
-                                <div class="DivComment">
-                                    <div style="font-size:13px">
-                                        Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle
-                                    </div>
-                                    <div class="button-comment">
-                                        <div style="">
-                                            <button type="button" class="btn btn-success rounded-circle"><i class="fa-solid fa-arrow-up"></i></button>
-                                            <button type="button" class="btn btn-warning rounded-circle"><i class="fa-solid fa-arrow-down"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @*---------Div Comment--------*@
-                            <div style="row">
-                                <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
-                                <div class="DivComment">
-                                    <div style="font-size:13px">
-                                        Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle
-                                    </div>
-                                    <div class="button-comment">
-                                        <div style="">
-                                            <button type="button" class="btn btn-success rounded-circle"><i class="fa-solid fa-arrow-up"></i></button>
-                                            <button type="button" class="btn btn-warning rounded-circle"><i class="fa-solid fa-arrow-down"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </div> *@
+                            
                         </div>                        
                     </div>
-                    <div class="search">
-                        <input type="text" class="search__input" placeholder="Type your text">
-                        <button class="search__button">                            
-                              <i class="fa-solid fa-paper-plane fa-xl"></i>                         
-                        </button>
-                    </div>
+                    <form action="~/Post" method="post">
+                        <div class="search">
+                            <input type="hidden" name="PostId" value="@Model.Id" />
+                            <input type="hidden" name="UserAccountId" value="424ab531-d60a-487e-9625-a74a7f5747be" />
+                            <input type="text" class="search__input" name="Description" placeholder="Type your text">
+                            <button class="search__button" type="submit">
+                                <i class="fa-solid fa-paper-plane fa-xl"></i>
+                            </button>
+                        </div>
+                    </form>
 
                 </div>
 
