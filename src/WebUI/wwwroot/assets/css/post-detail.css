@@ -72,6 +72,7 @@
     font-size: 15px;
     font-family: Inter;
     font-weight: 400;
+
 }
 .PushTextBox {
     color: #2364AA;
@@ -267,4 +268,11 @@
     height: 1.3em;
     width: 1.3em;
     fill: #b4b4b4;
+}
+
+.ImgCenter img{
+    justify-content:center;
+    align-content:center;
+    text-align:center;
+    margin:1rem;
 }

@@ -10,6 +10,7 @@ using ZAlpha.Domain.Enums;
 namespace ZAlpha.Application.Post.Queries.GetAllPost;
 public class PostModel : IMapFrom<Domain.Entities.Post>
 {
+    public Guid Id { get; set; }
     public string PostTitle { get; set; }
     public string PostBody { get; set; }
     public string? PostImagesUrl { get; set; }

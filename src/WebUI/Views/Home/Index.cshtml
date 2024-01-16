@@ -11,7 +11,7 @@
 @model ZAlpha.Application.Common.Models.PaginatedList<PostModel>
 
 <head>
-    <link href="./assets/css/NewFeed.css" rel="stylesheet" />
+    <link href="./assets/css/newfeed.css" rel="stylesheet" />
 </head>
 <div>
 
@@ -91,7 +91,11 @@
                     </div>
 
                     <div class="col-6">
-                        <button class="button-10" style="width: 20vw;  font-size: 14px;" role="button"> Detail </button>
+                        <form action="~/Post" method="get">
+                            <input type="hidden" name="postID" value="@item.Id" />
+                            <button class="button-10" style="width: 20vw;  font-size: 14px;" type="submit"> Detail </button>
+                        </form>
+
                     </div>
                    @*  <div class="col-2">
                         <button class="button-10" style="width: 6vw;  font-size: 14px;" role="button"> Save </button>
