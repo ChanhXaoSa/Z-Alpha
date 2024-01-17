@@ -63,6 +63,7 @@ public class LoginController : ControllerBaseMVC
                 }
             }
         }
+        ViewBag.error = "Sai tên đăng nhập hoặc mật khẩu, vui lòng kiểm tra lại!";
         return View();
     }
 

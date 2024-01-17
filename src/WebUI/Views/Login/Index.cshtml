@@ -19,7 +19,7 @@
                 <div class="wrap-login100">
                     <img class="logo-login mb-4" src="./assets/images/logo.png" />
                     <br />
-                    <span class="login-header">Welcome to Zalpha</span>
+                    <span class="login-header">Chào mừng đến với Zalpha</span>
                     <form method="post">
                         <div class="wave-group mb-3 mt-5">
                             <input name="Email" required="" type="text" class="input">
@@ -65,11 +65,16 @@
                                 <span class="label-char" style="--index: 3">u</span>
                             </label>
                         </div>
+                        @if (ViewBag.error != null)
+                        {
+                            <div class="form-group" style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                                <div class="text-danger">@ViewBag.error</div>
+                            </div>
+                        }
                         <button class="login-button">
                             <span>Đăng nhập</span>
                         </button>
                     </form>
-
                     <p class="mt-3">Hoặc</p>
                     <form>
                         <button class="login-google-button">
