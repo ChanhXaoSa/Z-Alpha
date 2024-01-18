@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication.OAuth;
+using System.Transactions;
+using System.Security.Claims;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -68,11 +71,50 @@ public static class ConfigureServices
         {
             googleOptions.ClientId = "577296753487-9mrj2rur4m3glod7l5o1ljfvr9aj1bec.apps.googleusercontent.com";
             googleOptions.ClientSecret = "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";
+            googleOptions.AccessDeniedPath = "/Forbidden/";
+            googleOptions.ReturnUrlParameter = "RedirectUrl";
+            googleOptions.SaveTokens = true;
+
+            googleOptions.SignInScheme = IdentityConstants.ExternalScheme;
+
+            googleOptions.Events.OnCreatingTicket = OnCreatingTicket;
         });
 
         services.AddAuthorization(options =>
             options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));
 
         return services;
+    }
+    private static async Task OnCreatingTicket(OAuthCreatingTicketContext ctx)
+    {
+        using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+        {
+            try
+            {
+                var manager = ctx.HttpContext.RequestServices.GetRequiredService<UserManager<UserAccount>>();
+
+                var email = ctx.Principal.Claims.First(x => x.Type == ClaimTypes.Email).Value;
+
+                var isUserExisted = await manager.FindByEmailAsync(email) != null;
+                if (isUserExisted) return;
+
+                var user = new UserAccount();
+                user.FirstName = ctx.Principal.Claims.First(x => x.Type == ClaimTypes.Name).Value;
+                user.Email = user.UserName = email;
+
+                var result = await manager.CreateAsync(user);
+                if (!result.Succeeded)
+                    throw new Exception(string.Join("\n", result.Errors.Select(x => x.Description)));
+                result = await manager.AddToRoleAsync(user, "Customer");
+                if (!result.Succeeded)
+                    throw new Exception(string.Join("\n", result.Errors.Select(x => x.Description)));
+                result = await manager.AddClaimsAsync(user, ctx.Principal.Claims);
+                if (!result.Succeeded)
+                    throw new Exception(string.Join("\n", result.Errors.Select(x => x.Description)));
+
+                scope.Complete();
+            }
+            finally { scope.Dispose(); }
+        }
     }
 }
