@@ -19,11 +19,13 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
                 <div class="wrap-login100">
-                    <img class="logo mb-4" src="./assets/images/logo.png" />
+                    <img class="logo-login mb-4" src="./assets/images/logo.png" />
+                    <br/>
+                    <span class="login-header">Đăng ký</span>
                     <form method="post">
                         @if (Model != null)
                         {
-                            <div class="wave-group mb-3">
+                            <div class="wave-group mb-3 mt-5">
                                 <input name="Email" required="" type="text" class="input" value="@Model.Email">
                                 <span class="bar"></span>
                                 <label class="label">
@@ -332,7 +334,7 @@
                                 </div>
                             </div>
                         }
-                        <button>
+                        <button class="login-button">
                             <span>Register</span>
                         </button>
                     </form>
