@@ -71,18 +71,8 @@ public class LoginController : ControllerBaseMVC
     [ApiExplorerSettings(IgnoreApi = true)]
     [AllowAnonymous]
     [HttpGet("login/{provider}")]
-    public async Task<IActionResult> LoginExternal(string provider, [FromQuery] string redirectUrl)
+    public async Task<IActionResult> LoginExternal(string? ReturnUrl = null)
     {
-        //var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //var claims = result.Principal.Identities
-        //    .FirstOrDefault().Claims.Select(claim => new
-        //    {
-        //        claim.Issuer,
-        //        claim.OriginalIssuer,
-        //        claim.Type,
-        //        claim.Value
-        //    });
-        //return Json(claims);
         if (!User.Identity.IsAuthenticated)
         {
             switch (provider.ToLower())

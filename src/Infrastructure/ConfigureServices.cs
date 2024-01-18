@@ -66,8 +66,8 @@ public static class ConfigureServices
             options.Cookie.SameSite = SameSiteMode.Lax;
         }).AddGoogle(googleOptions =>
         {
-            googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-            googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+            googleOptions.ClientId = configuration["577296753487-9mrj2rur4m3glod7l5o1ljfvr9aj1bec.apps.googleusercontent.com"];
+            googleOptions.ClientSecret = configuration["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"];
         });
 
         services.AddAuthorization(options =>
