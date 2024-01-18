@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using ZAlpha.Domain.Identity;
 using ZAlpha.Application.Common.Interfaces;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace WebUI.Controllers.MVC;
 
@@ -65,6 +66,40 @@ public class LoginController : ControllerBaseMVC
         }
         ViewBag.error = "Sai tên đăng nhập hoặc mật khẩu, vui lòng kiểm tra lại!";
         return View();
+    }
+
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [AllowAnonymous]
+    [HttpGet("login/{provider}")]
+    public async Task<IActionResult> LoginExternal(string provider, [FromQuery] string redirectUrl)
+    {
+        //var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        //var claims = result.Principal.Identities
+        //    .FirstOrDefault().Claims.Select(claim => new
+        //    {
+        //        claim.Issuer,
+        //        claim.OriginalIssuer,
+        //        claim.Type,
+        //        claim.Value
+        //    });
+        //return Json(claims);
+        if (!User.Identity.IsAuthenticated)
+        {
+            switch (provider.ToLower())
+            {
+                case GoogleDefaults.AuthenticationScheme or "google" :
+                    {
+                        var returnUrl = Url.Action("ExternalLoginCallback", "Confirm", new { RedirectUrl = redirectUrl });
+                        var props = _signInManager.ConfigureExternalAuthenticationProperties("Google", returnUrl);
+                        return new ChallengeResult("Google", props);
+                    }
+            }
+
+            throw new Exception($"Provider {provider} not support");
+        } else
+        {
+            return RedirectToAction("Index", "Home");
+        }
     }
 
     [ApiExplorerSettings(IgnoreApi = true)]
