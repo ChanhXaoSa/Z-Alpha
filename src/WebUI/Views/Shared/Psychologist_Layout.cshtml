@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="~/assets/css/psychologists.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400%2C500%2C600" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600" />
+    <style>
+        .narbar-item {
+            background-color: #FBD78F;
+            display: flex;
+            justify-content: center;
+            padding: 1.5vw 0.5vw;
+            width: 16vw;
+            max-width: 18vw;
+            margin: 1vw 0;
+            border-radius: 29px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            font-size: 1rem;
+            display: block;
+            color:black;
+            text-decoration: none
+        }
+
+    </style>
+</head>
+<div class=" row">
+    <div class="col-3" style="height:70vh;">
+        <div class="navbar">
+            <a href="~/Psychologist/Index">
+                <div class="narbar-item">
+                    <div class="row">
+                        <div class="col-3" style="text-align:right;">
+                            <i class="fa-solid fa-user fa-2xl" style="color:white" ;></i>
+                        </div>
+                        <div class="col-9" style="padding:0; font-weight:800; font-family: Inter, 'Source Sans Pro';">
+                            Thông tin cá nhân
+                        </div>
+                    </div>               
+                </div>
+            </a>
+            <a href="~/Psychologist/PsychologistPost">
+                <div class="narbar-item">
+                    <div class="row">
+                        <div class="col-3" style="text-align:right;">
+                            <i class="fa-solid fa-clipboard fa-2xl" style="color:white;"></i>
+                        </div>
+                        <div class="col-9" style="padding:0; font-weight:800; font-family: Inter, 'Source Sans Pro';">
+                            Bài Viết(30)
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="~/Psychologist/PsychologistRating">
+                <div class="narbar-item">
+                    <div class="row">
+                        <div class="col-3" style="text-align:right;">
+                            <i class="fa-solid fa-star fa-2xl" style="color:white;"></i>
+                        </div>
+                        <div class="col-9" style="padding:0; font-weight:800; font-family: Inter, 'Source Sans Pro';">
+                            Đánh giá (20)
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-9">
+        @RenderBody()
+    </div>
+</div>
