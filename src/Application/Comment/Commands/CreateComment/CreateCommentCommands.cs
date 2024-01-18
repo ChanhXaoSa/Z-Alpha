@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Domain.Entities;
 using MediatR;
+using System.ComponentModel.DataAnnotations.Schema;
+using ZAlpha.Domain.Identity;
 
 namespace ZAlpha.Application.Comment.Commands.CreateComment;
 public class CreateCommentCommands : IRequest<Guid>
 {
+    public string UserAccountId { get; set; }
+    public Guid? ReplyCommentId { get; set; }
     public Guid PostId { get; set; }
-    //public IList<UserInteractComment>? UserInteractComments { get; private set; }
+    public string Description { get; set; }
 }
 
 public class CreateCommentCommandsHandler : IRequestHandler<CreateCommentCommands, Guid>
@@ -27,7 +31,10 @@ public class CreateCommentCommandsHandler : IRequestHandler<CreateCommentCommand
     {
         var comment = new Domain.Entities.Comment()
         {
-            
+            UserAccountId = request.UserAccountId,
+            ReplyCommentId = request.ReplyCommentId,
+            Description = request.Description,
+            PostId = request.PostId
         };
 
         _context.Get<Domain.Entities.Comment>().Add(comment);

@@ -5,6 +5,14 @@
     ViewBag.Title = "Post Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using ZAlpha.Application.Comment.Queries.GetComment;
+@using ZAlpha.Application.Common.Models;
+@using ZAlpha.Application.Post.Queries.GetAllPost;
+@using ZAlpha.Application.Comment.Queries.GetAllComment;
+@model PostModel;
+@{
+    PaginatedList<CommentModel> listComment = ViewBag.listComment;
+}
 <head>
     <link href="./assets/css/post-detail.css" rel="stylesheet" />
 </head>
@@ -17,73 +25,103 @@
             <div class="col-6 box">
                 <div>
                     <div style="position:relative ;">
-                        <i style="position: absolute; top:10px; right:10px;" class="fa-solid fa-arrow-up-wide-short fa-l"></i>
+                        <i style="position: absolute; top:10px; right:10px;" class="fa-regular fa-bookmark"></i>
                         <br />
                     </div>
-                    <div class="textbox">Công việc </div>
-                    <div class="textbox">Gia đình</div>
+                    @foreach (var postTag in Model.PostTags)
+                    {
+                        <div class="textbox">
+                            @postTag.Tag.TagName
+                        </div>
+                    }
 
                 </div>
                 <div class="TiltePost">
                     <strong>
-                        Làm một ngày gần 12 tiếng nhưng khi về đến nhà vẫn không được nghỉ ngơi haizzz...
+                        @Model.PostTitle
                     </strong>
                 </div>
-
                 <div class="row">
+                    <div class="col-2">
+                        <img style="width:3.7vw;border-radius: 9999px" src="https://via.placeholder.com/38x38" />
+                    </div>
                     <div class="col-4">
-                        <div class="row" style="position:relative;">
-                            <div class="col-2">
-                                <img style="width:3.7vw;border-radius: 9999px" src="https://via.placeholder.com/38x38" />
-                            </div>
-                            <div class="col-10" style="position: absolute; left:5vw; top:0.3vw;">
-                                <div style="color: black; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word">Shiba</div>
-                                <div style="color: #FF6C37; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">20 phút trước</div>
-                            </div>
+                        <div style="color: black; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word">
+                            @{
+                                string Name = null;
+                            }
+                            @foreach (var interactWithPosts in Model.InteractWithPosts)
+                            {
+                                if (interactWithPosts.InteractPostStatus == 0)
+                                {
+                                    Name = interactWithPosts.UserAccount.FirstName + " " + interactWithPosts.UserAccount.LastName;
+                                    break;
+                                }
+                            }
+                            @Name
                         </div>
-                       
+                        <div style="color: #FF6C37; font-size: 13px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                            @Model.Created
+                        </div>
                     </div>
-                    <div class="col-8">
-                        <img class="" style="width: 100%; border-radius: 10px" src="https://via.placeholder.com/330x330" />
-                    </div>                    
+                    <div class="col-2"></div>
+                    <div class="col-2">
+                        <button class="button-2" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-up"></i> Push</button>
+                    </div>
+                    <div class="col-2">
+                        <button class="button-62" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-down"></i> Hide</button>
+                    </div>
+                </div>
+
+                <div class="ImgCenter">
+                    <img class="" style="width: 33vw; border-radius: 10px;  justify-content:center;
+                        align-content:center;
+                        text-align:center;
+                        margin:1rem;" 
+                    src="@Model.PostImagesUrl" />
                 </div>
 
                 <div class="row">
-                    <div class="hashtag">
-                        <p>#kiemtien</p>
-                        <p>#nghihoc</p>
-                    </div>
                     <div class="PostText">
-                        Nhà em cũng không phải khá giả nên em bỏ học đi làm từ sớm, muốn chạy đi kiếm tiền luôn. Hiện tại là một shipper ngày nào cũng ráng giao cả ngàn đơn, dãi nắng cả buổi, ráng cày thêm đơn để được thưởng KPI. Vậy nên mỗi khi về nhà, ngoài kiệt sức ra em thường xuyên cảm thấy căng thẳng, mệt mỏi và có những suy nghĩ tiêu cực về bản thân, mình cải cha cãi má bỏ học đi làm mà. Em chỉ muốn được nghỉ ngơi nhưng mẹ bảo em xuống làm cơm cho ba má ăn với lo dọn dẹp nhà. Điều này khiến em cảm thấy mệt mỏi và khó chịu.
-                    </div>
-
-                </div>
-
-
-                <div class="row" style="margin-top:2vh;">
-                    <div class="col-2">
-                        <button class="button-2" style="height: 32px; width:5.5vw;" role="button"><i class="fa-solid fa-arrow-up"></i> Push</button>
-                    </div>
-                    <div class="col-2">
-                        <button class="button-62" style="height: 32px; width:5.5vw;" role="button"><i class="fa-solid fa-arrow-down"></i> Hide</button>
-                    </div>
-
-                    <div class="col-6">
-                        <button class="button-10" style="width: 17vw;  font-size: 14px;" role="button"> Comment </button>
-                    </div>
-                    <div class="col-2">
-                        <button class="button-10" style="width: 5vw;  font-size: 14px;" role="button"> Save </button>
+                        <div class="hashtag">
+                            <p>#hashtag</p>
+                            <p>#hashtagtest</p>
+                        </div>
+                        @Model.PostBody
                     </div>
                 </div>
+
+
+               
             </div>
             @*--------------Comment-----------*@
             <div class="col-6">
                 <div class="boxComment">
-                    <div id="scroll" style=" overflow:auto;  display:flex; justify-content:center;">
-                       
+                    <div id="scroll" style=" overflow:auto;  display:flex; justify-content:center;">                       
                         <div style="width:90%;">
+                            @foreach (var item in listComment.Items)
+                            {
+                                @*---------Div Comment--------*@
+                                <div style="row">
+                                    <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
+                                    <div class="DivComment">
+                                        <div style="font-size:13px">
+                                            @item.Description
+                                        </div>
+                                        <div class="button-comment">
+                                            <div style="">
+                                                <button type="button" class="btn btn-success rounded-circle"><i class="fa-solid fa-arrow-up"></i></button>
+                                                <button type="button" class="btn btn-warning rounded-circle"><i class="fa-solid fa-arrow-down"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
                             @*---------Div Comment--------*@
-                            <div style="row">
+                            @* <div style="row">
                                 <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
                                 <div class="DivComment">
                                     <div style="font-size:13px">
@@ -96,43 +134,25 @@
                                         </div>
                                     </div>
                                 </div>                           
-                            </div>
-                            @*---------Div Comment--------*@
-                            <div style="row">
-                                <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
-                                <div class="DivComment">
-                                    <div style="font-size:13px">
-                                        Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle
-                                    </div>
-                                    <div class="button-comment">
-                                        <div style="">
-                                            <button type="button" class="btn btn-success rounded-circle"><i class="fa-solid fa-arrow-up"></i></button>
-                                            <button type="button" class="btn btn-warning rounded-circle"><i class="fa-solid fa-arrow-down"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @*---------Div Comment--------*@
-                            <div style="row">
-                                <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
-                                <div class="DivComment">
-                                    <div style="font-size:13px">
-                                        Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle
-                                    </div>
-                                    <div class="button-comment">
-                                        <div style="">
-                                            <button type="button" class="btn btn-success rounded-circle"><i class="fa-solid fa-arrow-up"></i></button>
-                                            <button type="button" class="btn btn-warning rounded-circle"><i class="fa-solid fa-arrow-down"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
+                            </div> *@
+                            
+                        </div>                        
                     </div>
+                    <form action="~/Post" method="post">
+                        <div class="search">
+                            <input type="hidden" name="PostId" value="@Model.Id" />
+                            <input type="hidden" name="UserAccountId" value="424ab531-d60a-487e-9625-a74a7f5747be" />
+                            <input type="text" class="search__input" name="Description" placeholder="Type your text">
+                            <button class="search__button" type="submit">
+                                <i class="fa-solid fa-paper-plane fa-xl"></i>
+                            </button>
+                        </div>
+                    </form>
 
-                    
                 </div>
+
+              
+
             </div>
         </div>        
     </div>

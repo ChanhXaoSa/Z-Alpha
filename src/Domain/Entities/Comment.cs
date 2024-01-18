@@ -20,12 +20,6 @@ public class Comment : BaseAuditableEntity
     [ForeignKey("Post")]
     public Guid PostId { get; set; }
     public virtual Post? Post { get; set; }
-
-
-
     public string Description { get; set; }
-
-    
-
     
 }

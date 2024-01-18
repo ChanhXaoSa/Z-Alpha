@@ -107,7 +107,7 @@ public class IdentityService : IIdentityService
 
     public async Task<UserAccount> GetUserByEmailAsync(string email)
     {
-        var user = await _userManager.Users.FirstAsync(u => u.Email == email);
+        var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Email.Equals(email));
 
         return user;
     }
