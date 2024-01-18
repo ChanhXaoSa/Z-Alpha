@@ -4,6 +4,7 @@ using ZAlpha.Domain.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using static Duende.IdentityServer.Models.IdentityResources;
 
 namespace ZAlpha.Infrastructure.Identity;
 
@@ -108,6 +109,13 @@ public class IdentityService : IIdentityService
     public async Task<UserAccount> GetUserByEmailAsync(string email)
     {
         var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Email.Equals(email));
+
+        return user;
+    }
+
+    public async Task<UserAccount> GetUserByNameAsync(string name)
+    {
+        var user = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName.Equals(name));
 
         return user;
     }

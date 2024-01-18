@@ -25,7 +25,19 @@
             <div class="col-6 box">
                 <div>
                     <div style="position:relative ;">
-                        <i style="position: absolute; top:10px; right:10px;" class="fa-regular fa-bookmark"></i>
+                        <i id="bookmarkIcon" style="color: gray; position: absolute; top:10px; right:10px;" class="fa-solid fa-bookmark"></i>
+                        <script>
+                            const icon = document.getElementById('bookmarkIcon');
+                            icon.addEventListener('click', function onClick() {
+                                // Toggle the 'active' class on each click
+                                icon.classList.toggle('active');
+
+                                // If you want to specifically change the color
+                                // based on the 'active' class, you can do the following:
+                                const isActive = icon.classList.contains('active');
+                                icon.style.color = isActive ? 'yellow' : 'gray';
+                            });
+                        </script>
                         <br />
                     </div>
                     @foreach (var postTag in Model.PostTags)
@@ -102,22 +114,33 @@
                             @foreach (var item in listComment.Items)
                             {
                                 @*---------Div Comment--------*@
-                                <div style="row">
-                                    <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
+                                <div style="row">                                    
+                                    <div style="position:relative;">
+                                        <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
+                                        <strong style="display:inline; font-size:12px;">@item.UserAccount.FirstName @item.UserAccount.LastName</strong>
+                                        <div style="color: #FF6C37; font-size: 11px; display:inline; position:absolute; right:2vw; bottom:2px;">
+                                            @item.Created
+                                        </div>
+                                    </div>
                                     <div class="DivComment">
                                         <div style="font-size:13px">
                                             @item.Description
                                         </div>
                                         <div class="button-comment">
                                             <div style="">
-                                                <button type="button" class="btn btn-success rounded-circle"><i class="fa-solid fa-arrow-up"></i></button>
-                                                <button type="button" class="btn btn-warning rounded-circle"><i class="fa-solid fa-arrow-down"></i></button>
+                                                <button type="button" class="btn rounded-circle" style="background-color:#75d995; color:white;">
+                                                    <p style="font-size:9px; margin:0;">3 <i class="fa-solid fa-arrow-up fa-xs"></i></p> 
+                                                </button>
+                                                <button type="button" class="btn rounded-circle" style="background-color:#d97575; color:white;">
+                                                    <p style="font-size:9px; margin:0;">9 <i class="fa-solid fa-arrow-down fa-xs"></i></p>                                                    
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             }
 
+                            
 
 
                             @*---------Div Comment--------*@

@@ -6,6 +6,7 @@ using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Domain.Identity;
 using ZAlpha.Application.CustomerAccount.Commands.CreateCustomerAccount;
 using ZAlpha.Application.PsychologistAccount.Commands.CreatePsychologistAccount;
+using System.Text.RegularExpressions;
 
 namespace WebUI.Controllers.MVC;
 
@@ -41,6 +42,33 @@ public class RegisterController : ControllerBaseMVC
     {
         try
         {
+            bool checker = true;
+            var userCheck = await _identityService.GetUserByEmailAsync(model.Email);
+            if (userCheck != null)
+            {
+                ViewBag.EmailValidate = "Đã tồn tại tài khoản chứa email này, vui lòng kiểm tra lại";
+                checker = false;
+            }
+            if (!Regex.IsMatch(model.Email , "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
+            {
+                ViewBag.EmailValidate = "Email không hợp lệ, vui lòng nhập lại";
+                checker = false;
+            }
+            userCheck = await _identityService.GetUserByNameAsync(model.Username);
+            if (userCheck != null)
+            {
+                ViewBag.UsernameValidate = "Tên tài khoản đã tồn tại, vui lòng thử tên khác";
+                checker = false;
+            }
+            if (model.Password.Length < 8)
+            {
+                ViewBag.PasswordValidate = "Mật khẩu không hợp lệ ( Mật khẩu lớn hơn 8 kí tự, chứa 1 chữ hoa, 1 chữ thường và 1 kí tự đặc biệt.";
+                checker = false;
+            }
+            if (checker == false)
+            {
+                throw new Exception();
+            }
             var result = await _identityService.CreateNewUserAsync(model.Email, model.Username, model.FirstName, model.Lastname, model.Birthday, model.Address, model.Phone, model.Password);
             if (result.Result.Succeeded)
             {

@@ -13,6 +13,7 @@ public class CommentModel : IMapFrom<Domain.Entities.Comment>
 {
     public Guid Id { get; set; }
     public string UserAccountId { get; set; }
+    public virtual UserAccount UserAccount { get; set; }
     public Guid? ReplyCommentId { get; set; }
     public Guid PostId { get; set; }
     public string Description { get; set; }
