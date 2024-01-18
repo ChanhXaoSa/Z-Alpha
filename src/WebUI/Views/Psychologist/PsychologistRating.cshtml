@@ -3,126 +3,82 @@
 *@
 @{
     ViewBag.Title = "Spychologist Rating";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Psychologist_Layout.cshtml";
 }
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <title>Spychologist Rating</title>
-    <link rel="stylesheet" href="~/assets/css/psychologist-rating.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400%2C500%2C600" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600" />
+    <title>Psychologist Post</title>
 </head>
-<body>
-    <div class="auto-group-8tyb-WP7" style="margin-left:-40px">
-        <div class="account-information-i7w">
-            <div class="auto-group-srhw-3Uy" style="border:none;">
-                <img class="auto-group-6kr1-wqF" src="~/assets/images/person.png" />
-                <a href="~/Psychologist/Index" style="text-decoration:none" class="bi-vit-lu-HeD">Thông tin cá nhân</a>
-            </div>
-            <div class="auto-group-ehb3-AT7" style="border:none;">
-                <img class="auto-group-yefp-UCu" src="~/assets/images/zalpha.png" />
-                <a href="~/Psychologist/PsychologistPost" style="text-decoration:none" class="lch-s-giao-dch-oFB">Bài Viết (30)</a>
-            </div>
-            <div class="auto-group-srhw-3Uy" style="border:none;">
-                <img class="auto-group-6kr1-wqF" src="~/assets/images/comment.png" />
-                <a href="~/Psychologist/PsychologistComment" style="text-decoration:none" class="bi-vit-lu-HeD">Bình luận (135)</a>
-            </div>
-            <div class="auto-group-srhw-3Uy" style="border:none; background-color:#fbd78f;">
-                <img class="auto-group-6kr1-wqF" src="~/assets/images/rating.png" />
-                <a href="~/Psychologist/PsychologistRating" style="text-decoration:none" class="bi-vit-lu-HeD">Đánh giá (20)</a>
-            </div>
-        </div>
-        <div class="auto-group-wcmb-wCq">
-            <p class="danh-sch-nh-gi-qJD">DANH SÁCH ĐÁNH GIÁ</p>
-            <div class="ratingcomment-Lkm">
-                <div class="rectangle-94-GuK">
-                </div>
-                <div class="frame-2-o8Z">
-                    <p class="tn-8Rj">Nguyễn Trung Tín</p>
-                    <p class="thi-gian-G29">5 phút trước</p>
-                </div>
-                <p class="bnh-lun-o25">Rất tốt</p>
-                <img class="ic-round-star-tZK" src="~/assets/images/ic-round-star-Vx1.png" />
-                <img class="ic-round-star-Dbb" src="~/assets/images/ic-round-star-in9.png" />
-                <img class="ic-round-star-MSu" src="~/assets/images/ic-round-star-c1K.png" />
-                <img class="ic-round-star-69b" src="~/assets/images/ic-round-star-AaH.png" />
-                <img class="ic-round-star-2J9" src="~/assets/images/ic-round-star-eQm.png" />
-                <p class="item--MrD">...</p>
-            </div>
-            <div class="ratingcomment-sJm">
-                <div class="rectangle-94-QJh">
-                </div>
-                <div class="frame-2-LTF">
-                    <p class="tn-g1K">Nguyễn Phương Dung</p>
-                    <p class="thi-gian-p7X">1 ngày trước</p>
-                </div>
-                <p class="bnh-lun-YpD">Rất ổn, tiết kiệm được thời gian di chuyển đi khám</p>
-                <img class="ic-round-star-TgH" src="~/assets/images/ic-round-star-a4d.png" />
-                <img class="ic-round-star-niZ" src="~/assets/images/ic-round-star-VeV.png" />
-                <img class="ic-round-star-KTb" src="~/assets/images/ic-round-star-Pfj.png" />
-                <img class="ic-round-star-TJu" src="~/assets/images/ic-round-star-vk5.png" />
-                <img class="ic-round-star-Bkh" src="~/assets/images/ic-round-star-VbT.png" />
-                <p class="item--XJm">...</p>
-            </div>
-            <div class="ratingcomment-32D">
-                <div class="rectangle-94-mU1">
-                </div>
-                <div class="frame-2-hsT">
-                    <p class="tn-E6h">Nguyễn Vũ Thế Thư</p>
-                    <p class="thi-gian-NTo">5 ngày trước</p>
-                </div>
-                <p class="bnh-lun-JcM">Chi phí quá cao</p>
-                <img class="ic-round-star-DUR" src="~/assets/images/ic-round-star-fJu.png" />
-                <img class="ic-round-star-8rH" src="~/assets/images/ic-round-star-Xdw.png" />
-                <img class="ic-round-star-e3w" src="~/assets/images/ic-round-star-nYd.png" />
-                <img class="ic-round-star-Myw" src="~/assets/images/ic-round-star-BRf.png" />
-                <img class="ic-round-star-VKT" src="~/assets/images/ic-round-star-ei9.png" />
-                <p class="item--RU1">...</p>
-            </div>
-            <div class="ratingcomment-v9s">
-                <div class="rectangle-94-3kH">
-                </div>
-                <div class="frame-2-ydw">
-                    <p class="tn-Jw7">Trương Hoàng Tiến</p>
-                    <p class="thi-gian-T3K">12 ngày trước</p>
-                </div>
-                <p class="bnh-lun-adj">Bác sĩ tư vấn rõ ràng, nói chuyện nhẹ nhàng, dễ nghe, dễ hiểu, giúp tôi giảm được nhiều tình trạng tâm lí</p>
-                <img class="ic-round-star-VEu" src="~/assets/images/ic-round-star.png" />
-                <img class="ic-round-star-pny" src="~/assets/images/ic-round-star-Tg9.png" />
-                <img class="ic-round-star-a1T" src="~/assets/images/ic-round-star-iLd.png" />
-                <img class="ic-round-star-Ji9" src="~/assets/images/ic-round-star-Xrm.png" />
-                <img class="ic-round-star-qxy" src="~/assets/images/ic-round-star-nB7.png" />
-                <p class="item--Nxu">...</p>
-            </div>
-            <div class="ratingcomment-GYV">
-                <div class="rectangle-94-1FB">
-                </div>
-                <div class="frame-2-LHT">
-                    <p class="tn-s2V">Hoàng Phi Hiền</p>
-                    <p class="thi-gian-QYD">20 ngày trước</p>
-                </div>
-                <p class="bnh-lun-wo3">Dịch vụ khá tốt, tuy không đạt như tôi mong muốn nhưng cũng giải quyết được một phần vấn đề tôi gặp phải</p>
-                <img class="ic-round-star-rQD" src="~/assets/images/ic-round-star-P6V.png" />
-                <img class="ic-round-star-ar1" src="~/assets/images/ic-round-star-69B.png" />
-                <img class="ic-round-star-7L9" src="~/assets/images/ic-round-star-uqX.png" />
-                <img class="ic-round-star-qmw" src="~/assets/images/ic-round-star-1df.png" />
-                <img class="ic-round-star-z93" src="~/assets/images/ic-round-star-Zyo.png" />
-                <p class="item--KSD">...</p>
-            </div>
-            <div class="auto-group-wyfs-dho">
-                <img class="auto-group-d3fj-wyP" src="~/assets/images/auto-group-d3fj.png" />
-                <div class="auto-group-2bsj-4YD">1</div>
-                <div class="auto-group-zj8z-vqK">2</div>
-                <p class="item--bgZ">...</p>
-                <div class="auto-group-5g3o-ux9">105</div>
-                <img class="auto-group-1duq-Bem" src="~/assets/images/auto-group-1duq.png" />
-            </div>
+
+
+
+<div class="DivRating">
+    <div style="font-weight:800; margin-bottom:1rem;">
+        DANH SÁCH ĐÁNH GIÁ CỦA BẠN
+    </div>
+    <div class="boxDanhGia">
+        <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; display:inline;">Nguyễn Trung Tín</div>
+        <div style="color: #FF9A51; font-size: 10px; font-family: Inter; font-weight: 400; word-wrap: break-word; display:inline;">5 phút trước</div>
+        <br />
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <div style="color: black; font-size: 13px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+            Rất ổn, tiết kiệm được thời gian di chuyển đi khám
         </div>
     </div>
-</body>
-</html>
+    <div class="boxDanhGia">
+        <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; display:inline;">Nguyễn Trung Tín</div>
+        <div style="color: #FF9A51; font-size: 10px; font-family: Inter; font-weight: 400; word-wrap: break-word; display:inline;">5 phút trước</div>
+        <br />
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <div style="color: black; font-size: 13px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+            Rất ổn, tiết kiệm được thời gian di chuyển đi khám
+        </div>
+    </div>
+    <div class="boxDanhGia">
+        <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; display:inline;">Nguyễn Trung Tín</div>
+        <div style="color: #FF9A51; font-size: 10px; font-family: Inter; font-weight: 400; word-wrap: break-word; display:inline;">5 phút trước</div>
+        <br />
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <div style="color: black; font-size: 13px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+            Rất ổn, tiết kiệm được thời gian di chuyển đi khám
+        </div>
+    </div>
+    <div class="boxDanhGia">
+        <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; display:inline;">Nguyễn Trung Tín</div>
+        <div style="color: #FF9A51; font-size: 10px; font-family: Inter; font-weight: 400; word-wrap: break-word; display:inline;">5 phút trước</div>
+        <br />
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <div style="color: black; font-size: 13px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+            Rất ổn, tiết kiệm được thời gian di chuyển đi khám
+        </div>
+    </div>
+    <div class="boxDanhGia">
+        <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; display:inline;">Nguyễn Trung Tín</div>
+        <div style="color: #FF9A51; font-size: 10px; font-family: Inter; font-weight: 400; word-wrap: break-word; display:inline;">5 phút trước</div>
+        <br />
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+        <div style="color: black; font-size: 13px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+            Rất ổn, tiết kiệm được thời gian di chuyển đi khám
+        </div>
+    </div>
+
+</div>

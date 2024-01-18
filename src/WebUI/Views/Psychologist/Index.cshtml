@@ -2,117 +2,88 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewBag.Title = "Spychologist Info";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Ppychologist Info";
+    Layout = "~/Views/Shared/Psychologist_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <title>ProfilePsychologist</title>
-    <link rel="stylesheet" href="~/assets/css/psychologists-info.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400%2C500%2C600" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600" />
+    <title>Psychologist Profile</title>
+    <style>
+        .DescriptionPpychologistBox {
+          
+            border-radius: 7px;
+            background-color: whitesmoke;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            padding: 1vw 2vw 1vw 2vw;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            font-size:0.9rem;        }
+    </style>
 </head>
-<body>
-    <div class="auto-group-qyhb-1t9" style="margin-left:-40px">
-        <div class="account-information-i7w">
-            <div class="auto-group-srhw-3Uy" style="border:none; background-color:#fbd78f;">
-                <img class="auto-group-6kr1-wqF" src="~/assets/images/person.png" />
-                <a href="~/Psychologist/Index" style="text-decoration:none" class="bi-vit-lu-HeD">Thông tin cá nhân</a>
+
+
+    
+<div class="boxProfile">
+   <div class="row">
+       <div class="col-3">
+            <img style="width: 12vw; display:block;  margin:0 auto; max-height: 15vw; border-radius: 10px" src="https://img.cand.com.vn/resize/800x800/NewFiles/Images/2023/06/01/313437324_530297825770289_851393-1685621442627.jpg" />
+            <div style="padding: 0.1rem 0;">        
+                <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+                <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+                <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+                <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+                <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
+                <div style="display:inline-block; color: black; margin:auto 0; font-size: 12px; font-family: Inter; font-weight:400;">(5.0)</div>               
             </div>
-            <div class="auto-group-ehb3-AT7" style="border:none;">
-                <img class="auto-group-yefp-UCu" src="~/assets/images/zalpha.png" />
-                <a href="~/Psychologist/PsychologistPost" style="text-decoration:none" class="lch-s-giao-dch-oFB">Bài Viết (30)</a>
+            <div style="color: black; font-size: 16px; font-family: Inter; font-weight: 500; word-wrap: break-word; padding: 0.1rem 0;">Psy. Cao Hữu Thịnh</div>
+            <div style=" color: #063C8E; font-size: 10px; font-family: Inter; font-weight: 400; word-wrap: break-word; padding: 0.1rem 0;">102 Hoàng Diệu, Tp Thủ Đức, Tp. Hồ Chí Minh</div>
+       </div>
+       <div class="col-9">
+            @*Mấy cái chỗ này đang k biết làm sao cho lên dữ liệu như nào luôn*@
+            @*Database chưa có field cho mấy cái này nên set cứng đỡ*@
+            <div>
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Lĩnh vực nghiên cứu</span>
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400;  word-wrap: break-word"> : Tâm lý học lâm sàng<br /></span>
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 600;  word-wrap: break-word">Nơi công tác</span>
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400;  word-wrap: break-word"> : Viện Tâm lý Việt - Pháp<br /></span>
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 600;  word-wrap: break-word">Chức vụ</span>
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400;  word-wrap: break-word">: Viện trưởng Viện Tâm lý Việt - Pháp</span>
             </div>
-            <div class="auto-group-srhw-3Uy" style="border:none;">
-                <img class="auto-group-6kr1-wqF" src="~/assets/images/comment.png" />
-                <a href="~/Psychologist/PsychologistComment" style="text-decoration:none" class="bi-vit-lu-HeD">Bình luận (135)</a>
+            <div style="width: 70%; height: 0px; border: 1px #063C8E solid; margin:0.8rem 0;"></div>
+            <div style="width: 455px">
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 600;  word-wrap: break-word">Các cột mốc nổi bật:<br /></span>
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400;  word-wrap: break-word">Phó chủ nhiệm Khoa các Khoa học Giáo dục, trường Đại học Giáo dục, Đại học Quốc gia Hồ Chí Minh<br />Cử nhân ĐHSP Gerxen, Leningrat (Liên Xô cũ)</span>
+                
             </div>
-            <div class="auto-group-srhw-3Uy" style="border:none;">
-                <img class="auto-group-6kr1-wqF" src="~/assets/images/rating.png" />
-                <a href="~/Psychologist/PsychologistRating" style="text-decoration:none" class="bi-vit-lu-HeD">Đánh giá (20)</a>
-            </div>
-        </div>
-        <div class="auto-group-uomx-y3b">
-            <div class="auto-group-5xnq-gCu">
-                <div class="auto-group-7rgr-zDb">
-                    <img class="rectangle-60-jBB" src="~/assets/images/rectangle-60.png" />
-                    <p class="psy-trn-pht-RJu">Psy. Trần Phát</p>
-                    <div class="auto-group-oma5-KfB">
-                        <p class="item-43-fDF">(4.3)</p>
-                        <img class="image-7-9PK" src="~/assets/images/image-7-ppd.png" />
+            <br />
+            <div class="row">
+                <div class="col-5">
+                    <div style="color: #063C8E; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin-bottom:0.5rem;">
+                        Số điện thoại
+                    </div>
+                    <div style="width: 12vw; font-size: 13px; height: 30px; background: white; border-radius: 10px; padding:0 0.5rem; display:flex; align-items: center;">
+                        0987654321
                     </div>
                 </div>
-                <div class="auto-group-6shx-Tuo">
-                    <div class="auto-group-9c4u-oyf">
-                        <p class="lnh-vc-nghin-cu-tm-l-hc-lm-sng-ni-cng-tc-vin-tm-l-vit-php-chc-v-vin-trng-vin-tm-l-vit-php-AJR">
-                            <span class="lnh-vc-nghin-cu-tm-l-hc-lm-sng-ni-cng-tc-vin-tm-l-vit-php-chc-v-vin-trng-vin-tm-l-vit-php-AJR-sub-0">Lĩnh vực nghiên cứu</span>
-                            <span class="lnh-vc-nghin-cu-tm-l-hc-lm-sng-ni-cng-tc-vin-tm-l-vit-php-chc-v-vin-trng-vin-tm-l-vit-php-AJR-sub-1">
-                                : Tâm lý học lâm sàng
-                                <br />
-
-                            </span>
-                            <span class="lnh-vc-nghin-cu-tm-l-hc-lm-sng-ni-cng-tc-vin-tm-l-vit-php-chc-v-vin-trng-vin-tm-l-vit-php-AJR-sub-2">Nơi công tác</span>
-                            <span class="lnh-vc-nghin-cu-tm-l-hc-lm-sng-ni-cng-tc-vin-tm-l-vit-php-chc-v-vin-trng-vin-tm-l-vit-php-AJR-sub-3">
-                                : Viện Tâm lý Việt - Pháp
-                                <br />
-
-                            </span>
-                            <span class="lnh-vc-nghin-cu-tm-l-hc-lm-sng-ni-cng-tc-vin-tm-l-vit-php-chc-v-vin-trng-vin-tm-l-vit-php-AJR-sub-4">Chức vụ</span>
-                            <span class="lnh-vc-nghin-cu-tm-l-hc-lm-sng-ni-cng-tc-vin-tm-l-vit-php-chc-v-vin-trng-vin-tm-l-vit-php-AJR-sub-5">: Viện trưởng Viện Tâm lý Việt - Pháp</span>
-                        </p>
-                        <div class="auto-group-rypf-9bb">
-                            <p class="nhn-xem-cc-th-HSu">Nhấn để xem các thẻ</p>
-                            <img class="arrowdropdown-MxZ" src="~/assets/images/arrowdropdown.png" />
-                        </div>
+                <div class="col-7">
+                    <div style="color: #063C8E; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin-bottom:0.5rem;">
+                        Email
                     </div>
-                    <div class="auto-group-frv9-H5X">
-                        <div class="line-1-cdb">
-                        </div>
-                        <p class="cc-ct-mc-ni-bt-ph-ch-nhim-khoa-cc-khoa-hc-gio-dc-trng-i-hc-gio-dc-i-hc-quc-gia-h-ch-minh-c-nhn-hsp-gerxen-leningrat-lin-x-c-wfs">
-                            <span class="cc-ct-mc-ni-bt-ph-ch-nhim-khoa-cc-khoa-hc-gio-dc-trng-i-hc-gio-dc-i-hc-quc-gia-h-ch-minh-c-nhn-hsp-gerxen-leningrat-lin-x-c-wfs-sub-0">
-                                Các cột mốc nổi bật:
-                                <br />
-
-                            </span>
-                            <span class="cc-ct-mc-ni-bt-ph-ch-nhim-khoa-cc-khoa-hc-gio-dc-trng-i-hc-gio-dc-i-hc-quc-gia-h-ch-minh-c-nhn-hsp-gerxen-leningrat-lin-x-c-wfs-sub-1">
-                                Phó chủ nhiệm Khoa các Khoa học Giáo dục, trường Đại học Giáo dục, Đại học Quốc gia Hồ Chí Minh
-                                <br />
-                                Cử nhân ĐHSP Gerxen, Leningrat (Liên Xô cũ)
-                            </span>
-                        </p>
+                    <div style="width: 17vw; font-size: 13px; height: 30px; background: white; border-radius: 10px; padding:0 0.5rem; display:flex; align-items: center;">
+                        chankongdinh@gmail.com
                     </div>
                 </div>
             </div>
-            <p class="hong-diu-tp-th-c-tp-h-ch-minh-YJH">102 Hoàng Diệu, Tp Thủ Đức, Tp. Hồ Chí Minh</p>
+       </div>
+   </div>
 
-            <div class="auto-group-bzq5-1hf">
-                <p class="s-in-thoi-8nH">Số điện thoại</p>
-                <p class="email-riH">Email</p>
-            </div>
-            <div class="auto-group-fv2q-CGM">
-                <div class="auto-group-f3df-XJd">0345578965</div>
-                <div class="auto-group-2crt-aXo">phattran02@gmail.com</div>
-            </div>
-            <div class="auto-group-a9gh-Fdw">
-                <p class="ti-l-trn-minh-pht-nh-tm-l-hc-lm-sng-c-kinh-nghim-hn-4-nm-trong-lnh-vc-tr-liu-tm-l-ti-gip-nhiu-thn-ch-vt-qua-cc-vn-v-sc-khe-tm-thn-bao-gm-trm-cm-lo-u-ri-lon-n-ung-ri-lon-nhn-cch-v-cc-vn-v-tm-l-x-hi-ti-tin-rng-mi-ngi-u-c-tim-nng-t-cha-lnh-v-pht-trin-mc-tiu-ca-ti-l-gip-thn-ch-hiu-r-hn-v-bn-thn-pht-trin-cc-k-nng-ng-ph-lnh-mnh-v-xy-dng-mt-cuc-sng-hnh-phc-v-trn-vn-hn-m6V">
-                    “Tôi là Trần Minh Phát, nhà tâm lý học lâm sàng có kinh nghiệm hơn 4 năm trong lĩnh vực trị liệu tâm lý. Tôi đã giúp đỡ nhiều thân chủ vượt qua các vấn đề về sức khỏe tâm thần, bao gồm trầm cảm, lo âu, rối loạn ăn uống, rối loạn nhân cách và các vấn đề về tâm lý xã hội.
-                    <br />
-
-                    <br />
-                    Tôi tin rằng mỗi người đều có tiềm năng để tự chữa lành và phát triển. Mục tiêu của tôi là giúp thân chủ hiểu rõ hơn về bản thân, phát triển các kỹ năng ứng phó lành mạnh và xây dựng một cuộc sống hạnh phúc và trọn vẹn hơn.”
-                </p>
-            </div>
-            <div class="auto-group-evk9-K9w">
-                <button class="auto-group-jqjd-35w" style="border:none">Viết đánh giá</button>
-                <button class="auto-group-1c8m-hRP" style="border:none">Kết nối ngay bằng Zalo</button>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+   <div class="row">
+        <div class="DescriptionPpychologistBox">
+            <p>
+                “Tôi là Trần Minh Phát, nhà tâm lý học lâm sàng có kinh nghiệm hơn 4 năm trong lĩnh vực trị liệu tâm lý. Tôi đã giúp đỡ nhiều thân chủ vượt qua các vấn đề về sức khỏe tâm thần, bao gồm trầm cảm, lo âu, rối loạn ăn uống, rối loạn nhân cách và các vấn đề về tâm lý xã hội.
+            </p>
+            <p>
+                Tôi tin rằng mỗi người đều có tiềm năng để tự chữa lành và phát triển. Mục tiêu của tôi là giúp thân chủ hiểu rõ hơn về bản thân, phát triển các kỹ năng ứng phó lành mạnh và xây dựng một cuộc sống hạnh phúc và trọn vẹn hơn.”
+            </p>
+       </div>
+   </div>
+</div>
