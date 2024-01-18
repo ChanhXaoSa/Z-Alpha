@@ -7,6 +7,7 @@ using ZAlpha.Domain.Identity;
 using ZAlpha.Application.Common.Interfaces;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Google;
+using ZAlpha.Application.Common.Models;
 
 namespace WebUI.Controllers.MVC;
 
@@ -70,23 +71,27 @@ public class LoginController : ControllerBaseMVC
 
     [ApiExplorerSettings(IgnoreApi = true)]
     [AllowAnonymous]
-    [HttpGet("login/{provider}")]
-    public async Task<IActionResult> LoginExternal(string? ReturnUrl = null)
+    [HttpPost("login/{provider}")]
+    public async Task<IActionResult> LoginExternal(string provider, string? ReturnUrl = null)
     {
         if (!User.Identity.IsAuthenticated)
         {
             switch (provider.ToLower())
             {
-                case GoogleDefaults.AuthenticationScheme or "google" :
+                case GoogleDefaults.AuthenticationScheme or "google":
                     {
-                        var returnUrl = Url.Action("ExternalLoginCallback", "Confirm", new { RedirectUrl = redirectUrl });
-                        var props = _signInManager.ConfigureExternalAuthenticationProperties("Google", returnUrl);
-                        return new ChallengeResult("Google", props);
+                        LoginViewModel model = new LoginViewModel
+                        {
+                            ReturnUrl = ReturnUrl,
+                            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+                        };
+                        return View(model);
                     }
             }
 
             throw new Exception($"Provider {provider} not support");
-        } else
+        }
+        else
         {
             return RedirectToAction("Index", "Home");
         }
