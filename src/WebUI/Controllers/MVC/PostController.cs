@@ -32,4 +32,10 @@ public class PostController : ControllerBaseMVC
         ViewBag.listComment = listComment;
         return View(post);
     }
+    [HttpPost]
+    public  ActionResult Test(string postId)
+    {
+        return Json(new { success = true });
+       
+    }
 }

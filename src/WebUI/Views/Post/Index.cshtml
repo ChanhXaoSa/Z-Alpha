@@ -25,7 +25,19 @@
             <div class="col-6 box">
                 <div>
                     <div style="position:relative ;">
-                        <i style="position: absolute; top:10px; right:10px;" class="fa-regular fa-bookmark"></i>
+                        <i id="bookmarkIcon" style="color: gray; position: absolute; top:10px; right:10px;" class="fa-solid fa-bookmark"></i>
+                        <script>
+                            const icon = document.getElementById('bookmarkIcon');
+                            icon.addEventListener('click', function onClick() {
+                                // Toggle the 'active' class on each click
+                                icon.classList.toggle('active');
+
+                                // If you want to specifically change the color
+                                // based on the 'active' class, you can do the following:
+                                const isActive = icon.classList.contains('active');
+                                icon.style.color = isActive ? 'yellow' : 'gray';
+                            });
+                        </script>
                         <br />
                     </div>
                     @foreach (var postTag in Model.PostTags)
