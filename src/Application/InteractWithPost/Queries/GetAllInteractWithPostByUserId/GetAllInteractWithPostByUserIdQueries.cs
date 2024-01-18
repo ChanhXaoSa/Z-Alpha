@@ -37,11 +37,19 @@ public class GetAllInteractWithPostByUserIdQueriesHandler : IRequestHandler<GetA
     {
         // get 
         var listPost = _context.Get<InteractWithPosts>()
-            .Where(x => x.IsDeleted == false
-            && x.UserAccountId.Equals(request.UserId)
-            && x.InteractPostStatus == Domain.Enums.InteractPostStatus.Create)
-            .Include(x => x.Post)
-            .AsNoTracking();
+        .Where(x => x.IsDeleted == false
+           && x.UserAccountId.Equals(request.UserId)
+           && x.InteractPostStatus == Domain.Enums.InteractPostStatus.Create)
+        .Include(x => x.Post)
+        .ThenInclude(o => o.PostTags)
+        .ThenInclude(o => o.Tag)
+        .Include(x => x.UserAccount)
+        .AsNoTracking();
+
+        if (listPost == null)
+        {
+            throw new NotFoundException(nameof(InteractWithPosts), request.UserId);
+        }
 
         // AsNoTracking to remove default tracking on entity framework
         var map = _mapper.ProjectTo<InteractWithPostModel>(listPost);

@@ -34,11 +34,12 @@ public class PsychologistController : ControllerBaseMVC
         return View();
     }
 
-    public IActionResult PsychologistPost(string userAccountId)
+    public IActionResult PsychologistPost()
     {
         try
         {
-            var result = Mediator.Send(new GetAllInteractWithPostByUserIdQueries() { Page = 1, Size = 100 }).Result;
+            Guid userId = Guid.Parse(HttpContext.Session.GetString("userId"));
+            var result = Mediator.Send(new GetAllInteractWithPostByUserIdQueries() {UserId = userId, Page = 1, Size = 100 }).Result;
             return View(result);
         }
         catch (Exception ex)
