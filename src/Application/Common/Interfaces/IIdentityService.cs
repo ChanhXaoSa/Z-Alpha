@@ -17,6 +17,8 @@ public interface IIdentityService
 
     Task<UserAccount> GetUserByEmailAsync(string email);
 
+    Task<UserAccount> GetUserByNameAsync(string name);
+
     Task<Result> DeleteUserAsync(string userId);
 
     Task<UserAccount> GetUserAsync(string userId);
