@@ -2,6 +2,10 @@
     font-size: 62.5%;
 }
 
+button {
+    border: none;
+}
+
 ul, li {
     list-style: none;
 }
