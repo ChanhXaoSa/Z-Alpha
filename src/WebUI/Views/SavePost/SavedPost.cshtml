@@ -22,8 +22,6 @@
             <img class="image-8-ZWm" src="./assets/image-8-6Dj.png" />
             <div class="account-information-UNq">
                 <div class="auto-group-9xty-x37">
-                    <div class="rectangle-23-4bw">
-                    </div>
                     <div class="thng-tin-c-nhn-NMj">@Html.ActionLink("Thông tin cá nhân", "Info", "User", null, htmlAttributes: new {@style="color: black; text-decoration: none"})</div>
                     <img class="image-9-ea9" src="./assets/image-9.png" />
                 </div>
@@ -45,9 +43,9 @@
             <p class="danh-sach-bai-vit-a-lu-oQR">Danh sách bài viết đã lưu</p>
             <div class="auto-group-dydj-HKb">
                 <div class="auto-group-wczh-aJh">
-                    <div class="tag-vNZ">Học đường</div>
-                    <div class="tag-P1F">Gia đình</div>
-                    <div class="tag-F3T">và 2 thẻ khác ...</div>
+                        <div class="tag-vNZ">Học đường</div>
+                        <div class="tag-P1F">Gia đình</div>
+                        <div class="tag-F3T">và 2 thẻ khác ...</div>
                     <img class="expandmore-JnR" src="./assets/expandmore-Ty7.png" />
                 </div>
                 <p class="em-ang-trong-ma-n-thi-rt-p-lc-im-s-ri-nhng-v-nh-vn-xem-thm-eLV">
@@ -134,10 +132,15 @@
         }
 
             .auto-group-zvft-k3X .auto-group-nxxm-r6Z {
-                margin: 2.7rem 8.4rem 0rem 0rem;
-                width: 34.8rem;
-                height: 57.3rem;
-                position: relative;
+                margin-right: 4.7rem;
+                box-sizing: border-box;
+                width: 30%;
+                row-gap: 2.5rem;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                background-color: #ffffff;
+                border-radius: 2rem;
                 flex-shrink: 0;
             }
 
@@ -152,29 +155,32 @@
                 }
 
                 .auto-group-zvft-k3X .auto-group-nxxm-r6Z .account-information-UNq {
+                    margin-right: 4.7rem;
                     box-sizing: border-box;
-                    padding: 2.3rem 0.4rem 18.4rem 0.4rem;
-                    width: 34.8rem;
-                    height: 57.3rem;
-                    position: absolute;
-                    top: -26px;
+                    padding: 3.4rem 1.6rem 1.6rem 1.6rem;
+                    width: 100%;
+                    row-gap: 2.5rem;
                     align-items: center;
                     display: flex;
                     flex-direction: column;
                     background-color: #ffffff;
                     border-radius: 2rem;
+                    flex-shrink: 0;
                 }
 
                     .auto-group-zvft-k3X .auto-group-nxxm-r6Z .account-information-UNq .auto-group-9xty-x37 {
-                        margin: 0rem 1.2rem 2rem 0rem;
-                        width: 32.8rem;
-                        height: 8.6rem;
-                        position: relative;
+                        box-sizing: border-box;
+                        padding: 0.5rem 8.7rem 0.5rem 0.9rem;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        background-color: #ffffff;
+                        border-radius: 2rem;
                         flex-shrink: 0;
                     }
 
                         .auto-group-zvft-k3X .auto-group-nxxm-r6Z .account-information-UNq .auto-group-9xty-x37 .rectangle-23-4bw {
-                            width: 31.6rem;
+                            width: 100%;
                             height: 7rem;
                             cursor: pointer;
                             position: absolute;
@@ -204,16 +210,14 @@
                             }
 
                         .auto-group-zvft-k3X .auto-group-nxxm-r6Z .account-information-UNq .auto-group-9xty-x37 .image-9-ea9 {
-                            width: 6rem;
-                            max-height: 60px;
-                            max-width: 60px;
-                            height: 6rem;
-                            cursor: pointer;
-                            position: absolute;
-                            left: 20px;
-                            top: 12px;
+                            margin-right: 1rem;
+                            margin-left: 0.3rem;
+                            max-width: 5rem;
+                            width: 100%;
+                            height: 5rem;
                             object-fit: cover;
                             vertical-align: top;
+                            flex-shrink: 0;
                         }
 
                     .auto-group-zvft-k3X .auto-group-nxxm-r6Z .account-information-UNq .auto-group-mqem-BKB {
@@ -229,9 +233,11 @@
                     }
 
                         .auto-group-zvft-k3X .auto-group-nxxm-r6Z .account-information-UNq .auto-group-mqem-BKB .person-GLd {
-                            margin-right: 1.5rem;
-                            width: 6rem;
-                            height: 6rem;
+                            margin-right: 1rem;
+                            margin-left: 0.3rem;
+                            max-width: 5rem;
+                            width: 100%;
+                            height: 5rem;
                             cursor: pointer;
                             position: relative;
                             object-fit: contain;
@@ -264,9 +270,12 @@
                     }
 
                         .auto-group-zvft-k3X .auto-group-nxxm-r6Z .account-information-UNq .auto-group-qmhx-sbK .commentbank-YxM {
-                            margin-right: 1.5rem;
-                            width: 6rem;
-                            height: 6rem;
+                            margin-right: 1rem;
+                            margin-left: 0.3rem;
+                            max-width: 5rem;
+                            width: 100%;
+                            height: 5rem;
+                            cursor: pointer;
                             position: relative;
                             object-fit: contain;
                             vertical-align: top;
@@ -297,12 +306,12 @@
                     }
 
                         .auto-group-zvft-k3X .auto-group-nxxm-r6Z .account-information-UNq .auto-group-cu8q-aPF .monetizationon-HHf {
-                            margin-right: 1.5rem;
-                            width: 6rem;
-                            height: 6rem;
-                            cursor: pointer;
-                            position: relative;
-                            object-fit: contain;
+                            margin-right: 1rem;
+                            margin-left: 0.3rem;
+                            max-width: 5rem;
+                            width: 100%;
+                            height: 5rem;
+                            object-fit: cover;
                             vertical-align: top;
                             flex-shrink: 0;
                         }
@@ -321,19 +330,19 @@
 
             .auto-group-zvft-k3X .auto-group-sekx-Hws {
                 box-sizing: border-box;
-                padding: 2.6rem 4.8rem 1.6rem 2.5rem;
-                width: 88.1rem;
+                padding: 2.6rem 3.5rem 1.6rem 2.5rem;
+                width: 80%;
                 height: 100%;
-                align-items: center;
+                align-items: flex-start;
                 display: flex;
                 flex-direction: column;
                 background-color: #e8fbfb;
                 border-radius: 2rem;
                 flex-shrink: 0;
+                justify-content: flex-start;
             }
 
                 .auto-group-zvft-k3X .auto-group-sekx-Hws .danh-sach-bai-vit-a-lu-oQR {
-                    margin: 0rem 56rem 2.2rem 0rem;
                     font-size: 2rem;
                     font-weight: 700;
                     line-height: 1.2125;
@@ -344,34 +353,38 @@
                 }
 
                 .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb {
-                    margin: 0rem 0rem 2.8rem 0.8rem;
                     box-sizing: border-box;
                     padding: 0.5rem 1rem 2.3rem 1.5rem;
-                    width: 80rem;
+                    width: 100%;
                     background-color: #ffffff;
+                    margin-bottom: 2rem;
                     border-radius: 1rem;
                     flex-shrink: 0;
                 }
-
                     .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .auto-group-wczh-aJh {
-                        margin-bottom: 3rem;
                         width: 100%;
+                        height: 7.5rem;
                         display: flex;
-                        align-items: flex-end;
+                        align-items: center;
                     }
 
-                        .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .auto-group-wczh-aJh .tag-vNZ {
-                            margin: 0rem 1rem 0.4rem 0rem;
-                            width: 9.9rem;
+                    .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .auto-group-wczh-aJh {
+                        display:flex;
+
+                    }
+
+                    .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .auto-group-wczh-aJh .tag-vNZ {
+                            width: 15%;
                             height: 3.3rem;
                             text-align: center;
-                            font-size: 1.4rem;
+                            font-size: 1.1vw;
                             font-weight: 300;
                             line-height: 1.2125;
                             color: #000000;
                             font-family: Inter, 'Source Sans Pro';
                             white-space: nowrap;
                             display: flex;
+                            margin: 1.5rem 1rem 0rem 0rem;
                             align-items: center;
                             justify-content: center;
                             background-color: #efd037;
@@ -379,18 +392,18 @@
                             flex-shrink: 0;
                         }
 
-                        .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .auto-group-wczh-aJh .tag-P1F {
-                            margin: 0rem 1rem 0.4rem 0rem;
-                            width: 9.9rem;
+                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .auto-group-wczh-aJh .tag-P1F {
+                            width: 15%;
                             height: 3.3rem;
                             text-align: center;
-                            font-size: 1.4rem;
+                            font-size: 1.1vw;
                             font-weight: 300;
                             line-height: 1.2125;
                             color: #000000;
                             font-family: Inter, 'Source Sans Pro';
                             white-space: nowrap;
                             display: flex;
+                            margin: 1.5rem 1rem 0rem 0rem;
                             align-items: center;
                             justify-content: center;
                             background-color: #efd037;
@@ -399,17 +412,17 @@
                         }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .auto-group-wczh-aJh .tag-F3T {
-                            margin: 0rem 37.9rem 0.4rem 0rem;
-                            width: 11.8rem;
+                            width: 20%;
                             height: 3.3rem;
                             text-align: center;
-                            font-size: 1.4rem;
+                            font-size: 1.1vw;
                             font-weight: 300;
                             line-height: 1.2125;
                             color: #000000;
                             font-family: Inter, 'Source Sans Pro';
                             white-space: nowrap;
                             display: flex;
+                            margin-top: 1.5rem;
                             align-items: center;
                             justify-content: center;
                             background-color: #efd037;
@@ -418,8 +431,11 @@
                         }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .auto-group-wczh-aJh .expandmore-JnR {
-                            width: 6rem;
-                            height: 6rem;
+                            max-width: 6rem;
+                            max-height: 6rem;
+                            width: 100%;
+                            height: 100%;
+                            margin-left: auto;
                             position: relative;
                             object-fit: contain;
                             vertical-align: top;
@@ -427,8 +443,8 @@
                         }
 
                     .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .em-ang-trong-ma-n-thi-rt-p-lc-im-s-ri-nhng-v-nh-vn-xem-thm-eLV {
-                        max-width: 62.4rem;
-                        font-size: 1.4rem;
+                        width: 100%;
+                        font-size: 1.1vw;
                         font-weight: 300;
                         line-height: 1.2125;
                         color: #000000;
@@ -436,7 +452,7 @@
                     }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .em-ang-trong-ma-n-thi-rt-p-lc-im-s-ri-nhng-v-nh-vn-xem-thm-eLV .em-ang-trong-ma-n-thi-rt-p-lc-im-s-ri-nhng-v-nh-vn-xem-thm-eLV-sub-0 {
-                            font-size: 2rem;
+                            font-size: 1.6vw;
                             font-weight: 500;
                             line-height: 1.2125;
                             color: #000000;
@@ -449,7 +465,7 @@
                         }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .em-ang-trong-ma-n-thi-rt-p-lc-im-s-ri-nhng-v-nh-vn-xem-thm-eLV .em-ang-trong-ma-n-thi-rt-p-lc-im-s-ri-nhng-v-nh-vn-xem-thm-eLV-sub-2 {
-                            font-size: 1.4rem;
+                            font-size: 1.1vw;
                             font-weight: 400;
                             line-height: 1.2125;
                             color: #000000;
@@ -462,7 +478,7 @@
                         }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-dydj-HKb .em-ang-trong-ma-n-thi-rt-p-lc-im-s-ri-nhng-v-nh-vn-xem-thm-eLV .em-ang-trong-ma-n-thi-rt-p-lc-im-s-ri-nhng-v-nh-vn-xem-thm-eLV-sub-4 {
-                            font-size: 1.4rem;
+                            font-size: 1.1vw;
                             font-weight: 400;
                             line-height: 1.2125;
                             color: #000000;
@@ -473,28 +489,28 @@
                         }
 
                 .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-r2yd-Tam {
-                    margin: 0rem 0rem 3.6rem 0.8rem;
                     box-sizing: border-box;
                     padding: 0.8rem 1rem 1.6rem 1.5rem;
-                    width: 80rem;
+                    margin-bottom: 2rem;
+                    width: 100%;
                     background-color: #ffffff;
                     border-radius: 1rem;
                     flex-shrink: 0;
                 }
 
                     .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-r2yd-Tam .auto-group-skxk-kJy {
-                        margin-bottom: 3.4rem;
                         width: 100%;
+                        height: 7.5rem;
                         display: flex;
-                        align-items: flex-end;
+                        align-items: flex-start;
                     }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-r2yd-Tam .auto-group-skxk-kJy .tag-VGZ {
-                            margin-right: 1rem;
-                            width: 9.9rem;
+                            margin: 1.5rem 1rem 0rem 0rem;
+                            width: 15%;
                             height: 3.3rem;
                             text-align: center;
-                            font-size: 1.4rem;
+                            font-size: 1.1vw;
                             font-weight: 300;
                             line-height: 1.2125;
                             color: #000000;
@@ -509,11 +525,11 @@
                         }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-r2yd-Tam .auto-group-skxk-kJy .tag-xA9 {
-                            margin-right: 1rem;
-                            width: 9.9rem;
+                            margin: 1.5rem 1rem 0rem 0rem;
+                            width: 15%;
                             height: 3.3rem;
                             text-align: center;
-                            font-size: 1.4rem;
+                            font-size: 1.1vw;
                             font-weight: 300;
                             line-height: 1.2125;
                             color: #000000;
@@ -528,11 +544,11 @@
                         }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-r2yd-Tam .auto-group-skxk-kJy .tag-py3 {
-                            margin-right: 41.5rem;
-                            width: 8.2rem;
+                            margin: 1.5rem 1rem 0rem 0rem;
+                            width: 15%;
                             height: 3.3rem;
                             text-align: center;
-                            font-size: 1.4rem;
+                            font-size: 1.1vw;
                             font-weight: 300;
                             line-height: 1.2125;
                             color: #000000;
@@ -547,8 +563,11 @@
                         }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-r2yd-Tam .auto-group-skxk-kJy .expandmore-uDo {
-                            width: 6rem;
-                            height: 6rem;
+                            max-width: 6rem;
+                            max-height: 6rem;
+                            width: 100%;
+                            height: 100%;
+                            margin-left: auto;
                             position: relative;
                             object-fit: contain;
                             vertical-align: top;
@@ -556,8 +575,8 @@
                         }
 
                     .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-r2yd-Tam .lm-mt-ngy-gn-12-ting-nhng-khi-v-n-nh-vn-khng-c-ngh-ngi-xem-thm-F2m {
-                        max-width: 61.9rem;
-                        font-size: 2rem;
+                        width: 100%;
+                        font-size: 1.6vw;
                         font-weight: 500;
                         line-height: 1.2125;
                         color: #000000;
@@ -603,29 +622,28 @@
                         }
 
                 .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-svx7-WWR {
-                    margin: 0rem 0rem 36.2rem 0.8rem;
                     box-sizing: border-box;
                     padding: 0.9rem 1rem 2.8rem 1.5rem;
-                    width: 80rem;
+                    width: 100%;
+                    margin-bottom: 2rem;
                     background-color: #ffffff;
                     border-radius: 1rem;
                     flex-shrink: 0;
                 }
 
                     .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-svx7-WWR .auto-group-jqpb-PaD {
-                        margin-bottom: 2.1rem;
                         width: 100%;
-                        height: 6rem;
+                        height: 7.5rem;
                         display: flex;
-                        align-items: center;
+                        align-items: flex-start;
                     }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-svx7-WWR .auto-group-jqpb-PaD .tag-XRX {
-                            margin: 1.4rem 0.7rem 1.3rem 0rem;
-                            width: 11.2rem;
-                            height: calc(100% - 2.7rem);
+                            margin: 1.5rem 1rem 0rem 0rem;
+                            width: 20%;
+                            height: 3.3rem;
                             text-align: center;
-                            font-size: 1.4rem;
+                            font-size: 1.1vw;
                             font-weight: 300;
                             line-height: 1.2125;
                             color: #000000;
@@ -640,11 +658,11 @@
                         }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-svx7-WWR .auto-group-jqpb-PaD .tag-mKs {
-                            margin: 1.4rem 49.7rem 1.3rem 0rem;
-                            width: 9.9rem;
-                            height: calc(100% - 2.7rem);
+                            margin: 1.5rem 1rem 0rem 0rem;
+                            width: 15%;
+                            height: 3.3rem;
                             text-align: center;
-                            font-size: 1.4rem;
+                            font-size: 1.1vw;
                             font-weight: 300;
                             line-height: 1.2125;
                             color: #000000;
@@ -659,8 +677,11 @@
                         }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-svx7-WWR .auto-group-jqpb-PaD .expandmore-1V7 {
-                            width: 6rem;
-                            height: 6rem;
+                            max-width: 6rem;
+                            max-height: 6rem;
+                            width: 100%;
+                            height: 100%;
+                            margin-left: auto;
                             position: relative;
                             object-fit: contain;
                             vertical-align: top;
@@ -668,8 +689,8 @@
                         }
 
                     .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-svx7-WWR .lt-tiktok-ai-cng-lng-thng-100-triu-trong-khi-mnh-ch-mua-bnh-m-xem-thm-kBo {
-                        max-width: 59.6rem;
-                        font-size: 1.4rem;
+                        width: 100%;
+                        font-size: 1.6vw;
                         font-weight: 300;
                         line-height: 1.2125;
                         color: #000000;
@@ -677,7 +698,7 @@
                     }
 
                         .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-svx7-WWR .lt-tiktok-ai-cng-lng-thng-100-triu-trong-khi-mnh-ch-mua-bnh-m-xem-thm-kBo .lt-tiktok-ai-cng-lng-thng-100-triu-trong-khi-mnh-ch-mua-bnh-m-xem-thm-kBo-sub-0 {
-                            font-size: 2rem;
+                            font-size: 1.6vw;
                             font-weight: 500;
                             line-height: 1.2125;
                             color: #000000;
@@ -710,11 +731,12 @@
                         }
 
                 .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-mubf-f5o {
-                    margin: -3rem 21.2rem 0rem 27.6rem;
-                    width: calc(100% - 48.8rem);
+                    margin-top: auto;
+                    width: 100%;
                     display: flex;
-                    align-items: flex-end;
                     flex-shrink: 0;
+                    align-items: flex-end;
+                    justify-content: center;
                 }
 
                     .auto-group-zvft-k3X .auto-group-sekx-Hws .auto-group-mubf-f5o .auto-group-ylz9-med {
