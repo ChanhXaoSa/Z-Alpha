@@ -34,8 +34,15 @@
                                     <span class="label-char" style="--index: 2">a</span>
                                     <span class="label-char" style="--index: 3">i</span>
                                     <span class="label-char" style="--index: 4">l</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
+                            @if (ViewBag.EmailValidate != null)
+                            {
+                                <div class="form-group mb-3" style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                                    <div class="text-danger">@ViewBag.EmailValidate</div>
+                                </div>
+                            }
                             <div class="wave-group mb-3">
                                 <input name="Username" required="" type="text" class="input" value="@Model.Username">
                                 <span class="bar"></span>
@@ -48,8 +55,15 @@
                                     <span class="label-char" style="--index: 5">a</span>
                                     <span class="label-char" style="--index: 6">m</span>
                                     <span class="label-char" style="--index: 7">e</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
+                            @if (ViewBag.UsernameValidate != null)
+                            {
+                                <div class="form-group mb-3" style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                                    <div class="text-danger">@ViewBag.UsernameValidate</div>
+                                </div>
+                            }
                             <div class="wave-group mb-3">
                                 <input name="Firstname" required="" type="text" class="input" value="@Model.FirstName">
                                 <span class="bar"></span>
@@ -64,6 +78,7 @@
                                     <span class="label-char" style="--index: 7">a</span>
                                     <span class="label-char" style="--index: 8">m</span>
                                     <span class="label-char" style="--index: 9">e</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
                             <div class="wave-group mb-3">
@@ -79,10 +94,11 @@
                                     <span class="label-char" style="--index: 6">a</span>
                                     <span class="label-char" style="--index: 7">m</span>
                                     <span class="label-char" style="--index: 8">e</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
                             <div class="wave-group-birthday birthday mb-3">
-                                <input name="Birthday" required="" type="date" class="input" value="@Model.Birthday.ToString("MM/dd/yyyy")">
+                                <input name="Birthday" type="date" class="input" value="@Model.Birthday.ToString("MM/dd/yyyy")">
                                 <span class="bar"></span>
                                 <label class="label">
                                     <span class="label-char" style="--index: 0">B</span>
@@ -96,7 +112,7 @@
                                 </label>
                             </div>
                             <div class="wave-group mb-3">
-                                <input name="Address" required="" type="text" class="input" value="@Model.Address">
+                                <input name="Address" type="text" class="input" value="@Model.Address">
                                 <span class="bar"></span>
                                 <label class="label">
                                     <span class="label-char" style="--index: 0">A</span>
@@ -109,7 +125,7 @@
                                 </label>
                             </div>
                             <div class="wave-group mb-3">
-                                <input name="Phone" required="" type="number" class="input" value="@Model.Phone">
+                                <input name="Phone" type="number" class="input" value="@Model.Phone">
                                 <span class="bar"></span>
                                 <label class="label">
                                     <span class="label-char" style="--index: 0">P</span>
@@ -132,8 +148,15 @@
                                     <span class="label-char" style="--index: 3">o</span>
                                     <span class="label-char" style="--index: 3">r</span>
                                     <span class="label-char" style="--index: 3">d</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
+                            @if (ViewBag.PasswordValidate != null)
+                            {
+                                <div class="form-group mb-3" style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                                    <div class="text-danger">@ViewBag.PasswordValidate</div>
+                                </div>
+                            }
                             <div class="wave-group mb-3">
                                 <input name="ConfirmPassword" required="" type="password" class="input" value="@Model.ConfirmPassword">
                                 <span class="bar"></span>
@@ -153,8 +176,10 @@
                                     <span class="label-char" style="--index: 12">o</span>
                                     <span class="label-char" style="--index: 13">r</span>
                                     <span class="label-char" style="--index: 14">d</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
+                            <label class="radio-first-label">Type of Account<span class="label-char text-danger" style="--index: 5">*</span></label>
                             <div class="container-radio">
                                 <div class="radio-tile-group">
                                     <div class="input-container">
@@ -189,6 +214,7 @@
                                     <span class="label-char" style="--index: 2">a</span>
                                     <span class="label-char" style="--index: 3">i</span>
                                     <span class="label-char" style="--index: 4">l</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
                             <div class="wave-group mb-3">
@@ -203,6 +229,7 @@
                                     <span class="label-char" style="--index: 5">a</span>
                                     <span class="label-char" style="--index: 6">m</span>
                                     <span class="label-char" style="--index: 7">e</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
                             <div class="wave-group mb-3">
@@ -219,6 +246,7 @@
                                     <span class="label-char" style="--index: 7">a</span>
                                     <span class="label-char" style="--index: 8">m</span>
                                     <span class="label-char" style="--index: 9">e</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
                             <div class="wave-group mb-3">
@@ -234,10 +262,11 @@
                                     <span class="label-char" style="--index: 6">a</span>
                                     <span class="label-char" style="--index: 7">m</span>
                                     <span class="label-char" style="--index: 8">e</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
                             <div class="wave-group-birthday birthday mb-3">
-                                <input name="Birthday" required="" type="date" class="input">
+                                <input name="Birthday" type="date" class="input">
                                 <span class="bar"></span>
                                 <label class="label">
                                     <span class="label-char" style="--index: 0">B</span>
@@ -251,7 +280,7 @@
                                 </label>
                             </div>
                             <div class="wave-group mb-3">
-                                <input name="Address" required="" type="text" class="input">
+                                <input name="Address" type="text" class="input">
                                 <span class="bar"></span>
                                 <label class="label">
                                     <span class="label-char" style="--index: 0">A</span>
@@ -264,7 +293,7 @@
                                 </label>
                             </div>
                             <div class="wave-group mb-3">
-                                <input name="Phone" required="" type="number" class="input">
+                                <input name="Phone" type="number" class="input">
                                 <span class="bar"></span>
                                 <label class="label">
                                     <span class="label-char" style="--index: 0">P</span>
@@ -286,6 +315,7 @@
                                     <span class="label-char" style="--index: 3">o</span>
                                     <span class="label-char" style="--index: 3">r</span>
                                     <span class="label-char" style="--index: 3">d</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
                             <div class="wave-group mb-3">
@@ -307,13 +337,14 @@
                                     <span class="label-char" style="--index: 12">o</span>
                                     <span class="label-char" style="--index: 13">r</span>
                                     <span class="label-char" style="--index: 14">d</span>
+                                    <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
-                            <label class="radio-first-label">Type of Account</label>
+                            <label class="radio-first-label">Type of Account<span class="label-char text-danger" style="--index: 5">*</span></label>
                             <div class="container-radio">
                                 <div class="radio-tile-group">
                                     <div class="input-container">
-                                        <input id="walk" class="radio-button" type="radio" name="radio" value="Customer">
+                                        <input id="walk" class="radio-button" type="radio" checked="true" name="radio" value="Customer">
                                         <div class="radio-tile">
                                             <div class="icon walk-icon">
                                                 <span class="fa fa-user"></span>
