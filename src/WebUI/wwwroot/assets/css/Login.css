@@ -2,8 +2,16 @@
     box-sizing: border-box;
 }
 
-.logo {
-    max-height: 200px;
+body {
+    background: linear-gradient(to bottom right, #EEF5A5, #B7E3D4);
+}
+
+.logo-login {
+    max-height: 150px;
+}
+
+.login-header {
+    opacity : 70%;
 }
 
 .wrap-login100 {
@@ -13,122 +21,320 @@
     position: relative;
     padding-right: 85px;
     padding-left: 85px;
-    padding-bottom: 55px;
-    padding-top: 55px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     text-align: center;
 }
 
 .wave-group {
-  position: relative;
+    position: relative;
 }
 
+.wave-group-birthday {
+    position: relative;
+}
 
 .wave-group .input {
-  font-size: 16px;
-  padding: 10px 10px 10px 5px;
-  display: block;
-  width: 400px;
-  border: none;
-  border-bottom: 1px solid #515151;
-  background: transparent;
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 400px;
+    border: none;
+    border-bottom: 1px solid #515151;
+    background: transparent;
+}
+
+.wave-group-birthday .input {
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 400px;
+    border: none;
+    border-bottom: 1px solid #515151;
+    background: transparent;
 }
 
 .wave-group .input:focus {
-  outline: none;
+    outline: none;
+}
+
+.wave-group-birthday .input:focus {
+    outline: none;
 }
 
 .wave-group .label {
-  color: #999;
-  font-size: 18px;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 10px;
-  display: flex;
+    color: #999;
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    display: flex;
+}
+
+.wave-group-birthday .label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    display: flex;
 }
 
 .wave-group .label-char {
-  transition: 0.2s ease all;
-  transition-delay: calc(var(--index) * .05s);
+    transition: 0.2s ease all;
+    transition-delay: calc(var(--index) * .05s);
+}
+
+.wave-group-birthday .label-char {
+    transition: 0.2s ease all;
+    transition-delay: calc(var(--index) * .05s);
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: #5264AE;
 }
 
 .wave-group .input:focus ~ label .label-char,
 .wave-group .input:valid ~ label .label-char {
-  transform: translateY(-20px);
-  font-size: 14px;
-  color: #5264AE;
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: #5264AE;
 }
 
 .wave-group .bar {
-  position: relative;
-  display: block;
-  width: 400px;
+    position: relative;
+    display: block;
+    width: 400px;
 }
 
-.wave-group .bar:before,.wave-group .bar:after {
-  content: '';
-  height: 2px;
-  width: 0;
-  bottom: 1px;
-  position: absolute;
-  background: #5264AE;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
+.wave-group-birthday .bar {
+    position: relative;
+    display: block;
+    width: 400px;
+}
+
+.wave-group .bar:before, .wave-group .bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.wave-group-birthday .bar:before, .wave-group-birthday .bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
 }
 
 .wave-group .bar:before {
-  left: 50%;
+    left: 50%;
+}
+
+.wave-group-birthday .bar:before {
+    left: 50%;
 }
 
 .wave-group .bar:after {
-  right: 50%;
+    right: 50%;
+}
+
+.wave-group-birthday .bar:after {
+    right: 50%;
 }
 
 .wave-group .input:focus ~ .bar:before,
 .wave-group .input:focus ~ .bar:after {
-  width: 50%;
+    width: 50%;
 }
 
-button {
- display: inline-block;
- border-radius: 4px;
- background-color: #3d405b;
- border: none;
- color: #FFFFFF;
- text-align: center;
- font-size: 15px;
- padding: 16px;
- width: 130px;
- height: 55px;
- transition: all 0.5s;
- cursor: pointer;
- margin: 5px;
+.wave-group-birthday .input:focus ~ .bar:before,
+.wave-group-birthday .input:focus ~ .bar:after {
+    width: 50%;
 }
 
-button span {
- cursor: pointer;
- display: inline-block;
- position: relative;
- transition: 0.5s;
+.login-button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3d405b;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 16px;
+    width: 130px;
+    height: 55px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
-button span:after {
- content: '»';
- position: absolute;
- opacity: 0;
- top: 0;
- right: -15px;
- transition: 0.5s;
+    .login-button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+        .login-button span:after {
+            content: '»';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -15px;
+            transition: 0.5s;
+        }
+
+    .login-button:hover span {
+        padding-right: 15px;
+    }
+
+        .login-button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+.login-google-button {
+    display: inline-block;
+    border-radius: 4px;
+    border: 1px solid #000000;
+    background-color: #3d405b;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    font-size: 15px;
+    padding: 16px;
+    width: 250px;
+    height: 55px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
-button:hover span {
- padding-right: 15px;
+.login-google-button svg {
+    margin-right: 10px;
 }
 
-button:hover span:after {
- opacity: 1;
- right: 0;
+    .login-google-button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+
+        .login-google-button span:after {
+            content: '»';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -15px;
+            transition: 0.5s;
+        }
+
+    .login-google-button:hover span {
+        padding-right: 15px;
+    }
+
+        .login-google-button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+.container-radio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
+.radio-first-label {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #079ad9;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.radio-tile-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+    .radio-tile-group .input-container {
+        position: relative;
+        height: 80px;
+        width: 150px;
+        margin: 0.5rem;
+    }
+
+        .radio-tile-group .input-container .radio-button {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .radio-tile-group .input-container .radio-tile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #079ad9;
+            border-radius: 5px;
+            padding: 1rem;
+            transition: transform 300ms ease;
+        }
+
+        .radio-tile-group .input-container .icon .fa {
+            color: #079ad9;
+            font-size: 1.5rem;
+        }
+
+        .radio-tile-group .input-container .radio-tile-label {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #079ad9;
+        }
+
+        .radio-tile-group .input-container .radio-button:checked + .radio-tile {
+            background-color: #079ad9;
+            border: 2px solid #079ad9;
+            color: white;
+            transform: scale(1.1, 1.1);
+        }
+
+            .radio-tile-group .input-container .radio-button:checked + .radio-tile .icon .fa {
+                color: white;
+                background-color: #079ad9;
+            }
+
+            .radio-tile-group .input-container .radio-button:checked + .radio-tile .radio-tile-label {
+                color: white;
+                background-color: #079ad9;
+            }

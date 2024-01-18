@@ -11,7 +11,8 @@
 @model ZAlpha.Application.Common.Models.PaginatedList<PostModel>
 
 <head>
-    <link href="./assets/css/NewFeed.css" rel="stylesheet" />
+    <link href="./assets/css/newfeed.css" rel="stylesheet" />
+    <script src="./assets/js/newfeed.js" defer></script>
 </head>
 <div>
 
@@ -27,7 +28,12 @@
             <div class="box">
                 <div>
                     <div style="position:relative ;">
-                        <i style="position: absolute; top:10px; right:10px;" class="fa-solid fa-arrow-up-wide-short fa-l"></i>
+                        <i id="bookmarkIcon"
+                           style="color: gray; position: absolute; top:10px; right:10px;"
+                           name="bookmarkIconPostId" value=@item.Id
+                           class="fa-solid fa-bookmark"
+                           onclick="clickBookmarkIcon()">
+                        </i>
                         <br />
                     </div>
                     @foreach (var postTag in item.PostTags)
@@ -83,30 +89,71 @@
                 </div>
                 <div class="row" style="margin-top:2vh;">
                     <div class="col-2">
-                        <button class="button-2" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-up"></i> Push</button>
+                        <button class="button-2" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-up"></i> 100 Push</button>
                     </div>
                     <div class="col-2">
-                        <button class="button-62" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-down"></i> Hide</button>
+                        <button class="button-62" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-down"></i> 99 Hide</button>
                     </div>
 
                     <div class="col-6">
-                        <button class="button-10" style="width: 20vw;  font-size: 14px;" role="button"> Comment </button>
+                        <form action="~/Post" method="get">
+                            <input type="hidden" name="postID" value="@item.Id" />
+                            <button class="button-10" style="width: 20vw;  font-size: 14px;" type="submit"> Detail </button>
+                        </form>
+
                     </div>
-                    <div class="col-2">
+                   @*  <div class="col-2">
                         <button class="button-10" style="width: 6vw;  font-size: 14px;" role="button"> Save </button>
-                    </div>
+                    </div> *@
                 </div>
             </div>
+
         }
+        <script>
+            function clickBookmarkIcon() {
+                var postId = document.getElementsByName("bookmarkIconPostId");
+                //alert("ok");
+                $.ajax({
+                    url: "/Post/Test",
+                    type: "POST",
+                    data: postId,
+                    success: function (res) {
+                        if (res.success) {
+                            window.location.reload();
+                        }
+                    }
+
+                })
+            }
+
+
+
+            
+            const icon = document.getElementById('bookmarkIcon');
+
+            icon.addEventListener('click', function onClick() {
+                // Toggle the 'active' class on each click
+                icon.classList.toggle('active');
+
+                // If you want to specifically change the color
+                // based on the 'active' class, you can do the following:
+                const isActive = icon.classList.contains('active');
+                icon.style.color = isActive ? 'yellow' : 'gray';
+            });
+
+
+           
+        </script>
+
+      
 
 
 
 
-
-
-
-
-        @*-----------------------------------------------------------------------*@
+        <br />
+        template
+        <br />
+        @*----------------- từ khúc này trở xuống là template đừng xóa------------------------------------------------------*@
         @*-------------post 2 (detail)-----------*@
         <div class="box">
             <div>
@@ -232,11 +279,5 @@
             </div>
         </div>
         @*------------------------*@
-
-
-
-
     </div>
-
-
 </div>

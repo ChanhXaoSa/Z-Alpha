@@ -1,4 +1,9 @@
-﻿
+
+#scroll {
+    width: 100%;
+    height: 80vh;
+    /*border: 5px solid #00ff00;*/
+}
 .textbox {
     display: inline-block;
     background-color: #EFD037; /* Set the background color */
@@ -31,26 +36,26 @@
     background-color: #f2fcfc;
     border-radius: 7px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: 1vw 2vw 1vw 2vw;
+    /*padding: 0.5vh 1vw 0.5vh 1vw;*/
     /*margin: 0 0 1vh 0;*/
-    margin: 1vh;
+    /*margin: 1vh;*/
     flex-wrap: wrap;
 }
 .DivComment {
     background-color: #defafa;
-    border-radius: 9px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 14px;
-    padding: 0.5vw 1vw 0.5vw 1vw;
-    /*margin: 0 0 1vh 0;*/
-    margin: 1vh;
+    border-radius: 19px;
+   
+    padding: 1vw;
+    margin: 0px;
     flex-wrap: wrap;
+   
 }
 .br {
     margin: 2.2vh 0;
 }
 .TiltePost {
     margin: 6px 0 16px 0;
-    font-size: 15px;
+    font-size: 16px;
     font-family: Inter;
     font-weight: 400;
     word-wrap: break-word
@@ -64,9 +69,10 @@
     display: inline;
 }
 .PostText {
-    font-size: 14px;
+    font-size: 15px;
     font-family: Inter;
     font-weight: 400;
+
 }
 .PushTextBox {
     color: #2364AA;
@@ -124,7 +130,7 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     white-space: nowrap;
-    width: 6vw;
+    width: 5vw;
     text-align: center;
     align-content: center;
     align-items: center;
@@ -161,7 +167,7 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     white-space: nowrap;
-    width: 6vw;
+    width: 5vw;
     text-align: center;
     margin: auto;
 }
@@ -202,7 +208,138 @@
 
 .button-comment {
     text-align: right;
-    margin: 1vw 0;
+    margin: 0.5vh 0 0 0;
 }
 
 
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin:1rem;
+    padding-bottom:1rem;
+}
+
+.search__input {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #f4f2f2;
+    border: none;
+    color: #646464;
+    padding: 0.7rem 1rem;
+    border-radius: 30px;
+    width: 100%;
+    transition: all ease-in-out .5s;
+    margin-right: -2rem;
+}
+
+    .search__input:hover, .search__input:focus {
+        box-shadow: 0 0 1em #00000013;
+    }
+
+    .search__input:focus {
+        outline: none;
+        background-color: #f0eeee;
+    }
+
+    .search__input::-webkit-input-placeholder {
+        font-weight: 100;
+        color: #ccc;
+    }
+
+    .search__input:focus + .search__button {
+        background-color: #f0eeee;
+    }
+
+.search__button {
+    border: none;
+    margin-right:1.8rem;
+    background-color: #f4f2f2;
+    margin-top: .1em;
+    padding:0;
+}
+
+    .search__button:hover {
+        cursor: pointer;
+    }
+
+.search__icon {
+    height: 1.3em;
+    width: 1.3em;
+    fill: #b4b4b4;
+}
+
+.ImgCenter img{
+    justify-content:center;
+    align-content:center;
+    text-align:center;
+    margin:1rem;
+}
+
+
+.button-19 {
+
+    appearance: button;
+    background-color: #1899D6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: din-round,sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.button-19:after {
+    background-clip: padding-box;
+    background-color: #1CB0F6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.button-19:main,
+.button-19:focus {
+    user-select: auto;
+}
+
+.button-19:hover:not(:disabled) {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+}
+
+.button-19:disabled {
+    cursor: auto;
+}
+
+.button-19:active {
+    border-width: 4px 0 0;
+    background: none;
+}
