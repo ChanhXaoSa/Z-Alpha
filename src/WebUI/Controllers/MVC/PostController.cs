@@ -33,6 +33,7 @@ public class PostController : ControllerBaseMVC
         if (User.Identity.IsAuthenticated && description != null)
         {
             var commentId = Mediator.Send(new CreateCommentCommands() { UserAccountId = user.Id, PostId = postId, Description = description }).Result;
+            TempData["Message"] = "Bạn đã đăng bình luận thành công";
         } else if (!User.Identity.IsAuthenticated && description != null)
         {
             return Redirect("~/Login");
