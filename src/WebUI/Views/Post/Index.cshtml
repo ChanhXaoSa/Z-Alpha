@@ -89,8 +89,8 @@
                     <img class="" style="width: 33vw; border-radius: 10px;  justify-content:center;
                         align-content:center;
                         text-align:center;
-                        margin:1rem;" 
-                    src="@Model.PostImagesUrl" />
+                        margin:1rem;"
+                         src="@Model.PostImagesUrl" />
                 </div>
 
                 <div class="row">
@@ -104,80 +104,81 @@
                 </div>
 
 
-               
+
             </div>
             @*--------------Comment-----------*@
-            
+
             <div class="col-6">
                 <div class="boxComment">
-                    <div id="scroll" style=" overflow:auto;  display:flex; justify-content:center;">                       
+                    <div id="scroll" style=" overflow:auto;  display:flex; justify-content:center;">
                         <div style="width:90%;">
                             <div id="commentSection">
                                 @Html.Partial("_CommentListPartial", listComment.Items)
                             </div>
                             @* @foreach (var item in listComment.Items)
                             {
-                                <div style="row">                                    
-                                    <div style="position:relative;">
-                                        <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
-                                        <strong style="display:inline; font-size:12px;">@item.UserAccount.FirstName @item.UserAccount.LastName</strong>
-                                        <div style="color: #FF6C37; font-size: 11px; display:inline; position:absolute; right:2vw; bottom:2px;">
-                                            @item.Created
-                                        </div>
-                                    </div>
-                                    <div class="DivComment">
-                                        <div style="font-size:13px">
-                                            @item.Description
-                                        </div>
-                                        <div class="button-comment">
-                                            <div style="">
-                                                <button type="button" class="btn rounded-circle" style="background-color:#75d995; color:white;">
-                                                    <p style="font-size:9px; margin:0;">3 <i class="fa-solid fa-arrow-up fa-xs"></i></p> 
-                                                </button>
-                                                <button type="button" class="btn rounded-circle" style="background-color:#d97575; color:white;">
-                                                    <p style="font-size:9px; margin:0;">9 <i class="fa-solid fa-arrow-down fa-xs"></i></p>                                                    
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div style="row">
+                            <div style="position:relative;">
+                            <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
+                            <strong style="display:inline; font-size:12px;">@item.UserAccount.FirstName @item.UserAccount.LastName</strong>
+                            <div style="color: #FF6C37; font-size: 11px; display:inline; position:absolute; right:2vw; bottom:2px;">
+                            @item.Created
+                            </div>
+                            </div>
+                            <div class="DivComment">
+                            <div style="font-size:13px">
+                            @item.Description
+                            </div>
+                            <div class="button-comment">
+                            <div style="">
+                            <button type="button" class="btn rounded-circle" style="background-color:#75d995; color:white;">
+                            <p style="font-size:9px; margin:0;">3 <i class="fa-solid fa-arrow-up fa-xs"></i></p>
+                            </button>
+                            <button type="button" class="btn rounded-circle" style="background-color:#d97575; color:white;">
+                            <p style="font-size:9px; margin:0;">9 <i class="fa-solid fa-arrow-down fa-xs"></i></p>
+                            </button>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
                             } *@
 
-                            
+
 
 
                             @*---------Div Comment--------*@
                             @* <div style="row">
-                                <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
-                                <div class="DivComment">
-                                    <div style="font-size:13px">
-                                        Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle
-                                    </div>
-                                    <div class="button-comment">
-                                        <div style="">
-                                            <button type="button" class="btn btn-success rounded-circle"><i class="fa-solid fa-arrow-up"></i></button>
-                                            <button type="button" class="btn btn-warning rounded-circle"><i class="fa-solid fa-arrow-down"></i></button>
-                                        </div>
-                                    </div>
-                                </div>                           
+                            <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
+                            <div class="DivComment">
+                            <div style="font-size:13px">
+                            Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle
+                            </div>
+                            <div class="button-comment">
+                            <div style="">
+                            <button type="button" class="btn btn-success rounded-circle"><i class="fa-solid fa-arrow-up"></i></button>
+                            <button type="button" class="btn btn-warning rounded-circle"><i class="fa-solid fa-arrow-down"></i></button>
+                            </div>
+                            </div>
+                            </div>
                             </div> *@
-                            
-                        </div>                        
+
+                        </div>
                     </div>
-                    <form action="~/Post" method="post">
+                    @* <form action="~/Post" method="post">
                         <div class="search">
                             <input type="hidden" name="PostId" value="@Model.Id" />
-                            @* <input type="hidden" name="UserAccountId" value="424ab531-d60a-487e-9625-a74a7f5747be" /> *@
                             <input type="text" class="search__input" name="Description" placeholder="Type your text">
                             <button class="search__button" type="submit">
                                 <i class="fa-solid fa-paper-plane fa-xl"></i>
                             </button>
                         </div>
-                    </form>
-                    <input type="text" id="commentDescription" class="search__input" name="Description" placeholder="Type your text">
-                    <button id="submitComment" class="search__button" type="submit">
-                        <i class="fa-solid fa-paper-plane fa-xl"></i>
-                    </button>
+                    </form> *@
+                    <div class="search">
+                        <input type="text" id="commentDescription" class="search__input" name="Description" placeholder="Type your text">
+                        <button id="submitComment" class="search__button" type="submit">
+                            <i class="fa-solid fa-paper-plane fa-xl"></i>
+                        </button>
+                    </div>
                     <script>
                         $(document).ready(function () {
                             $("#submitComment").click(function () {
@@ -205,6 +206,6 @@
                     </script>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 </div>
