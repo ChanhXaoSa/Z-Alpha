@@ -14,6 +14,7 @@ namespace ZAlpha.Application.PsychologistAccount.Queries.GetPsychologistById;
 public class GetPsychologistAccountByUserIdQueries : IRequest<GetAllPsychologistAccount.PsychologistAccountModel>
 {
     public Guid Id { get; set; }
+    public string UserAccountId { get; set; }
 }
 
 public class GetPsychologistAccountByUserIdQueriesHandler : IRequestHandler<GetPsychologistAccountByUserIdQueries, GetAllPsychologistAccount.PsychologistAccountModel>
@@ -31,18 +32,17 @@ public class GetPsychologistAccountByUserIdQueriesHandler : IRequestHandler<GetP
     public Task<GetAllPsychologistAccount.PsychologistAccountModel> Handle(GetPsychologistAccountByUserIdQueries request, CancellationToken cancellationToken)
     {
         // get 
-        var Post = _context.Get<Domain.Entities.PsychologistAccount>()
-            .Where(x => x.IsDeleted == false && x.UserAccountId.Equals(request.Id))
-            .Include(o => o.UserAccount)
+        var psychologist = _context.Get<Domain.Entities.PsychologistAccount>()
+            .Where(x => x.IsDeleted == false && x.UserAccountId.Equals(request.UserAccountId))
             .AsNoTracking()
             .FirstOrDefault();                      
-        if (Post == null)
+        if (psychologist == null)
         {
-            throw new NotFoundException(nameof(Domain.Entities.PsychologistAccount), request.Id);
+            throw new NotFoundException(nameof(Domain.Entities.PsychologistAccount), request.UserAccountId);
         }
 
         // AsNoTracking to remove default tracking on entity framework
-        var map = _mapper.Map<GetAllPsychologistAccount.PsychologistAccountModel>(Post);
+        var map = _mapper.Map<GetAllPsychologistAccount.PsychologistAccountModel>(psychologist);
 
         // Paginate data
         return Task.FromResult(map); //Task.CompletedTask;
