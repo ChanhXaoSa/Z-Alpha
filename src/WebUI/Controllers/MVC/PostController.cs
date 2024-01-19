@@ -43,10 +43,26 @@ public class PostController : ControllerBaseMVC
         ViewBag.listComment = listComment;
         return View(post);
     }
+
     [HttpPost]
-    public  ActionResult Test(string postId)
+    public async Task<IActionResult> AddComment(string postId, string description)
     {
-        return Json(new { success = true });
-       
+        if (User.Identity.IsAuthenticated && description != null)
+        {
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            var commentId = await Mediator.Send(new CreateCommentCommands() { UserAccountId = user.Id, PostId = Guid.Parse(postId), Description = description });
+            return Json(new { success = true, message = "Bạn đã đăng bình luận thành công", commentId = commentId });
+        }
+        else
+        {
+            return Json(new { success = false, message = "Đăng nhập để bình luận" });
+        }
+    }
+
+    [HttpPost]
+    public IActionResult YourAjaxMethod()
+    {
+        // Xử lý logic ở đây
+        return Json(new { success = true, message = "Thành công!" });
     }
 }

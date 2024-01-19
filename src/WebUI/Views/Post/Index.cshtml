@@ -172,7 +172,36 @@
                             </button>
                         </div>
                     </form>
+                    <input type="text" id="commentDescription" class="search__input" name="Description" placeholder="Type your text">
+                    <button id="submitComment" class="search__button" type="submit">
+                        <i class="fa-solid fa-paper-plane fa-xl"></i>
+                    </button>
+                    <script>
+                        $(document).ready(function () {
+                            $("#submitComment").click(function () {
+                                var postId = "@Model.Id"; // Cách lấy postId phụ thuộc vào cách bạn truyền giá trị này vào view
+                                var description = $("#commentDescription").val();
 
+                                $.ajax({
+                                    type: "POST",
+                                    url: "@Url.Action("AddComment", "Post")",
+                                    data: { postId: postId, description: description },
+                                    success: function (result) {
+                                        if (result.success) {
+                                            // Xử lý khi bình luận thành công
+                                            alert(result.message);
+                                        } else {
+                                            // Xử lý khi có lỗi
+                                            alert(result.message);
+                                        }
+                                    },
+                                    error: function () {
+                                        alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+                                    }
+                                });
+                            });
+                        });
+                    </script>
                 </div>
 
               
@@ -181,17 +210,3 @@
         </div>        
     </div>
 </div>
-@if (TempData["Message"] != null)
-{
-    <script>
-        $(document).ready(function () {
-            toastr.options = {
-                "positionClass": "toast-top-right",
-            };
-            showCommentNotification();
-        });
-        function showCommentNotification() {
-            toastr.success('Bạn đã đăng bình luận thành công.', 'Thành công');
-        }
-    </script>
-}
