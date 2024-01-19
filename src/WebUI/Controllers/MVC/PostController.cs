@@ -51,6 +51,7 @@ public class PostController : ControllerBaseMVC
         {
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
             var commentId = await Mediator.Send(new CreateCommentCommands() { UserAccountId = user.Id, PostId = Guid.Parse(postId), Description = description });
+            var newComment = await Mediator.Send(new GetCommentByIdQueries() { Id = commentId });
             return Json(new { success = true, message = "Bạn đã đăng bình luận thành công", commentId = commentId });
         }
         else

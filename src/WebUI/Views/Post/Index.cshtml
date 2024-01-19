@@ -179,7 +179,7 @@
                     <script>
                         $(document).ready(function () {
                             $("#submitComment").click(function () {
-                                var postId = "@Model.Id"; // Cách lấy postId phụ thuộc vào cách bạn truyền giá trị này vào view
+                                var postId = "@Model.Id";
                                 var description = $("#commentDescription").val();
 
                                 $.ajax({
