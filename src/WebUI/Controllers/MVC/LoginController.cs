@@ -51,7 +51,7 @@ public class LoginController : ControllerBaseMVC
             var user = await _identityService.GetUserByEmailAsync(Email);
             if (user == null)
             {
-                var result = await _signInManager.PasswordSignInAsync(Email, Password, false, false);
+                var result = await _signInManager.PasswordSignInAsync(Email, Password, true, false);
                 if (result.Succeeded)
                 {
                     HttpContext.Session.SetString("userId", user.Id.ToString());
@@ -59,7 +59,7 @@ public class LoginController : ControllerBaseMVC
                 }
             } else
             {
-                var result = await _signInManager.PasswordSignInAsync(user.UserName, Password, false, false);
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, Password, true, false);
                 if (result.Succeeded)
                 {
                     HttpContext.Session.SetString("userId", user.Id.ToString());
