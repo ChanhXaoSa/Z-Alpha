@@ -34,6 +34,7 @@ public class GetPsychologistAccountByUserIdQueriesHandler : IRequestHandler<GetP
         // get 
         var psychologist = _context.Get<Domain.Entities.PsychologistAccount>()
             .Where(x => x.IsDeleted == false && x.UserAccountId.Equals(request.UserAccountId))
+            .Include(x=> x.UserAccount)
             .AsNoTracking()
             .FirstOrDefault();                      
         if (psychologist == null)
