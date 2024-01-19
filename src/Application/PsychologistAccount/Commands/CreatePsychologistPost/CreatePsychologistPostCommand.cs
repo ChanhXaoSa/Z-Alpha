@@ -5,27 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using MediatR;
 using ZAlpha.Application.Common.Interfaces;
-using ZAlpha.Application.PsychologistAccount.Commands.CreatePsychologistPost;
+using System.ComponentModel.DataAnnotations.Schema;
+using ZAlpha.Domain.Entities;
+using ZAlpha.Domain.Identity;
 
-namespace ZAlpha.Application.Post.Commands.CreatePost;
-public class CreatePostCommands : IRequest<Guid>
+namespace ZAlpha.Application.PsychologistAccount.Commands.CreatePsychologistPost;
+public class CreatePsychologistPostCommand : IRequest<Guid>
 {
     public Guid PostId { get; set; }
     public string PostTitle { get; set; }
     public string PostDescription { get; set; }
     public string PostImgUrl { get; set; }
 }
-public class CreatePostCommandsHandler : IRequestHandler<CreatePsychologistPostCommand, Guid>
+
+public class CreatePsychologistPostCommandHandler : IRequestHandler<CreatePsychologistPostCommand, Guid>
 {
     private readonly IApplicationDbContext _context;
 
-    public CreatePostCommandsHandler(IApplicationDbContext context)
+    public CreatePsychologistPostCommandHandler(IApplicationDbContext context)
     {
         _context = context;
     }
 
-    public async Task<Guid> Handle(CreatePsychologistPostCommand request, 
-        CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreatePsychologistPostCommand request, CancellationToken cancellationToken)
     {
         var post = new Domain.Entities.Post()
         {

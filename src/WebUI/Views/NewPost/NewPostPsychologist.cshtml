@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "New Post";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 }
 <!DOCTYPE html>
 <html>
@@ -18,12 +19,27 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600" />
 </head>
 <body>
-    <div class="auto-group-wunr-yp1">
-        <div class="information-box-UVs">Bạn muốn viết gì?</div>
-        <div class="auto-group-pyz5-jAu">
-            <div class="auto-group-gko3-qzd">Thêm ảnh +</div>
-            <div class="auto-group-qhuy-jq7">Đăng</div>
+    <form asp-controller="NewPost" asp-action="NewPostPsychologist" enctype="multipart/form-data">
+        <div class="auto-group-wunr-yp1">
+                <textarea id="model" name="model" placeholder="Bạn muốn viết gì?" class="information-box-UVs"></textarea>                
+            <div class="auto-group-pyz5-jAu">                
+                <div class="auto-group-gko3-qzd">
+                    <input type="file" name="file" id="cusInput" hidden/>
+                    <label class="lb-input" for="cusInput">Thêm Ảnh</label>
+                </div>
+                <span class="file-choosen" id="file-chosen">No file chosen</span>
+                <button class="auto-group-qhuy-jq7" type="submit">Đăng</button>
+            </div>
         </div>
-    </div>
+    </form>
 </body>
 </html>
+<script>
+    const actualBtn = document.getElementById('cusInput');
+
+    const fileChosen = document.getElementById('file-chosen');
+
+    actualBtn.addEventListener('change', function(){
+      fileChosen.textContent = this.files[0].name
+    })
+</script>
