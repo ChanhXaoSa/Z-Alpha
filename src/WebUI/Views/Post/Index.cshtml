@@ -112,9 +112,11 @@
                 <div class="boxComment">
                     <div id="scroll" style=" overflow:auto;  display:flex; justify-content:center;">                       
                         <div style="width:90%;">
-                            @foreach (var item in listComment.Items)
+                            <div id="commentSection">
+                                @Html.Partial("_CommentListPartial", listComment.Items)
+                            </div>
+                            @* @foreach (var item in listComment.Items)
                             {
-                                @*---------Div Comment--------*@
                                 <div style="row">                                    
                                     <div style="position:relative;">
                                         <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
@@ -139,7 +141,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            }
+                            } *@
 
                             
 
@@ -188,10 +190,9 @@
                                     data: { postId: postId, description: description },
                                     success: function (result) {
                                         if (result.success) {
-                                            // Xử lý khi bình luận thành công
                                             alert(result.message);
+                                            $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
                                         } else {
-                                            // Xử lý khi có lỗi
                                             alert(result.message);
                                         }
                                     },
@@ -203,9 +204,6 @@
                         });
                     </script>
                 </div>
-
-              
-
             </div>
         </div>        
     </div>
