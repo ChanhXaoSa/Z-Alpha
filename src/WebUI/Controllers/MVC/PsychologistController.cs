@@ -21,7 +21,16 @@ public class PsychologistController : ControllerBaseMVC
 
     public IActionResult Index()
     {
-        return View();
+        try
+        {
+            Guid userId = Guid.Parse(HttpContext.Session.GetString("userId"));
+            var result = Mediator.Send(new GetAllInteractWithPostByUserIdQueries() { UserId = userId, Page = 1, Size = 100 }).Result;
+            return View(result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public IActionResult Info()

@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ZAlpha.Application.ManagerAccount.Queries.GetAllManagerAccount;
-internal class GetManagerAccountQueries
+public class GetManagerAccountQueries
 {
 }
