@@ -44,12 +44,12 @@ public class PsychologistController : ControllerBaseMVC
         return View();
     }
 
-    public IActionResult PsychologistPost()
+    public async Task<IActionResult> PsychologistPost()
     {
         try
         {
-            Guid userId = Guid.Parse(HttpContext.Session.GetString("userId"));
-            var result = Mediator.Send(new GetAllInteractWithPostByUserIdQueries() {UserId = userId, Page = 1, Size = 100 }).Result;
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            var result = Mediator.Send(new GetAllInteractWithPostByUserIdQueries() {UserId = user.Id, Page = 1, Size = 100 }).Result;
             return View(result);
         }
         catch (Exception ex)
