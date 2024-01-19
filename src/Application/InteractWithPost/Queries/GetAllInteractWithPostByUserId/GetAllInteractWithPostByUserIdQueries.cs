@@ -16,7 +16,7 @@ using ZAlpha.Domain.Entities;
 namespace ZAlpha.Application.InteractWithPost.Queries.GetAllInteractWithPostByUserId;
 public class GetAllInteractWithPostByUserIdQueries : IRequest<PaginatedList<InteractWithPostModel>>
 {
-    public Guid UserId { get; set; }
+    public string UserId { get; set; }
     public int Page { get; set; }
     public int Size { get; set; }
 }
