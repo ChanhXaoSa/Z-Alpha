@@ -34,17 +34,7 @@ public class PsychologistController : ControllerBaseMVC
         }
     }
 
-    public IActionResult Info()
-    {
-        return View();
-    }
-
-    public IActionResult PsychologistComment()
-    {
-        return View();
-    }
-
-    public async Task<IActionResult> PsychologistPost()
+    public async Task<IActionResult> PostList()
     {
         try
         {
@@ -58,7 +48,7 @@ public class PsychologistController : ControllerBaseMVC
         }
     }
 
-    public IActionResult PsychologistRating()
+    public IActionResult Rating()
     {
         return View();
     }
