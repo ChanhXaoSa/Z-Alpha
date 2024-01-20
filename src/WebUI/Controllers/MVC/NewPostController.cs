@@ -25,15 +25,14 @@ public class NewPostController : ControllerBaseMVC
             description.Add("feeling", feeling);
             description.Add("question", question);
             description.Add("rate", rate);
-            // check file co phai la img ko
-            if (IsImageFile(file))
+            // check file co phai la img khong
+            if (IsImageFile(file) && file.Length > 0)
             {
-                 postImgUrl = ConvertIformfileToString(file);
+                 postImgUrl = ConvertIFormFileToBase64(file);
             } else
             {
                 return Json("File is not Image");
-            }
-            
+            }            
             if (feeling == null || question == null || title == null) return Json("fail");
             var postId = Mediator.Send(new CreatePsychologistPostCommand { PostDescription = description.ToString(), PostImgUrl = postImgUrl, PostTitle = title }).Result;
             var post = await Mediator.Send(new GetPostByIdQueries() { Id = postId });
@@ -44,29 +43,6 @@ public class NewPostController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
         return View();
-    }
-    private string ConvertIformfileToString(IFormFile file)
-    {
-        var result = new StringBuilder();
-        using (var reader = new StreamReader(file.OpenReadStream()))
-        {
-            while (reader.Peek() >= 0)
-            {
-                result.AppendLine(reader.ReadLine());
-            }
-        }
-        return result.ToString();
-    } 
-    private bool IsImageFile(IFormFile file)
-    {
-        if (Path.GetExtension(file.FileName).ToLower() != ".jpg"
-            && Path.GetExtension(file.FileName).ToLower() != ".png"
-            && Path.GetExtension(file.FileName).ToLower() != ".gif"
-            && Path.GetExtension(file.FileName).ToLower() != ".jpeg")
-        {
-            return false;
-        }
-        return true;
     }
     [HttpGet]
     public IActionResult NewPostPsychologist()
@@ -80,9 +56,9 @@ public class NewPostController : ControllerBaseMVC
         try
         {
             string postImgUrl = "";
-            if (IsImageFile(file))
+            if (IsImageFile(file) && file.Length > 0)
             {
-                postImgUrl = ConvertIformfileToString(file);
+                postImgUrl = ConvertIFormFileToBase64(file);
             }
             else
             {
@@ -100,5 +76,24 @@ public class NewPostController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
-    
+    public string ConvertIFormFileToBase64(IFormFile file)
+    {
+        using (MemoryStream memoryStream = new MemoryStream())
+        {
+            file.CopyTo(memoryStream);
+            byte[] fileBytes = memoryStream.ToArray();
+            return Convert.ToBase64String(fileBytes);
+        }
+    }
+    private bool IsImageFile(IFormFile file)
+    {
+        if (Path.GetExtension(file.FileName).ToLower() != ".jpg"
+            && Path.GetExtension(file.FileName).ToLower() != ".png"
+            && Path.GetExtension(file.FileName).ToLower() != ".gif"
+            && Path.GetExtension(file.FileName).ToLower() != ".jpeg")
+        {
+            return false;
+        }
+        return true;
+    }
 }
