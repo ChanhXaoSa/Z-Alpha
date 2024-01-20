@@ -34,13 +34,12 @@ public class RouteController : Controller
             {
                 return RedirectToAction("NewPost", "Customer");
             }
-            var isPsychologist = await _identityService.IsInRoleAsync(user.Id.ToString(), AppRole.Psychologist);
-            if (isCustomer)
+            var isPsychologist = await _identityService.IsInRoleAsync(user.Id, AppRole.Psychologist);
+            if (isPsychologist)
             {
                 return RedirectToAction("NewPost", "Psychologist");
             }
         }
-        return RedirectToAction("NewPost", "Psychologist");
         return RedirectToAction("Index", "Home");
     }
 }
