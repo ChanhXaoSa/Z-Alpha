@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.Post.Queries.GetAllPost;
+using ZAlpha.Application.Tag.Queries.GetTag;
+using ZAlpha.Domain.Enums;
+using ZAlpha.Domain.Enums.Helper;
 using ZAlpha.Domain.Identity;
 
 namespace WebUI.Controllers.MVC;
@@ -34,6 +38,12 @@ public class CustomerController : ControllerBaseMVC
     }
     public IActionResult NewPost()
     {
+        List<EmotionalStatus> emotionalStatusList = Enum.GetValues(typeof(EmotionalStatus)).Cast<EmotionalStatus>().ToList();
+
+
+        var tags = Mediator.Send(new GetAllTagQueries() { Page = 1, Size = 50 }).Result;
+        ViewBag.tags = tags;
+        ViewBag.emotionalStatusList = emotionalStatusList;
         return View();
     }
 }
