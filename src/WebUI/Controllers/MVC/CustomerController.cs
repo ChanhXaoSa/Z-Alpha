@@ -6,8 +6,8 @@ using ZAlpha.Application.PsychologistAccount.Queries.GetPsychologistById;
 using ZAlpha.Application.Post.Queries.GetAllPost;
 using ZAlpha.Application.Tag.Queries.GetTag;
 using ZAlpha.Domain.Enums;
-using ZAlpha.Domain.Enums.Helper;
 using ZAlpha.Domain.Identity;
+using ZAlpha.Application.InteractWithPost.Queries.GetAllInteractWithPostByUserId;
 
 namespace WebUI.Controllers.MVC;
 public class CustomerController : ControllerBaseMVC
@@ -35,8 +35,18 @@ public class CustomerController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
-    public IActionResult PostList()
+    public async Task<IActionResult> PostList()
     {
+        try
+        {
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            var result = Mediator.Send(new GetAllInteractWithPostByUserIdQueries() { UserId = /*user.Id*/ "871a809a-b3fa-495b-9cc2-c5d738a866cf", Page = 1, Size = 100 }).Result;
+            return View(result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
         return View();
     }
     public IActionResult PostSaved()

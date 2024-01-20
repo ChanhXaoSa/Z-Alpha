@@ -8,69 +8,79 @@
 <head>
     <title>Psychologist Post</title>
 </head>
-
-
+@using Microsoft.AspNetCore.Mvc;
+@using ZAlpha.Application.Tag.Queries;
+@using ZAlpha.Application.Post.Queries.GetAllPost;
+@using ZAlpha.Application.InteractWithPost.Queries.GetAllInteractWithPost;
+@model ZAlpha.Application.Common.Models.PaginatedList<InteractWithPostModel>
 
 <div class="DivBaiViet">
     <div style="font-weight:800;">
         DANH SÁCH BÀI VIẾT CỦA BẠN
     </div>
     @* ----------Div này là 1 post ---------*@
-    <div class="box">
-        <div>
-            <div style="position:relative ;">
-                <i style="position: absolute; top:10px; right:10px;" class="fa-solid fa-arrow-up-wide-short fa-l"></i>
-                <br />
+    @foreach (var item in Model.Items)
+    {
+        <div class="box">
+            <div>
+                <div style="position:relative ;">
+                    <i style="position: absolute; top:10px; right:10px;" class="fa-solid fa-arrow-up-wide-short fa-l"></i>
+                    <br />
+                </div>
+                @foreach (var postTag in item.post.PostTags)
+                {
+                    <div class="textbox"> @postTag.Tag.TagName </div>
+                }
             </div>
-            <div class="textbox">Công việc </div>
-            <div class="textbox">Gia đình</div>
-
-        </div>
-        <div class="TiltePost">
-            <strong>
-                Làm một ngày gần 12 tiếng nhưng khi về đến nhà vẫn không được nghỉ ngơi haizzz...
-            </strong>
-        </div>
-
-        <div class="row">
-            <div class="col-6">
-                <img class="" style="width: 100%; border-radius: 10px" src="https://via.placeholder.com/330x330" />
+            <div class="TiltePost">
+                <strong>
+                    @item.post.PostTitle
+                </strong>
             </div>
-            <div class="col-6">
-                <div class="row" style="position:relative;">
-                    <div class="col-2">
-                        <img style="width:3.7vw;border-radius: 9999px" src="https://via.placeholder.com/38x38" />
+
+            <div class="row">
+                <div class="col-6">
+                    <img class="" style="width: 100%; border-radius: 10px" src="@item.post.PostImagesUrl" />
+                </div>
+                <div class="col-6">
+                    <div class="row" style="position:relative;">
+                        <div class="col-2">
+                            <img style="width:3.7vw;border-radius: 9999px" src="https://via.placeholder.com/38x38" />
+                        </div>
+                        <div class="col-10" style="position: absolute; left:5vw; top:0.3vw;">
+                            <div style="color: black; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word">@item.UserAccount.FirstName @item.UserAccount.LastName</div>
+                            <div style="color: #FF6C37; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">@item.post.Created</div>
+                        </div>
                     </div>
-                    <div class="col-10" style="position: absolute; left:5vw; top:0.3vw;">
-                        <div style="color: black; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word">Shiba</div>
-                        <div style="color: #FF6C37; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">20 phút trước</div>
+                    <div class="hashtag">
+                        <p>#kiemtien</p>
+                        <p>#nghihoc</p>
+                    </div>
+                    <div class="PostText">
+                        @item.post.PostBody
                     </div>
                 </div>
-                <div class="hashtag">
-                    <p>#kiemtien</p>
-                    <p>#nghihoc</p>
+            </div>
+            <div class="row" style="margin-top:2vh;">
+                <div class="col-2">
+                    <button class="button-2" style="height: 32px;" role="button"><i class="fa-solid fa-pen-to-square"></i> Chính sửa</button>
                 </div>
-                <div class="PostText">
-                    Nhà em cũng không phải khá giả nên em bỏ học đi làm từ sớm, muốn chạy đi kiếm tiền luôn. Hiện tại là một shipper ngày nào cũng ráng giao cả ngàn đơn, dãi nắng cả buổi, ráng cày thêm đơn để được thưởng KPI. Vậy nên mỗi khi về nhà, ngoài kiệt sức ra em thường xuyên cảm thấy căng thẳng, mệt mỏi và có những suy nghĩ tiêu cực về bản thân, mình cải cha cãi má bỏ học đi làm mà. Em chỉ muốn được nghỉ ngơi nhưng mẹ bảo em xuống làm cơm cho ba má ăn với lo dọn dẹp nhà. Điều này khiến em cảm thấy mệt mỏi và khó chịu.
+                <div class="col-2">
+                    <button class="button-62" style="height: 32px;" role="button"><i class="fa-solid fa-trash"></i> Xóa</button>
                 </div>
-            </div>
-        </div>
-        <div class="row" style="margin-top:2vh;">
-            <div class="col-2">
-                <button class="button-2" style="height: 32px;" role="button"><i class="fa-solid fa-pen-to-square"></i> Chính sửa</button>
-            </div>
-            <div class="col-2">
-                <button class="button-62" style="height: 32px;" role="button"><i class="fa-solid fa-trash"></i> Xóa</button>
-            </div>
 
-            <div class="col-6">
-                <button class="button-10" style="width: 20vw;  font-size: 14px;" role="button"> Xem chi tiết </button>
-            </div>
-            <div class="col-2">
-                @* <button class="button-10" style="width: 6vw;  font-size: 14px;" role="button"> Save </button> *@
+                <div class="col-6">
+                    <form action="~/Post" method="get">
+                        <input type="hidden" name="postID" value="@item.PostId" />
+                        <button class="button-10" style="width: 20vw;  font-size: 14px;" role="button"> Xem chi tiết </button>
+                    </form>             
+                </div>
+                <div class="col-2">
+                    @* <button class="button-10" style="width: 6vw;  font-size: 14px;" role="button"> Save </button> *@
+                </div>
             </div>
         </div>
-    </div>
+    }
     @*-----------------------------------*@
 
     @* ----------Div này là 1 post ---------*@
