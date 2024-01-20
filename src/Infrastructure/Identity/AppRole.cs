@@ -10,7 +10,7 @@ public static class AppRole
     public static string Admin = "Administrator";
     public static string Manager = "Manager";
     public static string Customer = "Customer";
-    public static string Expert = "Expert";
+    public static string Psychologist = "Psychologist";
 
 
 

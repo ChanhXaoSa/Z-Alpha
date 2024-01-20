@@ -52,4 +52,8 @@ public class PsychologistController : ControllerBaseMVC
     {
         return View();
     }
+    public IActionResult NewPost()
+    {
+        return View();
+    }
 }
