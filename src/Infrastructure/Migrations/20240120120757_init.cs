@@ -182,6 +182,7 @@ namespace ZAlpha.Infrastructure.Migrations
                     PostImagesUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NumberOfLikes = table.Column<int>(type: "int", nullable: true),
                     NumberOfDisLikes = table.Column<int>(type: "int", nullable: true),
+                    EmotionalStatus = table.Column<int>(type: "int", nullable: false),
                     AnonymousStatus = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -369,6 +370,11 @@ namespace ZAlpha.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserAccountId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Specialize = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Workplace = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Milestones = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Intro = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -616,17 +622,17 @@ namespace ZAlpha.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "Avatar", "AvatarUrl", "BirthDay", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsPremium", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "Phone", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UserName", "Wallet" },
                 values: new object[,]
                 {
-                    { "424ab531-d60a-487e-9625-a74a7f5747be", 0, null, null, null, null, "edc556bc-d554-452f-beef-92b1bb4db796", "test@gmail.com", false, "Chan", null, "Dinh", false, null, null, null, null, null, null, false, "bbdad149-4f03-48a3-ae5f-23484ca9c774", 1, false, null, 1000.0 },
-                    { "871a809a-b3fa-495b-9cc2-c5d738a866cf", 0, null, null, null, null, "aa27dda4-12c6-4751-b217-efd6c115dc8d", "vinhtc191@gmail.com", false, "Tran", null, "Vinh", false, null, null, null, null, null, null, false, "174ad9fc-88fc-430e-bb8d-71f212211f77", 1, false, null, 10000000.0 }
+                    { "424ab531-d60a-487e-9625-a74a7f5747be", 0, null, null, null, null, "6f15def0-c381-4861-a9f7-122c2b82a7e0", "test@gmail.com", false, "Chan", null, "Dinh", false, null, null, null, null, null, null, false, "1d49735a-2fac-43c4-b8cf-7a5f42f8fb11", 1, false, null, 1000.0 },
+                    { "871a809a-b3fa-495b-9cc2-c5d738a866cf", 0, null, null, null, null, "8f32f2a0-c692-4cc4-b874-534a6b7c24c2", "vinhtc191@gmail.com", false, "Tran", null, "Vinh", false, null, null, null, null, null, null, false, "f42f2360-29b5-411c-a06e-629b7d400500", 1, false, null, 10000000.0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Posts",
-                columns: new[] { "Id", "AnonymousStatus", "Created", "CreatedBy", "IsDeleted", "LastModified", "LastModifiedBy", "NumberOfDisLikes", "NumberOfLikes", "PostBody", "PostImagesUrl", "PostTitle" },
+                columns: new[] { "Id", "AnonymousStatus", "Created", "CreatedBy", "EmotionalStatus", "IsDeleted", "LastModified", "LastModifiedBy", "NumberOfDisLikes", "NumberOfLikes", "PostBody", "PostImagesUrl", "PostTitle" },
                 values: new object[,]
                 {
-                    { new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), 1, new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9050), null, false, null, null, 10, 100, "Nhà em cũng không phải khá giả nên em bỏ học đi làm từ sớm, muốn chạy đi kiếm tiền luôn. Hiện tại là một shipper ngày nào cũng ráng giao cả ngàn đơn, dãi nắng cả buổi, ráng cày thêm đơn để được thưởng KPI. Vậy nên mỗi khi về nhà, ngoài kiệt sức ra em thường xuyên cảm thấy căng thẳng, mệt mỏi và có những suy nghĩ tiêu cực về bản thân, mình cải cha cãi má bỏ học đi làm mà. Em chỉ muốn được nghỉ ngơi nhưng mẹ bảo em xuống làm cơm cho ba má ăn với lo dọn dẹp nhà. Điều này khiến em cảm thấy mệt mỏi và khó chịu.", "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C", "Nội dung bài đăng test 1" },
-                    { new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"), 1, new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9081), null, false, null, null, 10, 100, "Nội dung bài đăng test thử ", "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C", "Nội dung bài đăng test 2" }
+                    { new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), 1, new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1819), null, 0, false, null, null, 10, 100, "Nhà em cũng không phải khá giả nên em bỏ học đi làm từ sớm, muốn chạy đi kiếm tiền luôn. Hiện tại là một shipper ngày nào cũng ráng giao cả ngàn đơn, dãi nắng cả buổi, ráng cày thêm đơn để được thưởng KPI. Vậy nên mỗi khi về nhà, ngoài kiệt sức ra em thường xuyên cảm thấy căng thẳng, mệt mỏi và có những suy nghĩ tiêu cực về bản thân, mình cải cha cãi má bỏ học đi làm mà. Em chỉ muốn được nghỉ ngơi nhưng mẹ bảo em xuống làm cơm cho ba má ăn với lo dọn dẹp nhà. Điều này khiến em cảm thấy mệt mỏi và khó chịu.", "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C", "Nội dung bài đăng test 1" },
+                    { new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"), 1, new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1857), null, 0, false, null, null, 10, 100, "Nội dung bài đăng test thử ", "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C", "Nội dung bài đăng test 2" }
                 });
 
             migrationBuilder.InsertData(
@@ -634,10 +640,10 @@ namespace ZAlpha.Infrastructure.Migrations
                 columns: new[] { "Id", "Created", "CreatedBy", "IsDeleted", "LastModified", "LastModifiedBy", "TagName" },
                 values: new object[,]
                 {
-                    { new Guid("150b7aba-a76f-40b2-b7e5-19961bda108f"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9109), null, false, null, null, "Học đường" },
-                    { new Guid("2b3a61bf-1543-4e9f-900b-d4901be7e78c"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9111), null, false, null, null, "Công việc" },
-                    { new Guid("6598d9c2-ef4d-4295-a06a-e45a3cfc7b9d"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9114), null, false, null, null, "Gia đình" },
-                    { new Guid("79a50b87-3bb3-4acc-b164-ef5795db17e3"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9116), null, false, null, null, "Xã hội" }
+                    { new Guid("150b7aba-a76f-40b2-b7e5-19961bda108f"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1879), null, false, null, null, "Học đường" },
+                    { new Guid("2b3a61bf-1543-4e9f-900b-d4901be7e78c"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1883), null, false, null, null, "Công việc" },
+                    { new Guid("6598d9c2-ef4d-4295-a06a-e45a3cfc7b9d"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1885), null, false, null, null, "Gia đình" },
+                    { new Guid("79a50b87-3bb3-4acc-b164-ef5795db17e3"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1890), null, false, null, null, "Xã hội" }
                 });
 
             migrationBuilder.InsertData(
@@ -645,9 +651,9 @@ namespace ZAlpha.Infrastructure.Migrations
                 columns: new[] { "Id", "Created", "CreatedBy", "Description", "IsDeleted", "LastModified", "LastModifiedBy", "PostId", "ReplyCommentId", "UserAccountId" },
                 values: new object[,]
                 {
-                    { new Guid("65191898-080f-4c24-b39a-653e57323400"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9169), null, "Nội dung comment", false, null, null, new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), null, "871a809a-b3fa-495b-9cc2-c5d738a866cf" },
-                    { new Guid("981c2b78-2662-4929-ab07-75e36d58e9bb"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9177), null, "Nội dung comment test", false, null, null, new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"), null, "871a809a-b3fa-495b-9cc2-c5d738a866cf" },
-                    { new Guid("cca90e51-b859-4830-8fcf-989163aaa4d9"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9174), null, "Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle", false, null, null, new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), null, "424ab531-d60a-487e-9625-a74a7f5747be" }
+                    { new Guid("65191898-080f-4c24-b39a-653e57323400"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1949), null, "Nội dung comment", false, null, null, new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), null, "871a809a-b3fa-495b-9cc2-c5d738a866cf" },
+                    { new Guid("981c2b78-2662-4929-ab07-75e36d58e9bb"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1956), null, "Nội dung comment test", false, null, null, new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"), null, "871a809a-b3fa-495b-9cc2-c5d738a866cf" },
+                    { new Guid("cca90e51-b859-4830-8fcf-989163aaa4d9"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1954), null, "Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle", false, null, null, new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), null, "424ab531-d60a-487e-9625-a74a7f5747be" }
                 });
 
             migrationBuilder.InsertData(
@@ -655,8 +661,8 @@ namespace ZAlpha.Infrastructure.Migrations
                 columns: new[] { "Id", "Created", "CreatedBy", "InteractPostStatus", "IsDeleted", "LastModified", "LastModifiedBy", "PostId", "UserAccountId" },
                 values: new object[,]
                 {
-                    { new Guid("61291732-1599-46e4-93e2-01aa8fca3801"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9202), null, 0, false, null, null, new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), "871a809a-b3fa-495b-9cc2-c5d738a866cf" },
-                    { new Guid("795154a3-aa8a-4337-8f45-35529a400fd3"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9213), null, 0, false, null, null, new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"), "424ab531-d60a-487e-9625-a74a7f5747be" }
+                    { new Guid("61291732-1599-46e4-93e2-01aa8fca3801"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1972), null, 0, false, null, null, new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), "871a809a-b3fa-495b-9cc2-c5d738a866cf" },
+                    { new Guid("795154a3-aa8a-4337-8f45-35529a400fd3"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1978), null, 0, false, null, null, new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"), "424ab531-d60a-487e-9625-a74a7f5747be" }
                 });
 
             migrationBuilder.InsertData(
@@ -664,9 +670,9 @@ namespace ZAlpha.Infrastructure.Migrations
                 columns: new[] { "Id", "Created", "CreatedBy", "IsDeleted", "LastModified", "LastModifiedBy", "PostId", "TagId" },
                 values: new object[,]
                 {
-                    { new Guid("5d7deaf1-d72b-457e-bf56-877a89d37fac"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9139), null, false, null, null, new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), new Guid("6598d9c2-ef4d-4295-a06a-e45a3cfc7b9d") },
-                    { new Guid("647b2bd5-ea1b-42a6-a92e-8263fb160754"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9135), null, false, null, null, new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), new Guid("150b7aba-a76f-40b2-b7e5-19961bda108f") },
-                    { new Guid("bcc26154-4ca0-4b51-808a-911bb4e09447"), new DateTime(2024, 1, 16, 18, 56, 18, 729, DateTimeKind.Local).AddTicks(9142), null, false, null, null, new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"), new Guid("79a50b87-3bb3-4acc-b164-ef5795db17e3") }
+                    { new Guid("5d7deaf1-d72b-457e-bf56-877a89d37fac"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1933), null, false, null, null, new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), new Guid("6598d9c2-ef4d-4295-a06a-e45a3cfc7b9d") },
+                    { new Guid("647b2bd5-ea1b-42a6-a92e-8263fb160754"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1927), null, false, null, null, new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"), new Guid("150b7aba-a76f-40b2-b7e5-19961bda108f") },
+                    { new Guid("bcc26154-4ca0-4b51-808a-911bb4e09447"), new DateTime(2024, 1, 20, 19, 7, 57, 779, DateTimeKind.Local).AddTicks(1935), null, false, null, null, new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"), new Guid("79a50b87-3bb3-4acc-b164-ef5795db17e3") }
                 });
 
             migrationBuilder.CreateIndex(
