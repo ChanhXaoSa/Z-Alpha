@@ -5,9 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ZAlpha.Domain.Enums;
-public enum InteractComment
+public enum EmotionalStatus
 {
-    None = 0,
-    Comment = 1,
-    ReplyComment = 2,
+    Vui = 0,
+    HanhPhuc =1,
+    Buon = 2,
+    LoLang= 3,
+    MetMoi = 4,
+    TucGian = 5,
 }

@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZAlpha.Application.Tag.Queries.GetTag;
-internal class GetTagQueries
+namespace ZAlpha.Domain.Enums;
+public enum InteractCommentStatus
 {
+    Create = 0,
+    Like = 1,
+    Dislike = 2
 }
