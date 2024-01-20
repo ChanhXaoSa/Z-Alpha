@@ -5,6 +5,9 @@
     ViewBag.Title = "Ppychologist Info";
     Layout = "~/Views/Shared/Customer_Layout.cshtml";
 }
+@using ZAlpha.Application.Common.Models;
+@using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
+@model CustomerAccountModel
 
 <head>
     <title>Customer Profile</title>
@@ -74,37 +77,37 @@
 <div class="boxProfile">
     <div class="row" style="margin:1rem 0 ;">
         <div class="col-3">
-            <img style="width: 10vw; display:block;  margin:0 auto; max-height: 15vw; border-radius: 10px" src="https://img.cand.com.vn/resize/800x800/NewFiles/Images/2023/06/01/313437324_530297825770289_851393-1685621442627.jpg" />
+            <img style="width: 10vw; display:block;  margin:0 auto; max-height: 15vw; border-radius: 10px" src="@(Model.UserAccount.AvatarUrl == null ? "https://img.cand.com.vn/resize/800x800/NewFiles/Images/2023/06/01/313437324_530297825770289_851393-1685621442627.jpg": Model.UserAccount.AvatarUrl)" />
         </div>
         <div class="col-9">
-            <div style="color: black; font-size: 16px; font-family: Inter; font-weight: 600; word-wrap: break-word; padding: 0.1rem 0;">Trần Kong Vinh </div>
+            <div style="color: black; font-size: 16px; font-family: Inter; font-weight: 600; word-wrap: break-word; padding: 0.1rem 0;">@Model.UserAccount.FirstName @Model.UserAccount.LastName</div>
             <div style="color: #2D76CB; font-size: 14px; font-family: Inter; font-weight: 500; word-wrap: break-word">(Freemium)</div>
         </div>        
     </div>
     <div class="row" style="margin:1rem 0 ;">
         <div class="col-6">
-            <div style="color: #080EA8; font-size: 13px; font-family: Inter; font-weight: 700; word-wrap: break-word; margin: 0.2rem;">Họ và tên</div>
-            <input class="input" placeholder="text">
+            <div style="color: #080EA8; font-size: 13px; font-family: Inter; font-weight: 700; word-wrap: break-word; margin: 0.2rem;">Tên tài khoản</div>
+            <input class="input" placeholder="text" value="@Model.UserAccount.UserName">
         </div>
         <div class="col-6">
-            <div style="color: #080EA8; font-size: 13px; font-family: Inter; font-weight: 700; word-wrap: break-word; margin: 0.2rem;">Họ và tên</div>
-            <input class="input" placeholder="text">
-        </div>
-    </div>
-    <div class="row" style="margin:1rem 0 ;">
-        <div class="col-6">
-            <div style="color: #080EA8; font-size: 13px; font-family: Inter; font-weight: 700; word-wrap: break-word; margin: 0.2rem;">Họ và tên</div>
-            <input class="input" placeholder="text">
-        </div>
-        <div class="col-6">
-            <div style="color: #080EA8; font-size: 13px; font-family: Inter; font-weight: 700; word-wrap: break-word; margin: 0.2rem;">Họ và tên</div>
-            <input class="input" placeholder="text">
+            <div style="color: #080EA8; font-size: 13px; font-family: Inter; font-weight: 700; word-wrap: break-word; margin: 0.2rem;">Ngày sinh</div>
+            <input class="input" placeholder="text" value="@Model.UserAccount.BirthDay">
         </div>
     </div>
     <div class="row" style="margin:1rem 0 ;">
         <div class="col-6">
-            <div style="color: #080EA8; font-size: 13px; font-family: Inter; font-weight: 700; word-wrap: break-word; margin: 0.2rem;">Họ và tên</div>
-            <input class="input" placeholder="text">
+            <div style="color: #080EA8; font-size: 13px; font-family: Inter; font-weight: 700; word-wrap: break-word; margin: 0.2rem;">Email</div>
+            <input class="input" placeholder="text" value="@Model.UserAccount.Email">
+        </div>
+        <div class="col-6">
+            <div style="color: #080EA8; font-size: 13px; font-family: Inter; font-weight: 700; word-wrap: break-word; margin: 0.2rem;">Số điện thoại</div>
+            <input class="input" placeholder="text" value="@Model.UserAccount.Phone">
+        </div>
+    </div>
+    <div class="row" style="margin:1rem 0 ;">
+        <div class="col-6">
+            <div style="color: #080EA8; font-size: 13px; font-family: Inter; font-weight: 700; word-wrap: break-word; margin: 0.2rem;">Địa chỉ</div>
+            <input class="input" placeholder="text" value="@Model.UserAccount.Address">
         </div>
         <div class="col-6">
             <div style="color: #080EA8; font-size: 13px; font-family: Inter; font-weight: 700; word-wrap: break-word; margin: 0.2rem;">Họ và tên</div>

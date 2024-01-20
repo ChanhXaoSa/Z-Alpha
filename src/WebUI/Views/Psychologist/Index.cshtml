@@ -27,7 +27,7 @@
 <div class="boxProfile">
    <div class="row">
        <div class="col-3">
-            <img style="width: 12vw; display:block;  margin:0 auto; max-height: 15vw; border-radius: 10px" src="https://img.cand.com.vn/resize/800x800/NewFiles/Images/2023/06/01/313437324_530297825770289_851393-1685621442627.jpg" />
+            <img style="width: 12vw; display:block;  margin:0 auto; max-height: 15vw; border-radius: 10px" src="@(Model.UserAccount.AvatarUrl==null?"https://img.cand.com.vn/resize/800x800/NewFiles/Images/2023/06/01/313437324_530297825770289_851393-1685621442627.jpg":Model.UserAccount.AvatarUrl)" />
             <div style="padding: 0.1rem 0;">        
                 <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
                 <i class="fa-solid fa-star fa-xs" style="color:yellow"></i>
@@ -43,18 +43,25 @@
             @*Mấy cái chỗ này đang k biết làm sao cho lên dữ liệu như nào luôn*@
             @*Database chưa có field cho mấy cái này nên set cứng đỡ*@
             <div>
-                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Lĩnh vực nghiên cứu</span>
-                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400;  word-wrap: break-word"> : Tâm lý học lâm sàng<br /></span>
-                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 600;  word-wrap: break-word">Nơi công tác</span>
-                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400;  word-wrap: break-word"> : Viện Tâm lý Việt - Pháp<br /></span>
-                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 600;  word-wrap: break-word">Chức vụ</span>
-                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400;  word-wrap: break-word">: Viện trưởng Viện Tâm lý Việt - Pháp</span>
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Lĩnh vực nghiên cứu:</span>
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                    @(Model.Specialize != null ? Model.Specialize : "Nhà tâm lý chưa bổ sung thông tin Lĩnh vực nghiên cứu")
+                </span><br />
+
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Nơi công tác:</span>
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                    @(Model.Workplace != null ? Model.Workplace : "Nhà tâm lý chưa bổ sung thông tin nơi làm việc")
+                </span><br />
+
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word">Chức vụ:</span>
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                    @(Model.Position != null ? Model.Position : "Nhà tâm lý chưa bổ sung thông tin vị trí công tác")
+                </span>
             </div>
             <div style="width: 70%; height: 0px; border: 1px #063C8E solid; margin:0.8rem 0;"></div>
             <div style="width: 455px">
                 <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 600;  word-wrap: break-word">Các cột mốc nổi bật:<br /></span>
-                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400;  word-wrap: break-word">Phó chủ nhiệm Khoa các Khoa học Giáo dục, trường Đại học Giáo dục, Đại học Quốc gia Hồ Chí Minh<br />Cử nhân ĐHSP Gerxen, Leningrat (Liên Xô cũ)</span>
-                
+                <span style="color: black; font-size: 14px; font-family: Inter; font-weight: 400;  word-wrap: break-word"> @(Model.Milestones != null ? Model.Milestones : "Nhà tâm lý chưa cập nhật cột mốc") </span>           
             </div>
             <br />
             <div class="row">
@@ -80,12 +87,7 @@
 
    <div class="row">
         <div class="DescriptionPpychologistBox">
-            <p>
-                “Tôi là Trần Minh Phát, nhà tâm lý học lâm sàng có kinh nghiệm hơn 4 năm trong lĩnh vực trị liệu tâm lý. Tôi đã giúp đỡ nhiều thân chủ vượt qua các vấn đề về sức khỏe tâm thần, bao gồm trầm cảm, lo âu, rối loạn ăn uống, rối loạn nhân cách và các vấn đề về tâm lý xã hội.
-            </p>
-            <p>
-                Tôi tin rằng mỗi người đều có tiềm năng để tự chữa lành và phát triển. Mục tiêu của tôi là giúp thân chủ hiểu rõ hơn về bản thân, phát triển các kỹ năng ứng phó lành mạnh và xây dựng một cuộc sống hạnh phúc và trọn vẹn hơn.”
-            </p>
+            <p> @(Model.Intro != null ? Model.Intro : "Nhà tâm lý chưa bổ sung thông tin thông tin giới thiệu") </p>
        </div>
    </div>
 </div>

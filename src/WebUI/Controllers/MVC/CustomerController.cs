@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.CustomerAccount.Queries.GetCustomerAccountById;
+using ZAlpha.Application.PsychologistAccount.Queries.GetPsychologistById;
 using ZAlpha.Domain.Identity;
 
 namespace WebUI.Controllers.MVC;
@@ -16,9 +18,18 @@ public class CustomerController : ControllerBaseMVC
         _userManager = userManager;
         _signInManager = signInManager;
     }
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        try
+        {
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            var result = Mediator.Send(new GetCustomerAccountByUserIdQueries() { UserAccountId = user.Id }).Result;
+            return View(result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
     public IActionResult PostList()
     {
