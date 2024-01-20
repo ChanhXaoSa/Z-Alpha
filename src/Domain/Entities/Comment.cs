@@ -10,16 +10,14 @@ namespace ZAlpha.Domain.Entities;
 public class Comment : BaseAuditableEntity
 {
 
-    [ForeignKey("UserAccount")]
-    public string UserAccountId { get; set; }
-    public virtual UserAccount UserAccount { get; set; }
+
     [ForeignKey("Comment")]
     public Guid? ReplyCommentId { get; set; }
     public virtual Comment? ReplyComment { get; set; }
-
     [ForeignKey("Post")]
     public Guid PostId { get; set; }
     public virtual Post? Post { get; set; }
     public string Description { get; set; }
-    
+    public IList<InteractWithComments>? InteractWithComments { get; set; }
+
 }

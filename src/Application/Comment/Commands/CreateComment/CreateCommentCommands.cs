@@ -12,7 +12,6 @@ using ZAlpha.Domain.Identity;
 namespace ZAlpha.Application.Comment.Commands.CreateComment;
 public class CreateCommentCommands : IRequest<Guid>
 {
-    public string UserAccountId { get; set; }
     public Guid? ReplyCommentId { get; set; }
     public Guid PostId { get; set; }
     public string Description { get; set; }
@@ -31,10 +30,9 @@ public class CreateCommentCommandsHandler : IRequestHandler<CreateCommentCommand
     {
         var comment = new Domain.Entities.Comment()
         {
-            UserAccountId = request.UserAccountId,
+            PostId = request.PostId,
             ReplyCommentId = request.ReplyCommentId,
-            Description = request.Description,
-            PostId = request.PostId
+            Description = request.Description
         };
 
         _context.Get<Domain.Entities.Comment>().Add(comment);

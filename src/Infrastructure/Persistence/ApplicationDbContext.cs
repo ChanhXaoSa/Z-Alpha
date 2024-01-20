@@ -41,12 +41,13 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
     public DbSet<PaymentMethod> PaymentMethods => Set<PaymentMethod>(); 
     public DbSet<Post> Posts => Set<Post>();
     public DbSet<PostTag> PostTags => Set<PostTag>();
-    //public DbSet<UserInteractComment> UserInteractComments => Set<UserInteractComment>();
+    public DbSet<InteractWithComments> InteractWithComments => Set<InteractWithComments>();
     public DbSet<Tag>  Tags => Set<Tag>();
     public DbSet<Transaction> Transactions => Set<Transaction>();
     public DbSet<WishListPost> WishListPosts => Set<WishListPost>();
     public DbSet<CustomerAccount> CustomerAccounts => Set<CustomerAccount>();
     public DbSet<PsychologistAccount> PsychologistAccounts => Set<PsychologistAccount>();
+    
 
 
 
@@ -82,8 +83,6 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
                    PostTitle = "Nội dung bài đăng test 1",
                    PostBody = "Nhà em cũng không phải khá giả nên em bỏ học đi làm từ sớm, muốn chạy đi kiếm tiền luôn. Hiện tại là một shipper ngày nào cũng ráng giao cả ngàn đơn, dãi nắng cả buổi, ráng cày thêm đơn để được thưởng KPI. Vậy nên mỗi khi về nhà, ngoài kiệt sức ra em thường xuyên cảm thấy căng thẳng, mệt mỏi và có những suy nghĩ tiêu cực về bản thân, mình cải cha cãi má bỏ học đi làm mà. Em chỉ muốn được nghỉ ngơi nhưng mẹ bảo em xuống làm cơm cho ba má ăn với lo dọn dẹp nhà. Điều này khiến em cảm thấy mệt mỏi và khó chịu.",
                    PostImagesUrl = "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C",
-                   NumberOfLikes = 100,
-                   NumberOfDisLikes = 10,
                    AnonymousStatus = AnonymousStatus.Active,
                },
                new Post
@@ -92,8 +91,6 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
                    PostTitle = "Nội dung bài đăng test 2",
                    PostBody = "Nội dung bài đăng test thử ",
                    PostImagesUrl = "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C",
-                   NumberOfLikes = 100,
-                   NumberOfDisLikes = 10,
                    AnonymousStatus = AnonymousStatus.Active,
                }
 
@@ -149,21 +146,18 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
             new Comment
             {
                 Id = new Guid("65191898-080f-4c24-b39a-653e57323400"),
-                UserAccountId = "871a809a-b3fa-495b-9cc2-c5d738a866cf",
-                PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
+                PostId= new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
                 Description = "Nội dung comment"
             },
             new Comment
             {
                 Id = new Guid("cca90e51-b859-4830-8fcf-989163aaa4d9"),
-                UserAccountId = "424ab531-d60a-487e-9625-a74a7f5747be",
                 PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
                 Description = "Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle"
             },
             new Comment
             {
                 Id = new Guid("981c2b78-2662-4929-ab07-75e36d58e9bb"),
-                UserAccountId = "871a809a-b3fa-495b-9cc2-c5d738a866cf",
                 PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
                 Description = "Nội dung comment test"
             }

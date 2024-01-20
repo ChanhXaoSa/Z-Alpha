@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Comment.Queries.GetCommentById;
 using ZAlpha.Application.Comment.Commands.CreateComment;
 using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.InteractWithComments.Commands.CreateInteractWithComment;
+using ZAlpha.Domain.Enums;
 
 namespace WebUI.Controllers.MVC;
 public class PostController : ControllerBaseMVC
@@ -32,7 +34,10 @@ public class PostController : ControllerBaseMVC
         var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
         if (User.Identity.IsAuthenticated && description != null)
         {
-            var commentId = Mediator.Send(new CreateCommentCommands() { UserAccountId = user.Id, PostId = postId, Description = description }).Result;
+            var commentId = Mediator.Send(new CreateCommentCommands() { PostId = postId, Description = description }).Result;
+            var interactWithCommentId = Mediator.Send(new CreateInteractWithCommentCommand() 
+                    { UserAccountId = user.Id, CommentId = commentId, InteractCommentStatus= InteractCommentStatus.Create }).Result;
+
             TempData["Message"] = "Bạn đã đăng bình luận thành công";
         } else if (!User.Identity.IsAuthenticated && description != null)
         {
@@ -44,7 +49,7 @@ public class PostController : ControllerBaseMVC
         return View(post);
     }
 
-    [HttpPost]
+   /* [HttpPost]
     public async Task<IActionResult> AddComment(string postId, string description)
     {
         if (User.Identity.IsAuthenticated && description != null)
@@ -60,7 +65,7 @@ public class PostController : ControllerBaseMVC
         {
             return Json(new { success = false, message = "Đăng nhập để bình luận" });
         }
-    }
+    }*/
 
     [HttpPost]
     public IActionResult YourAjaxMethod()
