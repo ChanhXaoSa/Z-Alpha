@@ -32,4 +32,8 @@ public class CustomerController : ControllerBaseMVC
     {
         return View();
     }
+    public IActionResult NewPost()
+    {
+        return View();
+    }
 }
