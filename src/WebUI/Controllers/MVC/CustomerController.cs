@@ -20,4 +20,16 @@ public class CustomerController : ControllerBaseMVC
     {
         return View();
     }
+    public IActionResult PostList()
+    {
+        return View();
+    }
+    public IActionResult PostSaved()
+    {
+        return View();
+    }
+    public IActionResult Payment()
+    {
+        return View();
+    }
 }
