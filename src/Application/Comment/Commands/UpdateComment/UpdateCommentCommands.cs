@@ -12,7 +12,6 @@ namespace ZAlpha.Application.Comment.Commands.UpdateComment;
 public record UpdateCommentCommands : IRequest<Guid>
 {
     public Guid Id { get; init; }
-    public Guid PostId { get; set; }
     //public IList<UserInteractComment>? UserInteractComments { get; private set; }
 }
 
@@ -35,7 +34,6 @@ public class UpdateCommentCommandsHandler : IRequestHandler<UpdateCommentCommand
             throw new NotFoundException(nameof(Domain.Entities.Comment), request.Id);
         }
 
-        customer.PostId = request.PostId;
 
         await _context.SaveChangesAsync(cancellationToken);
 

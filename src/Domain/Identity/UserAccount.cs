@@ -28,7 +28,7 @@ public class UserAccount : IdentityUser
     //public virtual IList<Post>? Posts { get; set; }
     public IList<Transaction>? Transactions { get;  set; }
     public IList<InteractWithPosts>? InteractWithPosts { get;  set; }
+    public IList<InteractWithComments>? InteractWithComments { get; set; }
     public IList<WishListPost>? WishListPosts { get;  set; }
-    public IList<Comment>? Comments { get; set; }
     //public IList<UserInteractComment>? UserInteractComments { get; set; }
 }

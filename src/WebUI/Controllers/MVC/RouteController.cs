@@ -27,9 +27,9 @@ public class RouteController : Controller
     {
         if (User.Identity.IsAuthenticated)
         {
-            var user = _identityService.GetUserByNameAsync(User.Identity.Name);
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
 
-            var isCustomer = await _identityService.IsInRoleAsync(user.Id.ToString(), AppRole.Customer);
+            var isCustomer = await _identityService.IsInRoleAsync(user.Id, AppRole.Customer);
             if (isCustomer)
             {
                 return RedirectToAction("NewPost", "Customer");

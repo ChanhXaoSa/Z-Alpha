@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ZAlpha.Domain.Enums;
-public enum InteractComment
+public enum InteractCommentStatus
 {
-    None = 0,
-    Comment = 1,
-    ReplyComment = 2,
+    Create = 0,
+    Like = 1,
+    Dislike = 2
 }

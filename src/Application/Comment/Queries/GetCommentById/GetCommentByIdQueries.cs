@@ -33,7 +33,7 @@ public class GetCommentByIdQueriesHandler : IRequestHandler<GetCommentByIdQuerie
     {
         // get 
         var comment = _context.Get<Domain.Entities.Comment>()
-            .FirstOrDefault(x => x.IsDeleted == false && x.PostId == request.Id);
+            .FirstOrDefault(x => x.IsDeleted == false && x.Id == request.Id);
 
         return comment;
     }
