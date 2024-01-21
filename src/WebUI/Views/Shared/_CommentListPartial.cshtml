@@ -20,11 +20,11 @@
             </div>
             <div class="button-comment">
                 <div style="">
-                    <button type="button" class="btn rounded-circle" style="background-color:#75d995; color:white;" onclick="likeComment(@item.Id)">
-                        <p style="font-size:9px; margin:0;">@item.InteractWithComments?.Where(i => i.InteractCommentStatus == ZAlpha.Domain.Enums.InteractCommentStatus.Like).Count() <i class="fa-solid fa-arrow-up fa-xs"></i></p>
+                    <button type="button" class="btn rounded-circle" style="background-color:#75d995; color:white;" onclick="likeComment('@item.Id.ToString()')">
+                        <p style="font-size:9px; margin:0;">@item.InteractWithComments.Where(i => i.InteractCommentStatus == ZAlpha.Domain.Enums.InteractCommentStatus.Like).Count() <i class="fa-solid fa-arrow-up fa-xs"></i></p>
                     </button>
-                    <button type="button" class="btn rounded-circle" style="background-color:#d97575; color:white;" onclick="dislikeComment(@item.Id)">
-                        <p style="font-size:9px; margin:0;">@item.InteractWithComments?.Where(i => i.InteractCommentStatus == ZAlpha.Domain.Enums.InteractCommentStatus.Dislike).Count() <i class="fa-solid fa-arrow-down fa-xs"></i></p>
+                    <button type="button" class="btn rounded-circle" style="background-color:#d97575; color:white;" onclick="dislikeComment('@item.Id.ToString()')">
+                        <p style="font-size:9px; margin:0;">@item.InteractWithComments.Where(i => i.InteractCommentStatus == ZAlpha.Domain.Enums.InteractCommentStatus.Dislike).Count() <i class="fa-solid fa-arrow-down fa-xs"></i></p>
                     </button>
                 </div>
             </div>
@@ -33,6 +33,7 @@
 }
 
 <script>
+    //hàm tương tác với comment
     function likeComment(commentId) {
         var postId = "@Model.FirstOrDefault().PostId";
         $.ajax({
