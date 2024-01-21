@@ -82,18 +82,20 @@ public class CustomerController : ControllerBaseMVC
             ViewBag.tags = tags;
             ViewBag.emotionalStatusList = emotionalStatusList;
             //
-            if (postbody == null || postTitle == null /*|| list.length < 0 */) return Json("null");
+            if (postbody == null || postTitle == null || formCollection["SelectedValues"].Count <= 0) return Json("fai;");
             string postImgUrl = "";
             //// check file co phai la img khong || co file hay ko
-            if (file == null) 
-                return Json("file NUll");
-            else if (!(IsImageFile(file) && file.Length > 0)) 
+            if (file == null)
+                postImgUrl = "";
+            else if (!(IsImageFile(file) && file.Length > 0))
                 return Json("not file Image");
-            else 
+            else
                 postImgUrl = SaveFileImage(file);
+            // tao postID
             var postId = Mediator.Send(new CreatePostCommands { PostDescription = postbody, PostImgUrl = postImgUrl, PostTitle = postTitle, emotionalStatus = emostatus}).Result;
+            // get UserId
             var userId = await _identityService.GetUserByNameAsync(User.Identity.Name);
-
+            // Tao interacId
             var interactId = await Mediator.Send(new CreateInteractWithPostCommand() { UserAccountId = userId.Id, PostId = postId, InteractPostStatus = InteractPostStatus.Create});
             
             List<string> selectedValues = formCollection["SelectedValues"].ToList();
