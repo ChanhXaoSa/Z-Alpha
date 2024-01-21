@@ -6,6 +6,7 @@ using ZAlpha.Application.InteractWithPost.Commands.CreateInteractWithPost;
 using ZAlpha.Domain.Enums;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.WishListPost.Commands.CreateWishListPost;
+using ZAlpha.Application.Post.Queries.GetPostBySearch;
 
 namespace WebUI.Controllers.MVC;
 
@@ -28,6 +29,23 @@ public class HomeController : ControllerBaseMVC
         catch (Exception ex)
         {
            throw new Exception(ex.Message);
+        }
+    }
+
+    public IActionResult Search(string keySearch)
+    {
+        try
+        {
+            var result = Mediator.Send(new GetPostQueries() { Page = 1, Size = 100 }).Result;
+            if (keySearch.Trim() != null)
+            {
+                result = Mediator.Send(new GetPostBySearchQueries() { keySearch = keySearch.Trim(), Page = 1, Size = 100 }).Result;
+            }
+            return View("./Index", result);
+        }
+        catch (Exception ex)
+        {   
+            throw new Exception(ex.Message);
         }
     }
 
