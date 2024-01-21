@@ -42,4 +42,24 @@ public class RouteController : Controller
         }
         return RedirectToAction("Index", "Home");
     }
+
+    public async Task<IActionResult> Info()
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+
+            var isCustomer = await _identityService.IsInRoleAsync(user.Id, AppRole.Customer);
+            if (isCustomer)
+            {
+                return RedirectToAction("Index", "Customer");
+            }
+            var isPsychologist = await _identityService.IsInRoleAsync(user.Id, AppRole.Psychologist);
+            if (isPsychologist)
+            {
+                return RedirectToAction("Index", "Psychologist");
+            }
+        }
+        return RedirectToAction("Index", "Home");
+    }
 }
