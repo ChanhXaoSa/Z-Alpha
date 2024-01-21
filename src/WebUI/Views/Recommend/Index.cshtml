@@ -6,215 +6,177 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<head>    <title>Recommend</title>
+<head>    
+    <title>Recommend</title>
     <link rel="stylesheet" href="~/assets/css/recommend.css"/>
-
 </head>
-<div class="row" style="margin : 1rem 0;">
-    <div class="col-4" style="display:flex;justify-content: center;align-items: center;">
-        <div class="navbarbox">
-            <div style="display:flex;justify-content: left;align-items: center;margin:0.5rem 0.2rem 0.5rem 0.2rem; font-weight:600;">
+
+<div  style="margin : 1rem 0;">
+    <div class="row">
+        <div class="col-2" style=" display:flex;justify-content: center;">
+            <div style="margin:0.5rem 0.2rem 0.5rem 0.2rem; font-weight:600; font-size: 14px;">
                 Tìm kiếm theo tên
             </div>
-            <div class="search">
-                <input type="text" class="search__input" placeholder="Type your text">
-                <button class="search__button">
-                    <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
-                        <g>
-                            <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-                        </g>
-                    </svg>
-                </button>
-            </div>
-       
-            <div style="display:flex;justify-content: left;align-items: center;margin:1rem 0.2rem 0.3rem 0.2rem; font-weight:600;">
-                Tìm kiếm theo thẻ
-            </div>
-            <div class="auto-group-brvk-CQM" style="overflow-y: scroll; height: 100%; min-height:50vh; font-size:1.1rem">
-                <div class="auto-group-v2tf-14H" style="display: flex; align-items: center;">
-                    <input class="auto-group-czch-9RP" type="checkbox" name="" />
-                    <span style="margin-left: 10px;">tag name</span>
-                </div>
-                <div class="auto-group-v2tf-14H" style="display: flex; align-items: center;">
-                    <input class="auto-group-czch-9RP" type="checkbox" name="" />
-                    <span style="margin-left: 10px;">tag name</span>
-                </div>     
-                <div class="auto-group-v2tf-14H" style="display: flex; align-items: center;">
-                    <input class="auto-group-czch-9RP" type="checkbox" name="" />
-                    <span style="margin-left: 10px;">tag name</span>
-                </div>
-                <div class="auto-group-v2tf-14H" style="display: flex; align-items: center;">
-                    <input class="auto-group-czch-9RP" type="checkbox" name="" />
-                    <span style="margin-left: 10px;">tag name</span>
-                </div>
-            </div>
-            <style>
-                .auto-group-brvk-CQM .auto-group-v2tf-14H {
-                    display: flex;
-                    text-align: center;
-                    font-weight: 500;
-                    color: #000000;
-                    font-family: Inter, 'Source Sans Pro';
-                    white-space: nowrap;
-                    margin-bottom: 1px;
-                }
-            </style>
         </div>
-    </div>
+        <div class="col-4">
+            <div class="group">
+                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path></g></svg>
+                <input placeholder="Search" type="search" class="input">
+            </div>
+        </div>        
+    </div>      
+
     @*--------------------------------------------------*@
-    <div class="col-8">
-        <div class="row">
-            <div class="col-2" style=" display:flex;justify-content: center;">
-                <div style="margin:0.5rem 0.2rem 0.5rem 0.2rem; font-weight:600; font-size: 14px;">
-                    Sắp xếp theo:
-                </div>
-            </div>
-            <div class="col-2" >
-                <button class="button-10" style="width: 8vw;  font-size: 12px;" type="submit"> Lượt bình luận </button>
-            </div>
-             <div class="col-2">
-                <button class="button-10" style="width: 8vw;  font-size: 12px;" type="submit"> Lượt đánh giá </button>
-            </div>
-            <div class="col-3">
+    @* <div class="row">
+        <div class="col-2" style=" display:flex;justify-content: center;">
+            <div style="margin:0.5rem 0.2rem 0.5rem 0.2rem; font-weight:600; font-size: 14px;">
+                Sắp xếp theo:
             </div>
         </div>
-    
-        <div style="display:flex; justify-content:space-between" >
-            <div style="display:inline-table;">
-                @*-------------------------------------*@
-                <div class="boxRecommend">
-                    <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
-                    <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
-                        Psy. Trần Phát
-                    </div>
-                    <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
-                        Tp. Hồ Chí Minh
-                    </div>
-                    <div style="display:block;">
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                    </div>
-                    <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
-                        <i class="fa-regular fa-message"></i>
-                        Đã viết 2k7 bình luận
-                    </div>
-                </div>
-                @*-------------------------------------*@
-                <div class="boxRecommend">
-                    <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
-                    <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
-                        Psy. Trần Phát
-                    </div>
-                    <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
-                        Tp. Hồ Chí Minh
-                    </div>
-                    <div style="display:block;">
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                    </div>
-                    <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
-                        <i class="fa-regular fa-message"></i>
-                        Đã viết 2k7 bình luận
-                    </div>
-                </div>
-                @*-------------------------------------*@
-                <div class="boxRecommend">
-                    <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
-                    <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
-                        Psy. Trần Phát
-                    </div>
-                    <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
-                        Tp. Hồ Chí Minh
-                    </div>
-                    <div style="display:block;">
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                    </div>
-                    <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
-                        <i class="fa-regular fa-message"></i>
-                        Đã viết 2k7 bình luận
-                    </div>
-                </div>
-                @*-------------------------------------*@
-                <div class="boxRecommend">
-                    <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
-                    <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
-                        Psy. Trần Phát
-                    </div>
-                    <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
-                        Tp. Hồ Chí Minh
-                    </div>
-                    <div style="display:block;">
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                    </div>
-                    <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
-                        <i class="fa-regular fa-message"></i>
-                        Đã viết 2k7 bình luận
-                    </div>
-                </div>
-                @*-------------------------------------*@
-                <div class="boxRecommend">
-                    <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
-                    <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
-                        Psy. Trần Phát
-                    </div>
-                    <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
-                        Tp. Hồ Chí Minh
-                    </div>
-                    <div style="display:block;">
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                    </div>
-                    <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
-                        <i class="fa-regular fa-message"></i>
-                        Đã viết 2k7 bình luận
-                    </div>
-                </div>
-                @*-------------------------------------*@
-                <div class="boxRecommend">
-                    <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
-                    <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
-                        Psy. Trần Phát
-                    </div>
-                    <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
-                        Tp. Hồ Chí Minh
-                    </div>
-                    <div style="display:block;">
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                    </div>
-                    <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
-                        <i class="fa-regular fa-message"></i>
-                        Đã viết 2k7 bình luận
-                    </div>
-                </div>
-
-
-            </div>  
+        <div class="col-2">
+            <button class="button-10" style="width: 8vw;  font-size: 12px;" type="submit"> Lượt bình luận </button>
         </div>
+        <div class="col-2">
+            <button class="button-10" style="width: 8vw;  font-size: 12px;" type="submit"> Lượt đánh giá </button>
+        </div>
+        <div class="col-3">
+        </div>
+    </div> *@
+    @*------------------------------------------------------*@
 
 
 
+    <div style="">
+        <div style="">
+            @*-------------------------------------*@
+            <div class="boxRecommend">
+                <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
+                <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
+                    Psy. Trần Phát
+                </div>
+                <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                    Tp. Hồ Chí Minh
+                </div>
+                <div style="display:block;">
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                </div>
+                <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
+                    <i class="fa-regular fa-message"></i>
+                    Đã viết 2k7 bình luận
+                </div>
+            </div>
+            @*-------------------------------------*@
+            <div class="boxRecommend">
+                <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
+                <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
+                    Psy. Trần Phát
+                </div>
+                <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                    Tp. Hồ Chí Minh
+                </div>
+                <div style="display:block;">
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                </div>
+                <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
+                    <i class="fa-regular fa-message"></i>
+                    Đã viết 2k7 bình luận
+                </div>
+            </div>
+            @*-------------------------------------*@
+            <div class="boxRecommend">
+                <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
+                <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
+                    Psy. Trần Phát
+                </div>
+                <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                    Tp. Hồ Chí Minh
+                </div>
+                <div style="display:block;">
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                </div>
+                <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
+                    <i class="fa-regular fa-message"></i>
+                    Đã viết 2k7 bình luận
+                </div>
+            </div>
+            @*-------------------------------------*@
+            <div class="boxRecommend">
+                <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
+                <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
+                    Psy. Trần Phát
+                </div>
+                <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                    Tp. Hồ Chí Minh
+                </div>
+                <div style="display:block;">
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                </div>
+                <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
+                    <i class="fa-regular fa-message"></i>
+                    Đã viết 2k7 bình luận
+                </div>
+            </div>
+            @*-------------------------------------*@
+            <div class="boxRecommend">
+                <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
+                <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
+                    Psy. Trần Phát
+                </div>
+                <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                    Tp. Hồ Chí Minh
+                </div>
+                <div style="display:block;">
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                </div>
+                <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
+                    <i class="fa-regular fa-message"></i>
+                    Đã viết 2k7 bình luận
+                </div>
+            </div>
+            @*-------------------------------------*@
+            <div class="boxRecommend">
+                <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
+                <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
+                    Psy. Trần Phát
+                </div>
+                <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                    Tp. Hồ Chí Minh
+                </div>
+                <div style="display:block;">
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                </div>
+                <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
+                    <i class="fa-regular fa-message"></i>
+                    Đã viết 2k7 bình luận
+                </div>
+            </div>
+
+
+        </div>
     </div>
-
 
 </div>
