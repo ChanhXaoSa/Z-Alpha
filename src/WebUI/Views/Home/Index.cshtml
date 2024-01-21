@@ -83,7 +83,7 @@
                                         }
                                     }                                   
                                     @Name                                       
-                                    @if(item.EmotionalStatus != null){
+                                    @if(item.EmotionalStatus != null && item.EmotionalStatus!=ZAlpha.Domain.Enums.EmotionalStatus.None){
                                         <div style="font-size:14px; display:inline; color:#6d9da6;">
                                              đang cảm thấy @item.EmotionalStatus.ToString()
                                         </div>                                        

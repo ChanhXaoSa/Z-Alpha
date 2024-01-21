@@ -82,7 +82,7 @@ public class CustomerController : ControllerBaseMVC
             ViewBag.tags = tags;
             ViewBag.emotionalStatusList = emotionalStatusList;
             //
-            if (postbody == null || postTitle == null || formCollection["SelectedValues"].Count <= 0) return Json("fai;");
+            if (postbody == null || postTitle == null ) return Json("fail;");
             string postImgUrl = "";
             //// check file co phai la img khong || co file hay ko
             if (file == null)
