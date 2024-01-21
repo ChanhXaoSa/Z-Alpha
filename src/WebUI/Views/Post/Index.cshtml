@@ -9,6 +9,7 @@
 @using ZAlpha.Application.Common.Models;
 @using ZAlpha.Application.Post.Queries.GetAllPost;
 @using ZAlpha.Application.Comment.Queries.GetAllComment;
+@using ZAlpha.Domain.Enums;
 @model PostModel;
 @{
     PaginatedList<CommentModel> listComment = ViewBag.listComment;
@@ -53,7 +54,7 @@
                         @Model.PostTitle
                     </strong>
                 </div>
-                <div class="row">
+                <div id="postSection" class="row">
                     <div class="col-2">
                         <img style="width:3.7vw;border-radius: 9999px" src="https://via.placeholder.com/38x38" />
                     </div>
@@ -77,12 +78,45 @@
                         </div>
                     </div>
                     <div class="col-2"></div>
-                    <div class="col-2">
-                        <button class="button-2" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-up"></i> @Model.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like).Count() </button>
-                    </div>
-                    <div class="col-2">
-                        <button class="button-62" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-down"></i> @Model.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike).Count() </button>
-                    </div>
+                        @if (ViewBag.interactedPostStatus != null)
+                        {
+                            if (ViewBag.interactedPostStatus == "Create")
+                            {
+                                <div class="col-2">
+                                    <button id="btnPostLike" disabled class="button-2" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-up"></i> @Model.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like).Count() </button>
+                                </div>
+                                <div class="col-2">
+                                    <button id="btnPostDislike" disabled class="button-62" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-down"></i> @Model.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike).Count() </button>
+                                </div>
+                            }
+                            else if (ViewBag.interactedPostStatus == "Like")
+                            {
+                                <div class="col-2">
+                                    <button id="btnPostLike" disabled class="button-2" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-up"></i> @Model.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like).Count() </button>
+                                </div>
+                                <div class="col-2">
+                                    <button id="btnPostDislike" class="button-62" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-down"></i> @Model.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike).Count() </button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-2">
+                                    <button id="btnPostLike" class="button-2" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-up"></i> @Model.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like).Count() </button>
+                                </div>
+                                <div class="col-2">
+                                    <button id="btnPostDislike" disabled class="button-62" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-down"></i> @Model.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike).Count() </button>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-2">
+                                <button id="btnPostLike" class="button-2" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-up"></i> @Model.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like).Count() </button>
+                            </div>
+                            <div class="col-2">
+                                <button id="btnPostDislike" class="button-62" style="height: 32px; width:5vw;" role="button"><i class="fa-solid fa-arrow-down"></i> @Model.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike).Count() </button>
+                            </div>
+                        }
                 </div>
 
                 <div class="ImgCenter">
@@ -113,7 +147,7 @@
                     <div id="scroll" style=" overflow:auto;  display:flex; justify-content:center;">
                         <div style="width:90%;">
                             <div id="commentSection">
-                                @Html.Partial("_CommentListPartial", listComment.Items)
+                                @await Html.PartialAsync("_CommentListPartial", listComment.Items)
                             </div>
                             @* @foreach (var item in listComment.Items)
                             {
@@ -165,13 +199,13 @@
                         </div>
                     </div>
                     @* <form action="~/Post" method="post">
-                        <div class="search">
-                            <input type="hidden" name="PostId" value="@Model.Id" />
-                            <input type="text" class="search__input" name="Description" placeholder="Type your text">
-                            <button class="search__button" type="submit">
-                                <i class="fa-solid fa-paper-plane fa-xl"></i>
-                            </button>
-                        </div>
+                    <div class="search">
+                    <input type="hidden" name="PostId" value="@Model.Id" />
+                    <input type="text" class="search__input" name="Description" placeholder="Type your text">
+                    <button class="search__button" type="submit">
+                    <i class="fa-solid fa-paper-plane fa-xl"></i>
+                    </button>
+                    </div>
                     </form> *@
                     <div class="search">
                         <input type="text" id="commentDescription" class="search__input" name="Description" placeholder="Type your text">
@@ -179,33 +213,121 @@
                             <i class="fa-solid fa-paper-plane fa-xl"></i>
                         </button>
                     </div>
-                    <script>
-                        $(document).ready(function () {
-                            $("#submitComment").click(function () {
-                                var postId = "@Model.Id";
-                                var description = $("#commentDescription").val();
-
-                                $.ajax({
-                                    type: "POST",
-                                    url: "@Url.Action("AddComment", "Post")",
-                                    data: { postId: postId, description: description },
-                                    success: function (result) {
-                                        if (result.success) {
-                                            alert(result.message);
-                                            $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
-                                        } else {
-                                            alert(result.message);
-                                        }
-                                    },
-                                    error: function () {
-                                        alert("Đã xảy ra lỗi khi gửi yêu cầu.");
-                                    }
-                                });
-                            });
-                        });
-                    </script>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    //Hàm đăng bình luận
+    document.getElementById("commentDescription").addEventListener("keypress", function (event) {
+        if (event.key === "Enter" || event.keyCode === 13) {
+            event.preventDefault();
+            submitComment();
+        }
+    });
+    $("#submitComment").click(function () {
+        submitComment();
+    });
+    function submitComment() {
+        var postId = "@Model.Id";
+        var description = $("#commentDescription").val();
+        
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AddComment", "Post")",
+            data: { postId: postId, description: description },
+            success: function (result) {
+                if (result.success) {
+                    alert(result.message);
+                    $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
+                } else {
+                    alert(result.message);
+                    window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
+    // $(document).ready(function () {
+    //     $("#submitComment").click(function () {
+    //         var postId = "@Model.Id";
+    //         var description = $("#commentDescription").val();
+
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "@Url.Action("AddComment", "Post")",
+    //             data: { postId: postId, description: description },
+    //             success: function (result) {
+    //                 if (result.success) {
+    //                     alert(result.message);
+    //                     $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
+    //                 } else {
+    //                     alert(result.message);
+    //                     window.location.href = '/login';
+    //                 }
+    //             },
+    //             error: function () {
+    //                 alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+    //             }
+    //         });
+    //     });
+    // });
+
+    //Hàm tương tác với bài viết
+    $(document).on("click", "#btnPostLike", function () {
+        likePost();
+    });
+
+    $(document).on("click", "#btnPostDislike", function () {
+        dislikePost();
+    });
+
+    function likePost() {
+        var postId = "@Model.Id";
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("InteractWithPost", "Post")",
+            data: { postId: postId, status: 1 },
+            success: function (result) {
+                if (result.success) {
+                    alert(result.message);
+                    $("#postSection").load("/Post/Index?postId=" + postId + " #postSection");
+                } else {
+                    alert(result.message);
+                    window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
+    function dislikePost() {
+        var postId = "@Model.Id";
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("InteractWithPost", "Post")",
+            data: { postId: postId, status: 2 },
+            success: function (result) {
+                if (result.success) {
+                    alert(result.message);
+                    $("#postSection").load("/Post/Index?postId=" + postId + " #postSection");
+                } else {
+                    alert(result.message);
+                    window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
+
+    
+</script>

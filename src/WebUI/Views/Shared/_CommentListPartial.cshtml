@@ -5,7 +5,7 @@
 
 @foreach (var item in Model)
 {
-    <div style="row">
+    <div style="row" id="comment-@item.Id">
         <div style="position:relative;">
             <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
             @* <strong style="display:inline; font-size:12px;">@item.UserAccount.FirstName @item.UserAccount.LastName</strong> *@
@@ -20,15 +20,59 @@
             </div>
             <div class="button-comment">
                 <div style="">
-                    <button type="button" class="btn rounded-circle" style="background-color:#75d995; color:white;">
-                        <p style="font-size:9px; margin:0;">3 <i class="fa-solid fa-arrow-up fa-xs"></i></p>
+                    <button type="button" class="btn rounded-circle" style="background-color:#75d995; color:white;" onclick="likeComment('@item.Id.ToString()')">
+                        <p style="font-size:9px; margin:0;">@item.InteractWithComments.Where(i => i.InteractCommentStatus == ZAlpha.Domain.Enums.InteractCommentStatus.Like).Count() <i class="fa-solid fa-arrow-up fa-xs"></i></p>
                     </button>
-                    <button type="button" class="btn rounded-circle" style="background-color:#d97575; color:white;">
-                        <p style="font-size:9px; margin:0;">9 <i class="fa-solid fa-arrow-down fa-xs"></i></p>
+                    <button type="button" class="btn rounded-circle" style="background-color:#d97575; color:white;" onclick="dislikeComment('@item.Id.ToString()')">
+                        <p style="font-size:9px; margin:0;">@item.InteractWithComments.Where(i => i.InteractCommentStatus == ZAlpha.Domain.Enums.InteractCommentStatus.Dislike).Count() <i class="fa-solid fa-arrow-down fa-xs"></i></p>
                     </button>
                 </div>
             </div>
         </div>
     </div>
 }
+
+<script>
+    //hàm tương tác với comment
+    function likeComment(commentId) {
+        var postId = "@Model.FirstOrDefault().PostId";
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("InteractWithComment", "Post")",
+            data: { commentId: commentId, status: 1 },
+            success: function (result) {
+                if (result.success) {
+                    alert(result.message);
+                    $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
+                } else {
+                    alert(result.message);
+                    window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
+    function dislikeComment(commentId) {
+        var postId = "@Model.FirstOrDefault().PostId";
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("InteractWithComment", "Post")",
+            data: { commentId: commentId, status: 2 },
+            success: function (result) {
+                if (result.success) {
+                    alert(result.message);
+                    $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
+                } else {
+                    alert(result.message);
+                    window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
+</script>
  

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Domain.Enums;
 using ZAlpha.Domain.Identity;
@@ -27,16 +28,31 @@ public class CreateInteractWithCommentCommandHandler : IRequestHandler<CreateInt
 
     public async Task<Guid> Handle(CreateInteractWithCommentCommand request, CancellationToken cancellationToken)
     {
-        var interactWithComment = new Domain.Entities.InteractWithComments()
+        var checker = await _context.Get<Domain.Entities.InteractWithComments>()
+            .FirstOrDefaultAsync(i => i.CommentId == request.CommentId && i.UserAccountId == request.UserAccountId, cancellationToken);
+        if (checker != null)
         {
-            UserAccountId = request.UserAccountId,
-            CommentId = request.CommentId,
-            InteractCommentStatus = request.InteractCommentStatus
-        };
+            if (checker.InteractCommentStatus == InteractCommentStatus.Create)
+            {
+                return checker.Id;
+            }
+            checker.InteractCommentStatus = request.InteractCommentStatus;
+            await _context.SaveChangesAsync(cancellationToken);
+            return checker.Id;
+        }
+        else
+        {
+            var interactWithComment = new Domain.Entities.InteractWithComments()
+            {
+                UserAccountId = request.UserAccountId,
+                CommentId = request.CommentId,
+                InteractCommentStatus = request.InteractCommentStatus
+            };
 
-        _context.Get<Domain.Entities.InteractWithComments>().Add(interactWithComment);
-        await _context.SaveChangesAsync(cancellationToken);
+            _context.Get<Domain.Entities.InteractWithComments>().Add(interactWithComment);
+            await _context.SaveChangesAsync(cancellationToken);
 
-        return interactWithComment.Id;
+            return interactWithComment.Id;
+        }
     }
 }
