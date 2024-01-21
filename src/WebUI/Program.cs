@@ -51,13 +51,13 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API V1");
         c.RoutePrefix = "swagger";
     });
-    // Initialise and seed database
+   /* // Initialise and seed database
     using (var scope = app.Services.CreateScope())
     {
         var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
         await initialiser.InitialiseAsync();
         await initialiser.SeedAsync();
-    }
+    }*/
 }
 else
 {
