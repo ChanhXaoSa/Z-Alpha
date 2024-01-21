@@ -18,6 +18,7 @@ public class CommentModel : IMapFrom<Domain.Entities.Comment>
     public virtual ZAlpha.Domain.Entities.Post Post { get; set; }
     public string Description { get; set; }
     public DateTime Created { get; set; }
+    public IList<ZAlpha.Domain.Entities.InteractWithComments>? InteractWithComments { get; set; }
 }
 
 
