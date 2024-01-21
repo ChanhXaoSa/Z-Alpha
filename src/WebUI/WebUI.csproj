@@ -49,6 +49,10 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\uploads\" />
+    </ItemGroup>
+
     <!-- Auto-generated Open API specification and Angular TypeScript clients -->
     <PropertyGroup>
         <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
