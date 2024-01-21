@@ -54,7 +54,6 @@ public class LoginController : ControllerBaseMVC
                 var result = await _signInManager.PasswordSignInAsync(Email, Password, true, false);
                 if (result.Succeeded)
                 {
-                    HttpContext.Session.SetString("userId", user.Id.ToString());
                     return RedirectToAction("Index", "Home");
                 }
             } else
@@ -62,7 +61,6 @@ public class LoginController : ControllerBaseMVC
                 var result = await _signInManager.PasswordSignInAsync(user.UserName, Password, true, false);
                 if (result.Succeeded)
                 {
-                    HttpContext.Session.SetString("userId", user.Id.ToString());
                     return RedirectToAction("Index", "Home");
                 }
             }
