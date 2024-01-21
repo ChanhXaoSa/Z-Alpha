@@ -60,11 +60,30 @@ public class RegisterController : ControllerBaseMVC
                 ViewBag.UsernameValidate = "Tên tài khoản đã tồn tại, vui lòng thử tên khác";
                 checker = false;
             }
-            if (model.Password.Length < 8)
+            if (!Regex.IsMatch(model.Password, "^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()<>?|{}~:]).*$"))
             {
                 ViewBag.PasswordValidate = "Mật khẩu không hợp lệ ( Mật khẩu lớn hơn 8 kí tự, chứa 1 chữ hoa, 1 chữ thường và 1 kí tự đặc biệt.";
                 checker = false;
             }
+            if (model.Birthday.Year >= (DateTime.Today.Year-6))
+            {
+                ViewBag.BirthDayValidate = "Người dùng phải lớn hơn 6 tuổi.";
+                checker = false;
+            }
+            if (!model.Password.Equals(model.ConfirmPassword))
+            {
+                ViewBag.PasswordConfirmValidate = "Mật khẩu xác nhận không khớp với mật khẩu đã nhập";
+                checker = false;
+            }
+            if (radio.Equals("Customer"))
+            {
+                ViewBag.Customercheck = true;
+            }
+            else if (radio.Equals("Psychologist"))
+            {
+                ViewBag.Psychologistcheck = true;
+            }
+
             if (checker == false)
             {
                 throw new Exception();

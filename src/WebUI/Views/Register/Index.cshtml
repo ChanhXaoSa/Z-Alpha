@@ -111,6 +111,12 @@
                                     <span class="label-char" style="--index: 7">y</span>
                                 </label>
                             </div>
+                            @if (ViewBag.BirthDayValidate != null)
+                            {
+                                <div class="form-group mb-3" style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                                    <div class="text-danger">@ViewBag.BirthDayValidate</div>
+                                </div>
+                            }
                             <div class="wave-group mb-3">
                                 <input name="Address" type="text" class="input" value="@Model.Address">
                                 <span class="bar"></span>
@@ -179,11 +185,17 @@
                                     <span class="label-char text-danger" style="--index: 5">*</span>
                                 </label>
                             </div>
+                            @if (ViewBag.PasswordConfirmValidate != null)
+                            {
+                                <div class="form-group mb-3" style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                                    <div class="text-danger">@ViewBag.PasswordConfirmValidate</div>
+                                </div>
+                            }
                             <label class="radio-first-label">Type of Account<span class="label-char text-danger" style="--index: 5">*</span></label>
                             <div class="container-radio">
                                 <div class="radio-tile-group">
                                     <div class="input-container">
-                                        <input id="walk" class="radio-button" type="radio" name="radio" value="Customer">
+                                        <input id="walk" class="radio-button" type="radio" checked="@ViewBag.Customercheck" name="radio" value="Customer">
                                         <div class="radio-tile">
                                             <div class="icon walk-icon">
                                                 <span class="fa fa-user"></span>
@@ -193,7 +205,7 @@
                                     </div>
 
                                     <div class="input-container">
-                                        <input id="drive" class="radio-button" type="radio" name="radio" value="Psychologist">
+                                        <input id="drive" class="radio-button" type="radio" checked="@ViewBag.Psychologistcheck" name="radio" value="Psychologist">
                                         <div class="radio-tile">
                                             <div class="icon car-icon">
                                                 <span class="fa fa-user-doctor"></span>
