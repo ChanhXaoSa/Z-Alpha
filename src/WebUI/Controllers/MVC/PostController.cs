@@ -9,6 +9,7 @@ using ZAlpha.Application.Comment.Commands.CreateComment;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.InteractWithComments.Commands.CreateInteractWithComment;
 using ZAlpha.Domain.Enums;
+using ZAlpha.Application.InteractWithPost.Commands.CreateInteractWithPost;
 
 namespace WebUI.Controllers.MVC;
 public class PostController : ControllerBaseMVC
@@ -44,6 +45,22 @@ public class PostController : ControllerBaseMVC
             return Redirect("~/Login");
         }
         var post = await Mediator.Send(new GetPostByIdQueries() { Id = postId });
+        var interactedPost = post.InteractWithPosts?.FirstOrDefault(i => i.UserAccountId == user.Id);
+        if (interactedPost != null)
+        {
+            if (interactedPost.InteractPostStatus == InteractPostStatus.Create)
+            {
+                ViewBag.interactedPostStatus = "Create";
+            }
+            else if (interactedPost.InteractPostStatus == InteractPostStatus.Like)
+            {
+                ViewBag.interactedPostStatus = "Like";
+            }
+            else
+            {
+                ViewBag.interactedPostStatus = "Dislike";
+            }
+        }
         var listComment = await Mediator.Send(new GetCommentByPostIdQueries() { PostId = postId, Page = 1, Size = 100 });
         ViewBag.listComment = listComment;
         return View(post);
@@ -60,9 +77,10 @@ public class PostController : ControllerBaseMVC
                 { UserAccountId = user.Id, CommentId = commentId, InteractCommentStatus = InteractCommentStatus.Create }).Result;
 
 
-            var listComment = await Mediator.Send(new GetCommentByPostIdQueries() { PostId = Guid.Parse(postId), Page = 1, Size = 100 });
+            //var listComment = await Mediator.Send(new GetCommentByPostIdQueries() { PostId = Guid.Parse(postId), Page = 1, Size = 100 });
             //return PartialView("_CommentListPartial", listComment.Items);
-            return Json(new { success = true, message = "Bạn đã đăng bình luận thành công", commentId = commentId, listComment });
+            //return Json(new { success = true, message = "Bạn đã đăng bình luận thành công", commentId = commentId, listComment });
+            return Json(new { success = true, message = "Bạn đã đăng bình luận thành công", commentId = commentId });
         }
         else
         {
@@ -71,9 +89,40 @@ public class PostController : ControllerBaseMVC
     }
 
     [HttpPost]
-    public IActionResult YourAjaxMethod()
+    public async Task<IActionResult> InteractWithPost(string postId, InteractPostStatus status)
     {
-        // Xử lý logic ở đây
-        return Json(new { success = true, message = "Thành công!" });
+        if (User.Identity.IsAuthenticated)
+        {
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            var interactWithPostId = await Mediator.Send(new CreateInteractWithPostCommands() { PostId  = Guid.Parse(postId), UserAccountId = user.Id, InteractPostStatus = status });
+
+
+            //var listComment = await Mediator.Send(new GetCommentByPostIdQueries() { PostId = Guid.Parse(postId), Page = 1, Size = 100 });
+            //return PartialView("_CommentListPartial", listComment.Items);
+            return Json(new { success = true, message = "Bạn đã đánh giá bài viết", interactWithPostId = interactWithPostId});
+        }
+        else
+        {
+            return Json(new { success = false, message = "Đăng nhập để đánh giá" });
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> InteractWithComment(string commentId, InteractCommentStatus status)
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            var interactWithCommentId = await Mediator.Send(new CreateInteractWithCommentCommand() { CommentId = Guid.Parse(commentId), UserAccountId = user.Id, InteractCommentStatus = status });
+
+
+            //var listComment = await Mediator.Send(new GetCommentByPostIdQueries() { PostId = Guid.Parse(postId), Page = 1, Size = 100 });
+            //return PartialView("_CommentListPartial", listComment.Items);
+            return Json(new { success = true, message = "Bạn đã đánh giá bình luận", interactWithCommentId = interactWithCommentId });
+        }
+        else
+        {
+            return Json(new { success = false, message = "Đăng nhập để đánh giá" });
+        }
     }
 }

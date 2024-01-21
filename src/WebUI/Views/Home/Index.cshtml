@@ -89,10 +89,10 @@
                 </div>
                 <div class="row" style="margin-top:2vh;">
                     <div class="col-2">
-                        <button class="button-2" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-up"></i> 100 Push</button>
+                        <button class="button-2" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-up"></i> @item.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like).Count()</button>
                     </div>
                     <div class="col-2">
-                        <button class="button-62" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-down"></i> 99 Hide</button>
+                        <button class="button-62" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-down"></i> @item.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike).Count()</button>
                     </div>
 
                     <div class="col-6">
