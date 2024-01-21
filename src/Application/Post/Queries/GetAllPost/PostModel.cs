@@ -19,5 +19,6 @@ public class PostModel : IMapFrom<Domain.Entities.Post>
     public AnonymousStatus AnonymousStatus { get; set; }
     public DateTime Created { get; set; }
     public IList<InteractWithPosts>? InteractWithPosts { get; set; }
+    public IList<Domain.Entities.WishListPost>? WishListPosts { get; set; }
     public IList<ZAlpha.Domain.Entities.PostTag>? PostTags { get; set; }
 }
