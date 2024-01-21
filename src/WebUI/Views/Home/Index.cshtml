@@ -89,10 +89,10 @@
                 </div>
                 <div class="row" style="margin-top:2vh;">
                     <div class="col-2">
-                        <button class="button-2" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-up"></i> @item.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like).Count()</button>
+                        <button class="button-2" style="height: 32px;" role="button" onclick="likePost('@item.Id')"><i class="fa-solid fa-arrow-up"></i> @item.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like).Count()</button>
                     </div>
                     <div class="col-2">
-                        <button class="button-62" style="height: 32px;" role="button"><i class="fa-solid fa-arrow-down"></i> @item.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike).Count()</button>
+                        <button class="button-62" style="height: 32px;" role="button" onclick="dislikePost('@item.Id')"><i class="fa-solid fa-arrow-down"></i> @item.InteractWithPosts.Where(i => i.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike).Count()</button>
                     </div>
 
                     <div class="col-6">
@@ -125,9 +125,6 @@
 
                 })
             }
-
-
-
             
             const icon = document.getElementById('bookmarkIcon');
 
@@ -141,8 +138,49 @@
                 icon.style.color = isActive ? 'yellow' : 'gray';
             });
 
+            //Hàm tương tác với Post
+            function likePost(postId) {
 
-           
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("InteractWithPost", "Post")",
+                    data: { postId: postId, status: 1 },
+                    success: function (result) {
+                        if (result.success) {
+                            alert(result.message);
+                            // $("#postSection").load("/Post/Index?postId=" + postId + " #postSection");
+                            window.location.reload();
+                        } else {
+                            alert(result.message);
+                            window.location.href = '/login';
+                        }
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+                    }
+                });
+            }
+            function dislikePost(postId) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("InteractWithPost", "Post")",
+                    data: { postId: postId, status: 2 },
+                    success: function (result) {
+                        if (result.success) {
+                            alert(result.message);
+                            // $("#postSection").load("/Post/Index?postId=" + postId + " #postSection");
+                            window.location.reload();
+                        } else {
+                            alert(result.message);
+                            window.location.href = '/login';
+                        }
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+                    }
+                });
+            }
         </script>
 
       

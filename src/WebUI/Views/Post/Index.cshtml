@@ -233,7 +233,7 @@
     function submitComment() {
         var postId = "@Model.Id";
         var description = $("#commentDescription").val();
-
+        
         $.ajax({
             type: "POST",
             url: "@Url.Action("AddComment", "Post")",
