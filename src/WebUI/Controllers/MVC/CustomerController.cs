@@ -2,18 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.CustomerAccount.Queries.GetCustomerAccountById;
-using ZAlpha.Application.PsychologistAccount.Queries.GetPsychologistById;
-using ZAlpha.Application.Post.Queries.GetAllPost;
 using ZAlpha.Application.Tag.Queries.GetTag;
 using ZAlpha.Domain.Enums;
 using ZAlpha.Domain.Identity;
 using ZAlpha.Application.InteractWithPost.Queries.GetAllInteractWithPostByUserId;
-using ZAlpha.Application.Post.Queries.GetPostById;
-using ZAlpha.Application.PsychologistAccount.Commands.CreatePsychologistPost;
 using Newtonsoft.Json.Linq;
 using ZAlpha.Application.Post.Commands.CreatePost;
-using ZAlpha.Application.InteractWithComments.Commands.CreateInteractWithComment;
 using ZAlpha.Application.InteractWithPost.Commands.CreateInteractWithPost;
+using ZAlpha.Application.PostTag.Commands.CreatePostTag;
 
 namespace WebUI.Controllers.MVC;
 public class CustomerController : ControllerBaseMVC
@@ -76,7 +72,7 @@ public class CustomerController : ControllerBaseMVC
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> NewPost(string postbody, string postTitle, EmotionalStatus emostatus, IFormFile file)
+    public async Task<IActionResult> NewPost(string postbody, string postTitle, EmotionalStatus emostatus, IFormFile file, IFormCollection formCollection)
     {
         try
         {
@@ -99,6 +95,13 @@ public class CustomerController : ControllerBaseMVC
             var userId = await _identityService.GetUserByNameAsync(User.Identity.Name);
 
             var interactId = await Mediator.Send(new CreateInteractWithPostCommand() { UserAccountId = userId.Id, PostId = postId, InteractPostStatus = InteractPostStatus.Create});
+            
+            List<string> selectedValues = formCollection["SelectedValues"].ToList();
+            foreach (var item in selectedValues)
+            {
+                Guid tagId = Guid.Parse(item);
+                var postTagId = await Mediator.Send(new CreatePostTagCommands() { postID = postId, TagID = tagId });
+            }
             //return View("Index");
         }
         catch (Exception ex)
