@@ -111,6 +111,12 @@
                                     <span class="label-char" style="--index: 7">y</span>
                                 </label>
                             </div>
+                            @if (ViewBag.BirthDayValidate != null)
+                            {
+                                <div class="form-group mb-3" style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                                    <div class="text-danger">@ViewBag.BirthDayValidate</div>
+                                </div>
+                            }
                             <div class="wave-group mb-3">
                                 <input name="Address" type="text" class="input" value="@Model.Address">
                                 <span class="bar"></span>
