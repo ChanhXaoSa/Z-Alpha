@@ -151,7 +151,6 @@ public class CustomerController : ControllerBaseMVC
             file.CopyTo(fileStream);
             fileUrl = Path.Combine("uploads", file.FileName);
         }
-        string testurl = Path.Combine(webRootPath, filePath);
         return fileUrl;
     }
 }

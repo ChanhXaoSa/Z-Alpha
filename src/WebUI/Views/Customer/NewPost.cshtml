@@ -53,6 +53,7 @@
             <div style="display:flex; justify-content: center;align-content: center;">
                 <select class="comboBoxNewPost" name="emotional">
                     <option value="none">Tình trạng của bạn:</option>
+                    @{emotionalStatusList.Remove(emotionalStatusList[0]);};
                     @foreach (var item in emotionalStatusList)
                     {
                         <option value="@item.ToString()">@item.ToString()</option>
