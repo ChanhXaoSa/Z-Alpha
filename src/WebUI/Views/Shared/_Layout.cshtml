@@ -255,11 +255,21 @@
                             <div class="col-3">
                                 <div class="row">
                                     <div class="col-5">
-                                        @*  vinh*@
                                         <div class="row" style=" position: relative;">
+                                            @{
+                                                var user = await _signInManager.UserManager.FindByNameAsync(User.Identity.Name);
+                                            }
+                                            <a href="~/Route/Info">
                                             <img class="EllipseImg" src="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg" />
-                                            <a href="~/Route/Info" style="z-index:2; text-decoration:none; padding:10px 0px 0px 64px; position: absolute; color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word"> Windino </a>
-                                            <div class="" style=" padding:30px 0px 0px 64px; position: absolute; color: #F08E17; font-size: 10px; font-family: Inter; font-weight: 400; word-wrap: break-word">Freemium</div>
+                                            </a>
+                                            <a href="~/Route/Info" style="z-index:2; text-decoration:none; padding:10px 0px 0px 70px; position: absolute; color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word"> @user.FirstName @user.LastName </a>
+                                            @if (user.IsPremium == ZAlpha.Domain.Enums.PremiumStatus.Active)
+                                            {
+                                                <div class="" style=" padding:30px 0px 0px 70px; position: absolute; color: #F08E17; font-size: 10px; font-family: Inter; font-weight: 400; word-wrap: break-word">Premium</div>
+                                            } else
+                                            {
+                                                <div class="" style=" padding:30px 0px 0px 70px; position: absolute; color: #009EFF; font-size: 10px; font-family: Inter; font-weight: 400; word-wrap: break-word">Freemium</div>
+                                            }
                                         </div>
                                     </div>
                                     <div class="col-7">
