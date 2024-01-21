@@ -3,9 +3,18 @@
     font-family: 'Inter', sans-serif;
 }
 
+.HeaderRow {
+    height: 60px;
+    position: relative;
+}
+
 .HeaderRow, .FooterRow {
     width: 100%;
     margin: 0 auto;
+}
+
+.route-header row {
+    position:absolute;
 }
 
 .container {
@@ -14,9 +23,9 @@
 
 .header {
     position: relative;
-    background-color: #FFFDAB;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     height: 60px;
+    background: #FFFDAB
 }
 
 .ImageLogo {
