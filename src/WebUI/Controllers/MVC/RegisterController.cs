@@ -75,6 +75,15 @@ public class RegisterController : ControllerBaseMVC
                 ViewBag.PasswordConfirmValidate = "Mật khẩu xác nhận không khớp với mật khẩu đã nhập";
                 checker = false;
             }
+            if (radio.Equals("Customer"))
+            {
+                ViewBag.Customercheck = true;
+            }
+            else if (radio.Equals("Psychologist"))
+            {
+                ViewBag.Psychologistcheck = true;
+            }
+
             if (checker == false)
             {
                 throw new Exception();
