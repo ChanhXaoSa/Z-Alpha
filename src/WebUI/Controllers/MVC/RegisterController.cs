@@ -70,6 +70,11 @@ public class RegisterController : ControllerBaseMVC
                 ViewBag.BirthDayValidate = "Người dùng phải lớn hơn 6 tuổi.";
                 checker = false;
             }
+            if (!model.Password.Equals(model.ConfirmPassword))
+            {
+                ViewBag.PasswordConfirmValidate = "Mật khẩu xác nhận không khớp với mật khẩu đã nhập";
+                checker = false;
+            }
             if (checker == false)
             {
                 throw new Exception();
