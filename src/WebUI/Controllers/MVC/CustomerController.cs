@@ -4,7 +4,6 @@ using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.Post.Queries.GetAllPost;
 using ZAlpha.Application.Tag.Queries.GetTag;
 using ZAlpha.Domain.Enums;
-using ZAlpha.Domain.Enums.Helper;
 using ZAlpha.Domain.Identity;
 
 namespace WebUI.Controllers.MVC;
