@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 using MediatR;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.PsychologistAccount.Commands.CreatePsychologistPost;
+using ZAlpha.Domain.Enums;
 
 namespace ZAlpha.Application.Post.Commands.CreatePost;
 public class CreatePostCommands : IRequest<Guid>
 {
-    public Guid PostId { get; set; }
     public string PostTitle { get; set; }
     public string PostDescription { get; set; }
     public string PostImgUrl { get; set; }
+    public EmotionalStatus emotionalStatus { get; set; }
+    
 }
-public class CreatePostCommandsHandler : IRequestHandler<CreatePsychologistPostCommand, Guid>
+public class CreatePostCommandsHandler : IRequestHandler<CreatePostCommands, Guid>
 {
     private readonly IApplicationDbContext _context;
 
@@ -24,15 +26,15 @@ public class CreatePostCommandsHandler : IRequestHandler<CreatePsychologistPostC
         _context = context;
     }
 
-    public async Task<Guid> Handle(CreatePsychologistPostCommand request, 
+    public async Task<Guid> Handle(CreatePostCommands request, 
         CancellationToken cancellationToken)
     {
         var post = new Domain.Entities.Post()
         {
-            Id = request.PostId,
             PostTitle = request.PostTitle,
             PostBody = request.PostDescription,
             PostImagesUrl = request.PostImgUrl,
+            EmotionalStatus = request.emotionalStatus,
         };
 
         _context.Get<Domain.Entities.Post>().Add(post);

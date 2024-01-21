@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace ZAlpha.Domain.Enums;
 public enum EmotionalStatus
 {
-    Vui = 0,
-    HanhPhuc =1,
-    Buon = 2,
-    LoLang= 3,
-    MetMoi = 4,
-    TucGian = 5,
+    None = 0,
+    Vui = 1,
+    HanhPhuc =2,
+    Buon = 3,
+    LoLang= 4,
+    MetMoi = 5,
+    TucGian = 6,
 }
