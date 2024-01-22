@@ -3,8 +3,13 @@
 *@
 @{
     ViewBag.Title = "Customer Post";
-    Layout = "~/Views/Shared/Customer_Layout.cshtml";
+    Layout = "~/Views/Shared/Customer_Layout.cshtml";    
 }
+@using ZAlpha.Application.Common.Models;
+@using ZAlpha.Application.Post.Queries.GetAllPost;
+@using ZAlpha.Application.Post.Queries.GetPostById;
+@using ZAlpha.Domain.Enums;
+@model List<PostModel>
 <head>
     <title>Customer Saved</title>
 </head>
@@ -16,6 +21,12 @@
         DANH SÁCH BÀI VIẾT ĐÃ LƯU CỦA BẠN
     </div>
     @* ----------Div này là 1 post ---------*@
+    @foreach (var postModel in Model)
+    {
+        <tr>
+            <td>@postModel.PostTitle</td>
+        </tr>
+    }
     <div class="box">
         <div>
             <div style="position:relative ;">

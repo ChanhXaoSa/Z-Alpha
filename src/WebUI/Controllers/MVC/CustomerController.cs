@@ -10,6 +10,9 @@ using Newtonsoft.Json.Linq;
 using ZAlpha.Application.Post.Commands.CreatePost;
 using ZAlpha.Application.InteractWithPost.Commands.CreateInteractWithPost;
 using ZAlpha.Application.PostTag.Commands.CreatePostTag;
+using ZAlpha.Application.Post.Queries.GetPostById;
+using ZAlpha.Application.Post.Queries.GetAllPost;
+using ZAlpha.Domain.Entities;
 
 namespace WebUI.Controllers.MVC;
 public class CustomerController : ControllerBaseMVC
@@ -53,9 +56,20 @@ public class CustomerController : ControllerBaseMVC
         }
         return View();
     }
-    public IActionResult PostSaved()
+    [HttpGet]
+    public async Task<IActionResult> PostSaved()
     {
-        return View();
+        try
+        {
+            List<PostModel> postModels = new List<PostModel>();
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            var result = Mediator.Send(new GetAllInteractWithPostByUserIdQueries() { UserId = user.Id, Page = 1, Size = 100 }).Result;
+            return View(result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
     public IActionResult Payment()
     {
