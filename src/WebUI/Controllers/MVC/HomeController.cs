@@ -37,7 +37,7 @@ public class HomeController : ControllerBaseMVC
         try
         {
             var result = Mediator.Send(new GetPostQueries() { Page = 1, Size = 100 }).Result;
-            if (keySearch.Trim() != null)
+            if (keySearch != null)
             {
                 result = Mediator.Send(new GetPostBySearchQueries() { keySearch = keySearch.Trim(), Page = 1, Size = 100 }).Result;
             }
