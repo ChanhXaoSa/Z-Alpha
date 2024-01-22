@@ -14,10 +14,10 @@ public class PostModel : IMapFrom<Domain.Entities.Post>
     public string PostTitle { get; set; }
     public string PostBody { get; set; }
     public string? PostImagesUrl { get; set; }
-    public int? NumberOfLikes { get; set; }
-    public int? NumberOfDisLikes { get; set; }
+    public EmotionalStatus? EmotionalStatus { get; set; }
     public AnonymousStatus AnonymousStatus { get; set; }
     public DateTime Created { get; set; }
     public IList<InteractWithPosts>? InteractWithPosts { get; set; }
+    public IList<Domain.Entities.WishListPost>? WishListPosts { get; set; }
     public IList<ZAlpha.Domain.Entities.PostTag>? PostTags { get; set; }
 }

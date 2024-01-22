@@ -37,6 +37,8 @@ public class GetPostQueriesHandler : IRequestHandler<GetPostQueries, PaginatedLi
             .ThenInclude(o => o.Tag)
             .Include(o => o.InteractWithPosts)//.Where(i=>i.InteractWithPosts.InteractPostStatus == InteractPostStatus.Create)
             .ThenInclude(o => o.UserAccount)
+            .Include(o => o.WishListPosts)
+            .ThenInclude(o => o.UserAccount)
             .AsNoTracking();
 
         var map = _mapper.ProjectTo<PostModel>(listPost);

@@ -55,8 +55,8 @@
                     </strong>
                 </div>
                 <div id="postSection" class="row">
-                    <div class="col-2">
-                        <img style="width:3.7vw;border-radius: 9999px" src="https://via.placeholder.com/38x38" />
+                    <div class="col-2" style="display:flex;align-items: center;justify-content: center;">
+                        <img style="width:3.6rem; height:3.6rem; border-radius: 9999px" src="https://via.placeholder.com/38x38" />
                     </div>
                     <div class="col-4">
                         <div style="color: black; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word">
@@ -72,6 +72,12 @@
                                 }
                             }
                             @Name
+                            @if (Model.EmotionalStatus != null && Model.EmotionalStatus != ZAlpha.Domain.Enums.EmotionalStatus.None)
+                            {
+                                <div style="font-size:14px;  color:#6d9da6;">
+                                    đang cảm thấy @Model.EmotionalStatus.ToString()
+                                </div>
+                            }
                         </div>
                         <div style="color: #FF6C37; font-size: 13px; font-family: Inter; font-weight: 400; word-wrap: break-word">
                             @Model.Created
@@ -129,10 +135,10 @@
 
                 <div class="row">
                     <div class="PostText">
-                        <div class="hashtag">
+                        @* <div class="hashtag">
                             <p>#hashtag</p>
                             <p>#hashtagtest</p>
-                        </div>
+                        </div> *@
                         @Model.PostBody
                     </div>
                 </div>

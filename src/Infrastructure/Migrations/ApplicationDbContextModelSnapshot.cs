@@ -378,7 +378,7 @@ namespace ZAlpha.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("65191898-080f-4c24-b39a-653e57323400"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7488),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(7056),
                             Description = "Nội dung comment",
                             IsDeleted = false,
                             PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578")
@@ -386,7 +386,7 @@ namespace ZAlpha.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("cca90e51-b859-4830-8fcf-989163aaa4d9"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7494),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(7066),
                             Description = "Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle",
                             IsDeleted = false,
                             PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578")
@@ -394,7 +394,7 @@ namespace ZAlpha.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("981c2b78-2662-4929-ab07-75e36d58e9bb"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7497),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(7072),
                             Description = "Nội dung comment test",
                             IsDeleted = false,
                             PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d")
@@ -542,7 +542,7 @@ namespace ZAlpha.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("61291732-1599-46e4-93e2-01aa8fca3801"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7521),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(7092),
                             InteractPostStatus = 0,
                             IsDeleted = false,
                             PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
@@ -551,7 +551,7 @@ namespace ZAlpha.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("795154a3-aa8a-4337-8f45-35529a400fd3"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7529),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(7099),
                             InteractPostStatus = 0,
                             IsDeleted = false,
                             PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
@@ -718,7 +718,7 @@ namespace ZAlpha.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmotionalStatus")
+                    b.Property<int?>("EmotionalStatus")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
@@ -750,8 +750,7 @@ namespace ZAlpha.Infrastructure.Migrations
                         {
                             Id = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
                             AnonymousStatus = 1,
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7295),
-                            EmotionalStatus = 0,
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(6937),
                             IsDeleted = false,
                             PostBody = "Nhà em cũng không phải khá giả nên em bỏ học đi làm từ sớm, muốn chạy đi kiếm tiền luôn. Hiện tại là một shipper ngày nào cũng ráng giao cả ngàn đơn, dãi nắng cả buổi, ráng cày thêm đơn để được thưởng KPI. Vậy nên mỗi khi về nhà, ngoài kiệt sức ra em thường xuyên cảm thấy căng thẳng, mệt mỏi và có những suy nghĩ tiêu cực về bản thân, mình cải cha cãi má bỏ học đi làm mà. Em chỉ muốn được nghỉ ngơi nhưng mẹ bảo em xuống làm cơm cho ba má ăn với lo dọn dẹp nhà. Điều này khiến em cảm thấy mệt mỏi và khó chịu.",
                             PostImagesUrl = "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C",
@@ -761,8 +760,7 @@ namespace ZAlpha.Infrastructure.Migrations
                         {
                             Id = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
                             AnonymousStatus = 1,
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7328),
-                            EmotionalStatus = 0,
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(6966),
                             IsDeleted = false,
                             PostBody = "Nội dung bài đăng test thử ",
                             PostImagesUrl = "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C",
@@ -809,7 +807,7 @@ namespace ZAlpha.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("647b2bd5-ea1b-42a6-a92e-8263fb160754"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7452),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(7023),
                             IsDeleted = false,
                             PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
                             TagId = new Guid("150b7aba-a76f-40b2-b7e5-19961bda108f")
@@ -817,7 +815,7 @@ namespace ZAlpha.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("5d7deaf1-d72b-457e-bf56-877a89d37fac"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7457),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(7028),
                             IsDeleted = false,
                             PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
                             TagId = new Guid("6598d9c2-ef4d-4295-a06a-e45a3cfc7b9d")
@@ -825,7 +823,7 @@ namespace ZAlpha.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("bcc26154-4ca0-4b51-808a-911bb4e09447"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7462),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(7032),
                             IsDeleted = false,
                             PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
                             TagId = new Guid("79a50b87-3bb3-4acc-b164-ef5795db17e3")
@@ -912,28 +910,28 @@ namespace ZAlpha.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("150b7aba-a76f-40b2-b7e5-19961bda108f"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7406),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(6994),
                             IsDeleted = false,
                             TagName = "Học đường"
                         },
                         new
                         {
                             Id = new Guid("2b3a61bf-1543-4e9f-900b-d4901be7e78c"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7412),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(6998),
                             IsDeleted = false,
                             TagName = "Công việc"
                         },
                         new
                         {
                             Id = new Guid("6598d9c2-ef4d-4295-a06a-e45a3cfc7b9d"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7416),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(7001),
                             IsDeleted = false,
                             TagName = "Gia đình"
                         },
                         new
                         {
                             Id = new Guid("79a50b87-3bb3-4acc-b164-ef5795db17e3"),
-                            Created = new DateTime(2024, 1, 21, 0, 55, 33, 341, DateTimeKind.Local).AddTicks(7420),
+                            Created = new DateTime(2024, 1, 21, 21, 50, 6, 242, DateTimeKind.Local).AddTicks(7005),
                             IsDeleted = false,
                             TagName = "Xã hội"
                         });
@@ -1125,14 +1123,14 @@ namespace ZAlpha.Infrastructure.Migrations
                         {
                             Id = "871a809a-b3fa-495b-9cc2-c5d738a866cf",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5609df20-4c4a-4c28-a18d-1cb11fcb6f0e",
+                            ConcurrencyStamp = "99a35769-b846-43a7-be81-9c6844bcca1c",
                             Email = "vinhtc191@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Tran",
                             LastName = "Vinh",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fab56f39-999a-448d-91bb-c3ceef54ded8",
+                            SecurityStamp = "0b87f7b3-b6de-4c35-929f-702597cf1da5",
                             Status = 1,
                             TwoFactorEnabled = false,
                             Wallet = 10000000.0
@@ -1141,14 +1139,14 @@ namespace ZAlpha.Infrastructure.Migrations
                         {
                             Id = "424ab531-d60a-487e-9625-a74a7f5747be",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "06f6b521-a5b8-4e4d-9747-9ce6c42c9871",
+                            ConcurrencyStamp = "c89d2137-3cac-4965-b6cb-0b653d112005",
                             Email = "test@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Chan",
                             LastName = "Dinh",
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "68c3aef9-8051-4c44-9ffa-2f27d013aca3",
+                            SecurityStamp = "a222679e-12d4-49d1-b3e3-dfa5c24acbb2",
                             Status = 1,
                             TwoFactorEnabled = false,
                             Wallet = 1000.0

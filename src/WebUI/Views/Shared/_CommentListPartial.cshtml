@@ -9,7 +9,17 @@
         <div style="position:relative;">
             <img style="width:35px;border-radius:50%; margin: 0.5vw 0px 0.2vw 0; " src="https://via.placeholder.com/35x35" />
             @* <strong style="display:inline; font-size:12px;">@item.UserAccount.FirstName @item.UserAccount.LastName</strong> *@
-            <strong style="display:inline; font-size:12px;">Chưa hiện tên dc</strong>
+            @{
+                var checkCreate = item.InteractWithComments.FirstOrDefault(i => i.InteractCommentStatus == ZAlpha.Domain.Enums.InteractCommentStatus.Create);
+                if (checkCreate != null)
+                {
+                    <strong style="display:inline; font-size:12px;">@checkCreate.UserAccount.FirstName @checkCreate.UserAccount.LastName</strong>
+                }
+                else
+                {
+                    <strong style="display:inline; font-size:12px;">Chưa hiện tên dc</strong>
+                }
+            }
             <div style="color: #FF6C37; font-size: 11px; display:inline; position:absolute; right:2vw; bottom:2px;">
                 @item.Created
             </div>
@@ -35,7 +45,7 @@
 <script>
     //hàm tương tác với comment
     function likeComment(commentId) {
-        var postId = "@Model.FirstOrDefault().PostId";
+        var postId = "@Model.FirstOrDefault()?.PostId";
         $.ajax({
             type: "POST",
             url: "@Url.Action("InteractWithComment", "Post")",
@@ -55,7 +65,7 @@
         });
     }
     function dislikeComment(commentId) {
-        var postId = "@Model.FirstOrDefault().PostId";
+        var postId = "@Model.FirstOrDefault()?.PostId";
         $.ajax({
             type: "POST",
             url: "@Url.Action("InteractWithComment", "Post")",

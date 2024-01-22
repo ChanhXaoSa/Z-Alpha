@@ -11,8 +11,9 @@
 @model ZAlpha.Application.Common.Models.PaginatedList<PostModel>
 
 <head>
-    <link href="./assets/css/newfeed.css" rel="stylesheet" />
+    @* <link href="./assets/css/newfeed.css" rel="stylesheet" /> *@
     <script src="./assets/js/newfeed.js" defer></script>
+    <link href="~/assets/css/newfeed.css" rel="stylesheet" />
 </head>
 <div>
 
@@ -28,12 +29,23 @@
             <div class="box">
                 <div>
                     <div style="position:relative ;">
-                        <i id="bookmarkIcon"
-                           style="color: gray; position: absolute; top:10px; right:10px;"
-                           name="bookmarkIconPostId" value=@item.Id
-                           class="fa-solid fa-bookmark"
-                           onclick="clickBookmarkIcon()">
-                        </i>
+                        @if (item.WishListPosts.FirstOrDefault(w => w.UserAccount.UserName == User.Identity.Name && w.IsDeleted == false) != null)
+                        {
+                            <i id="bookmarkIcon"
+                               style="color: yellow; position: absolute; top:10px; right:10px;"
+                               name="bookmarkIconPostId"
+                               class="fa-solid fa-bookmark"
+                               onclick="unWishlistPost('@item.Id')">
+                            </i>
+                        } else
+                        {
+                            <i id="bookmarkIcon"
+                               style="color: gray; position: absolute; top:10px; right:10px;"
+                               name="bookmarkIconPostId"
+                               class="fa-solid fa-bookmark"
+                               onclick="wishlistPost('@item.Id')">
+                            </i>
+                        }
                         <br />
                     </div>
                     @foreach (var postTag in item.PostTags)
@@ -67,11 +79,16 @@
                                     {
                                         if (interactWithPosts.InteractPostStatus == 0)
                                         {
-                                            Name = interactWithPosts.UserAccount.FirstName +" "+ interactWithPosts.UserAccount.LastName;
+                                            Name = interactWithPosts.UserAccount.FirstName +" "+ interactWithPosts.UserAccount.LastName + " ";
                                             break;
                                         }
+                                    }                                   
+                                    @Name                                       
+                                    @if(item.EmotionalStatus != null && item.EmotionalStatus!=ZAlpha.Domain.Enums.EmotionalStatus.None){
+                                        <div style="font-size:14px; display:inline; color:#6d9da6;">
+                                             đang cảm thấy @item.EmotionalStatus.ToString()
+                                        </div>                                        
                                     }
-                                    @Name
                                 </div>
                                 <div style="color: #FF6C37; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">
                                     @item.Created
@@ -110,33 +127,6 @@
 
         }
         <script>
-            function clickBookmarkIcon() {
-                var postId = document.getElementsByName("bookmarkIconPostId");
-                //alert("ok");
-                $.ajax({
-                    url: "/Post/Test",
-                    type: "POST",
-                    data: postId,
-                    success: function (res) {
-                        if (res.success) {
-                            window.location.reload();
-                        }
-                    }
-
-                })
-            }
-            
-            const icon = document.getElementById('bookmarkIcon');
-
-            icon.addEventListener('click', function onClick() {
-                // Toggle the 'active' class on each click
-                icon.classList.toggle('active');
-
-                // If you want to specifically change the color
-                // based on the 'active' class, you can do the following:
-                const isActive = icon.classList.contains('active');
-                icon.style.color = isActive ? 'yellow' : 'gray';
-            });
 
             //Hàm tương tác với Post
             function likePost(postId) {
@@ -170,6 +160,44 @@
                         if (result.success) {
                             alert(result.message);
                             // $("#postSection").load("/Post/Index?postId=" + postId + " #postSection");
+                            window.location.reload();
+                        } else {
+                            alert(result.message);
+                            window.location.href = '/login';
+                        }
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+                    }
+                });
+            }
+            function wishlistPost(postId) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("WishListPost", "Home")",
+                    data: { postId: postId, isDeleted: false },
+                    success: function (result) {
+                        if (result.success) {
+                            alert(result.message);
+                            window.location.reload();
+                        } else {
+                            alert(result.message);
+                            window.location.href = '/login';
+                        }
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+                    }
+                });
+            }
+            function unWishlistPost(postId) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("WishListPost", "Home")",
+                    data: { postId: postId, isDeleted: true },
+                    success: function (result) {
+                        if (result.success) {
+                            alert(result.message);
                             window.location.reload();
                         } else {
                             alert(result.message);
