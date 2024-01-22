@@ -27,18 +27,24 @@
                 <div>
                     <div style="position:relative ;">
                         <i id="bookmarkIcon" style="color: gray; position: absolute; top:10px; right:10px;" class="fa-solid fa-bookmark"></i>
-                        <script>
-                            const icon = document.getElementById('bookmarkIcon');
-                            icon.addEventListener('click', function onClick() {
-                                // Toggle the 'active' class on each click
-                                icon.classList.toggle('active');
-
-                                // If you want to specifically change the color
-                                // based on the 'active' class, you can do the following:
-                                const isActive = icon.classList.contains('active');
-                                icon.style.color = isActive ? 'yellow' : 'gray';
-                            });
-                        </script>
+                        @if (Model.WishListPosts?.FirstOrDefault(w => w.UserAccount.UserName == User.Identity.Name && w.IsDeleted == false) != null)
+                        {
+                            <i id="bookmarkIcon"
+                               style="color: yellow; position: absolute; top:10px; right:10px;"
+                               name="bookmarkIconPostId"
+                               class="fa-solid fa-bookmark"
+                               onclick="unWishlistPost('@Model.Id')">
+                            </i>
+                        }
+                        else
+                        {
+                            <i id="bookmarkIcon"
+                               style="color: gray; position: absolute; top:10px; right:10px;"
+                               name="bookmarkIconPostId"
+                               class="fa-solid fa-bookmark"
+                               onclick="wishlistPost('@Model.Id')">
+                            </i>
+                        }
                         <br />
                     </div>
                     @foreach (var postTag in Model.PostTags)
@@ -335,5 +341,43 @@
         });
     }
 
+    function wishlistPost(postId) {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("WishListPost", "Home")",
+            data: { postId: postId, isDeleted: false },
+            success: function (result) {
+                if (result.success) {
+                    alert(result.message);
+                    window.location.reload();
+                } else {
+                    alert(result.message);
+                    window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
+    function unWishlistPost(postId) {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("WishListPost", "Home")",
+            data: { postId: postId, isDeleted: true },
+            success: function (result) {
+                if (result.success) {
+                    alert(result.message);
+                    window.location.reload();
+                } else {
+                    alert(result.message);
+                    window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
     
 </script>
