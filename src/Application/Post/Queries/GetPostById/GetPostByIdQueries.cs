@@ -41,6 +41,8 @@ public class GetPostByIdQueriesHandler : IRequestHandler<GetPostByIdQueries, Get
             .ThenInclude(o => o.Tag)
             .Include(o => o.InteractWithPosts)
             .ThenInclude(o => o.UserAccount)
+            .Include(o => o.WishListPosts)
+            .ThenInclude(o => o.UserAccount)
             .AsNoTracking()
             .FirstOrDefault();
         if (Post == null)

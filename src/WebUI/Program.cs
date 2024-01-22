@@ -18,6 +18,19 @@ builder.Services.AddSession();
 builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
    opt.TokenLifespan = TimeSpan.FromMinutes(30));
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("*"
+                                              )
+                                                .AllowAnyHeader()
+                                                .AllowAnyMethod();
+                      });
+});
+
 //JWT
 //builder.Services.AddAuthentication(option =>
 //{
@@ -89,7 +102,7 @@ app.UseCookiePolicy(new CookiePolicyOptions
     HttpOnly = HttpOnlyPolicy.Always,
     Secure = CookieSecurePolicy.Always,
 });
-
+app.UseCors(MyAllowSpecificOrigins);
 //app.UseEndpoints(endpoints =>
 //{
 //    endpoints.MapControllerRoute(
