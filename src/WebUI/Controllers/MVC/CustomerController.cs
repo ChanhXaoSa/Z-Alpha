@@ -14,6 +14,9 @@ using ZAlpha.Application.Post.Queries.GetPostById;
 using ZAlpha.Application.Post.Queries.GetAllPost;
 using ZAlpha.Domain.Entities;
 using ZAlpha.Application.WishListPost.Queries.GetWishListPost;
+using ZAlpha.Application.Comment.Commands.CreateComment;
+using ZAlpha.Application.InteractWithComments.Commands.CreateInteractWithComment;
+using System.ComponentModel.Design;
 
 namespace WebUI.Controllers.MVC;
 public class CustomerController : ControllerBaseMVC
@@ -80,7 +83,7 @@ public class CustomerController : ControllerBaseMVC
     public IActionResult NewPost()
     {
         List<EmotionalStatus> emotionalStatusList = Enum.GetValues(typeof(EmotionalStatus)).Cast<EmotionalStatus>().ToList();
-       
+
         var tags = Mediator.Send(new GetAllTagQueries() { Page = 1, Size = 50 }).Result;
         ViewBag.tags = tags;
         ViewBag.emotionalStatusList = emotionalStatusList;
@@ -97,7 +100,7 @@ public class CustomerController : ControllerBaseMVC
             ViewBag.tags = tags;
             ViewBag.emotionalStatusList = emotionalStatusList;
             //
-            if (postbody == null || postTitle == null ) return Json("fail;");
+            if (postbody == null || postTitle == null) return Json("fail;");
             string postImgUrl = "";
             //// check file co phai la img khong || co file hay ko
             if (file == null)
@@ -107,12 +110,12 @@ public class CustomerController : ControllerBaseMVC
             else
                 postImgUrl = SaveFileImage(file);
             // tao postID
-            var postId = Mediator.Send(new CreatePostCommands { PostDescription = postbody, PostImgUrl = postImgUrl, PostTitle = postTitle, emotionalStatus = emostatus}).Result;
+            var postId = Mediator.Send(new CreatePostCommands { PostDescription = postbody, PostImgUrl = postImgUrl, PostTitle = postTitle, emotionalStatus = emostatus }).Result;
             // get UserId
             var userId = await _identityService.GetUserByNameAsync(User.Identity.Name);
             // Tao interacId
-            var interactId = await Mediator.Send(new CreateInteractWithPostCommand() { UserAccountId = userId.Id, PostId = postId, InteractPostStatus = InteractPostStatus.Create});
-            
+            var interactId = await Mediator.Send(new CreateInteractWithPostCommand() { UserAccountId = userId.Id, PostId = postId, InteractPostStatus = InteractPostStatus.Create });
+
             List<string> selectedValues = formCollection["SelectedValues"].ToList();
             foreach (var item in selectedValues)
             {
@@ -172,5 +175,41 @@ public class CustomerController : ControllerBaseMVC
             fileUrl = Path.Combine("uploads", file.FileName);
         }
         return fileUrl;
+    }
+
+
+    [HttpGet]
+    public async Task<IActionResult> EditInfo(string FirstName, string LastName, string Email, string Phone, string Address, DateTime BirthDay)
+    {
+        try
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+                user.FirstName = FirstName;
+                user.LastName = LastName;
+                user.Email = Email;
+                user.Phone = Phone;
+                user.Address = Address;
+                user.BirthDay = BirthDay;
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return Json(new { success = true, message = "Bạn đã chỉnh sửa thành công" });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Chỉnh sửa thất bại" });
+                }
+            }
+            else
+            {
+                return Json(new { success = false, message = "Bạn cần phải đăng nhập" });
+            }
+        }
+        catch (Exception ex)
+        {
+            return Json(new { success = false, message = "Chỉnh sửa thất bại!" });
+        }
     }
 }
