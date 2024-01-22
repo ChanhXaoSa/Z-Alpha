@@ -41,6 +41,7 @@ public class GetCommentByPostIdQueriesHandler : IRequestHandler<GetCommentByPost
         var listComment = _context.Get<Domain.Entities.Comment>()
             .Where(x => x.IsDeleted == false && x.PostId == request.PostId)
             .Include(x => x.InteractWithComments)
+            .ThenInclude(x => x.UserAccount)
    /*         .Include(o=>o.UserAccount)*/
             .OrderByDescending(o=>o.Created)
             .AsNoTracking();
