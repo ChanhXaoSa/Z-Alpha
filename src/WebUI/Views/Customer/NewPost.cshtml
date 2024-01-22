@@ -52,12 +52,12 @@
                 <span style="color: black; font-size: 18px; font-family: Inter; font-weight: 600; word-wrap: break-word">Hãy đánh giá tình trạng tâm lí hiện tại của bản thân</span>
             </div>
             <div style="display:flex; justify-content: center;align-content: center;">
-                <select class="comboBoxNewPost" name="emotional">
-                    <option value="none">Tình trạng của bạn:</option>
+                <select class="comboBoxNewPost" name="emostatus" id="emostatus">
+                    <option value="emotionalStatusList[0]">Tình trạng của bạn:</option>
                     @{emotionalStatusList.Remove(emotionalStatusList[0]);};
                     @foreach (var item in emotionalStatusList)
                     {
-                        <option value="@item.ToString()">@item.ToString()</option>
+                        <option value="@item">@item.ToString()</option>
                     }
                 </select>
             </div>
@@ -91,7 +91,7 @@
                     @*-------------------------------*@
                     <div style="margin:1rem 0 0.3rem 0;">
                         <span style="color: black; font-size: 18px; font-family: Inter; font-weight: 600; word-wrap: break-word">Chọn thẻ:</span>
-                        <span style="color: #DD2E44; font-size: 18px; font-family: Inter; font-weight: 600; word-wrap: break-word">*</span>
+                        
                     </div>
 
                     <div class="auto-group-brvk-CQM" style="overflow-y: scroll; height: 250px; font-size:1.1rem">

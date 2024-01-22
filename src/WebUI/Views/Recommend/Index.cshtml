@@ -5,7 +5,10 @@
     ViewBag.Title = "Recommend";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using ZAlpha.Application.Common.Models;
+@using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
+@using ZAlpha.Domain.Enums;
+@model ZAlpha.Application.Common.Models.PaginatedList<PsychologistAccountModel>
 <head>    
     <title>Recommend</title>
     <link rel="stylesheet" href="~/assets/css/recommend.css"/>
@@ -19,10 +22,12 @@
             </div>
         </div>
         <div class="col-4">
-            <div class="group">
-                <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path></g></svg>
-                <input placeholder="Search" type="search" class="input">
-            </div>
+            <form action="~/Recommend/Search" method="post" enctype="multipart/form-data">
+                <div class="group">
+                    <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path></g></svg>
+                    <input placeholder="Search" name="keySearch" type="search" class="input">
+                </div>
+            </form>
         </div>        
     </div>      
 
@@ -49,6 +54,49 @@
     <div style="">
         <div style="">
             @*-------------------------------------*@
+            @foreach (var item in Model.Items)
+            {
+                
+                <div class="boxRecommend">
+                    <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
+                    @if (item.UserAccount.UserName != null)
+                    {                        
+                        <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">                        
+                            Psy. @item.UserAccount.UserName
+                        </div>
+                    } 
+                    @if (item.UserAccount.Address != null)
+                    {                  
+                        <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+                            @item.Position : @item.UserAccount.Address
+                        </div>
+                    } 
+                    @if (item != null)
+                    {                                       
+                    <div style="display:block;">
+                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                        <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
+                        </div>
+                    } 
+                    @if (item.UserAccount.InteractWithComments != null)
+                    {
+                        <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
+                            <i class="fa-regular fa-message"></i>
+                            Đã viết @item.UserAccount.InteractWithComments.Count bình luận
+                        </div>
+                    } else
+                    {
+                        <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
+                            <i class="fa-regular fa-message"></i>
+                            Đã viết 0 bình luận
+                        </div>
+                    }                   
+                </div>
+            }            
+            @*-------------------------------------
             <div class="boxRecommend">
                 <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
                 <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
@@ -68,8 +116,8 @@
                     <i class="fa-regular fa-message"></i>
                     Đã viết 2k7 bình luận
                 </div>
-            </div>
-            @*-------------------------------------*@
+            </div>*@
+            @*-------------------------------------
             <div class="boxRecommend">
                 <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
                 <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
@@ -89,8 +137,8 @@
                     <i class="fa-regular fa-message"></i>
                     Đã viết 2k7 bình luận
                 </div>
-            </div>
-            @*-------------------------------------*@
+            </div>*@
+            @*-------------------------------------
             <div class="boxRecommend">
                 <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
                 <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
@@ -110,8 +158,8 @@
                     <i class="fa-regular fa-message"></i>
                     Đã viết 2k7 bình luận
                 </div>
-            </div>
-            @*-------------------------------------*@
+            </div>*@
+            @*-------------------------------------
             <div class="boxRecommend">
                 <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
                 <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
@@ -131,8 +179,8 @@
                     <i class="fa-regular fa-message"></i>
                     Đã viết 2k7 bình luận
                 </div>
-            </div>
-            @*-------------------------------------*@
+            </div>*@
+            @*-------------------------------------
             <div class="boxRecommend">
                 <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
                 <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
@@ -152,28 +200,7 @@
                     <i class="fa-regular fa-message"></i>
                     Đã viết 2k7 bình luận
                 </div>
-            </div>
-            @*-------------------------------------*@
-            <div class="boxRecommend">
-                <img style="width: 10vw; height: 10vw; border-radius: 10px" src="https://via.placeholder.com/130x130" />
-                <div style="color: black; font-size: 14px; font-family: Inter; font-weight: 600; word-wrap: break-word; margin: 0.2rem 0;">
-                    Psy. Trần Phát
-                </div>
-                <div style="opacity: 0.50; color: black; font-size:11px; font-family: Inter; font-weight: 400; word-wrap: break-word">
-                    Tp. Hồ Chí Minh
-                </div>
-                <div style="display:block;">
-                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                    <i class="fa-solid fa-star fa-2xs" style="color:yellow"></i>
-                </div>
-                <div style="color: #11D02F; font-size: 10px; font-family: Inter; font-weight: 500; word-wrap: break-word">
-                    <i class="fa-regular fa-message"></i>
-                    Đã viết 2k7 bình luận
-                </div>
-            </div>
+            </div>*@
 
 
         </div>
