@@ -35,7 +35,7 @@
 <script>
     //hàm tương tác với comment
     function likeComment(commentId) {
-        var postId = "@Model.FirstOrDefault().PostId";
+        var postId = "@Model.FirstOrDefault()?.PostId";
         $.ajax({
             type: "POST",
             url: "@Url.Action("InteractWithComment", "Post")",
@@ -55,7 +55,7 @@
         });
     }
     function dislikeComment(commentId) {
-        var postId = "@Model.FirstOrDefault().PostId";
+        var postId = "@Model.FirstOrDefault()?.PostId";
         $.ajax({
             type: "POST",
             url: "@Url.Action("InteractWithComment", "Post")",
