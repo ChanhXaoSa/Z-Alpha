@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
 using ZAlpha.Application.ManagerAccount.Queries.GetAllManagerAccount;
+using ZAlpha.Application.Post.Queries.GetAllPost;
 using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
 using ZAlpha.Domain.Identity;
 
@@ -275,12 +276,27 @@ public class AdminController : ControllerBaseMVC
         }
     }
 
+    // Manager DataTable
     public async Task<IActionResult> ManagerDatatable()
     {
         try
         {
             var result = Mediator.Send(new GetManagerAccountQueries() { Page = 1, Size = 1000 }).Result;
             return View("./ManageManager/ManagerDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    // Post DataTable
+    public async Task<IActionResult> PostDatatable()
+    {
+        try
+        {
+            var result = Mediator.Send(new GetPostQueries() { Page = 1, Size = 1000 }).Result;
+            return View("./ManagePost/PostDatatable", result);
         }
         catch (Exception ex)
         {
