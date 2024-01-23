@@ -24,6 +24,7 @@
             </div>
         </div>
         <!-- End Bread crumb -->
+
         <!-- Container fluid  -->
         <div class="container-fluid">
             <!-- Start Page Content -->
@@ -35,22 +36,18 @@
                                 <table id="myTable" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Tên</th>
-                                            <th>Username</th>
+                                            <th>Tên thẻ</th>
+                                            <th>Ngày tạo</th>
                                             <th>Địa chỉ</th>
                                             <th>Ngày sinh</th>
-                                            <th>Email</th>
-                                            <th>Số điện thoại</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var item in Model.Items)
                                         {
                                             <tr>
-                                                <td>@item.TagName </td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>@item.TagName</td>
+                                                <td>@item.Created</td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>

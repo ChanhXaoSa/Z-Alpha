@@ -7,9 +7,11 @@ using ZAlpha.Domain.Enums;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.WishListPost.Commands.CreateWishListPost;
 using ZAlpha.Application.Post.Queries.GetPostBySearch;
+using Microsoft.AspNetCore.Authorization;
 using NToastNotify;
 
 namespace WebUI.Controllers.MVC;
+
 
 public class HomeController : ControllerBaseMVC
 {

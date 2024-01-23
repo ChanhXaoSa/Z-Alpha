@@ -34,6 +34,7 @@ public class PostController : ControllerBaseMVC
         _notification = notification;
     }
 
+    [HttpGet]
     public async Task<IActionResult> Index(string userAccountId, Guid postId, string description)
     {
         
