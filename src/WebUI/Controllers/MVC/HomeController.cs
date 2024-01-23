@@ -7,9 +7,11 @@ using ZAlpha.Domain.Enums;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.WishListPost.Commands.CreateWishListPost;
 using ZAlpha.Application.Post.Queries.GetPostBySearch;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Controllers.MVC;
 
+[Authorize]
 public class HomeController : ControllerBaseMVC
 {
     private readonly IIdentityService _identityService;
