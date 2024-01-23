@@ -1,0 +1,71 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Manager Database";
+    Layout = "~/Views/Admin/Shared/Layout.cshtml";
+}
+@using ZAlpha.Application.Common.Models;
+@using ZAlpha.Application.ManagerAccount.Queries.GetAllManagerAccount;
+@model ZAlpha.Application.Common.Models.PaginatedList<ManageAccountModel>
+
+<body>
+    <!-- Page wrapper  -->
+    <div class="page-wrapper">
+        <!-- Bread crumb -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-primary">Danh sách người quản lý</h3>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="~/Admin/Index">Admin</a></li>
+                    <li class="breadcrumb-item active">Danh sách người quản lý</li>
+                </ol>
+            </div>
+        </div>
+        <!-- End Bread crumb -->
+        <!-- Container fluid  -->
+        <div class="container-fluid">
+            <!-- Start Page Content -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body" style="margin-top:-60px">
+                            <div class="table-responsive m-t-40">
+                                <table id="myTable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên</th>
+                                            <th>Username</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Ngày sinh</th>
+                                            <th>Email</th>
+                                            <th>Số điện thoại</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Items)
+                                        {
+                                            <tr>
+                                                <td>@item.UserAccount.FirstName @item.UserAccount.LastName</td>
+                                                <td>@item.UserAccount.UserName</td>
+                                                <td>@item.UserAccount.Address</td>
+                                                <td>@item.UserAccount.BirthDay</td>
+                                                <td>@item.UserAccount.Email</td>
+                                                <td>@item.UserAccount.Phone</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End PAge Content -->
+        </div>
+        <!-- End Container fluid  -->
+    </div>
+    <!-- End Page wrapper  -->
+</body>

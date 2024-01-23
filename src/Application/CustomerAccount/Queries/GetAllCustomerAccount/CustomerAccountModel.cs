@@ -12,6 +12,6 @@ public class CustomerAccountModel : IMapFrom<Domain.Entities.CustomerAccount>
 {
     public Guid Id { get; set; }
     [ForeignKey("UserAccount")]
-    public Guid UserAccountId { get; set; }
+    public string UserAccountId { get; set; }
     public virtual UserAccount? UserAccount { get; set; }
 }
