@@ -9525,7 +9525,7 @@ figure > img {
 }
 
 .form-box .form {
-  margin-top: 76px;
+  margin-top: 50px;
 }
 
 .form-box .lined-text {
@@ -9557,13 +9557,13 @@ figure > img {
     1. LANDING
 ------------------*/
 .landing {
-  width: 100%;
-  height: 100%;
-  background: url("../img/landing/landing-background.jpg") no-repeat left center;
-  background-size: cover;
-  position: fixed;
-  top: 0;
-  left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../images/landing/landing-background.jpg") no-repeat left center;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .landing .landing-decoration {
@@ -15803,11 +15803,12 @@ figure > img {
     10. SECTION BANNER
 -------------------------*/
 .section-banner {
-  min-height: 160px;
-  padding: 52px 60px 0 200px;
-  border-radius: 12px;
-  background: url("../img/banner/banner-bg.png") no-repeat center;
-  position: relative;
+    min-height: 160px;
+    padding: 52px 60px 0 200px;
+    border-radius: 12px;
+    /*background: url("../img/banner/banner-bg.png") no-repeat center;*/
+    background: url("../images/banner/banner-bg.png") no-repeat center;
+    position: relative;
 }
 
 .section-banner .section-banner-icon {
@@ -16061,4 +16062,4 @@ figure > img {
     width: 100%;
   }
 }
-/*# sourceMappingURL=styles.css.map */
+# sourceMappingURL=styles.css.map 
