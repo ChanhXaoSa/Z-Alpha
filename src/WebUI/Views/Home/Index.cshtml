@@ -1237,8 +1237,8 @@
                                     <!-- USER STATUS TITLE -->
                                     <p class="user-status-title medium">
                                         <a class="bold" href="profile-timeline.html">
-                                        @item.InteractWithPosts.FirstOrDefault(o=>o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create).UserAccount.FirstName
-                                        @item.InteractWithPosts.FirstOrDefault(o=>o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create).UserAccount.LastName
+                                        @item.InteractWithPosts?.FirstOrDefault(o=>o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.FirstName
+                                        @item.InteractWithPosts?.FirstOrDefault(o=>o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.LastName
                                         </a>
                                      </p>
                                     <!-- /USER STATUS TITLE -->
