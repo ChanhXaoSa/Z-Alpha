@@ -1158,7 +1158,7 @@
         <!--Dòng for render-->
         <!-------------------------------------------------------------------------------------------------------------------------------------->
         @foreach(var item in Model.Items){
-            if(item.PostImagesUrl.Length >0 && item.PostImagesUrl != null){
+            if(item.PostImagesUrl?.Length > 0){
                     <!-- WIDGET BOX -->
                     <div class="widget-box no-padding">
                         <!-- WIDGET BOX SETTINGS -->
