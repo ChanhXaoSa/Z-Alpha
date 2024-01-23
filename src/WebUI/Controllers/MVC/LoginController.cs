@@ -44,21 +44,21 @@ public class LoginController : ControllerBaseMVC
     [ApiExplorerSettings(IgnoreApi = true)]
     [AllowAnonymous]
     [HttpPost("login")]
-    public async Task<IActionResult> index(string Email, string Password)
+    public async Task<IActionResult> index(string login_username, string login_password)
     {
         if (ModelState.IsValid)
         {
-            var user = await _identityService.GetUserByEmailAsync(Email);
+            var user = await _identityService.GetUserByEmailAsync(login_username);
             if (user == null)
             {
-                var result = await _signInManager.PasswordSignInAsync(Email, Password, true, false);
+                var result = await _signInManager.PasswordSignInAsync(login_username, login_password, true, false);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
                 }
             } else
             {
-                var result = await _signInManager.PasswordSignInAsync(user.UserName, Password, true, false);
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, login_password, true, false);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
