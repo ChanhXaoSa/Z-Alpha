@@ -113,7 +113,7 @@ app.UseCors(MyAllowSpecificOrigins);
 app.MapDefaultControllerRoute();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
