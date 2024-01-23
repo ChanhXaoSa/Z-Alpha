@@ -33,6 +33,7 @@ public class GetCustomerAccountRequestHandler : IRequestHandler<GetCustomerAccou
     public async Task<PaginatedList<CustomerAccountModel>> Handle(GetCustomerAccountRequest request, CancellationToken cancellationToken)
     {
         var customerAccount = _context.Get<Domain.Entities.CustomerAccount>()
+            .Include(x => x.UserAccount)
             .Where(x => x.IsDeleted == false).AsNoTracking();
 
         var map = _mapper.ProjectTo<CustomerAccountModel>(customerAccount);

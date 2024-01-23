@@ -1,8 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
+using ZAlpha.Domain.Identity;
 
 namespace WebUI.Controllers.MVC.Admin;
 public class AdminController : ControllerBaseMVC
 {
+    private readonly IIdentityService _identityService;
+    private readonly UserManager<UserAccount> _userManager;
+    private readonly SignInManager<UserAccount> _signInManager;
+    private readonly IWebHostEnvironment _hostingEnvironment;
+
+    public AdminController(IIdentityService identityService, UserManager<UserAccount> userManager, SignInManager<UserAccount> signInManager, IWebHostEnvironment hostingEnvironment)
+    {
+        _identityService = identityService;
+        _userManager = userManager;
+        _signInManager = signInManager;
+        _hostingEnvironment = hostingEnvironment;
+    }
+
     public IActionResult Index()
     {
         return View("./AdminHome/Index");
@@ -148,9 +165,9 @@ public class AdminController : ControllerBaseMVC
         return View("./PageError/PageError503");
     }
 
-    public IActionResult TableBoostrap()
+    public IActionResult TableBootstrap()
     {
-        return View("./Table/TableBoostrap");
+        return View("./Table/TableBootstrap");
     }
 
     public IActionResult TableDatatable()
@@ -226,5 +243,20 @@ public class AdminController : ControllerBaseMVC
     public IActionResult AppProfile()
     {
         return View("./Admin/AppProfile");
+    }
+
+    // Customer DataTable
+    public async Task<IActionResult> CustomerDatatable()
+    {
+        try
+        {
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            var result = Mediator.Send(new GetCustomerAccountRequest() { Page = 1, Size = 10 }).Result;
+            return View("~/Admin/CustomerDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 }
