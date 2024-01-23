@@ -4190,42 +4190,42 @@ figure > img {
         }
 
         .stats-box.small.stat-profile-views {
-            background: url(../img/graph/stat/01.jpg) no-repeat 50%;
+            background: url(~/assets/images/graph/stat/01.jpg) no-repeat 50%;
             background-size: cover
         }
 
         .stats-box.small.stat-posts-created {
-            background: url(../img/graph/stat/02.jpg) no-repeat 50%;
+            background: url(~/assets/images/graph/stat/02.jpg) no-repeat 50%;
             background-size: cover
         }
 
         .stats-box.small.stat-reactions-received {
-            background: url(../img/graph/stat/03.jpg) no-repeat 50%;
+            background: url(~/assets/images/graph/stat/03.jpg) no-repeat 50%;
             background-size: cover
         }
 
         .stats-box.small.stat-comments-received {
-            background: url(../img/graph/stat/04.jpg) no-repeat 50%;
+            background: url(~/assets/images/graph/stat/04.jpg) no-repeat 50%;
             background-size: cover
         }
 
     .stats-box.stat-profile-views {
-        background: url(../img/graph/stat/01-big.png) no-repeat 50%;
+        background: url(~/assets/images/graph/stat/01-big.png) no-repeat 50%;
         background-size: cover
     }
 
     .stats-box.stat-posts-created {
-        background: url(../img/graph/stat/02-big.png) no-repeat 50%;
+        background: url(~/assets/images/graph/stat/02-big.png) no-repeat 50%;
         background-size: cover
     }
 
     .stats-box.stat-reactions-received {
-        background: url(../img/graph/stat/03-big.png) no-repeat 50%;
+        background: url(~/assets/images/graph/stat/03-big.png) no-repeat 50%;
         background-size: cover
     }
 
     .stats-box.stat-comments-received {
-        background: url(../img/graph/stat/04-big.png) no-repeat 50%;
+        background: url(~/assets/images/graph/stat/04-big.png) no-repeat 50%;
         background-size: cover
     }
 
@@ -4589,7 +4589,7 @@ figure > img {
 }
 
     .stats-decoration.secondary {
-        background: url(../img/graph/stat/05.png) no-repeat 100% 100% #fff
+        background: url(~/assets/images/graph/stat/05.png) no-repeat 100% 100% #fff
     }
 
         .stats-decoration.secondary .stats-decoration-icon-wrap {
@@ -4597,7 +4597,7 @@ figure > img {
         }
 
     .stats-decoration.primary {
-        background: url(../img/graph/stat/06.png) no-repeat 100% 100% #fff
+        background: url(~/assets/images/graph/stat/06.png) no-repeat 100% 100% #fff
     }
 
         .stats-decoration.primary .stats-decoration-icon-wrap {
@@ -4636,11 +4636,11 @@ figure > img {
         }
 
             .stats-decoration.v2.big.secondary {
-                background: url(../img/graph/stat/05-big.png) repeat-x bottom #fff
+                background: url(~/assets/images/graph/stat/05-big.png) repeat-x bottom #fff
             }
 
             .stats-decoration.v2.big.primary {
-                background: url(../img/graph/stat/06-big.png) repeat-x bottom #fff
+                background: url(~/assets/images/graph/stat/06-big.png) repeat-x bottom #fff
             }
 
             .stats-decoration.v2.big .stats-decoration-title {
@@ -5144,7 +5144,7 @@ figure > img {
         padding-top: 34px;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
-        background: url(../img/banner/banner-profile-stats.jpg) no-repeat 50%;
+        background: url(~/assets/images/banner/banner-profile-stats.jpg) no-repeat 50%;
         background-size: cover
     }
 
@@ -5244,12 +5244,12 @@ figure > img {
 }
 
     .featured-stat-box.reactioner .featured-stat-box-cover {
-        background: url(../img/banner/banner-reaction.jpg) no-repeat 50%;
+        background: url(~/assets/images/banner/banner-reaction.jpg) no-repeat 50%;
         background-size: cover
     }
 
     .featured-stat-box.commenter .featured-stat-box-cover {
-        background: url(../img/banner/banner-commenter.jpg) no-repeat 50%;
+        background: url(~/assets/images/banner/banner-commenter.jpg) no-repeat 50%;
         background-size: cover
     }
 
@@ -5322,12 +5322,12 @@ figure > img {
 }
 
     .achievement-box.secondary {
-        background: url(../img/achievement/banner/01.jpg) no-repeat 50%;
+        background: url(~/assets/images/achievement/banner/01.jpg) no-repeat 50%;
         background-size: cover
     }
 
     .achievement-box.primary {
-        background: url(../img/achievement/banner/02.jpg) no-repeat 50%;
+        background: url(~/assets/images/achievement/banner/02.jpg) no-repeat 50%;
         background-size: cover
     }
 
@@ -5397,7 +5397,7 @@ figure > img {
     justify-content: center;
     width: 88px;
     height: 86px;
-    background: url(../img/badge/level-badge.png) no-repeat 50%
+    background: url(~/assets/images/badge/level-badge.png) no-repeat 50%
 }
 
     .level-progress-badge .level-progress-badge-text, .level-progress-badge .level-progress-badge-title {
@@ -5471,7 +5471,7 @@ figure > img {
 }
 
     .account-stat-box.account-stat-active-users {
-        background: url(../img/graph/stat/07.png) no-repeat bottom #fff;
+        background: url(~/assets/images/graph/stat/07.png) no-repeat bottom #fff;
         background-size: contain
     }
 
@@ -5480,7 +5480,7 @@ figure > img {
         }
 
     .account-stat-box.account-stat-visits {
-        background: url(../img/graph/stat/08.png) no-repeat bottom #fff;
+        background: url(~/assets/images/graph/stat/08.png) no-repeat bottom #fff;
         background-size: contain
     }
 
@@ -5489,7 +5489,7 @@ figure > img {
         }
 
     .account-stat-box.account-stat-session-duration {
-        background: url(../img/graph/stat/09.png) no-repeat bottom #fff;
+        background: url(~/assets/images/graph/stat/09.png) no-repeat bottom #fff;
         background-size: contain
     }
 
@@ -5498,7 +5498,7 @@ figure > img {
         }
 
     .account-stat-box.account-stat-returning-visitors {
-        background: url(../img/graph/stat/10.png) no-repeat bottom #fff;
+        background: url(~/assets/images/graph/stat/10.png) no-repeat bottom #fff;
         background-size: contain
     }
 
@@ -5920,7 +5920,7 @@ figure > img {
         }
 
         .create-entity-box.v2 .create-entity-box-avatar {
-            background: url(../img/badge/badge-empty-02.png) no-repeat 50%;
+            background: url(~/assets/images/badge/badge-empty-02.png) no-repeat 50%;
             top: 36px
         }
 
@@ -5954,7 +5954,7 @@ figure > img {
         align-items: center;
         width: 100px;
         height: 110px;
-        background: url(../img/badge/badge-empty.png) no-repeat 50%;
+        background: url(~/assets/images/badge/badge-empty.png) no-repeat 50%;
         position: absolute;
         top: 16px;
         left: 50%;
@@ -7267,7 +7267,7 @@ figure > img {
 .error-section {
     width: 100%;
     height: 100%;
-    background: url(../img/landing/404-bg.png) no-repeat 0 0,url(../img/landing/vikinger-logo.png) right 40px top 40px no-repeat,url(../img/landing/dot-texture.png) repeat 0 0,#fff;
+    background: url(~/assets/images/landing/404-bg.png) no-repeat 0 0,url(~/assets/images/landing/vikinger-logo.png) right 40px top 40px no-repeat,url(~/assets/images/landing/dot-texture.png) repeat 0 0,#fff;
     background-size: contain,auto,auto;
     position: fixed;
     top: 0;
@@ -7340,7 +7340,7 @@ figure > img {
 
 @media screen and (max-width:1365px) {
     .error-section {
-        background: url(../img/landing/dot-texture.png) repeat 0 0 #fff;
+        background: url(~/assets/images/landing/dot-texture.png) repeat 0 0 #fff;
         background-size: auto;
         padding: 120px 0;
         position: static
@@ -8373,7 +8373,7 @@ figure > img {
         width: 64%;
         height: 140%;
         border-radius: 50%;
-        background: url(../img/landing/dot-texture.png) repeat 0 0 #fff;
+        background: url(~/assets/images/landing/dot-texture.png) repeat 0 0 #fff;
         position: absolute;
         top: -20%;
         right: -32%;
@@ -10223,7 +10223,7 @@ figure > img {
 }
 
     .product-category-box.category-all {
-        background: url(../img/marketplace/category/01.png) no-repeat 100% 0,linear-gradient(90deg,#615dfa,#8d7aff)
+        background: url(~/assets/images/marketplace/category/01.png) no-repeat 100% 0,linear-gradient(90deg,#615dfa,#8d7aff)
     }
 
         .product-category-box.category-all .product-category-box-tag {
@@ -10231,7 +10231,7 @@ figure > img {
         }
 
     .product-category-box.category-featured {
-        background: url(../img/marketplace/category/02.png) no-repeat 100% 0,linear-gradient(90deg,#417ae1,#5aafff)
+        background: url(~/assets/images/marketplace/category/02.png) no-repeat 100% 0,linear-gradient(90deg,#417ae1,#5aafff)
     }
 
         .product-category-box.category-featured .product-category-box-tag {
@@ -10239,7 +10239,7 @@ figure > img {
         }
 
     .product-category-box.category-digital {
-        background: url(../img/marketplace/category/03.png) no-repeat 100% 0,linear-gradient(90deg,#2ebfef,#4ce4ff)
+        background: url(~/assets/images/marketplace/category/03.png) no-repeat 100% 0,linear-gradient(90deg,#2ebfef,#4ce4ff)
     }
 
         .product-category-box.category-digital .product-category-box-tag {
@@ -10247,7 +10247,7 @@ figure > img {
         }
 
     .product-category-box.category-physical {
-        background: url(../img/marketplace/category/04.png) no-repeat 100% 0,linear-gradient(90deg,#17cada,#2becfe)
+        background: url(~/assets/images/marketplace/category/04.png) no-repeat 100% 0,linear-gradient(90deg,#17cada,#2becfe)
     }
 
         .product-category-box.category-physical .product-category-box-tag {
