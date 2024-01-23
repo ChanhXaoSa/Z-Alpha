@@ -9,5 +9,11 @@ public enum InteractPostStatus
 {
     Create = 0,
     Like = 1,
-    Dislike = 2,
+    Love = 2,
+    Dislike =3,
+    Happy = 4,
+    Funny =5 ,
+    Wow =6,
+    Angry= 7,
+    Sad =8
 }
