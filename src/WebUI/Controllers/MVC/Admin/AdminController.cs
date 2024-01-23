@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ZAlpha.Application.Comment.Queries.GetAllComment;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
 using ZAlpha.Application.ManagerAccount.Queries.GetAllManagerAccount;
@@ -281,6 +282,18 @@ public class AdminController : ControllerBaseMVC
         {
             var result = Mediator.Send(new GetManagerAccountQueries() { Page = 1, Size = 1000 }).Result;
             return View("./ManageManager/ManagerDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    public async Task<IActionResult> CommentDatatable()
+    {
+        try
+        {
+            var result = Mediator.Send(new GetCommentRequest() { Page = 1, Size = 100}).Result;
+            return View("./ManageComment/CommentDatatable", result);
         }
         catch (Exception ex)
         {
