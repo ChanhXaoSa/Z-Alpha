@@ -1,4 +1,9 @@
 ﻿
+.container-newfeed {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
 
 .box {
     border-radius: 7px;
@@ -90,18 +95,6 @@
     font-family: Inter;
     font-weight: 500;
     word-wrap: break-word
-}
-.logo {
-    width: 50px;
-    height: 50px;
-    background: url("../images/logo.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    overflow: hidden;
-    margin-bottom:8px;
 }
 /* CSS */
 .button-62 {
