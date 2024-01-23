@@ -319,7 +319,7 @@ public class AdminController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }  
-public async Task<IActionResult> CommentDatatable()
+    public async Task<IActionResult> CommentDatatable()
     {
         try
         {
