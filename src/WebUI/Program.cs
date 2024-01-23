@@ -1,4 +1,4 @@
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 using ZAlpha.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -50,8 +50,15 @@ builder.Services.AddCors(options =>
 //        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecrectKey"]))
 //    };
 //});
+builder.Services.AddControllersWithViews().AddNToastNotifyNoty(new NToastNotify.NotyOptions(){
+    ProgressBar = true,
+    Timeout = 500
+
+});
 
 var app = builder.Build();
+
+app.UseNToastNotify();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

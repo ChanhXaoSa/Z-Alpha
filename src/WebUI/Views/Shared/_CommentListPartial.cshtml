@@ -52,10 +52,10 @@
             data: { commentId: commentId, status: 1 },
             success: function (result) {
                 if (result.success) {
-                    alert(result.message);
+                    //alert(result.message);
                     $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
                 } else {
-                    alert(result.message);
+                    //alert(result.message);
                     window.location.href = '/login';
                 }
             },
@@ -72,10 +72,10 @@
             data: { commentId: commentId, status: 2 },
             success: function (result) {
                 if (result.success) {
-                    alert(result.message);
+                    //alert(result.message);
                     $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
                 } else {
-                    alert(result.message);
+                    //alert(result.message);
                     window.location.href = '/login';
                 }
             },

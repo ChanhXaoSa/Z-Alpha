@@ -7,21 +7,25 @@ using ZAlpha.Domain.Enums;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.WishListPost.Commands.CreateWishListPost;
 using ZAlpha.Application.Post.Queries.GetPostBySearch;
+using NToastNotify;
 
 namespace WebUI.Controllers.MVC;
 
 public class HomeController : ControllerBaseMVC
 {
     private readonly IIdentityService _identityService;
+    private readonly IToastNotification _notification;
 
-    public HomeController(IIdentityService identityService)
+    public HomeController(IIdentityService identityService, IToastNotification notification)
     {
         _identityService = identityService;
+        _notification = notification;
     }
     public IActionResult index() 
     {
         try
         {
+            
             var result =  Mediator.Send(new GetPostQueries() { Page = 1, Size = 100 }).Result;
             return View(result);
             //return View();
@@ -58,14 +62,17 @@ public class HomeController : ControllerBaseMVC
             var wishlistPostId = await Mediator.Send(new CreateWishlistPostCommands() { PostId = Guid.Parse(postId), UserAccountId = user.Id, IsDeleted = isDeleted });
             if (isDeleted == true)
             {
+                _notification.AddSuccessToastMessage(message: "Đã bỏ lưu bài viết này");
                 return Json(new { success = true, message = "Đã bỏ lưu bài viết này", wishlistPostId = wishlistPostId });
             } else
-            {
+            { 
+                _notification.AddSuccessToastMessage(message: "Đã lưu bài viết này");
                 return Json(new { success = true, message = "Đã lưu bài viết này", wishlistPostId = wishlistPostId });
             }
         }
         else
         {
+            _notification.AddWarningToastMessage("Đăng nhập để lưu bài viết");
             return Json(new { success = false, message = "Đăng nhập để lưu bài viết" });
         }
     }

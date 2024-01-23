@@ -252,10 +252,10 @@
             data: { postId: postId, description: description },
             success: function (result) {
                 if (result.success) {
-                    alert(result.message);
-                    $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
+                    // alert(result.message);
+                    $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");                    
                 } else {
-                    alert(result.message);
+                    //alert(result.message);
                     window.location.href = '/login';
                 }
             },
@@ -307,10 +307,10 @@
             data: { postId: postId, status: 1 },
             success: function (result) {
                 if (result.success) {
-                    alert(result.message);
+                    //alert(result.message);
                     $("#postSection").load("/Post/Index?postId=" + postId + " #postSection");
                 } else {
-                    alert(result.message);
+                    //alert(result.message);
                     window.location.href = '/login';
                 }
             },
@@ -328,10 +328,10 @@
             data: { postId: postId, status: 2 },
             success: function (result) {
                 if (result.success) {
-                    alert(result.message);
+                    //alert(result.message);
                     $("#postSection").load("/Post/Index?postId=" + postId + " #postSection");
                 } else {
-                    alert(result.message);
+                    //alert(result.message);
                     window.location.href = '/login';
                 }
             },
@@ -348,10 +348,10 @@
             data: { postId: postId, isDeleted: false },
             success: function (result) {
                 if (result.success) {
-                    alert(result.message);
+                    //alert(result.message);
                     window.location.reload();
                 } else {
-                    alert(result.message);
+                    //alert(result.message);
                     window.location.href = '/login';
                 }
             },
@@ -367,10 +367,10 @@
             data: { postId: postId, isDeleted: true },
             success: function (result) {
                 if (result.success) {
-                    alert(result.message);
+                    //alert(result.message);
                     window.location.reload();
                 } else {
-                    alert(result.message);
+                    //alert(result.message);
                     window.location.href = '/login';
                 }
             },
