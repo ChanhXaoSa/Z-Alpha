@@ -1,5 +1,5 @@
 const svgWrap = document.createElement('div'),
-      svgData = `
+    svgData = `
   <!-- SVG FACEBOOK -->
   <svg style="display: none;">
     <symbol id="svg-facebook" viewBox="0 0 18 18" preserveAspectRatio="xMinYMin meet">
