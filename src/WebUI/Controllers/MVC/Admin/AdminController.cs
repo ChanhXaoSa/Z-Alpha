@@ -252,7 +252,7 @@ public class AdminController : ControllerBaseMVC
         {
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
             var result = Mediator.Send(new GetCustomerAccountRequest() { Page = 1, Size = 10 }).Result;
-            return View("~/Admin/CustomerDatatable", result);
+            return View("./ManageCustomer/CustomerDatatable", result);
         }
         catch (Exception ex)
         {
