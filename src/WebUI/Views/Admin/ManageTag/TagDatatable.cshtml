@@ -2,25 +2,24 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Customer Database";
+    ViewData["Title"] = "Tag Database";
     Layout = "~/Views/Admin/Shared/Layout.cshtml";
 }
 @using ZAlpha.Application.Common.Models;
-@using ZAlpha.Application.Comment.Queries.GetComment;
-@model ZAlpha.Application.Common.Models.PaginatedList<CommentModel>
-
+@using ZAlpha.Application.Tag.Queries.GetTag;
+@model ZAlpha.Application.Common.Models.PaginatedList<TagModel>
 <body>
     <!-- Page wrapper  -->
     <div class="page-wrapper">
         <!-- Bread crumb -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="tex-primary">Danh sách người dùng</h3>
+                <h3 class="text-primary">Danh sách thẻ (tag)</h3>
             </div>
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="~/Admin/Index">Admin</a></li>
-                    <li class="breadcrumb-item active">Danh sách người dùng thông thường</li>
+                    <li class="breadcrumb-item active">Danh sách thẻ (tag)</li>
                 </ol>
             </div>
         </div>
@@ -36,24 +35,24 @@
                                 <table id="myTable" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Nội Dung</th>
-                                            <th>Người Đăng</th>
-                                            <th>trạng thái</th>
-                                            <th>Ngày Bình Luận</th>
+                                            <th>Tên</th>
+                                            <th>Username</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Ngày sinh</th>
+                                            <th>Email</th>
+                                            <th>Số điện thoại</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var item in Model.Items)
                                         {
                                             <tr>
-                                                <td width="400px">@item.Description</td>
-                                                <td> 
-                                                    @if (@item.InteractWithComments[0].UserAccount != null)
-                                                    {
-                                                        @item.InteractWithComments[0].UserAccount.FirstName @item.InteractWithComments[0].UserAccount.LastName
-                                                    }
-                                                </td>
-                                                <td>@item.Created</td>
+                                                <td>@item.TagName </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
                                         }
                                     </tbody>
