@@ -3589,7 +3589,7 @@ figure > img {
         width: 80px;
         height: 80px;
         border-radius: 28px;
-        background-color: #615dfa
+        /*background-color: #615dfa*/
     }
 
         .page-loader .page-loader-decoration .icon-logo {
@@ -14115,7 +14115,7 @@ figure > img {
     min-height: 160px;
     padding: 52px 60px 0 200px;
     border-radius: 12px;
-    background: url(../img/banner/banner-bg.png) no-repeat 50%;
+    background: url(../images/banner/banner-bg.png) no-repeat 50%;
     position: relative
 }
 
