@@ -20,4 +20,5 @@ public class PostModel : IMapFrom<Domain.Entities.Post>
     public IList<InteractWithPosts>? InteractWithPosts { get; set; }
     public IList<Domain.Entities.WishListPost>? WishListPosts { get; set; }
     public IList<ZAlpha.Domain.Entities.PostTag>? PostTags { get; set; }
+    public IList<ZAlpha.Domain.Entities.Comment>? Comments { get; set; }
 }

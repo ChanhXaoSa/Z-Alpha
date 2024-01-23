@@ -39,6 +39,7 @@ public class GetPostQueriesHandler : IRequestHandler<GetPostQueries, PaginatedLi
             .ThenInclude(o => o.UserAccount)
             .Include(o => o.WishListPosts)
             .ThenInclude(o => o.UserAccount)
+            .Include(o => o.Comments)
             .OrderByDescending(o=>o.Created)
             .AsNoTracking();
 
