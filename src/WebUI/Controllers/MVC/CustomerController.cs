@@ -39,6 +39,13 @@ public class CustomerController : ControllerBaseMVC
         {
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
             var result = Mediator.Send(new GetCustomerAccountByUserIdQueries() { UserAccountId = user.Id }).Result;
+
+            //
+            if (user != null) 
+            { 
+            SetUpViewData(user);
+            }
+            //
             return View(result);
         }
         catch (Exception ex)
@@ -52,6 +59,10 @@ public class CustomerController : ControllerBaseMVC
         {
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
             var result = Mediator.Send(new GetAllInteractWithPostByUserIdQueries() { UserId = user.Id /*"871a809a-b3fa-495b-9cc2-c5d738a866cf"*/, Page = 1, Size = 100 }).Result;
+            if (user != null)
+            {
+                SetUpViewData(user);
+            }
             return View(result);
         }
         catch (Exception ex)
@@ -68,6 +79,11 @@ public class CustomerController : ControllerBaseMVC
             List<PostModel> postModels = new List<PostModel>();
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
             var result = Mediator.Send(new GetWishlistPostQueries() { UserId = user.Id, Page = 1, Size = 100 }).Result;
+
+            if (user != null)
+            {
+                SetUpViewData(user);
+            }
             return View(result);
         }
         catch (Exception ex)
@@ -87,6 +103,7 @@ public class CustomerController : ControllerBaseMVC
         var tags = Mediator.Send(new GetAllTagQueries() { Page = 1, Size = 50 }).Result;
         ViewBag.tags = tags;
         ViewBag.emotionalStatusList = emotionalStatusList;
+
         return View();
     }
     [HttpPost]
@@ -177,7 +194,13 @@ public class CustomerController : ControllerBaseMVC
         return fileUrl;
     }
 
-
+    private void SetUpViewData(UserAccount user)
+    {
+        var interactPosts = Mediator.Send(new GetAllInteractWithPostByUserIdQueries() { UserId = user.Id /*"871a809a-b3fa-495b-9cc2-c5d738a866cf"*/, Page = 1, Size = 100 }).Result;
+        var wishPosts = Mediator.Send(new GetWishlistPostQueries() { UserId = user.Id, Page = 1, Size = 100 }).Result;
+        ViewData["cusInteractPostCount"] = interactPosts.TotalCount;
+        ViewData["cusWishPostCount"] = wishPosts.TotalCount;
+    }
     [HttpGet]
     public async Task<IActionResult> EditInfo(string FirstName, string LastName, string Email, string Phone, string Address, DateTime BirthDay)
     {
