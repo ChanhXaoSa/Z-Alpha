@@ -12,5 +12,6 @@ public class TagModel : IMapFrom<Domain.Entities.Tag>
 {
     public Guid Id { get; set; }
     public string TagName { get; set; }
+    public DateTime Created { get; set; }
     public virtual IList<Domain.Entities.PostTag>? PostTags { get; set; }
 }

@@ -1,8 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
+using ZAlpha.Application.ManagerAccount.Queries.GetAllManagerAccount;
+using ZAlpha.Application.Post.Queries.GetAllPost;
+using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
+using ZAlpha.Application.Tag.Queries.GetTag;
+using ZAlpha.Domain.Identity;
 
 namespace WebUI.Controllers.MVC.Admin;
 public class AdminController : ControllerBaseMVC
 {
+    private readonly IIdentityService _identityService;
+    private readonly UserManager<UserAccount> _userManager;
+    private readonly SignInManager<UserAccount> _signInManager;
+    private readonly IWebHostEnvironment _hostingEnvironment;
+
+    public AdminController(IIdentityService identityService, UserManager<UserAccount> userManager, SignInManager<UserAccount> signInManager, IWebHostEnvironment hostingEnvironment)
+    {
+        _identityService = identityService;
+        _userManager = userManager;
+        _signInManager = signInManager;
+        _hostingEnvironment = hostingEnvironment;
+    }
+
     public IActionResult Index()
     {
         return View("./AdminHome/Index");
@@ -148,9 +169,9 @@ public class AdminController : ControllerBaseMVC
         return View("./PageError/PageError503");
     }
 
-    public IActionResult TableBoostrap()
+    public IActionResult TableBootstrap()
     {
-        return View("./Table/TableBoostrap");
+        return View("./Table/TableBootstrap");
     }
 
     public IActionResult TableDatatable()
@@ -227,4 +248,74 @@ public class AdminController : ControllerBaseMVC
     {
         return View("./Admin/AppProfile");
     }
+
+    // Customer DataTable
+    public async Task<IActionResult> CustomerDatatable()
+    {
+        try
+        {
+            var result = Mediator.Send(new GetCustomerAccountRequest() { Page = 1, Size = 1000 }).Result;
+            return View("./ManageCustomer/CustomerDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    // Psychology DataTable
+    public async Task<IActionResult> PsychologistDatatable()
+    {
+        try
+        {
+            var result = Mediator.Send(new GetAllPsychologistAccountQueries() { Page = 1, Size = 1000 }).Result;
+            return View("./ManagePsychologist/PsychologistDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    // Manager DataTable
+    public async Task<IActionResult> ManagerDatatable()
+    {
+        try
+        {
+            var result = Mediator.Send(new GetManagerAccountQueries() { Page = 1, Size = 1000 }).Result;
+            return View("./ManageManager/ManagerDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    // Post DataTable
+    public async Task<IActionResult> PostDatatable()
+    {
+        try
+        {
+            var result = Mediator.Send(new GetPostQueries() { Page = 1, Size = 1000 }).Result;
+            return View("./ManagePost/PostDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    // Tag DataTable
+    public async Task<IActionResult> TagDatatable()
+    {
+        try
+        {
+            var result = Mediator.Send(new GetAllTagQueries() { Page = 1, Size = 1000 }).Result;
+            return View("./ManageTag/TagDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }   
 }
