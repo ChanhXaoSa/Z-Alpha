@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
@@ -51,7 +51,19 @@
                             <i class="fa-solid fa-clipboard fa-2xl" style="color:white;"></i>
                         </div>
                         <div class="col-9" style="padding:0; font-weight:800; font-family: Inter, 'Source Sans Pro';">
-                            Bài Viết(30)
+                            Bài Viết(@ViewData["psyInteractPostCount"])
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="~/Psychologist/PostSaved">
+                <div class="narbar-item">
+                    <div class="row">
+                        <div class="col-3" style="text-align:right;">
+                            <i class="fa-solid fa-star fa-2xl" style="color:white;"></i>
+                        </div>
+                        <div class="col-9" style="padding:0; font-weight:800; font-family: Inter, 'Source Sans Pro';">
+                            Đã Lưu (@ViewData["psyWishPostCount"])
                         </div>
                     </div>
                 </div>
