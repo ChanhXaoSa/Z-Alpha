@@ -15803,11 +15803,12 @@ figure > img {
     10. SECTION BANNER
 -------------------------*/
 .section-banner {
-  min-height: 160px;
-  padding: 52px 60px 0 200px;
-  border-radius: 12px;
-  background: url("../img/banner/banner-bg.png") no-repeat center;
-  position: relative;
+    min-height: 160px;
+    padding: 52px 60px 0 200px;
+    border-radius: 12px;
+    /*background: url("../img/banner/banner-bg.png") no-repeat center;*/
+    background: url("../images/banner/banner-bg.png") no-repeat center;
+    position: relative;
 }
 
 .section-banner .section-banner-icon {
@@ -16061,4 +16062,4 @@ figure > img {
     width: 100%;
   }
 }
-/*# sourceMappingURL=styles.css.map */
+# sourceMappingURL=styles.css.map 

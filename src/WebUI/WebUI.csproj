@@ -54,6 +54,16 @@
       <Folder Include="wwwroot\uploads\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="wwwroot\assets\images\badge\Thumbs.db" />
+      <None Include="wwwroot\assets\images\banner\Thumbs.db" />
+      <None Include="wwwroot\assets\images\flag\Thumbs.db" />
+      <None Include="wwwroot\assets\images\forum\Thumbs.db" />
+      <None Include="wwwroot\assets\images\marketplace\items\Thumbs.db" />
+      <None Include="wwwroot\assets\images\marketplace\Thumbs.db" />
+      <None Include="wwwroot\assets\images\reaction\Thumbs.db" />
+    </ItemGroup>
+
     <!-- Auto-generated Open API specification and Angular TypeScript clients -->
     <PropertyGroup>
         <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
