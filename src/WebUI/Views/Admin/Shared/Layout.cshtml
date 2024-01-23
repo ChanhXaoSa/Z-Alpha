@@ -26,6 +26,24 @@
     <link href="~/assets/admin/css/lib/owl.theme.default.min.css" rel="stylesheet" />
     <link href="~/assets/admin/css/helper.css" rel="stylesheet">
     <link href="~/assets/admin/css/style.css" rel="stylesheet">
+
+    <!-- Index2 -->
+    <link href="~/assets/admin/css/lib/chartist/chartist.min.css" rel="stylesheet">
+
+    <!-- Amchart -->
+    <link href="~/assets/admin/css/lib/amchart/export.css" rel="stylesheet">
+
+    <!-- Chartist -->
+    <link href="~/assets/admin/css/lib/chartist/chartist.min.css" rel="stylesheet">
+
+    <!-- Dropzone -->
+    <link href="~/assets/admin/css/lib/dropzone/dropzone.css" rel="stylesheet">
+
+    <!-- Map Vector -->
+    <link href="~/assets/admin/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
+
+    <!-- Bootstrap Core CSS -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
     <!--[if lt IE 9]>
@@ -48,7 +66,7 @@
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <!-- Logo -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="~Views/Admin/AdminHome/Index.cshtml">
                         <!-- Logo icon -->
                         <b><img src="~/assets/admin/images/logo.png" alt="homepage" class="dark-logo" /></b>
                         <!--End Logo icon -->
@@ -264,30 +282,30 @@
                         <li>
                             <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard <span class="label label-rouded label-primary pull-right">2</span></span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="index.html">Ecommerce </a></li>
-                                <li><a href="index1.html">Analytics </a></li>
+                                <li><a href="~/Admin/Index/">Ecommerce </a></li>
+                                <li><a href="~/Admin/Index2/">Analytics </a></li>
                             </ul>
                         </li>
                         <li class="nav-label">Apps</li>
                         <li>
                             <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Email</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="email-compose.html">Compose</a></li>
-                                <li><a href="email-read.html">Read</a></li>
-                                <li><a href="email-inbox.html">Inbox</a></li>
+                                <li><a href="~/Admin/EmailCompose/">Compose</a></li>
+                                <li><a href="~/Admin/EmailRead/">Read</a></li>
+                                <li><a href="~/Admin/EmailInbox/">Inbox</a></li>
                             </ul>
                         </li>
                         <li>
                             <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Charts</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="chart-flot.html">Flot</a></li>
-                                <li><a href="chart-morris.html">Morris</a></li>
-                                <li><a href="chart-chartjs.html">ChartJs</a></li>
-                                <li><a href="chart-chartist.html">Chartist </a></li>
-                                <li><a href="chart-amchart.html">AmChart</a></li>
-                                <li><a href="chart-echart.html">EChart</a></li>
-                                <li><a href="chart-sparkline.html">Sparkline</a></li>
-                                <li><a href="chart-peity.html">Peity</a></li>
+                                <li><a href="~/Admin/ChartFlot/">Flot</a></li>
+                                <li><a href="~/Admin/ChartMorris/">Morris</a></li>
+                                <li><a href="~/Admin/ChartChartjs/">ChartJs</a></li>
+                                <li><a href="~/Admin/ChartChartist/">Chartist </a></li>
+                                <li><a href="~/Admin/ChartAmChart/">AmChart</a></li>
+                                <li><a href="~/Admin/ChartEChart/">EChart</a></li>
+                                <li><a href="~/Admin/ChartSparkline/">Sparkline</a></li>
+                                <li><a href="~/Admin/ChartPeity/">Peity</a></li>
                             </ul>
                         </li>
                         <li class="nav-label">Features</li>
@@ -316,11 +334,11 @@
                         <li>
                             <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Forms</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="form-basic.html">Basic Forms</a></li>
-                                <li><a href="form-layout.html">Form Layout</a></li>
-                                <li><a href="form-validation.html">Form Validation</a></li>
-                                <li><a href="form-editor.html">Editor</a></li>
-                                <li><a href="form-dropzone.html">Dropzone</a></li>
+                                <li><a href="~/Admin/FormBasic/">Basic Forms</a></li>
+                                <li><a href="~/Admin/FormLayout/">Form Layout</a></li>
+                                <li><a href="~/Admin/FormValidation/">Form Validation</a></li>
+                                <li><a href="~/Admin/FormEditor/">Editor</a></li>
+                                <li><a href="~/Admin/FormDropzone/">Dropzone</a></li>
                             </ul>
                         </li>
                         <li>
@@ -413,13 +431,13 @@
     <script src="~/assets/admin/js/sidebarmenu.js"></script>
     <!--stickey kit -->
     <script src="~/assets/admin/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
-    <!--Custom JavaScript -->
+
+    <!--Custom JavaScript --> 
+    <!-- Index -->
     <!-- Amchart -->
     <script src="~/assets/admin/js/lib/morris-chart/raphael-min.js"></script>
     <script src="~/assets/admin/js/lib/morris-chart/morris.js"></script>
     <script src="~/assets/admin/js/lib/morris-chart/dashboard1-init.js"></script>
-
-
     <script src="~/assets/admin/js/lib/calendar-2/moment.latest.min.js"></script>
     <!-- scripit init-->
     <script src="~/assets/admin/js/lib/calendar-2/semantic.ui.min.js"></script>
@@ -434,6 +452,117 @@
     <script src="~/assets/admin/js/lib/owl-carousel/owl.carousel-init.js"></script>
     <script src="~/assets/admin/js/scripts.js"></script>
     <!-- scripit init-->
+
+    <!-- Index2 -->
+    <script src="~/assets/admin/js/lib/datamap/d3.min.js"></script>
+    <script src="~/assets/admin/js/lib/datamap/topojson.js"></script>
+    <script src="~/assets/admin/js/lib/datamap/datamaps.world.min.js"></script>
+    <script src="~/assets/admin/js/lib/datamap/datamap-init.js"></script>
+    <script src="~/assets/admin/js/lib/weather/jquery.simpleWeather.min.js"></script>
+    <script src="~/assets/admin/js/lib/weather/weather-init.js"></script>
+    <script src="~/assets/admin/js/lib/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/assets/admin/js/lib/owl-carousel/owl.carousel-init.js"></script>
+    <script src="~/assets/admin/js/lib/chartist/chartist.min.js"></script>
+    <script src="~/assets/admin/js/lib/chartist/chartist-plugin-tooltip.min.js"></script>
+    <script src="~/assets/admin/js/lib/chartist/chartist-init.js"></script>
+
+    <!-- Amchart -->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="~/assets/admin/js/lib/chart-amchart/serial.js"></script>
+    <script src="~/assets/admin/js/lib/chart-amchart/export.min.js"></script>
+    <script src="~/assets/admin/js/lib/chart-amchart/light.js"></script>
+    <script src="~/assets/admin/js/lib/chart-amchart/ammap.js"></script>
+    <script src="~/assets/admin/js/lib/chart-amchart/worldLow.js"></script>
+    <script src="~/assets/admin/js/lib/chart-amchart/pie.js"></script>
+    <script src="~/assets/admin/js/lib/chart-amchart/amstock.js"></script>
+    <script src="~/assets/admin/js/lib/chart-amchart/amchart-init.js"></script>
+
+    <!-- Chartjs -->
+    <script src="~/assets/admin/js/lib/chart-js/Chart.bundle.js"></script>
+    <script src="~/assets/admin/js/lib/chart-js/chartjs-init.js"></script>
+
+    <!-- Echart -->
+    <script src="~/assets/admin/js/lib/echart/echarts.js"></script>
+    <script src="~/assets/admin/js/lib/echart/echarts-init.js"></script>
+
+    <!--  flot-chart js -->
+    <script src="~/assets/admin/js/lib/flot-chart/excanvas.min.js"></script>
+    <script src="~/assets/admin/js/lib/flot-chart/jquery.flot.js"></script>
+    <script src="~/assets/admin/js/lib/flot-chart/jquery.flot.pie.js"></script>
+    <script src="~/assets/admin/js/lib/flot-chart/jquery.flot.time.js"></script>
+    <script src="~/assets/admin/js/lib/flot-chart/jquery.flot.stack.js"></script>
+    <script src="~/assets/admin/js/lib/flot-chart/jquery.flot.resize.js"></script>
+    <script src="~/assets/admin/js/lib/flot-chart/jquery.flot.crosshair.js"></script>
+    <script src="~/assets/admin/js/lib/flot-chart/curvedLines.js"></script>
+    <script src="~/assets/admin/js/lib/flot-chart/flot-tooltip/jquery.flot.tooltip.min.js"></script>
+    <script src="~/assets/admin/js/lib/flot-chart/flot-chart-init.js"></script>
+
+    <!--  Chart Morris -->
+    <script src="~/assets/admin/js/lib/morris-chart/morris-init.js"></script>
+
+    <!-- ChartPeity -->
+    <script src="~/assets/admin/js/lib/peitychart/jquery.peity.min.js"></script>
+    <script src="~/assets/admin/js/lib/peitychart/peitychart.init.js"></script>
+
+    <!-- ChartSparkline -->
+    <script src="~/assets/admin/js/lib/sparklinechart/jquery.sparkline.min.js"></script>
+    <script src="~/assets/admin/js/lib/sparklinechart/sparkline.init.js"></script>
+
+    <!-- Dropzone -->
+    <script src="~/assets/admin/js/lib/dropzone/dropzone.js"></script>
+
+    <!-- Editor -->
+    <script src="~/assets/admin/js/lib/html5-editor/wysihtml5-0.3.0.js"></script>
+    <script src="~/assets/admin/js/lib/html5-editor/bootstrap-wysihtml5.js"></script>
+    <script src="~/assets/admin/js/lib/html5-editor/wysihtml5-init.js"></script>
+
+    <!-- Form validation -->
+    <script src="~/assets/admin/js/lib/form-validation/jquery.validate.min.js"></script>
+    <script src="~/assets/admin/js/lib/form-validation/jquery.validate-init.js"></script>
+
+    <!-- Map Google -->
+    <script src="~/assets/admin/js/lib/gmap/gmapApi.js"></script>
+    <script src="~/assets/admin/js/lib/gmap/gmaps.js"></script>
+    <script src="~/assets/admin/js/lib/gmap/gmap.init.js"></script>
+
+    <!-- Map Vector -->
+    <script src="~/assets/admin/js/lib/vector-map/jquery.vmap.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/jquery.vmap.min.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.world.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.algeria.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.argentina.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.brazil.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.france.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.germany.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.greece.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.iran.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.iraq.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.russia.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.tunisia.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.europe.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.usa.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/country/jquery.vmap.turkey.js"></script>
+    <!-- scripit init-->
+    <script src="~/assets/admin/js/lib/vector-map/vector.init.js"></script>
+
+
 
     <script src="~/assets/admin/js/custom.min.js"></script>
 
