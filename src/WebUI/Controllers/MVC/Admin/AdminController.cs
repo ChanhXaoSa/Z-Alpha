@@ -5,6 +5,7 @@ using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
 using ZAlpha.Application.ManagerAccount.Queries.GetAllManagerAccount;
 using ZAlpha.Application.Post.Queries.GetAllPost;
 using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
+using ZAlpha.Application.Tag.Queries.GetTag;
 using ZAlpha.Domain.Identity;
 
 namespace WebUI.Controllers.MVC.Admin;
@@ -303,4 +304,18 @@ public class AdminController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
+
+    // Tag DataTable
+    public async Task<IActionResult> TagDatatable()
+    {
+        try
+        {
+            var result = Mediator.Send(new GetAllTagQueries() { Page = 1, Size = 1000 }).Result;
+            return View("./ManageTag/TagDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }   
 }
