@@ -4190,42 +4190,42 @@ figure > img {
         }
 
         .stats-box.small.stat-profile-views {
-            background: url(~/assets/images/graph/stat/01.jpg) no-repeat 50%;
+            background: url(/assets/images/graph/stat/01.jpg) no-repeat 50%;
             background-size: cover
         }
 
         .stats-box.small.stat-posts-created {
-            background: url(~/assets/images/graph/stat/02.jpg) no-repeat 50%;
+            background: url(/assets/images/graph/stat/02.jpg) no-repeat 50%;
             background-size: cover
         }
 
         .stats-box.small.stat-reactions-received {
-            background: url(~/assets/images/graph/stat/03.jpg) no-repeat 50%;
+            background: url(/assets/images/graph/stat/03.jpg) no-repeat 50%;
             background-size: cover
         }
 
         .stats-box.small.stat-comments-received {
-            background: url(~/assets/images/graph/stat/04.jpg) no-repeat 50%;
+            background: url(/assets/images/graph/stat/04.jpg) no-repeat 50%;
             background-size: cover
         }
 
     .stats-box.stat-profile-views {
-        background: url(~/assets/images/graph/stat/01-big.png) no-repeat 50%;
+        background: url(/assets/images/graph/stat/01-big.png) no-repeat 50%;
         background-size: cover
     }
 
     .stats-box.stat-posts-created {
-        background: url(~/assets/images/graph/stat/02-big.png) no-repeat 50%;
+        background: url(/assets/images/graph/stat/02-big.png) no-repeat 50%;
         background-size: cover
     }
 
     .stats-box.stat-reactions-received {
-        background: url(~/assets/images/graph/stat/03-big.png) no-repeat 50%;
+        background: url(/assets/images/graph/stat/03-big.png) no-repeat 50%;
         background-size: cover
     }
 
     .stats-box.stat-comments-received {
-        background: url(~/assets/images/graph/stat/04-big.png) no-repeat 50%;
+        background: url(/assets/images/graph/stat/04-big.png) no-repeat 50%;
         background-size: cover
     }
 
