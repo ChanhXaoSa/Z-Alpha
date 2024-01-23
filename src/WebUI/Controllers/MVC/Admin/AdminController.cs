@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
+using ZAlpha.Application.ManagerAccount.Queries.GetAllManagerAccount;
+using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
 using ZAlpha.Domain.Identity;
 
 namespace WebUI.Controllers.MVC.Admin;
@@ -250,9 +252,35 @@ public class AdminController : ControllerBaseMVC
     {
         try
         {
-            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
-            var result = Mediator.Send(new GetCustomerAccountRequest() { Page = 1, Size = 10 }).Result;
+            var result = Mediator.Send(new GetCustomerAccountRequest() { Page = 1, Size = 1000 }).Result;
             return View("./ManageCustomer/CustomerDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    // Psychology DataTable
+    public async Task<IActionResult> PsychologistDatatable()
+    {
+        try
+        {
+            var result = Mediator.Send(new GetAllPsychologistAccountQueries() { Page = 1, Size = 1000 }).Result;
+            return View("./ManagePsychologist/PsychologistDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public async Task<IActionResult> ManagerDatatable()
+    {
+        try
+        {
+            var result = Mediator.Send(new GetManagerAccountQueries() { Page = 1, Size = 1000 }).Result;
+            return View("./ManageManager/ManagerDatatable", result);
         }
         catch (Exception ex)
         {
