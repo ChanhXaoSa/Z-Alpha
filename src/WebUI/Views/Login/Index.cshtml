@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Login Page";
 }
+@model ZAlpha.Application.Common.Models.RegisterViewModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +14,10 @@
     <link rel="stylesheet" href="~/assets/css/vendor/bootstrap.min.css">
     <!-- styles -->
     <link rel="stylesheet" href="~/assets/css/styles.min.css">
+    <link rel="stylesheet" href="~/assets/css/login.css">
     <!-- favicon -->
     <link rel="icon" href="~/assets/images/favicon.ico">
-    <title>Zalpha | Login</title>
+    <title>Zalpha | Auth</title>
 </head>
 <body>
 
@@ -68,6 +70,12 @@
                 <!-- /FORM BOX TITLE -->
                 <!-- FORM -->
                 <form class="form" method="post" action="/login">
+                    @if (ViewBag.error != null)
+                    {
+                        <div class="mb-3" style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                            <div class="text-danger">@ViewBag.error</div>
+                        </div>
+                    }
                     <!-- FORM ROW -->
                     <div class="form-row">
                         <!-- FORM ITEM -->
@@ -75,7 +83,7 @@
                             <!-- FORM INPUT -->
                             <div class="form-input">
                                 <label for="login-username">Username or Email</label>
-                                <input type="text" id="login-username" name="login_username">
+                                <input type="text" required id="login-username" name="login_username">
                             </div>
                             <!-- /FORM INPUT -->
                         </div>
@@ -89,7 +97,7 @@
                             <!-- FORM INPUT -->
                             <div class="form-input">
                                 <label for="login-password">Password</label>
-                                <input type="password" id="login-password" name="login_password">
+                                <input type="password" required id="login-password" name="login_password">
                             </div>
                             <!-- /FORM INPUT -->
                         </div>
@@ -193,7 +201,7 @@
                 <h2 class="form-box-title">Create your Account!</h2>
                 <!-- /FORM BOX TITLE -->
                 <!-- FORM -->
-                <form class="form">
+                <form class="form" method="post" action="/register">
                     <!-- FORM ROW -->
                     <div class="form-row">
                         <!-- FORM ITEM -->
@@ -201,8 +209,14 @@
                             <!-- FORM INPUT -->
                             <div class="form-input">
                                 <label for="register-email">Your Email</label>
-                                <input type="text" id="register-email" name="register_email">
+                                <input type="text" required id="register-email" name="Email" value="@Model?.Email">
                             </div>
+                            @if (ViewBag.EmailValidate != null)
+                            {
+                                <div style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                                    <div class="text-danger">@ViewBag.EmailValidate</div>
+                                </div>
+                            }
                             <!-- /FORM INPUT -->
                         </div>
                         <!-- /FORM ITEM -->
@@ -215,7 +229,41 @@
                             <!-- FORM INPUT -->
                             <div class="form-input">
                                 <label for="register-username">Username</label>
-                                <input type="text" id="register-username" name="register_username">
+                                <input type="text" required id="register-username" name="Username" value="@Model?.Username">
+                            </div>
+                            @if (ViewBag.UsernameValidate != null)
+                            {
+                                <div style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                                    <div class="text-danger">@ViewBag.UsernameValidate</div>
+                                </div>
+                            }
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input">
+                                <label for="register-firstname">FirstName</label>
+                                <input type="text" required id="register-firstname" name="FirstName" value="@Model?.FirstName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input">
+                                <label for="register-lastname">Lastname</label>
+                                <input type="text" required id="register-lastname" name="Lastname" value="@Model?.Lastname">
                             </div>
                             <!-- /FORM INPUT -->
                         </div>
@@ -229,8 +277,14 @@
                             <!-- FORM INPUT -->
                             <div class="form-input">
                                 <label for="register-password">Password</label>
-                                <input type="password" id="register-password" name="register_password">
+                                <input type="password" required id="register-password" name="Password" value="@Model?.Password">
                             </div>
+                            @if (ViewBag.PasswordValidate != null)
+                            {
+                                <div style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                                    <div class="text-danger">@ViewBag.PasswordValidate</div>
+                                </div>
+                            }
                             <!-- /FORM INPUT -->
                         </div>
                         <!-- /FORM ITEM -->
@@ -243,7 +297,49 @@
                             <!-- FORM INPUT -->
                             <div class="form-input">
                                 <label for="register-password-repeat">Repeat Password</label>
-                                <input type="password" id="register-password-repeat" name="register_password_repeat">
+                                <input type="password" required id="register-password-repeat" name="ConfirmPassword" value="@Model?.ConfirmPassword">
+                            </div>
+                            @if (ViewBag.PasswordConfirmValidate != null)
+                            {
+                                <div style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
+                                    <div class="text-danger">@ViewBag.PasswordConfirmValidate</div>
+                                </div>
+                            }
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="mydict">
+                                <div>
+                                    @if (ViewBag.RoleCheck == null || ViewBag.RoleCheck == "Customer")
+                                    {
+                                        <label>
+                                            <input type="radio" name="radio" checked="" value="Customer">
+                                            <span>Customer</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="radio" value="Psychologist">
+                                            <span>Spychologist</span>
+                                        </label>
+                                    }
+                                    else
+                                    {
+                                        <label>
+                                            <input type="radio" name="radio" value="Customer">
+                                            <span>Customer</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="radio" checked="" value="Psychologist">
+                                            <span>Spychologist</span>
+                                        </label>
+                                    }
+                                </div>
                             </div>
                             <!-- /FORM INPUT -->
                         </div>
@@ -261,9 +357,7 @@
                                 <div class="checkbox-box">
                                     <!-- ICON CROSS -->
                                     <svg class="icon-cross">
-                                        <symbol id="svg-cross" viewBox="0 0 12 12" preserveAspectRatio="xMinYMin meet">
-                                            <path d="M12,9.6L9.6,12L6,8.399L2.4,12L0,9.6L3.6,6L0,2.4L2.4,0L6,3.6L9.6,0L12,2.4L8.399,6L12,9.6z" />
-                                        </symbol>
+                                        <use xlink:href="#svg-cross"></use>
                                     </svg>
                                     <!-- /ICON CROSS -->
                                 </div>
@@ -307,5 +401,16 @@
     <script src="~/assets/js/landing/landing.tabs.js"></script>
     <!-- SVG icons -->
     <script src="~/assets/js/utils/svg-loader.js"></script>
+    <!-- Sử dụng JavaScript để chọn tab mặc định là Register -->
+    @if (ViewBag.RegisterValidate == "false")
+    {
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const registerTab = document.querySelector('.login-register-form-trigger:nth-child(2)');
+                registerTab.click();
+            });
+        </script>
+    }
+
 </body>
 </html>

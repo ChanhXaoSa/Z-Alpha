@@ -11,27 +11,19 @@ public class RegisterViewModel
     [Required]
     [Display(Name = "Username")]
     public string Username { get; set; }
-    [Required]
     [Display(Name = "FirstName")]
     public string FirstName { get; set; }
-    [Required]
     [Display(Name = "Lastname")]
     public string Lastname { get; set; }
     [Required]
     [Display(Name = "Email")]
     public string Email { get; set; }
-    [Required]
     [Display(Name = "Phone")]
     public string Phone { get; set; }
-
-    [Required]
     [Display(Name = "Birthday")]
     public DateTime Birthday { get; set; }
-
-    [Required]
     [Display(Name = "Address")]
     public string Address { get; set; }
-
     [Required]
     [Display(Name = "Password")]
     public string Password { get; set; }

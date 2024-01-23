@@ -9,7 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="wwwroot\assets\css\newpost.css" />
       <_ContentIncludedByDefault Remove="wwwroot\assets\css\styles.min.css" />
     </ItemGroup>
 
