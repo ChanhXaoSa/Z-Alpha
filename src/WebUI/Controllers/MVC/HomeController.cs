@@ -1,4 +1,4 @@
-﻿susing ZAlpha.Application.Post.Queries.GetAllPost;
+﻿using ZAlpha.Application.Post.Queries.GetAllPost;
 using ZAlpha.Application.Tag.Queries.GetTagById;
 using ZAlpha.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +8,7 @@ using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.WishListPost.Commands.CreateWishListPost;
 using ZAlpha.Application.Post.Queries.GetPostBySearch;
 using Microsoft.AspNetCore.Authorization;
+using NToastNotify;
 
 namespace WebUI.Controllers.MVC;
 
