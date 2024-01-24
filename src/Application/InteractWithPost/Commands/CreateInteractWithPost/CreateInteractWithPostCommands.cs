@@ -28,7 +28,7 @@ public class CreateInteractWithPostCommandsHandler : IRequestHandler<CreateInter
     public async Task<Guid> Handle(CreateInteractWithPostCommands request, CancellationToken cancellationToken)
     {
         var checker = await _context.Get<Domain.Entities.InteractWithPosts>()
-            .FirstOrDefaultAsync( i => i.PostId == request.PostId && i.UserAccountId == request.UserAccountId, cancellationToken);
+            .FirstOrDefaultAsync( i => i.PostId == request.PostId && i.UserAccountId == request.UserAccountId && i.InteractPostStatus != InteractPostStatus.Create, cancellationToken);
         if (checker != null)
         {
             if (checker.InteractPostStatus == InteractPostStatus.Create)
@@ -41,6 +41,10 @@ public class CreateInteractWithPostCommandsHandler : IRequestHandler<CreateInter
         }
         else
         {
+            if (request.InteractPostStatus == InteractPostStatus.Create)
+            {
+                throw new Exception();
+            }
             var interactWithPost = new Domain.Entities.InteractWithPosts()
             {
                 UserAccountId = request.UserAccountId,

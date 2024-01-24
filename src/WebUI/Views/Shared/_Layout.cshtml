@@ -1594,7 +1594,7 @@
                         allexp += userLogined.InteractWithComments?.Where(c => c.InteractCommentStatus != ZAlpha.Domain.Enums.InteractCommentStatus.Create).Count() * 1;
                         allexp += userLogined.WishListPosts?.Count * 2;
                     }
-                    <p class="bar-progress-info">Kinh nghiệm: <span class="bar-progress-text"></span></p>
+                    <p class="bar-progress-info">Kinh nghiệm: @allexp EXP <span class="bar-progress-text"></span></p>
                     <!-- /BAR PROGRESS INFO -->
                 </div>
                 <!-- /BAR PROGRESS WRAP -->
@@ -3147,9 +3147,9 @@
     <script src="~/assets/js/widget/twitter.js"></script>
     <!-- SVG icons -->
     <script src="~/assets/js/utils/svg-loader.js"></script>
-    <!-- Bootstrap -->
-    <script src="~/assets/css/vendor/bootstrap.min.js"></script>
     <!-- Jquery -->
     <script src="~/assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/assets/css/vendor/bootstrap.min.js"></script>
 </body>
 </html>
