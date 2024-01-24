@@ -63,7 +63,7 @@
                                                     <td></td>
                                                     <td>@item.Created</td>
                                                     <td style="text-align: center; vertical-align: middle">
-                                                        <button type="button" class="btn btn-success btn-rounded m-b-10 m-l-5" onclick="openFormCreate()">Update</button>
+                                                        <button value="@item.Id" type="button" id="btn_update_comment_@item.Id" class="btn btn-success btn-rounded m-b-10 m-l-5">Update</button>
                                                     </td>
                                                     <td style="text-align: center; vertical-align: middle">
                                                         <button value="@item.Id" type="submit" id="btn_delete_comment_@item.Id" class="btn btn-danger btn-rounded m-b-10 m-l-5">Delete</button>
@@ -92,7 +92,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;"
-         id="createForm">
+         id="updateForm">
         <div class="card card-outline-primary">
             <div class="card-header">
                 <h4 class="m-b-0 text-white">Sample form</h4>
@@ -225,8 +225,9 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                        <button type="button" class="btn btn-inverse" onclick="closeFormCreate()">Cancel</button>
+                        <button type="submit" class="btn btn-success" id="btn_submit_update_comment"><i class="fa fa-check"></i> Save</button>
+                        <h5 hidden id="dialog_hidden_comment_id"></h5>
+                        <button type="button" class="btn btn-inverse" onclick="closeFormUpdate()">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -264,16 +265,16 @@
         document.getElementById("deleteForm").style.display = "none";
     }
 
-    function openFormCreate() {
-        document.getElementById("createForm").style.display = "block";
+    function openFormUpdate() {
+        document.getElementById("updateForm").style.display = "block";
+        $("#dialog_hidden_comment_id").text(comment_id);
     }
 
-    function closeFormCreate() {
-        document.getElementById("createForm").style.display = "none";
+    function closeFormUpdate() {
+        document.getElementById("updateForm").style.display = "none";
     }
 </script>
 <script>
-
     $(document).ready(function () {
         $("button[id^='btn_delete_comment_']").click(function () {
             var comment_id = $(this).attr("id").split("_")[3];
@@ -284,12 +285,23 @@
             delete_comment(comment_id);
         });
     });
-   
-
+    $(document).ready(function () {
+        $("button[id^='btn_update_comment_']").click(function () {
+            var comment_id = $(this).attr("id").split("_")[3];
+            handle_confirm_update_comment_dialog(comment_id);
+        });
+        $("#btn_submit_update_comment").click(function () {
+            var comment_id = $("#dialog_hidden_comment_id").text();
+            update_comment(comment_id);
+        });
+    });
+    
     function handle_confirm_delete_comment_dialog(comment_id) {
         openFormDelete(comment_id);
     }
-
+    function handle_confirm_update_comment_dialog(comment_id) {
+        openFormUpdate(comment_id);
+    }
     function delete_comment(comment_id) {
         var data = {
             commentId: comment_id,
@@ -299,6 +311,23 @@
             cache: false,
             url: "/Admin/DeleteComment",
             data: data,   
+            success: function (data) {
+                setTimeout(function () {
+                    window.location.href = "/Admin/CommentDatatable";
+                }, 1000);
+                alert(data);
+            }
+        });
+    }
+    function update_comment(comment_id) {
+        var data = {
+            commentId: comment_id,
+        };
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "/Admin/UpdateComment",
+            data: data,
             success: function (data) {
                 setTimeout(function () {
                     window.location.href = "/Admin/CommentDatatable";
