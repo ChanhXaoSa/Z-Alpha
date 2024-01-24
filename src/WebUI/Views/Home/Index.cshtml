@@ -9,6 +9,9 @@
 @using ZAlpha.Application.Post.Queries.GetAllPost;
 @model ZAlpha.Application.Common.Models.PaginatedList<PostModel>
 
+
+
+
 <!-- CONTENT GRID -->
 <div class="content-grid">
     <!-- SECTION BANNER -->
@@ -28,7 +31,6 @@
     <div class="grid grid-3-6-3 mobile-prefer-content">
         <!-- GRID COLUMN -->
         <div class="grid-column">
-
             <!-- WIDGET BOX -->
             <div class="widget-box">
                 <!-- WIDGET BOX SETTINGS -->
@@ -633,7 +635,9 @@
                                         <p class="simple-dropdown-link">Delete Post</p>
                                     </div>
                                     <!-- /SIMPLE DROPDOWN -->
-                                } else {
+                                }
+                                else
+                                {
                                     <!-- SIMPLE DROPDOWN -->
                                     <div class="simple-dropdown widget-box-post-settings-dropdown">
                                         <p class="simple-dropdown-link">Report Post</p>
@@ -686,8 +690,8 @@
                                     <!-- USER STATUS TITLE -->
                                     <p class="user-status-title medium">
                                         <a class="bold" href="profile-timeline.html">
-                                            @item.InteractWithPosts?.FirstOrDefault(o=>o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.FirstName
-                                            @item.InteractWithPosts?.FirstOrDefault(o=>o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.LastName
+                                            @item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.FirstName
+                                            @item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.LastName
                                         </a>
                                     </p>
                                     <!-- /USER STATUS TITLE -->
@@ -744,11 +748,11 @@
                                                         <p class="simple-dropdown-text">Matt Parker</p>
                                                         <!-- /SIMPLE DROPDOWN TEXT -->
                                                         @* <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">Destroy Dex</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT -->
-                                                        <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">The Green Goo</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT --> *@
+                                                <p class="simple-dropdown-text">Destroy Dex</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT -->
+                                                <!-- SIMPLE DROPDOWN TEXT -->
+                                                <p class="simple-dropdown-text">The Green Goo</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT --> *@
                                                     </div>
                                                     <!-- /SIMPLE DROPDOWN -->
                                                 </div>
@@ -767,8 +771,8 @@
                                                         <p class="simple-dropdown-text">Sandra Strange</p>
                                                         <!-- /SIMPLE DROPDOWN TEXT -->
                                                         @* <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">Jane Rodgers</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT --> *@
+                                                <p class="simple-dropdown-text">Jane Rodgers</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT --> *@
                                                     </div>
                                                     <!-- /SIMPLE DROPDOWN -->
                                                 </div>
@@ -787,20 +791,20 @@
                                                         <p class="simple-dropdown-text">Neko Bebop</p>
                                                         <!-- /SIMPLE DROPDOWN TEXT -->
                                                         @* <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">Nick Grissom</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT -->
-                                                        <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">Sarah Diamond</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT -->
-                                                        <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">Jett Spiegel</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT -->
-                                                        <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">Marcus Jhonson</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT -->
-                                                        <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text"><span class="bold">and 6 more...</span></p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT --> *@
+                                                <p class="simple-dropdown-text">Nick Grissom</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT -->
+                                                <!-- SIMPLE DROPDOWN TEXT -->
+                                                <p class="simple-dropdown-text">Sarah Diamond</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT -->
+                                                <!-- SIMPLE DROPDOWN TEXT -->
+                                                <p class="simple-dropdown-text">Jett Spiegel</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT -->
+                                                <!-- SIMPLE DROPDOWN TEXT -->
+                                                <p class="simple-dropdown-text">Marcus Jhonson</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT -->
+                                                <!-- SIMPLE DROPDOWN TEXT -->
+                                                <p class="simple-dropdown-text"><span class="bold">and 6 more...</span></p>
+                                                <!-- /SIMPLE DROPDOWN TEXT --> *@
                                                     </div>
                                                     <!-- /SIMPLE DROPDOWN -->
                                                 </div>
@@ -857,7 +861,7 @@
                                 <!-- REACTION OPTIONS -->
                                 <div class="reaction-options reaction-options-dropdown" style="position: absolute; z-index: 9999; bottom: 54px; left: -16px; opacity: 0; visibility: hidden; transform: translate(0px, 20px); transition: transform 0.3s ease-in-out 0s, opacity 0.3s ease-in-out 0s, visibility 0.3s ease-in-out 0s;">
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Like" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Like')" class="reaction-option text-tooltip-tft" data-title="Like" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/like.png" alt="reaction-like">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -865,7 +869,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Love" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Love')" class="reaction-option text-tooltip-tft" data-title="Love" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/love.png" alt="reaction-love">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -873,7 +877,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Dislike" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Dislike')" class="reaction-option text-tooltip-tft" data-title="Dislike" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/dislike.png" alt="reaction-dislike">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -881,7 +885,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Happy" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Happy')" class="reaction-option text-tooltip-tft" data-title="Happy" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/happy.png" alt="reaction-happy">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -889,7 +893,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Funny" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Funny')" class="reaction-option text-tooltip-tft" data-title="Funny" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/funny.png" alt="reaction-funny">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -897,7 +901,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Wow" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Wow')" class="reaction-option text-tooltip-tft" data-title="Wow" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/wow.png" alt="reaction-wow">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -905,7 +909,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Angry" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Angry')" class="reaction-option text-tooltip-tft" data-title="Angry" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/angry.png" alt="reaction-angry">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -913,7 +917,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Sad" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Sad')" class="reaction-option text-tooltip-tft" data-title="Sad" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/sad.png" alt="reaction-sad">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -972,25 +976,25 @@
                                 </div>
                                 <!-- /POST SETTINGS -->
                                 @if (item.InteractWithPosts.FirstOrDefault(r => r.InteractPostStatus
-                                   == ZAlpha.Domain.Enums.InteractPostStatus.Create).UserAccount.UserName
-                                   == User.Identity.Name)
-                                    {
-                                        <!-- SIMPLE DROPDOWN -->
-                                        <div class="simple-dropdown widget-box-post-settings-dropdown">
-                                            <p class="simple-dropdown-link">Edit Post</p>
-                                            <p class="simple-dropdown-link">Delete Post</p>
-                                        </div>
-                                        <!-- /SIMPLE DROPDOWN -->
-                                    }
-                                    else
-                                    {
-                                        <!-- SIMPLE DROPDOWN -->
-                                        <div class="simple-dropdown widget-box-post-settings-dropdown">
-                                            <p class="simple-dropdown-link">Report Post</p>
-                                            <p class="simple-dropdown-link">Report Author</p>
-                                        </div>
-                                        <!-- /SIMPLE DROPDOWN -->
-                                    }
+                               == ZAlpha.Domain.Enums.InteractPostStatus.Create).UserAccount.UserName
+                               == User.Identity.Name)
+                                {
+                                    <!-- SIMPLE DROPDOWN -->
+                                    <div class="simple-dropdown widget-box-post-settings-dropdown">
+                                        <p class="simple-dropdown-link">Edit Post</p>
+                                        <p class="simple-dropdown-link">Delete Post</p>
+                                    </div>
+                                    <!-- /SIMPLE DROPDOWN -->
+                                }
+                                else
+                                {
+                                    <!-- SIMPLE DROPDOWN -->
+                                    <div class="simple-dropdown widget-box-post-settings-dropdown">
+                                        <p class="simple-dropdown-link">Report Post</p>
+                                        <p class="simple-dropdown-link">Report Author</p>
+                                    </div>
+                                    <!-- /SIMPLE DROPDOWN -->
+                                }
                             </div>
                             <!-- /POST SETTINGS WRAP -->
                         </div>
@@ -1016,19 +1020,19 @@
                                             </div>
                                             <!-- /USER AVATAR CONTENT -->
                                             @* <!-- USER AVATAR PROGRESS -->
-                                            <div class="user-avatar-progress">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-progress-40-44" style="width: 40px; height: 44px; position: relative;"><canvas width="40" height="44" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR PROGRESS -->
-                                            <!-- USER AVATAR PROGRESS BORDER -->
-                                            <div class="user-avatar-progress-border">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-border-40-44" style="width: 40px; height: 44px; position: relative;"><canvas width="40" height="44" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR PROGRESS BORDER --> *@
+                                    <div class="user-avatar-progress">
+                                    <!-- HEXAGON -->
+                                    <div class="hexagon-progress-40-44" style="width: 40px; height: 44px; position: relative;"><canvas width="40" height="44" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                                    <!-- /HEXAGON -->
+                                    </div>
+                                    <!-- /USER AVATAR PROGRESS -->
+                                    <!-- USER AVATAR PROGRESS BORDER -->
+                                    <div class="user-avatar-progress-border">
+                                    <!-- HEXAGON -->
+                                    <div class="hexagon-border-40-44" style="width: 40px; height: 44px; position: relative;"><canvas width="40" height="44" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                                    <!-- /HEXAGON -->
+                                    </div>
+                                    <!-- /USER AVATAR PROGRESS BORDER --> *@
 
                                         </div>
                                         <!-- /USER AVATAR -->
@@ -1084,11 +1088,11 @@
                                                         <p class="simple-dropdown-text">Matt Parker</p>
                                                         <!-- /SIMPLE DROPDOWN TEXT -->
                                                         @* <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">Destroy Dex</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT -->
-                                                        <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">The Green Goo</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT --> *@
+                                                <p class="simple-dropdown-text">Destroy Dex</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT -->
+                                                <!-- SIMPLE DROPDOWN TEXT -->
+                                                <p class="simple-dropdown-text">The Green Goo</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT --> *@
                                                     </div>
                                                     <!-- /SIMPLE DROPDOWN -->
                                                 </div>
@@ -1106,9 +1110,9 @@
                                                         <!-- SIMPLE DROPDOWN TEXT -->
                                                         <p class="simple-dropdown-text">Sandra Strange</p>
                                                         <!-- /SIMPLE DROPDOWN TEXT -->
-                                                       @*  <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">Jane Rodgers</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT --> *@
+                                                        @*  <!-- SIMPLE DROPDOWN TEXT -->
+                                                <p class="simple-dropdown-text">Jane Rodgers</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT --> *@
                                                     </div>
                                                     <!-- /SIMPLE DROPDOWN -->
                                                 </div>
@@ -1127,14 +1131,14 @@
                                                         <p class="simple-dropdown-text">Neko Bebop</p>
                                                         <!-- /SIMPLE DROPDOWN TEXT -->
                                                         @* <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">Nick Grissom</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT -->
-                                                        <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">Sarah Diamond</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT -->
-                                                        <!-- SIMPLE DROPDOWN TEXT -->
-                                                        <p class="simple-dropdown-text">Jett Spiegel</p>
-                                                        <!-- /SIMPLE DROPDOWN TEXT --> *@
+                                                <p class="simple-dropdown-text">Nick Grissom</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT -->
+                                                <!-- SIMPLE DROPDOWN TEXT -->
+                                                <p class="simple-dropdown-text">Sarah Diamond</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT -->
+                                                <!-- SIMPLE DROPDOWN TEXT -->
+                                                <p class="simple-dropdown-text">Jett Spiegel</p>
+                                                <!-- /SIMPLE DROPDOWN TEXT --> *@
                                                         <!-- SIMPLE DROPDOWN TEXT -->
                                                         <p class="simple-dropdown-text"><span class="bold">and 2 more...</span></p>
                                                         <!-- /SIMPLE DROPDOWN TEXT -->
@@ -1194,7 +1198,7 @@
                                 <!-- REACTION OPTIONS -->
                                 <div class="reaction-options reaction-options-dropdown" style="position: absolute; z-index: 9999; bottom: 54px; left: -16px; opacity: 0; visibility: hidden; transform: translate(0px, 20px); transition: transform 0.3s ease-in-out 0s, opacity 0.3s ease-in-out 0s, visibility 0.3s ease-in-out 0s;">
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Like" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Like')" class="reaction-option text-tooltip-tft" data-title="Like" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/like.png" alt="reaction-like">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -1202,7 +1206,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Love" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Love')" class="reaction-option text-tooltip-tft" data-title="Love" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/love.png" alt="reaction-love">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -1210,7 +1214,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Dislike" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Dislike')" class="reaction-option text-tooltip-tft" data-title="Dislike" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/dislike.png" alt="reaction-dislike">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -1218,7 +1222,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Happy" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Happy')" class="reaction-option text-tooltip-tft" data-title="Happy" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/happy.png" alt="reaction-happy">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -1226,7 +1230,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Funny" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Funny')" class="reaction-option text-tooltip-tft" data-title="Funny" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/funny.png" alt="reaction-funny">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -1234,7 +1238,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Wow" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Wow')" class="reaction-option text-tooltip-tft" data-title="Wow" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/wow.png" alt="reaction-wow">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -1242,7 +1246,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Angry" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Funny')" class="reaction-option text-tooltip-tft" data-title="Angry" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/angry.png" alt="reaction-angry">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -1250,7 +1254,7 @@
                                     </div>
                                     <!-- /REACTION OPTION -->
                                     <!-- REACTION OPTION -->
-                                    <div class="reaction-option text-tooltip-tft" data-title="Sad" style="position: relative;">
+                                    <div onclick="interactWithPost('@item.Id.ToString()', 'Sad')" class="reaction-option text-tooltip-tft" data-title="Sad" style="position: relative;">
                                         <!-- REACTION OPTION IMAGE -->
                                         <img class="reaction-option-image" src="~/assets/images/reaction/sad.png" alt="reaction-sad">
                                         <!-- /REACTION OPTION IMAGE -->
@@ -1263,16 +1267,16 @@
                             <!-- /POST OPTION WRAP -->
                             <!-- POST OPTION -->
                             <a href="~/Post?postId=@item.Id">
-                            <div class="post-option">
-                                <!-- POST OPTION ICON -->
-                                <svg class="post-option-icon icon-comment">
-                                    <use xlink:href="#svg-comment"></use>
-                                </svg>
-                                <!-- /POST OPTION ICON -->
-                                <!-- POST OPTION TEXT -->
-                                <p class="post-option-text">Xem chi tiết</p>
-                                <!-- /POST OPTION TEXT -->
-                            </div>
+                                <div class="post-option">
+                                    <!-- POST OPTION ICON -->
+                                    <svg class="post-option-icon icon-comment">
+                                        <use xlink:href="#svg-comment"></use>
+                                    </svg>
+                                    <!-- /POST OPTION ICON -->
+                                    <!-- POST OPTION TEXT -->
+                                    <p class="post-option-text">Xem chi tiết</p>
+                                    <!-- /POST OPTION TEXT -->
+                                </div>
                             </a>
                             <!-- /POST OPTION -->
                             <!-- POST OPTION -->
@@ -1502,3 +1506,47 @@
         <!-- /GRID COLUMN -->
     </div>
     <!-- /CONTENT GRID -->
+</div>
+
+<script>
+    function interactWithPost(postId, reactionType) {
+        var reaction = reactionType;
+        var statusPick = 0;
+        if (reaction === "Like") {
+            statusPick = 1;
+        } else if (reaction === "Love") {
+            statusPick = 2;
+        } else if (reaction === "Dislike") {
+            statusPick = 3;
+        } else if (reaction === "Happy") {
+            statusPick = 4;
+        } else if (reaction === "Funny") {
+            statusPick = 5;
+        } else if (reaction === "Wow") {
+            statusPick = 6;
+        } else if (reaction === "Angry") {
+            statusPick = 7;
+        } else if (reaction === "Sad") {
+            statusPick = 8;
+        }
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("InteractWithPost", "Post")",
+            data: { postId: postId, status: statusPick },
+            success: function (result) {
+                if (result.success) {
+                    alert(result.message);
+                    window.location.reload();
+                } else {
+                    alert(result.message);
+                    window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
+</script>
+
+

@@ -115,7 +115,11 @@ public class IdentityService : IIdentityService
 
     public async Task<UserAccount> GetUserByNameAsync(string name)
     {
-        var user = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName.Equals(name));
+        var user = await _userManager.Users
+            .Include(u => u.InteractWithPosts)
+            .Include(u => u.InteractWithComments)
+            .Include(u => u.WishListPosts)
+            .FirstOrDefaultAsync(u => u.UserName.Equals(name));
 
         return user;
     }

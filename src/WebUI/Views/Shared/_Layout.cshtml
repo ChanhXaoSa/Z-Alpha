@@ -1,10 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using ZAlpha.Domain.Identity;
+@using ZAlpha.Application.Common.Interfaces;
 
 @inject SignInManager<UserAccount> _signInManager;
 @inject UserManager<UserAccount> _userManager;
+@inject IIdentityService _identityServices;
 
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +28,7 @@
     <!-- PAGE LOADER -->
     <div class="page-loader">
         <!-- PAGE LOADER DECORATION -->
-        
+
         <div class="page-loader-decoration">
             <!-- ICON LOGO -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -2 9 10">
@@ -58,8 +61,9 @@
         <!-- /PAGE LOADER INDICATOR -->
     </div>
     <!-- /PAGE LOADER -->
-
-
+    @{
+        var userLogined = await _identityServices.GetUserByNameAsync(User.Identity!.Name!);
+    }
 
     <!-- NAVIGATION WIDGET -->
     <nav id="navigation-widget-small" class="navigation-widget navigation-widget-desktop closed sidebar left delayed">
@@ -68,7 +72,22 @@
             <!-- USER AVATAR CONTENT -->
             <div class="user-avatar-content">
                 <!-- HEXAGON -->
-                <div class="hexagon-image-30-32" data-src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t1.6435-9/46185108_649408402122389_3474558762130341888_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=7a1959&_nc_ohc=ha5H5O2zuusAX-5riW8&_nc_ht=scontent.fsgn2-11.fna&oh=00_AfA55p_gtmjrF53WGnYGEMdyZTN98mV8h4b-JiX2S78ZxQ&oe=65D79171"></div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (userLogined.AvatarUrl?.Length > 0)
+                    {
+                        <div class="hexagon-image-30-32" data-src="@userLogined.AvatarUrl"></div>
+                    }
+                    else
+                    {
+                        <div class="hexagon-image-30-32" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
+                    }
+                }
+                else
+                {
+                    <div class="hexagon-image-30-32" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
+                }
+
                 <!-- /HEXAGON -->
             </div>
             <!-- /USER AVATAR CONTENT -->
@@ -86,7 +105,7 @@
                 <!-- /HEXAGON -->
             </div>
             <!-- /USER AVATAR PROGRESS BORDER -->
-           
+
         </a>
         <!-- /USER AVATAR -->
         <!-- MENU -->
@@ -194,7 +213,14 @@
                 <!-- USER AVATAR CONTENT -->
                 <div class="user-avatar-content">
                     <!-- HEXAGON -->
-                    <div class="hexagon-image-82-90" data-src="img/avatar/01.jpg"></div>
+                    @if (userLogined.AvatarUrl?.Length > 0)
+                    {
+                        <div class="hexagon-image-30-32" data-src="@userLogined.AvatarUrl"></div>
+                    }
+                    else
+                    {
+                        <div class="hexagon-image-30-32" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
+                    }
                     <!-- /HEXAGON -->
                 </div>
                 <!-- /USER AVATAR CONTENT -->
@@ -212,14 +238,22 @@
                     <!-- /HEXAGON -->
                 </div>
                 <!-- /USER AVATAR PROGRESS BORDER -->
-                
+
             </a>
             <!-- /USER SHORT DESCRIPTION AVATAR -->
             <!-- USER SHORT DESCRIPTION TITLE -->
-            <p class="user-short-description-title"><a href="profile-timeline.html">Marina Valentine</a></p>
+            <p class="user-short-description-title"><a href="profile-timeline.html">@userLogined.FirstName @userLogined.LastName</a></p>
             <!-- /USER SHORT DESCRIPTION TITLE -->
             <!-- USER SHORT DESCRIPTION TEXT -->
-            <p class="user-short-description-text"><a href="#">www.gamehuntress.com</a></p>
+            @if (@userLogined.IsPremium == ZAlpha.Domain.Enums.PremiumStatus.UnActive)
+            {
+                <p class="user-short-description-text"><a href="#">Freemium</a></p>
+            }
+            else
+            {
+                <p class="user-short-description-text"><a href="#">Premium</a></p>
+            }
+
             <!-- /USER SHORT DESCRIPTION TEXT -->
         </div>
         <!-- /USER SHORT DESCRIPTION -->
@@ -260,7 +294,7 @@
             <!-- USER STAT -->
             <div class="user-stat">
                 <!-- USER STAT TITLE -->
-                <p class="user-stat-title">930</p>
+                <p class="user-stat-title">@userLogined.InteractWithPosts?.Where(p => p.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create).Count()</p>
                 <!-- /USER STAT TITLE -->
                 <!-- USER STAT TEXT -->
                 <p class="user-stat-text">posts</p>
@@ -270,20 +304,20 @@
             <!-- USER STAT -->
             <div class="user-stat">
                 <!-- USER STAT TITLE -->
-                <p class="user-stat-title">82</p>
+                <p class="user-stat-title">@userLogined.InteractWithComments?.Where(c => c.InteractCommentStatus == ZAlpha.Domain.Enums.InteractCommentStatus.Create).Count()</p>
                 <!-- /USER STAT TITLE -->
                 <!-- USER STAT TEXT -->
-                <p class="user-stat-text">friends</p>
+                <p class="user-stat-text">comments</p>
                 <!-- /USER STAT TEXT -->
             </div>
             <!-- /USER STAT -->
             <!-- USER STAT -->
             <div class="user-stat">
                 <!-- USER STAT TITLE -->
-                <p class="user-stat-title">5.7k</p>
+                <p class="user-stat-title">@userLogined.WishListPosts?.Count</p>
                 <!-- /USER STAT TITLE -->
                 <!-- USER STAT TEXT -->
-                <p class="user-stat-text">visits</p>
+                <p class="user-stat-text">saved posts</p>
                 <!-- /USER STAT TEXT -->
             </div>
             <!-- /USER STAT -->
@@ -305,11 +339,10 @@
                 <!-- /MENU ITEM LINK -->
             </li>
             <!-- /MENU ITEM -->
-        
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="quests.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-quests">
                         <use xlink:href="#svg-quests"></use>
@@ -323,7 +356,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="streams.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-streams">
                         <use xlink:href="#svg-streams"></use>
@@ -337,7 +370,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="events.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-events">
                         <use xlink:href="#svg-events"></use>
@@ -351,7 +384,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="forums.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-forums">
                         <use xlink:href="#svg-forums"></use>
@@ -365,7 +398,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="marketplace.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-marketplace">
                         <use xlink:href="#svg-marketplace"></use>
@@ -400,7 +433,15 @@
                     <!-- USER AVATAR CONTENT -->
                     <div class="user-avatar-content">
                         <!-- HEXAGON -->
-                        <div class="hexagon-image-30-32" data-src="img/avatar/01.jpg"></div>
+                        @if (userLogined.AvatarUrl?.Length > 0)
+                        {
+                            <div class="hexagon-image-30-32" data-src="@userLogined.AvatarUrl"></div>
+                        }
+                        else
+                        {
+                            <div class="hexagon-image-30-32" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
+                        }
+
                         <!-- /HEXAGON -->
                     </div>
                     <!-- /USER AVATAR CONTENT -->
@@ -418,11 +459,11 @@
                         <!-- /HEXAGON -->
                     </div>
                     <!-- /USER AVATAR PROGRESS BORDER -->
-                   
+
                 </a>
                 <!-- /USER AVATAR -->
                 <!-- NAVIGATION WIDGET INFO TITLE -->
-                <p class="navigation-widget-info-title"><a href="profile-timeline.html">Marina Valentine</a></p>
+                <p class="navigation-widget-info-title"><a href="/Route/Info">@userLogined.FirstName @userLogined.LastName</a></p>
                 <!-- /NAVIGATION WIDGET INFO TITLE -->
                 <!-- NAVIGATION WIDGET INFO TEXT -->
                 <p class="navigation-widget-info-text">Welcome Back!</p>
@@ -430,7 +471,9 @@
             </div>
             <!-- /NAVIGATION WIDGET INFO -->
             <!-- NAVIGATION WIDGET BUTTON -->
-            <p class="navigation-widget-info-button button small secondary">Logout</p>
+            <a href="~/logout">
+                <p class="navigation-widget-info-button button small secondary">Logout</p>
+            </a>
             <!-- /NAVIGATION WIDGET BUTTON -->
         </div>
         <!-- /NAVIGATION WIDGET INFO WRAP -->
@@ -442,7 +485,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item active">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="newsfeed.html">
+                <a class="menu-item-link" href="~/Home">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-newsfeed">
                         <use xlink:href="#svg-newsfeed"></use>
@@ -456,7 +499,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="overview.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-overview">
                         <use xlink:href="#svg-overview"></use>
@@ -470,7 +513,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="groups.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-group">
                         <use xlink:href="#svg-group"></use>
@@ -484,7 +527,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="members.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-members">
                         <use xlink:href="#svg-members"></use>
@@ -498,7 +541,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="badges.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-badges">
                         <use xlink:href="#svg-badges"></use>
@@ -512,7 +555,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="quests.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-quests">
                         <use xlink:href="#svg-quests"></use>
@@ -526,7 +569,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="streams.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-streams">
                         <use xlink:href="#svg-streams"></use>
@@ -540,7 +583,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="events.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-events">
                         <use xlink:href="#svg-events"></use>
@@ -554,7 +597,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="forums.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-forums">
                         <use xlink:href="#svg-forums"></use>
@@ -568,7 +611,7 @@
             <!-- MENU ITEM -->
             <li class="menu-item">
                 <!-- MENU ITEM LINK -->
-                <a class="menu-item-link" href="marketplace.html">
+                <a class="menu-item-link" href="#">
                     <!-- MENU ITEM LINK ICON -->
                     <svg class="menu-item-link-icon icon-marketplace">
                         <use xlink:href="#svg-marketplace"></use>
@@ -585,55 +628,55 @@
         <p class="navigation-widget-section-title">My Profile</p>
         <!-- /NAVIGATION WIDGET SECTION TITLE -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-profile-info.html">Profile Info</a>
+        <a class="navigation-widget-section-link" href="/Route/Info">Profile Info</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-profile-social.html">Social &amp; Stream</a>
+        <a class="navigation-widget-section-link" href="#">Social &amp; Stream</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-profile-notifications.html">Notifications</a>
+        <a class="navigation-widget-section-link" href="#">Notifications</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-profile-messages.html">Messages</a>
+        <a class="navigation-widget-section-link" href="#">Messages</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-profile-requests.html">Friend Requests</a>
+        <a class="navigation-widget-section-link" href="#">Friend Requests</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION TITLE -->
         <p class="navigation-widget-section-title">Account</p>
         <!-- /NAVIGATION WIDGET SECTION TITLE -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-account-info.html">Account Info</a>
+        <a class="navigation-widget-section-link" href="/Route/Info">Account Info</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-account-password.html">Change Password</a>
+        <a class="navigation-widget-section-link" href="#">Change Password</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-account-settings.html">General Settings</a>
+        <a class="navigation-widget-section-link" href="#">General Settings</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION TITLE -->
         <p class="navigation-widget-section-title">Groups</p>
         <!-- /NAVIGATION WIDGET SECTION TITLE -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-group-management.html">Manage Groups</a>
+        <a class="navigation-widget-section-link" href="#">Manage Groups</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-group-invitations.html">Invitations</a>
+        <a class="navigation-widget-section-link" href="#">Invitations</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION TITLE -->
         <p class="navigation-widget-section-title">My Store</p>
         <!-- /NAVIGATION WIDGET SECTION TITLE -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-store-account.html">My Account <span class="highlighted">$250,32</span></a>
+        <a class="navigation-widget-section-link" href="/Route/Info">My Account <span class="highlighted">$250,32</span></a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-store-statement.html">Sales Statement</a>
+        <a class="navigation-widget-section-link" href="#">Sales Statement</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-store-items.html">Manage Items</a>
+        <a class="navigation-widget-section-link" href="#">Manage Items</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="hub-store-downloads.html">Downloads</a>
+        <a class="navigation-widget-section-link" href="#">Downloads</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION TITLE -->
         <p class="navigation-widget-section-title">Main Links</p>
@@ -694,7 +737,7 @@
                                 <!-- /HEXAGON -->
                             </div>
                             <!-- /USER AVATAR PROGRESS BORDER -->
-                            
+
                         </div>
                         <!-- /USER AVATAR -->
                     </div>
@@ -741,7 +784,7 @@
                                 <!-- /HEXAGON -->
                             </div>
                             <!-- /USER AVATAR PROGRESS BORDER -->
-                         
+
                         </div>
                         <!-- /USER AVATAR -->
                     </div>
@@ -788,7 +831,7 @@
                                 <!-- /HEXAGON -->
                             </div>
                             <!-- /USER AVATAR PROGRESS BORDER -->
-                            
+
                         </div>
                         <!-- /USER AVATAR -->
                     </div>
@@ -835,7 +878,7 @@
                                 <!-- /HEXAGON -->
                             </div>
                             <!-- /USER AVATAR PROGRESS BORDER -->
-                            
+
                         </div>
                         <!-- /USER AVATAR -->
                     </div>
@@ -882,7 +925,7 @@
                                 <!-- /HEXAGON -->
                             </div>
                             <!-- /USER AVATAR PROGRESS BORDER -->
-                           
+
                         </div>
                         <!-- /USER AVATAR -->
                     </div>
@@ -1130,27 +1173,24 @@
         <!-- /CHAT WIDGET FORM -->
     </aside>
     <!-- /CHAT WIDGET -->
-
-
-
     <!-- HEADER -->
     <header class="header">
         <!-- HEADER ACTIONS -->
         <div class="header-actions">
             <!-- HEADER BRAND -->
             <div class="header-brand">
-                <img width="85" src="~/assets/images/zalpha.png" />
+                <a href="~/Home"><img width="85" src="~/assets/images/zalpha.png" /></a>
                 <!-- LOGO -->
-               @*  <div class="logo">
-                    <!-- ICON LOGO VIKINGER -->
-                    <svg class="icon-logo-vikinger small">
-                        <use xlink:href="#svg-logo-vikinger"></use>
-                    </svg>
-                    <!-- /ICON LOGO VIKINGER -->
+                @*  <div class="logo">
+                <!-- ICON LOGO VIKINGER -->
+                <svg class="icon-logo-vikinger small">
+                <use xlink:href="#svg-logo-vikinger"></use>
+                </svg>
+                <!-- /ICON LOGO VIKINGER -->
                 </div> *@
                 <!-- /LOGO -->
                 <!-- HEADER BRAND TEXT -->
-                <h1 class="header-brand-text">Vikinger</h1>
+                <h1 class="header-brand-text">Zalpha</h1>
                 <!-- /HEADER BRAND TEXT -->
             </div>
             <!-- /HEADER BRAND -->
@@ -1264,7 +1304,7 @@
         <div class="header-actions search-bar">
             <!-- INTERACTIVE INPUT -->
             <div class="interactive-input dark">
-                <input type="text" id="search-main" name="search_main" placeholder="Search here for people or groups">
+                <input type="text" id="search-main" name="search_main" placeholder="Tìm kiếm các bài viết thú vị">
                 <!-- INTERACTIVE INPUT ICON WRAP -->
                 <div class="interactive-input-icon-wrap">
                     <!-- INTERACTIVE INPUT ICON -->
@@ -1547,7 +1587,14 @@
                 <!-- BAR PROGRESS WRAP -->
                 <div class="bar-progress-wrap">
                     <!-- BAR PROGRESS INFO -->
-                    <p class="bar-progress-info">Next: <span class="bar-progress-text"></span></p>
+                    @{
+                        int? allexp = userLogined.InteractWithPosts?.Where(r => r.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create).Count() * 10;
+                        allexp += userLogined.InteractWithPosts?.Where(r => r.InteractPostStatus != ZAlpha.Domain.Enums.InteractPostStatus.Create).Count() * 2;
+                        allexp += userLogined.InteractWithComments?.Where(c => c.InteractCommentStatus == ZAlpha.Domain.Enums.InteractCommentStatus.Create).Count() * 3;
+                        allexp += userLogined.InteractWithComments?.Where(c => c.InteractCommentStatus != ZAlpha.Domain.Enums.InteractCommentStatus.Create).Count() * 1;
+                        allexp += userLogined.WishListPosts?.Count * 2;
+                    }
+                    <p class="bar-progress-info">Kinh nghiệm: @allexp EXP <span class="bar-progress-text"></span></p>
                     <!-- /BAR PROGRESS INFO -->
                 </div>
                 <!-- /BAR PROGRESS WRAP -->
@@ -1563,499 +1610,499 @@
             <!-- ACTION LIST -->
             <div class="action-list dark">
                 <!-- ACTION LIST ITEM WRAP -->
-                <div class="action-list-item-wrap">
-                    <!-- ACTION LIST ITEM -->
-                    <div class="action-list-item header-dropdown-trigger">
-                        <!-- ACTION LIST ITEM ICON -->
-                        <svg class="action-list-item-icon icon-shopping-bag">
-                            <use xlink:href="#svg-shopping-bag"></use>
-                        </svg>
-                        <!-- /ACTION LIST ITEM ICON -->
-                    </div>
-                    <!-- /ACTION LIST ITEM -->
-                    <!-- DROPDOWN BOX -->
-                    <div class="dropdown-box no-padding-bottom header-dropdown">
-                        <!-- DROPDOWN BOX HEADER -->
-                        <div class="dropdown-box-header">
-                            <!-- DROPDOWN BOX HEADER TITLE -->
-                            <p class="dropdown-box-header-title">Shopping Cart <span class="highlighted">3</span></p>
-                            <!-- /DROPDOWN BOX HEADER TITLE -->
-                        </div>
-                        <!-- /DROPDOWN BOX HEADER -->
-                        <!-- DROPDOWN BOX LIST -->
-                        <div class="dropdown-box-list scroll-small no-hover" data-simplebar>
-                            <!-- DROPDOWN BOX LIST ITEM -->
-                            <div class="dropdown-box-list-item">
-                                <!-- CART ITEM PREVIEW -->
-                                <div class="cart-item-preview">
-                                    <!-- CART ITEM PREVIEW IMAGE -->
-                                    <a class="cart-item-preview-image" href="marketplace-product.html">
-                                        <!-- PICTURE -->
-                                        <figure class="picture medium round liquid">
-                                            <img src="img/marketplace/items/01.jpg" alt="item-01">
-                                        </figure>
-                                        <!-- /PICTURE -->
-                                    </a>
-                                    <!-- /CART ITEM PREVIEW IMAGE -->
-                                    <!-- CART ITEM PREVIEW TITLE -->
-                                    <p class="cart-item-preview-title"><a href="marketplace-product.html">Twitch Stream UI Pack</a></p>
-                                    <!-- /CART ITEM PREVIEW TITLE -->
-                                    <!-- CART ITEM PREVIEW TEXT -->
-                                    <p class="cart-item-preview-text">Regular License</p>
-                                    <!-- /CART ITEM PREVIEW TEXT -->
-                                    <!-- CART ITEM PREVIEW PRICE -->
-                                    <p class="cart-item-preview-price"><span class="highlighted">$</span> 12.00 x 1</p>
-                                    <!-- /CART ITEM PREVIEW PRICE -->
-                                    <!-- CART ITEM PREVIEW ACTION -->
-                                    <div class="cart-item-preview-action">
-                                        <!-- ICON DELETE -->
-                                        <svg class="icon-delete">
-                                            <use xlink:href="#svg-delete"></use>
-                                        </svg>
-                                        <!-- /ICON DELETE -->
-                                    </div>
-                                    <!-- /CART ITEM PREVIEW ACTION -->
-                                </div>
-                                <!-- /CART ITEM PREVIEW -->
-                            </div>
-                            <!-- /DROPDOWN BOX LIST ITEM -->
-                            <!-- DROPDOWN BOX LIST ITEM -->
-                            <div class="dropdown-box-list-item">
-                                <!-- CART ITEM PREVIEW -->
-                                <div class="cart-item-preview">
-                                    <!-- CART ITEM PREVIEW IMAGE -->
-                                    <a class="cart-item-preview-image" href="marketplace-product.html">
-                                        <!-- PICTURE -->
-                                        <figure class="picture medium round liquid">
-                                            <img src="img/marketplace/items/11.jpg" alt="item-11">
-                                        </figure>
-                                        <!-- /PICTURE -->
-                                    </a>
-                                    <!-- /CART ITEM PREVIEW IMAGE -->
-                                    <!-- CART ITEM PREVIEW TITLE -->
-                                    <p class="cart-item-preview-title"><a href="marketplace-product.html">Gaming Coin Badges Pack</a></p>
-                                    <!-- /CART ITEM PREVIEW TITLE -->
-                                    <!-- CART ITEM PREVIEW TEXT -->
-                                    <p class="cart-item-preview-text">Regular License</p>
-                                    <!-- /CART ITEM PREVIEW TEXT -->
-                                    <!-- CART ITEM PREVIEW PRICE -->
-                                    <p class="cart-item-preview-price"><span class="highlighted">$</span> 6.00 x 1</p>
-                                    <!-- /CART ITEM PREVIEW PRICE -->
-                                    <!-- CART ITEM PREVIEW ACTION -->
-                                    <div class="cart-item-preview-action">
-                                        <!-- ICON DELETE -->
-                                        <svg class="icon-delete">
-                                            <use xlink:href="#svg-delete"></use>
-                                        </svg>
-                                        <!-- /ICON DELETE -->
-                                    </div>
-                                    <!-- /CART ITEM PREVIEW ACTION -->
-                                </div>
-                                <!-- /CART ITEM PREVIEW -->
-                            </div>
-                            <!-- /DROPDOWN BOX LIST ITEM -->
-                            <!-- DROPDOWN BOX LIST ITEM -->
-                            <div class="dropdown-box-list-item">
-                                <!-- CART ITEM PREVIEW -->
-                                <div class="cart-item-preview">
-                                    <!-- CART ITEM PREVIEW IMAGE -->
-                                    <a class="cart-item-preview-image" href="marketplace-product.html">
-                                        <!-- PICTURE -->
-                                        <figure class="picture medium round liquid">
-                                            <img src="img/marketplace/items/10.jpg" alt="item-10">
-                                        </figure>
-                                        <!-- /PICTURE -->
-                                    </a>
-                                    <!-- /CART ITEM PREVIEW IMAGE -->
-                                    <!-- CART ITEM PREVIEW TITLE -->
-                                    <p class="cart-item-preview-title"><a href="marketplace-product.html">Twitch Stream UI Pack</a></p>
-                                    <!-- /CART ITEM PREVIEW TITLE -->
-                                    <!-- CART ITEM PREVIEW TEXT -->
-                                    <p class="cart-item-preview-text">Regular License</p>
-                                    <!-- /CART ITEM PREVIEW TEXT -->
-                                    <!-- CART ITEM PREVIEW PRICE -->
-                                    <p class="cart-item-preview-price"><span class="highlighted">$</span> 26.00 x 1</p>
-                                    <!-- /CART ITEM PREVIEW PRICE -->
-                                    <!-- CART ITEM PREVIEW ACTION -->
-                                    <div class="cart-item-preview-action">
-                                        <!-- ICON DELETE -->
-                                        <svg class="icon-delete">
-                                            <use xlink:href="#svg-delete"></use>
-                                        </svg>
-                                        <!-- /ICON DELETE -->
-                                    </div>
-                                    <!-- /CART ITEM PREVIEW ACTION -->
-                                </div>
-                                <!-- /CART ITEM PREVIEW -->
-                            </div>
-                            <!-- /DROPDOWN BOX LIST ITEM -->
-                            <!-- DROPDOWN BOX LIST ITEM -->
-                            <div class="dropdown-box-list-item">
-                                <!-- CART ITEM PREVIEW -->
-                                <div class="cart-item-preview">
-                                    <!-- CART ITEM PREVIEW IMAGE -->
-                                    <a class="cart-item-preview-image" href="marketplace-product.html">
-                                        <!-- PICTURE -->
-                                        <figure class="picture medium round liquid">
-                                            <img src="img/marketplace/items/04.jpg" alt="item-04">
-                                        </figure>
-                                        <!-- /PICTURE -->
-                                    </a>
-                                    <!-- /CART ITEM PREVIEW IMAGE -->
-                                    <!-- CART ITEM PREVIEW TITLE -->
-                                    <p class="cart-item-preview-title"><a href="marketplace-product.html">Generic Joystick Pack</a></p>
-                                    <!-- /CART ITEM PREVIEW TITLE -->
-                                    <!-- CART ITEM PREVIEW TEXT -->
-                                    <p class="cart-item-preview-text">Regular License</p>
-                                    <!-- /CART ITEM PREVIEW TEXT -->
-                                    <!-- CART ITEM PREVIEW PRICE -->
-                                    <p class="cart-item-preview-price"><span class="highlighted">$</span> 16.00 x 1</p>
-                                    <!-- /CART ITEM PREVIEW PRICE -->
-                                    <!-- CART ITEM PREVIEW ACTION -->
-                                    <div class="cart-item-preview-action">
-                                        <!-- ICON DELETE -->
-                                        <svg class="icon-delete">
-                                            <use xlink:href="#svg-delete"></use>
-                                        </svg>
-                                        <!-- /ICON DELETE -->
-                                    </div>
-                                    <!-- /CART ITEM PREVIEW ACTION -->
-                                </div>
-                                <!-- /CART ITEM PREVIEW -->
-                            </div>
-                            <!-- /DROPDOWN BOX LIST ITEM -->
-                        </div>
-                        <!-- /DROPDOWN BOX LIST -->
-                        <!-- CART PREVIEW TOTAL -->
-                        <div class="cart-preview-total">
-                            <!-- CART PREVIEW TOTAL TITLE -->
-                            <p class="cart-preview-total-title">Total:</p>
-                            <!-- /CART PREVIEW TOTAL TITLE -->
-                            <!-- CART PREVIEW TOTAL TEXT -->
-                            <p class="cart-preview-total-text"><span class="highlighted">$</span> 60.00</p>
-                            <!-- /CART PREVIEW TOTAL TEXT -->
-                        </div>
-                        <!-- /CART PREVIEW TOTAL -->
-                        <!-- DROPDOWN BOX ACTIONS -->
-                        <div class="dropdown-box-actions">
-                            <!-- DROPDOWN BOX ACTION -->
-                            <div class="dropdown-box-action">
-                                <!-- BUTTON -->
-                                <a class="button secondary" href="marketplace-cart.html">Shopping Cart</a>
-                                <!-- /BUTTON -->
-                            </div>
-                            <!-- /DROPDOWN BOX ACTION -->
-                            <!-- DROPDOWN BOX ACTION -->
-                            <div class="dropdown-box-action">
-                                <!-- BUTTON -->
-                                <a class="button primary" href="marketplace-checkout.html">Go to Checkout</a>
-                                <!-- /BUTTON -->
-                            </div>
-                            <!-- /DROPDOWN BOX ACTION -->
-                        </div>
-                        <!-- /DROPDOWN BOX ACTIONS -->
-                    </div>
-                    <!-- /DROPDOWN BOX -->
+                @* <div class="action-list-item-wrap">
+                <!-- ACTION LIST ITEM -->
+                <div class="action-list-item header-dropdown-trigger">
+                <!-- ACTION LIST ITEM ICON -->
+                <svg class="action-list-item-icon icon-shopping-bag">
+                <use xlink:href="#svg-shopping-bag"></use>
+                </svg>
+                <!-- /ACTION LIST ITEM ICON -->
                 </div>
+                <!-- /ACTION LIST ITEM -->
+                <!-- DROPDOWN BOX -->
+                <div class="dropdown-box no-padding-bottom header-dropdown">
+                <!-- DROPDOWN BOX HEADER -->
+                <div class="dropdown-box-header">
+                <!-- DROPDOWN BOX HEADER TITLE -->
+                <p class="dropdown-box-header-title">Shopping Cart <span class="highlighted">3</span></p>
+                <!-- /DROPDOWN BOX HEADER TITLE -->
+                </div>
+                <!-- /DROPDOWN BOX HEADER -->
+                <!-- DROPDOWN BOX LIST -->
+                <div class="dropdown-box-list scroll-small no-hover" data-simplebar>
+                <!-- DROPDOWN BOX LIST ITEM -->
+                <div class="dropdown-box-list-item">
+                <!-- CART ITEM PREVIEW -->
+                <div class="cart-item-preview">
+                <!-- CART ITEM PREVIEW IMAGE -->
+                <a class="cart-item-preview-image" href="marketplace-product.html">
+                <!-- PICTURE -->
+                <figure class="picture medium round liquid">
+                <img src="img/marketplace/items/01.jpg" alt="item-01">
+                </figure>
+                <!-- /PICTURE -->
+                </a>
+                <!-- /CART ITEM PREVIEW IMAGE -->
+                <!-- CART ITEM PREVIEW TITLE -->
+                <p class="cart-item-preview-title"><a href="marketplace-product.html">Twitch Stream UI Pack</a></p>
+                <!-- /CART ITEM PREVIEW TITLE -->
+                <!-- CART ITEM PREVIEW TEXT -->
+                <p class="cart-item-preview-text">Regular License</p>
+                <!-- /CART ITEM PREVIEW TEXT -->
+                <!-- CART ITEM PREVIEW PRICE -->
+                <p class="cart-item-preview-price"><span class="highlighted">$</span> 12.00 x 1</p>
+                <!-- /CART ITEM PREVIEW PRICE -->
+                <!-- CART ITEM PREVIEW ACTION -->
+                <div class="cart-item-preview-action">
+                <!-- ICON DELETE -->
+                <svg class="icon-delete">
+                <use xlink:href="#svg-delete"></use>
+                </svg>
+                <!-- /ICON DELETE -->
+                </div>
+                <!-- /CART ITEM PREVIEW ACTION -->
+                </div>
+                <!-- /CART ITEM PREVIEW -->
+                </div>
+                <!-- /DROPDOWN BOX LIST ITEM -->
+                <!-- DROPDOWN BOX LIST ITEM -->
+                <div class="dropdown-box-list-item">
+                <!-- CART ITEM PREVIEW -->
+                <div class="cart-item-preview">
+                <!-- CART ITEM PREVIEW IMAGE -->
+                <a class="cart-item-preview-image" href="marketplace-product.html">
+                <!-- PICTURE -->
+                <figure class="picture medium round liquid">
+                <img src="img/marketplace/items/11.jpg" alt="item-11">
+                </figure>
+                <!-- /PICTURE -->
+                </a>
+                <!-- /CART ITEM PREVIEW IMAGE -->
+                <!-- CART ITEM PREVIEW TITLE -->
+                <p class="cart-item-preview-title"><a href="marketplace-product.html">Gaming Coin Badges Pack</a></p>
+                <!-- /CART ITEM PREVIEW TITLE -->
+                <!-- CART ITEM PREVIEW TEXT -->
+                <p class="cart-item-preview-text">Regular License</p>
+                <!-- /CART ITEM PREVIEW TEXT -->
+                <!-- CART ITEM PREVIEW PRICE -->
+                <p class="cart-item-preview-price"><span class="highlighted">$</span> 6.00 x 1</p>
+                <!-- /CART ITEM PREVIEW PRICE -->
+                <!-- CART ITEM PREVIEW ACTION -->
+                <div class="cart-item-preview-action">
+                <!-- ICON DELETE -->
+                <svg class="icon-delete">
+                <use xlink:href="#svg-delete"></use>
+                </svg>
+                <!-- /ICON DELETE -->
+                </div>
+                <!-- /CART ITEM PREVIEW ACTION -->
+                </div>
+                <!-- /CART ITEM PREVIEW -->
+                </div>
+                <!-- /DROPDOWN BOX LIST ITEM -->
+                <!-- DROPDOWN BOX LIST ITEM -->
+                <div class="dropdown-box-list-item">
+                <!-- CART ITEM PREVIEW -->
+                <div class="cart-item-preview">
+                <!-- CART ITEM PREVIEW IMAGE -->
+                <a class="cart-item-preview-image" href="marketplace-product.html">
+                <!-- PICTURE -->
+                <figure class="picture medium round liquid">
+                <img src="img/marketplace/items/10.jpg" alt="item-10">
+                </figure>
+                <!-- /PICTURE -->
+                </a>
+                <!-- /CART ITEM PREVIEW IMAGE -->
+                <!-- CART ITEM PREVIEW TITLE -->
+                <p class="cart-item-preview-title"><a href="marketplace-product.html">Twitch Stream UI Pack</a></p>
+                <!-- /CART ITEM PREVIEW TITLE -->
+                <!-- CART ITEM PREVIEW TEXT -->
+                <p class="cart-item-preview-text">Regular License</p>
+                <!-- /CART ITEM PREVIEW TEXT -->
+                <!-- CART ITEM PREVIEW PRICE -->
+                <p class="cart-item-preview-price"><span class="highlighted">$</span> 26.00 x 1</p>
+                <!-- /CART ITEM PREVIEW PRICE -->
+                <!-- CART ITEM PREVIEW ACTION -->
+                <div class="cart-item-preview-action">
+                <!-- ICON DELETE -->
+                <svg class="icon-delete">
+                <use xlink:href="#svg-delete"></use>
+                </svg>
+                <!-- /ICON DELETE -->
+                </div>
+                <!-- /CART ITEM PREVIEW ACTION -->
+                </div>
+                <!-- /CART ITEM PREVIEW -->
+                </div>
+                <!-- /DROPDOWN BOX LIST ITEM -->
+                <!-- DROPDOWN BOX LIST ITEM -->
+                <div class="dropdown-box-list-item">
+                <!-- CART ITEM PREVIEW -->
+                <div class="cart-item-preview">
+                <!-- CART ITEM PREVIEW IMAGE -->
+                <a class="cart-item-preview-image" href="marketplace-product.html">
+                <!-- PICTURE -->
+                <figure class="picture medium round liquid">
+                <img src="img/marketplace/items/04.jpg" alt="item-04">
+                </figure>
+                <!-- /PICTURE -->
+                </a>
+                <!-- /CART ITEM PREVIEW IMAGE -->
+                <!-- CART ITEM PREVIEW TITLE -->
+                <p class="cart-item-preview-title"><a href="marketplace-product.html">Generic Joystick Pack</a></p>
+                <!-- /CART ITEM PREVIEW TITLE -->
+                <!-- CART ITEM PREVIEW TEXT -->
+                <p class="cart-item-preview-text">Regular License</p>
+                <!-- /CART ITEM PREVIEW TEXT -->
+                <!-- CART ITEM PREVIEW PRICE -->
+                <p class="cart-item-preview-price"><span class="highlighted">$</span> 16.00 x 1</p>
+                <!-- /CART ITEM PREVIEW PRICE -->
+                <!-- CART ITEM PREVIEW ACTION -->
+                <div class="cart-item-preview-action">
+                <!-- ICON DELETE -->
+                <svg class="icon-delete">
+                <use xlink:href="#svg-delete"></use>
+                </svg>
+                <!-- /ICON DELETE -->
+                </div>
+                <!-- /CART ITEM PREVIEW ACTION -->
+                </div>
+                <!-- /CART ITEM PREVIEW -->
+                </div>
+                <!-- /DROPDOWN BOX LIST ITEM -->
+                </div>
+                <!-- /DROPDOWN BOX LIST -->
+                <!-- CART PREVIEW TOTAL -->
+                <div class="cart-preview-total">
+                <!-- CART PREVIEW TOTAL TITLE -->
+                <p class="cart-preview-total-title">Total:</p>
+                <!-- /CART PREVIEW TOTAL TITLE -->
+                <!-- CART PREVIEW TOTAL TEXT -->
+                <p class="cart-preview-total-text"><span class="highlighted">$</span> 60.00</p>
+                <!-- /CART PREVIEW TOTAL TEXT -->
+                </div>
+                <!-- /CART PREVIEW TOTAL -->
+                <!-- DROPDOWN BOX ACTIONS -->
+                <div class="dropdown-box-actions">
+                <!-- DROPDOWN BOX ACTION -->
+                <div class="dropdown-box-action">
+                <!-- BUTTON -->
+                <a class="button secondary" href="marketplace-cart.html">Shopping Cart</a>
+                <!-- /BUTTON -->
+                </div>
+                <!-- /DROPDOWN BOX ACTION -->
+                <!-- DROPDOWN BOX ACTION -->
+                <div class="dropdown-box-action">
+                <!-- BUTTON -->
+                <a class="button primary" href="marketplace-checkout.html">Go to Checkout</a>
+                <!-- /BUTTON -->
+                </div>
+                <!-- /DROPDOWN BOX ACTION -->
+                </div>
+                <!-- /DROPDOWN BOX ACTIONS -->
+                </div>
+                <!-- /DROPDOWN BOX -->
+                </div> *@
                 <!-- /ACTION LIST ITEM WRAP -->
                 <!-- ACTION LIST ITEM WRAP -->
-                <div class="action-list-item-wrap">
-                    <!-- ACTION LIST ITEM -->
-                    <div class="action-list-item header-dropdown-trigger">
-                        <!-- ACTION LIST ITEM ICON -->
-                        <svg class="action-list-item-icon icon-friend">
-                            <use xlink:href="#svg-friend"></use>
-                        </svg>
-                        <!-- /ACTION LIST ITEM ICON -->
-                    </div>
-                    <!-- /ACTION LIST ITEM -->
-                    <!-- DROPDOWN BOX -->
-                    <div class="dropdown-box header-dropdown">
-                        <!-- DROPDOWN BOX HEADER -->
-                        <div class="dropdown-box-header">
-                            <!-- DROPDOWN BOX HEADER TITLE -->
-                            <p class="dropdown-box-header-title">Friend Requests</p>
-                            <!-- /DROPDOWN BOX HEADER TITLE -->
-                            <!-- DROPDOWN BOX HEADER ACTIONS -->
-                            <div class="dropdown-box-header-actions">
-                                <!-- DROPDOWN BOX HEADER ACTION -->
-                                <p class="dropdown-box-header-action">Find Friends</p>
-                                <!-- /DROPDOWN BOX HEADER ACTION -->
-                                <!-- DROPDOWN BOX HEADER ACTION -->
-                                <p class="dropdown-box-header-action">Settings</p>
-                                <!-- /DROPDOWN BOX HEADER ACTION -->
-                            </div>
-                            <!-- /DROPDOWN BOX HEADER ACTIONS -->
-                        </div>
-                        <!-- /DROPDOWN BOX HEADER -->
-                        <!-- DROPDOWN BOX LIST -->
-                        <div class="dropdown-box-list no-hover" data-simplebar>
-                            <!-- DROPDOWN BOX LIST ITEM -->
-                            <div class="dropdown-box-list-item">
-                                <!-- USER STATUS -->
-                                <div class="user-status request">
-                                    <!-- USER STATUS AVATAR -->
-                                    <a class="user-status-avatar" href="profile-timeline.html">
-                                        <!-- USER AVATAR -->
-                                        <div class="user-avatar small no-outline">
-                                            <!-- USER AVATAR CONTENT -->
-                                            <div class="user-avatar-content">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-image-30-32" data-src="img/avatar/16.jpg"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR CONTENT -->
-                                            <!-- USER AVATAR PROGRESS -->
-                                            <div class="user-avatar-progress">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-progress-40-44"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR PROGRESS -->
-                                            <!-- USER AVATAR PROGRESS BORDER -->
-                                            <div class="user-avatar-progress-border">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-border-40-44"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR PROGRESS BORDER -->
-                                            <!-- USER AVATAR BADGE -->
-                                            <div class="user-avatar-badge">
-                                                <!-- USER AVATAR BADGE BORDER -->
-                                                <div class="user-avatar-badge-border">
-                                                    <!-- HEXAGON -->
-                                                    <div class="hexagon-22-24"></div>
-                                                    <!-- /HEXAGON -->
-                                                </div>
-                                                <!-- /USER AVATAR BADGE BORDER -->
-                                                <!-- USER AVATAR BADGE CONTENT -->
-                                                <div class="user-avatar-badge-content">
-                                                    <!-- HEXAGON -->
-                                                    <div class="hexagon-dark-16-18"></div>
-                                                    <!-- /HEXAGON -->
-                                                </div>
-                                                <!-- /USER AVATAR BADGE CONTENT -->
-                                                <!-- USER AVATAR BADGE TEXT -->
-                                                <p class="user-avatar-badge-text">14</p>
-                                                <!-- /USER AVATAR BADGE TEXT -->
-                                            </div>
-                                            <!-- /USER AVATAR BADGE -->
-                                        </div>
-                                        <!-- /USER AVATAR -->
-                                    </a>
-                                    <!-- /USER STATUS AVATAR -->
-                                    <!-- USER STATUS TITLE -->
-                                    <p class="user-status-title"><a class="bold" href="profile-timeline.html">Ginny Danvers</a></p>
-                                    <!-- /USER STATUS TITLE -->
-                                    <!-- USER STATUS TEXT -->
-                                    <p class="user-status-text">6 friends in common</p>
-                                    <!-- /USER STATUS TEXT -->
-                                    <!-- ACTION REQUEST LIST -->
-                                    <div class="action-request-list">
-                                        <!-- ACTION REQUEST -->
-                                        <div class="action-request accept">
-                                            <!-- ACTION REQUEST ICON -->
-                                            <svg class="action-request-icon icon-add-friend">
-                                                <use xlink:href="#svg-add-friend"></use>
-                                            </svg>
-                                            <!-- /ACTION REQUEST ICON -->
-                                        </div>
-                                        <!-- /ACTION REQUEST -->
-                                        <!-- ACTION REQUEST -->
-                                        <div class="action-request decline">
-                                            <!-- ACTION REQUEST ICON -->
-                                            <svg class="action-request-icon icon-remove-friend">
-                                                <use xlink:href="#svg-remove-friend"></use>
-                                            </svg>
-                                            <!-- /ACTION REQUEST ICON -->
-                                        </div>
-                                        <!-- /ACTION REQUEST -->
-                                    </div>
-                                    <!-- ACTION REQUEST LIST -->
-                                </div>
-                                <!-- /USER STATUS -->
-                            </div>
-                            <!-- /DROPDOWN BOX LIST ITEM -->
-                            <!-- DROPDOWN BOX LIST ITEM -->
-                            <div class="dropdown-box-list-item">
-                                <!-- USER STATUS -->
-                                <div class="user-status request">
-                                    <!-- USER STATUS AVATAR -->
-                                    <a class="user-status-avatar" href="profile-timeline.html">
-                                        <!-- USER AVATAR -->
-                                        <div class="user-avatar small no-outline">
-                                            <!-- USER AVATAR CONTENT -->
-                                            <div class="user-avatar-content">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-image-30-32" data-src="img/avatar/14.jpg"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR CONTENT -->
-                                            <!-- USER AVATAR PROGRESS -->
-                                            <div class="user-avatar-progress">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-progress-40-44"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR PROGRESS -->
-                                            <!-- USER AVATAR PROGRESS BORDER -->
-                                            <div class="user-avatar-progress-border">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-border-40-44"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR PROGRESS BORDER -->
-                                            <!-- USER AVATAR BADGE -->
-                                            <div class="user-avatar-badge">
-                                                <!-- USER AVATAR BADGE BORDER -->
-                                                <div class="user-avatar-badge-border">
-                                                    <!-- HEXAGON -->
-                                                    <div class="hexagon-22-24"></div>
-                                                    <!-- /HEXAGON -->
-                                                </div>
-                                                <!-- /USER AVATAR BADGE BORDER -->
-                                                <!-- USER AVATAR BADGE CONTENT -->
-                                                <div class="user-avatar-badge-content">
-                                                    <!-- HEXAGON -->
-                                                    <div class="hexagon-dark-16-18"></div>
-                                                    <!-- /HEXAGON -->
-                                                </div>
-                                                <!-- /USER AVATAR BADGE CONTENT -->
-                                                <!-- USER AVATAR BADGE TEXT -->
-                                                <p class="user-avatar-badge-text">3</p>
-                                                <!-- /USER AVATAR BADGE TEXT -->
-                                            </div>
-                                            <!-- /USER AVATAR BADGE -->
-                                        </div>
-                                        <!-- /USER AVATAR -->
-                                    </a>
-                                    <!-- /USER STATUS AVATAR -->
-                                    <!-- USER STATUS TITLE -->
-                                    <p class="user-status-title"><a class="bold" href="profile-timeline.html">Paul Lang</a></p>
-                                    <!-- /USER STATUS TITLE -->
-                                    <!-- USER STATUS TEXT -->
-                                    <p class="user-status-text">2 friends in common</p>
-                                    <!-- /USER STATUS TEXT -->
-                                    <!-- ACTION REQUEST LIST -->
-                                    <div class="action-request-list">
-                                        <!-- ACTION REQUEST -->
-                                        <div class="action-request accept">
-                                            <!-- ACTION REQUEST ICON -->
-                                            <svg class="action-request-icon icon-add-friend">
-                                                <use xlink:href="#svg-add-friend"></use>
-                                            </svg>
-                                            <!-- /ACTION REQUEST ICON -->
-                                        </div>
-                                        <!-- /ACTION REQUEST -->
-                                        <!-- ACTION REQUEST -->
-                                        <div class="action-request decline">
-                                            <!-- ACTION REQUEST ICON -->
-                                            <svg class="action-request-icon icon-remove-friend">
-                                                <use xlink:href="#svg-remove-friend"></use>
-                                            </svg>
-                                            <!-- /ACTION REQUEST ICON -->
-                                        </div>
-                                        <!-- /ACTION REQUEST -->
-                                    </div>
-                                    <!-- ACTION REQUEST LIST -->
-                                </div>
-                                <!-- /USER STATUS -->
-                            </div>
-                            <!-- /DROPDOWN BOX LIST ITEM -->
-                            <!-- DROPDOWN BOX LIST ITEM -->
-                            <div class="dropdown-box-list-item">
-                                <!-- USER STATUS -->
-                                <div class="user-status request">
-                                    <!-- USER STATUS AVATAR -->
-                                    <a class="user-status-avatar" href="profile-timeline.html">
-                                        <!-- USER AVATAR -->
-                                        <div class="user-avatar small no-outline">
-                                            <!-- USER AVATAR CONTENT -->
-                                            <div class="user-avatar-content">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-image-30-32" data-src="img/avatar/11.jpg"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR CONTENT -->
-                                            <!-- USER AVATAR PROGRESS -->
-                                            <div class="user-avatar-progress">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-progress-40-44"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR PROGRESS -->
-                                            <!-- USER AVATAR PROGRESS BORDER -->
-                                            <div class="user-avatar-progress-border">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-border-40-44"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR PROGRESS BORDER -->
-                                            <!-- USER AVATAR BADGE -->
-                                            <div class="user-avatar-badge">
-                                                <!-- USER AVATAR BADGE BORDER -->
-                                                <div class="user-avatar-badge-border">
-                                                    <!-- HEXAGON -->
-                                                    <div class="hexagon-22-24"></div>
-                                                    <!-- /HEXAGON -->
-                                                </div>
-                                                <!-- /USER AVATAR BADGE BORDER -->
-                                                <!-- USER AVATAR BADGE CONTENT -->
-                                                <div class="user-avatar-badge-content">
-                                                    <!-- HEXAGON -->
-                                                    <div class="hexagon-dark-16-18"></div>
-                                                    <!-- /HEXAGON -->
-                                                </div>
-                                                <!-- /USER AVATAR BADGE CONTENT -->
-                                                <!-- USER AVATAR BADGE TEXT -->
-                                                <p class="user-avatar-badge-text">9</p>
-                                                <!-- /USER AVATAR BADGE TEXT -->
-                                            </div>
-                                            <!-- /USER AVATAR BADGE -->
-                                        </div>
-                                        <!-- /USER AVATAR -->
-                                    </a>
-                                    <!-- /USER STATUS AVATAR -->
-                                    <!-- USER STATUS TITLE -->
-                                    <p class="user-status-title"><a class="bold" href="profile-timeline.html">Cassie May</a></p>
-                                    <!-- /USER STATUS TITLE -->
-                                    <!-- USER STATUS TEXT -->
-                                    <p class="user-status-text">4 friends in common</p>
-                                    <!-- /USER STATUS TEXT -->
-                                    <!-- ACTION REQUEST LIST -->
-                                    <div class="action-request-list">
-                                        <!-- ACTION REQUEST -->
-                                        <div class="action-request accept">
-                                            <!-- ACTION REQUEST ICON -->
-                                            <svg class="action-request-icon icon-add-friend">
-                                                <use xlink:href="#svg-add-friend"></use>
-                                            </svg>
-                                            <!-- /ACTION REQUEST ICON -->
-                                        </div>
-                                        <!-- /ACTION REQUEST -->
-                                        <!-- ACTION REQUEST -->
-                                        <div class="action-request decline">
-                                            <!-- ACTION REQUEST ICON -->
-                                            <svg class="action-request-icon icon-remove-friend">
-                                                <use xlink:href="#svg-remove-friend"></use>
-                                            </svg>
-                                            <!-- /ACTION REQUEST ICON -->
-                                        </div>
-                                        <!-- /ACTION REQUEST -->
-                                    </div>
-                                    <!-- ACTION REQUEST LIST -->
-                                </div>
-                                <!-- /USER STATUS -->
-                            </div>
-                            <!-- /DROPDOWN BOX LIST ITEM -->
-                        </div>
-                        <!-- /DROPDOWN BOX LIST -->
-                        <!-- DROPDOWN BOX BUTTON -->
-                        <a class="dropdown-box-button secondary" href="hub-profile-requests.html">View all Requests</a>
-                        <!-- /DROPDOWN BOX BUTTON -->
-                    </div>
-                    <!-- /DROPDOWN BOX -->
+                @* <div class="action-list-item-wrap">
+                <!-- ACTION LIST ITEM -->
+                <div class="action-list-item header-dropdown-trigger">
+                <!-- ACTION LIST ITEM ICON -->
+                <svg class="action-list-item-icon icon-friend">
+                <use xlink:href="#svg-friend"></use>
+                </svg>
+                <!-- /ACTION LIST ITEM ICON -->
                 </div>
+                <!-- /ACTION LIST ITEM -->
+                <!-- DROPDOWN BOX -->
+                <div class="dropdown-box header-dropdown">
+                <!-- DROPDOWN BOX HEADER -->
+                <div class="dropdown-box-header">
+                <!-- DROPDOWN BOX HEADER TITLE -->
+                <p class="dropdown-box-header-title">Friend Requests</p>
+                <!-- /DROPDOWN BOX HEADER TITLE -->
+                <!-- DROPDOWN BOX HEADER ACTIONS -->
+                <div class="dropdown-box-header-actions">
+                <!-- DROPDOWN BOX HEADER ACTION -->
+                <p class="dropdown-box-header-action">Find Friends</p>
+                <!-- /DROPDOWN BOX HEADER ACTION -->
+                <!-- DROPDOWN BOX HEADER ACTION -->
+                <p class="dropdown-box-header-action">Settings</p>
+                <!-- /DROPDOWN BOX HEADER ACTION -->
+                </div>
+                <!-- /DROPDOWN BOX HEADER ACTIONS -->
+                </div>
+                <!-- /DROPDOWN BOX HEADER -->
+                <!-- DROPDOWN BOX LIST -->
+                <div class="dropdown-box-list no-hover" data-simplebar>
+                <!-- DROPDOWN BOX LIST ITEM -->
+                <div class="dropdown-box-list-item">
+                <!-- USER STATUS -->
+                <div class="user-status request">
+                <!-- USER STATUS AVATAR -->
+                <a class="user-status-avatar" href="profile-timeline.html">
+                <!-- USER AVATAR -->
+                <div class="user-avatar small no-outline">
+                <!-- USER AVATAR CONTENT -->
+                <div class="user-avatar-content">
+                <!-- HEXAGON -->
+                <div class="hexagon-image-30-32" data-src="img/avatar/16.jpg"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR CONTENT -->
+                <!-- USER AVATAR PROGRESS -->
+                <div class="user-avatar-progress">
+                <!-- HEXAGON -->
+                <div class="hexagon-progress-40-44"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR PROGRESS -->
+                <!-- USER AVATAR PROGRESS BORDER -->
+                <div class="user-avatar-progress-border">
+                <!-- HEXAGON -->
+                <div class="hexagon-border-40-44"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR PROGRESS BORDER -->
+                <!-- USER AVATAR BADGE -->
+                <div class="user-avatar-badge">
+                <!-- USER AVATAR BADGE BORDER -->
+                <div class="user-avatar-badge-border">
+                <!-- HEXAGON -->
+                <div class="hexagon-22-24"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR BADGE BORDER -->
+                <!-- USER AVATAR BADGE CONTENT -->
+                <div class="user-avatar-badge-content">
+                <!-- HEXAGON -->
+                <div class="hexagon-dark-16-18"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR BADGE CONTENT -->
+                <!-- USER AVATAR BADGE TEXT -->
+                <p class="user-avatar-badge-text">14</p>
+                <!-- /USER AVATAR BADGE TEXT -->
+                </div>
+                <!-- /USER AVATAR BADGE -->
+                </div>
+                <!-- /USER AVATAR -->
+                </a>
+                <!-- /USER STATUS AVATAR -->
+                <!-- USER STATUS TITLE -->
+                <p class="user-status-title"><a class="bold" href="profile-timeline.html">Ginny Danvers</a></p>
+                <!-- /USER STATUS TITLE -->
+                <!-- USER STATUS TEXT -->
+                <p class="user-status-text">6 friends in common</p>
+                <!-- /USER STATUS TEXT -->
+                <!-- ACTION REQUEST LIST -->
+                <div class="action-request-list">
+                <!-- ACTION REQUEST -->
+                <div class="action-request accept">
+                <!-- ACTION REQUEST ICON -->
+                <svg class="action-request-icon icon-add-friend">
+                <use xlink:href="#svg-add-friend"></use>
+                </svg>
+                <!-- /ACTION REQUEST ICON -->
+                </div>
+                <!-- /ACTION REQUEST -->
+                <!-- ACTION REQUEST -->
+                <div class="action-request decline">
+                <!-- ACTION REQUEST ICON -->
+                <svg class="action-request-icon icon-remove-friend">
+                <use xlink:href="#svg-remove-friend"></use>
+                </svg>
+                <!-- /ACTION REQUEST ICON -->
+                </div>
+                <!-- /ACTION REQUEST -->
+                </div>
+                <!-- ACTION REQUEST LIST -->
+                </div>
+                <!-- /USER STATUS -->
+                </div>
+                <!-- /DROPDOWN BOX LIST ITEM -->
+                <!-- DROPDOWN BOX LIST ITEM -->
+                <div class="dropdown-box-list-item">
+                <!-- USER STATUS -->
+                <div class="user-status request">
+                <!-- USER STATUS AVATAR -->
+                <a class="user-status-avatar" href="profile-timeline.html">
+                <!-- USER AVATAR -->
+                <div class="user-avatar small no-outline">
+                <!-- USER AVATAR CONTENT -->
+                <div class="user-avatar-content">
+                <!-- HEXAGON -->
+                <div class="hexagon-image-30-32" data-src="img/avatar/14.jpg"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR CONTENT -->
+                <!-- USER AVATAR PROGRESS -->
+                <div class="user-avatar-progress">
+                <!-- HEXAGON -->
+                <div class="hexagon-progress-40-44"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR PROGRESS -->
+                <!-- USER AVATAR PROGRESS BORDER -->
+                <div class="user-avatar-progress-border">
+                <!-- HEXAGON -->
+                <div class="hexagon-border-40-44"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR PROGRESS BORDER -->
+                <!-- USER AVATAR BADGE -->
+                <div class="user-avatar-badge">
+                <!-- USER AVATAR BADGE BORDER -->
+                <div class="user-avatar-badge-border">
+                <!-- HEXAGON -->
+                <div class="hexagon-22-24"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR BADGE BORDER -->
+                <!-- USER AVATAR BADGE CONTENT -->
+                <div class="user-avatar-badge-content">
+                <!-- HEXAGON -->
+                <div class="hexagon-dark-16-18"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR BADGE CONTENT -->
+                <!-- USER AVATAR BADGE TEXT -->
+                <p class="user-avatar-badge-text">3</p>
+                <!-- /USER AVATAR BADGE TEXT -->
+                </div>
+                <!-- /USER AVATAR BADGE -->
+                </div>
+                <!-- /USER AVATAR -->
+                </a>
+                <!-- /USER STATUS AVATAR -->
+                <!-- USER STATUS TITLE -->
+                <p class="user-status-title"><a class="bold" href="profile-timeline.html">Paul Lang</a></p>
+                <!-- /USER STATUS TITLE -->
+                <!-- USER STATUS TEXT -->
+                <p class="user-status-text">2 friends in common</p>
+                <!-- /USER STATUS TEXT -->
+                <!-- ACTION REQUEST LIST -->
+                <div class="action-request-list">
+                <!-- ACTION REQUEST -->
+                <div class="action-request accept">
+                <!-- ACTION REQUEST ICON -->
+                <svg class="action-request-icon icon-add-friend">
+                <use xlink:href="#svg-add-friend"></use>
+                </svg>
+                <!-- /ACTION REQUEST ICON -->
+                </div>
+                <!-- /ACTION REQUEST -->
+                <!-- ACTION REQUEST -->
+                <div class="action-request decline">
+                <!-- ACTION REQUEST ICON -->
+                <svg class="action-request-icon icon-remove-friend">
+                <use xlink:href="#svg-remove-friend"></use>
+                </svg>
+                <!-- /ACTION REQUEST ICON -->
+                </div>
+                <!-- /ACTION REQUEST -->
+                </div>
+                <!-- ACTION REQUEST LIST -->
+                </div>
+                <!-- /USER STATUS -->
+                </div>
+                <!-- /DROPDOWN BOX LIST ITEM -->
+                <!-- DROPDOWN BOX LIST ITEM -->
+                <div class="dropdown-box-list-item">
+                <!-- USER STATUS -->
+                <div class="user-status request">
+                <!-- USER STATUS AVATAR -->
+                <a class="user-status-avatar" href="profile-timeline.html">
+                <!-- USER AVATAR -->
+                <div class="user-avatar small no-outline">
+                <!-- USER AVATAR CONTENT -->
+                <div class="user-avatar-content">
+                <!-- HEXAGON -->
+                <div class="hexagon-image-30-32" data-src="img/avatar/11.jpg"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR CONTENT -->
+                <!-- USER AVATAR PROGRESS -->
+                <div class="user-avatar-progress">
+                <!-- HEXAGON -->
+                <div class="hexagon-progress-40-44"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR PROGRESS -->
+                <!-- USER AVATAR PROGRESS BORDER -->
+                <div class="user-avatar-progress-border">
+                <!-- HEXAGON -->
+                <div class="hexagon-border-40-44"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR PROGRESS BORDER -->
+                <!-- USER AVATAR BADGE -->
+                <div class="user-avatar-badge">
+                <!-- USER AVATAR BADGE BORDER -->
+                <div class="user-avatar-badge-border">
+                <!-- HEXAGON -->
+                <div class="hexagon-22-24"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR BADGE BORDER -->
+                <!-- USER AVATAR BADGE CONTENT -->
+                <div class="user-avatar-badge-content">
+                <!-- HEXAGON -->
+                <div class="hexagon-dark-16-18"></div>
+                <!-- /HEXAGON -->
+                </div>
+                <!-- /USER AVATAR BADGE CONTENT -->
+                <!-- USER AVATAR BADGE TEXT -->
+                <p class="user-avatar-badge-text">9</p>
+                <!-- /USER AVATAR BADGE TEXT -->
+                </div>
+                <!-- /USER AVATAR BADGE -->
+                </div>
+                <!-- /USER AVATAR -->
+                </a>
+                <!-- /USER STATUS AVATAR -->
+                <!-- USER STATUS TITLE -->
+                <p class="user-status-title"><a class="bold" href="profile-timeline.html">Cassie May</a></p>
+                <!-- /USER STATUS TITLE -->
+                <!-- USER STATUS TEXT -->
+                <p class="user-status-text">4 friends in common</p>
+                <!-- /USER STATUS TEXT -->
+                <!-- ACTION REQUEST LIST -->
+                <div class="action-request-list">
+                <!-- ACTION REQUEST -->
+                <div class="action-request accept">
+                <!-- ACTION REQUEST ICON -->
+                <svg class="action-request-icon icon-add-friend">
+                <use xlink:href="#svg-add-friend"></use>
+                </svg>
+                <!-- /ACTION REQUEST ICON -->
+                </div>
+                <!-- /ACTION REQUEST -->
+                <!-- ACTION REQUEST -->
+                <div class="action-request decline">
+                <!-- ACTION REQUEST ICON -->
+                <svg class="action-request-icon icon-remove-friend">
+                <use xlink:href="#svg-remove-friend"></use>
+                </svg>
+                <!-- /ACTION REQUEST ICON -->
+                </div>
+                <!-- /ACTION REQUEST -->
+                </div>
+                <!-- ACTION REQUEST LIST -->
+                </div>
+                <!-- /USER STATUS -->
+                </div>
+                <!-- /DROPDOWN BOX LIST ITEM -->
+                </div>
+                <!-- /DROPDOWN BOX LIST -->
+                <!-- DROPDOWN BOX BUTTON -->
+                <a class="dropdown-box-button secondary" href="hub-profile-requests.html">View all Requests</a>
+                <!-- /DROPDOWN BOX BUTTON -->
+                </div>
+                <!-- /DROPDOWN BOX -->
+                </div> *@
                 <!-- /ACTION LIST ITEM WRAP -->
                 <!-- ACTION LIST ITEM WRAP -->
                 <div class="action-list-item-wrap">
@@ -2519,14 +2566,14 @@
                             <p class="dropdown-box-header-title">Notifications</p>
                             <!-- /DROPDOWN BOX HEADER TITLE -->
                             <!-- DROPDOWN BOX HEADER ACTIONS -->
-                            <div class="dropdown-box-header-actions">
-                                <!-- DROPDOWN BOX HEADER ACTION -->
-                                <p class="dropdown-box-header-action">Mark all as Read</p>
-                                <!-- /DROPDOWN BOX HEADER ACTION -->
-                                <!-- DROPDOWN BOX HEADER ACTION -->
-                                <p class="dropdown-box-header-action">Settings</p>
-                                <!-- /DROPDOWN BOX HEADER ACTION -->
-                            </div>
+                            @* <div class="dropdown-box-header-actions">
+                            <!-- DROPDOWN BOX HEADER ACTION -->
+                            <p class="dropdown-box-header-action">Mark all as Read</p>
+                            <!-- /DROPDOWN BOX HEADER ACTION -->
+                            <!-- DROPDOWN BOX HEADER ACTION -->
+                            <p class="dropdown-box-header-action">Settings</p>
+                            <!-- /DROPDOWN BOX HEADER ACTION -->
+                            </div> *@
                             <!-- /DROPDOWN BOX HEADER ACTIONS -->
                         </div>
                         <!-- /DROPDOWN BOX HEADER -->
@@ -2932,7 +2979,15 @@
                                     <!-- USER AVATAR CONTENT -->
                                     <div class="user-avatar-content">
                                         <!-- HEXAGON -->
-                                        <div class="hexagon-image-30-32" data-src="img/avatar/01.jpg"></div>
+                                        @if (userLogined.AvatarUrl?.Length > 0)
+                                        {
+                                            <div class="hexagon-image-30-32" data-src="@userLogined.AvatarUrl"></div>
+
+                                        }
+                                        else
+                                        {
+                                            <div class="hexagon-image-30-32" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
+                                        }
                                         <!-- /HEXAGON -->
                                     </div>
                                     <!-- /USER AVATAR CONTENT -->
@@ -2976,10 +3031,10 @@
                             </a>
                             <!-- /USER STATUS AVATAR -->
                             <!-- USER STATUS TITLE -->
-                            <p class="user-status-title"><span class="bold">Hi Marina!</span></p>
+                            <p class="user-status-title"><span class="bold">Hi @userLogined.FirstName @userLogined.LastName!</span></p>
                             <!-- /USER STATUS TITLE -->
                             <!-- USER STATUS TEXT -->
-                            <p class="user-status-text small"><a href="profile-timeline.html">marinavalentine</a></p>
+                            <p class="user-status-text small"><a href="/Route/Info">@userLogined.Email</a></p>
                             <!-- /USER STATUS TEXT -->
                         </div>
                         <!-- /USER STATUS -->
@@ -2989,58 +3044,60 @@
                     <p class="dropdown-navigation-category">My Profile</p>
                     <!-- /DROPDOWN NAVIGATION CATEGORY -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-profile-info.html">Profile Info</a>
+                    <a class="dropdown-navigation-link" href="/Route/Info">Profile Info</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-profile-social.html">Social &amp; Stream</a>
+                    <a class="dropdown-navigation-link" href="#">Social &amp; Stream</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-profile-notifications.html">Notifications</a>
+                    <a class="dropdown-navigation-link" href="#">Notifications</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-profile-messages.html">Messages</a>
+                    <a class="dropdown-navigation-link" href="#">Messages</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-profile-requests.html">Friend Requests</a>
+                    <a class="dropdown-navigation-link" href="#">Friend Requests</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION CATEGORY -->
                     <p class="dropdown-navigation-category">Account</p>
                     <!-- /DROPDOWN NAVIGATION CATEGORY -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-account-info.html">Account Info</a>
+                    <a class="dropdown-navigation-link" href="/Route/Info">Account Info</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-account-password.html">Change Password</a>
+                    <a class="dropdown-navigation-link" href="#">Change Password</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-account-settings.html">General Settings</a>
+                    <a class="dropdown-navigation-link" href="#">General Settings</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION CATEGORY -->
                     <p class="dropdown-navigation-category">Groups</p>
                     <!-- /DROPDOWN NAVIGATION CATEGORY -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-group-management.html">Manage Groups</a>
+                    <a class="dropdown-navigation-link" href="#">Manage Groups</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-group-invitations.html">Invitations</a>
+                    <a class="dropdown-navigation-link" href="#">Invitations</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION CATEGORY -->
                     <p class="dropdown-navigation-category">My Store</p>
                     <!-- /DROPDOWN NAVIGATION CATEGORY -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-store-account.html">My Account <span class="highlighted">$250,32</span></a>
+                    <a class="dropdown-navigation-link" href="/Route/Info">My Account <span class="highlighted">$250,32</span></a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-store-statement.html">Sales Statement</a>
+                    <a class="dropdown-navigation-link" href="#">Sales Statement</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-store-items.html">Manage Items</a>
+                    <a class="dropdown-navigation-link" href="#">Manage Items</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="hub-store-downloads.html">Downloads</a>
+                    <a class="dropdown-navigation-link" href="#">Downloads</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION BUTTON -->
-                    <p class="dropdown-navigation-button button small secondary">Logout</p>
+                    <a href="~/logout">
+                        <p class="dropdown-navigation-button button small secondary">Logout</p>
+                    </a>
                     <!-- /DROPDOWN NAVIGATION BUTTON -->
                 </div>
                 <!-- /DROPDOWN NAVIGATION -->
@@ -3052,7 +3109,6 @@
     <!-- /HEADER -->
     @RenderBody()
     <footer>
-
     </footer>
 
     <!-- app -->
@@ -3091,9 +3147,9 @@
     <script src="~/assets/js/widget/twitter.js"></script>
     <!-- SVG icons -->
     <script src="~/assets/js/utils/svg-loader.js"></script>
-    <!-- Bootstrap -->
-    <script src="~/assets/css/vendor/bootstrap.min.js"></script>
     <!-- Jquery -->
     <script src="~/assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/assets/css/vendor/bootstrap.min.js"></script>
 </body>
 </html>
