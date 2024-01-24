@@ -8,6 +8,10 @@
 @using ZAlpha.Application.Common.Models;
 @using ZAlpha.Application.Comment.Queries.GetComment;
 @model ZAlpha.Application.Common.Models.PaginatedList<CommentModel>
+<!-- Conflict thu vien voi admin layout  -->
+<script src="~/assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
+
+
 <body>
     <!-- Page wrapper  -->
     <div class="page-wrapper">
@@ -47,37 +51,37 @@
                                         @foreach (var item in Model.Items)
                                         {
                                             @if (@item.InteractWithComments.Count > 0 && item.InteractWithComments[0].IsDeleted == false)
-                                            {                                            
-                                            <tr>
-                                                <td width="400px">@item.Description</td>
-                                                <td>
-                                                    @if ( @item.InteractWithComments[0].UserAccount != null)
-                                                    {
-                                                        @item.InteractWithComments[0].UserAccount.FirstName @item.InteractWithComments[0].UserAccount.LastName
-                                                    }
-                                                </td>
-                                                <td></td>
-                                                <td>@item.Created</td>
-                                                <td style="text-align: center; vertical-align: middle">
+                                            {
+                                                <tr>
+                                                    <td width="400px">@item.Description</td>
+                                                    <td>
+                                                        @if (@item.InteractWithComments[0].UserAccount != null)
+                                                        {
+                                                            @item.InteractWithComments[0].UserAccount.FirstName @item.InteractWithComments[0].UserAccount.LastName
+                                                        }
+                                                    </td>
+                                                    <td></td>
+                                                    <td>@item.Created</td>
+                                                    <td style="text-align: center; vertical-align: middle">
                                                         <button type="button" class="btn btn-success btn-rounded m-b-10 m-l-5" onclick="openFormCreate()">Update</button>
-                                                </td>
-                                                <td style="text-align: center; vertical-align: middle">
-                                                        <button type="button" class="btn btn-danger btn-rounded m-b-10 m-l-5" onclick="openFormDelete()">Delete</button>
-                                                </td>                                          
-                                                
-                                            </tr>
+                                                    </td>
+                                                    <td style="text-align: center; vertical-align: middle">
+                                                        <button value="@item.Id" type="submit" id="btn_delete_comment_@item.Id" class="btn btn-danger btn-rounded m-b-10 m-l-5">Delete</button>
+                                                    </td>
+
+                                                </tr>
                                             }
                                         }
-                                    </tbody>                                   
+                                    </tbody>
                                 </table>
-                               
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- End PAge Content -->
-        </div>       
+        </div>
         <!-- End Container fluid  -->
     </div>
 
@@ -229,7 +233,6 @@
         </div>
     </div>
     <!-- Create/Update pop up end -->
-
     <!-- Delete pop up  -->
     <div class="form-popup" style="
     position: absolute;
@@ -241,19 +244,20 @@
         <div class="card">
             <div class="card-body" style="margin: 1rem"> You Want to Delete This </div>
             <div style="display:inline-block; vertical-align: bottom; text-align: center;">
-            <button type="button" class="btn btn-default btn-rounded m-b-10" onclick="closeFormDelete()">Close</button>
-            <button type="submit" class="btn btn-danger btn-rounded m-b-10 m-l-5">Delete</button>
+                <button type="button" class="btn btn-default btn-rounded m-b-10" onclick="closeFormDelete()">Close</button>
+                <h5 hidden id="dialog_hidden_comment_id"></h5>
+                <button type="submit" id="btn_submit_delete_comment" class="btn btn-danger btn-rounded m-b-10 m-l-5" >Delete</button>
             </div>
-        </div>        
+        </div>
     </div>
     <!-- Delete pop up end -->
-
     <!-- End Page wrapper  -->
 </body>
 
 <script>
-    function openFormDelete() {
+    function openFormDelete(comment_id) {
         document.getElementById("deleteForm").style.display = "block";
+        $("#dialog_hidden_comment_id").text(comment_id);
     }
 
     function closeFormDelete() {
@@ -266,5 +270,41 @@
 
     function closeFormCreate() {
         document.getElementById("createForm").style.display = "none";
+    }
+</script>
+<script>
+
+    $(document).ready(function () {
+        $("button[id^='btn_delete_comment_']").click(function () {
+            var comment_id = $(this).attr("id").split("_")[3];
+            handle_confirm_delete_comment_dialog(comment_id);
+        });
+        $("#btn_submit_delete_comment").click(function () {
+            var comment_id = $("#dialog_hidden_comment_id").text();
+            delete_comment(comment_id);
+        });
+    });
+   
+
+    function handle_confirm_delete_comment_dialog(comment_id) {
+        openFormDelete(comment_id);
+    }
+
+    function delete_comment(comment_id) {
+        var data = {
+            commentId: comment_id,
+        };
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "/Admin/DeleteComment",
+            data: data,   
+            success: function (data) {
+                setTimeout(function () {
+                    window.location.href = "/Admin/CommentDatatable";
+                }, 1000);
+                alert(data);
+            }
+        });
     }
 </script>
