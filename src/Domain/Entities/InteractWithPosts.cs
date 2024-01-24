@@ -16,8 +16,4 @@ public class InteractWithPosts : BaseAuditableEntity
     public Guid PostId { get; set; }
     public virtual Post Post { get; set; }
     public InteractPostStatus? InteractPostStatus { get; set; }
-
-
-
-
 }

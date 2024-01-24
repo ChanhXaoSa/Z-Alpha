@@ -729,91 +729,155 @@
                             <!--/TAG LIST-->
                             <!-- CONTENT ACTIONS -->
                             <div class="content-actions">
+                                @{
+                                    var allReactionToName = item.InteractWithPosts?
+                                    .Where(i => i.InteractPostStatus != ZAlpha.Domain.Enums.InteractPostStatus.Create)
+                                    .OrderBy(i => i.Created)
+                                    .ToList();
+                                    var top3reactionPost = item.InteractWithPosts?
+                                    .Where(i => i.InteractPostStatus != ZAlpha.Domain.Enums.InteractPostStatus.Create)
+                                    .OrderByDescending(i => i.InteractPostStatus)
+                                    .DistinctBy(i => i.InteractPostStatus)
+                                    .Take(3)
+                                    .ToList();
+                                    var top3reactionPostRevert = new List<ZAlpha.Domain.Entities.InteractWithPosts>();
+                                    foreach (var post in top3reactionPost)
+                                    {
+                                        top3reactionPostRevert.Add(post);
+                                    }
+                                }
                                 <!-- CONTENT ACTION -->
                                 <div class="content-action">
                                     <!-- META LINE -->
                                     <div class="meta-line">
                                         <!-- META LINE LIST -->
                                         <div class="meta-line-list reaction-item-list">
-                                            <!-- REACTION ITEM -->
-                                            <div class="reaction-item">
-                                                <!-- REACTION IMAGE -->
-                                                <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/love.png" alt="reaction-love">
-                                                <!-- /REACTION IMAGE -->
-                                                <!-- SIMPLE DROPDOWN -->
-                                                <div class="simple-dropdown padded reaction-item-dropdown">
-                                                    <!-- SIMPLE DROPDOWN TEXT -->
-                                                    <p class="simple-dropdown-text"><img class="reaction" src="~/assets/images/reaction/love.png" alt="reaction-love"> <span class="bold">Love</span></p>
-                                                    <!-- /SIMPLE DROPDOWN TEXT -->
-                                                    <!-- SIMPLE DROPDOWN TEXT -->
-                                                    <p class="simple-dropdown-text">Matt Parker</p>
-                                                    <!-- /SIMPLE DROPDOWN TEXT -->
-                                                    @* <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Destroy Dex</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">The Green Goo</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT --> *@
-                                                </div>
-                                                <!-- /SIMPLE DROPDOWN -->
-                                            </div>
-                                            <!-- /REACTION ITEM -->
-                                            <!-- REACTION ITEM -->
-                                            <div class="reaction-item">
-                                                <!-- REACTION IMAGE -->
-                                                <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/happy.png" alt="reaction-happy">
-                                                <!-- /REACTION IMAGE -->
-                                                <!-- SIMPLE DROPDOWN -->
-                                                <div class="simple-dropdown padded reaction-item-dropdown">
-                                                    <!-- SIMPLE DROPDOWN TEXT -->
-                                                    <p class="simple-dropdown-text"><img class="reaction" src="~/assets/images/reaction/happy.png" alt="reaction-happy"> <span class="bold">Happy</span></p>
-                                                    <!-- /SIMPLE DROPDOWN TEXT -->
-                                                    <!-- SIMPLE DROPDOWN TEXT -->
-                                                    <p class="simple-dropdown-text">Sandra Strange</p>
-                                                    <!-- /SIMPLE DROPDOWN TEXT -->
-                                                    @* <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Jane Rodgers</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT --> *@
-                                                </div>
-                                                <!-- /SIMPLE DROPDOWN -->
-                                            </div>
-                                            <!-- /REACTION ITEM -->
-                                            <!-- REACTION ITEM -->
-                                            <div class="reaction-item">
-                                                <!-- REACTION IMAGE -->
-                                                <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/like.png" alt="reaction-like">
-                                                <!-- /REACTION IMAGE -->
-                                                <!-- SIMPLE DROPDOWN -->
-                                                <div class="simple-dropdown padded reaction-item-dropdown">
-                                                    <!-- SIMPLE DROPDOWN TEXT -->
-                                                    <p class="simple-dropdown-text"><img class="reaction" src="~/assets/images/reaction/like.png" alt="reaction-like"> <span class="bold">Like</span></p>
-                                                    <!-- /SIMPLE DROPDOWN TEXT -->
-                                                    <!-- SIMPLE DROPDOWN TEXT -->
-                                                    <p class="simple-dropdown-text">Neko Bebop</p>
-                                                    <!-- /SIMPLE DROPDOWN TEXT -->
-                                                    @* <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Nick Grissom</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Sarah Diamond</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Jett Spiegel</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Marcus Jhonson</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
+                                            @foreach (var post in top3reactionPostRevert)
+                                            {
+                                                <!-- REACTION ITEM -->
+                                                <div class="reaction-item">
+                                                    <!-- REACTION IMAGE -->
+                                                    @{
+                                                        if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like)
+                                                        {
+                                                            <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/like.png" alt="reaction-like">
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Love)
+                                                        {
+                                                            <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/love.png" alt="reaction-love">
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike)
+                                                        {
+                                                            <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/dislike.png" alt="reaction-dislike">
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Happy)
+                                                        {
+                                                            <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/happy.png" alt="reaction-happy">
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Funny)
+                                                        {
+                                                            <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/funny.png" alt="reaction-funny">
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Wow)
+                                                        {
+                                                            <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/wow.png" alt="reaction-wow">
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Angry)
+                                                        {
+                                                            <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/angry.png" alt="reaction-angry">
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Sad)
+                                                        {
+                                                            <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/sad.png" alt="reaction-sad">
+                                                        }
+                                                    }
+                                                    <!-- /REACTION IMAGE -->
+                                                    <!-- SIMPLE DROPDOWN -->
+                                                    <div class="simple-dropdown padded reaction-item-dropdown">
+                                                        <!-- SIMPLE DROPDOWN TEXT -->
+                                                        @{
+                                                            if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like)
+                                                            {
+                                                                <p class="simple-dropdown-text">
+                                                                    <img class="reaction" src="~/assets/images/reaction/like.png" alt="reaction-like">
+                                                                    <span class="bold">Like</span>
+                                                                </p>
+                                                            }
+                                                            else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Love)
+                                                            {
+                                                                <p class="simple-dropdown-text">
+                                                                    <img class="reaction" src="~/assets/images/reaction/love.png" alt="reaction-love">
+                                                                    <span class="bold">Love</span>
+                                                                </p>
+                                                            }
+                                                            else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike)
+                                                            {
+                                                                <p class="simple-dropdown-text">
+                                                                    <img class="reaction" src="~/assets/images/reaction/dislike.png" alt="reaction-dislike">
+                                                                    <span class="bold">Dislike</span>
+                                                                </p>
+                                                            }
+                                                            else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Happy)
+                                                            {
+                                                                <p class="simple-dropdown-text">
+                                                                    <img class="reaction" src="~/assets/images/reaction/happy.png" alt="reaction-happy">
+                                                                    <span class="bold">Happy</span>
+                                                                </p>
+                                                            }
+                                                            else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Funny)
+                                                            {
+                                                                <p class="simple-dropdown-text">
+                                                                    <img class="reaction" src="~/assets/images/reaction/funny.png" alt="reaction-funny">
+                                                                    <span class="bold">Funny</span>
+                                                                </p>
+                                                            }
+                                                            else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Wow)
+                                                            {
+                                                                <p class="simple-dropdown-text">
+                                                                    <img class="reaction" src="~/assets/images/reaction/wow.png" alt="reaction-wow">
+                                                                    <span class="bold">Wow</span>
+                                                                </p>
+                                                            }
+                                                            else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Angry)
+                                                            {
+                                                                <p class="simple-dropdown-text">
+                                                                    <img class="reaction" src="~/assets/images/reaction/angry.png" alt="reaction-angry">
+                                                                    <span class="bold">Angry</span>
+                                                                </p>
+                                                            }
+                                                            else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Sad)
+                                                            {
+                                                                <p class="simple-dropdown-text">
+                                                                    <img class="reaction" src="~/assets/images/reaction/sad.png" alt="reaction-sad">
+                                                                    <span class="bold">Sad</span>
+                                                                </p>
+                                                            }
+                                                        }
+                                                        <!-- /SIMPLE DROPDOWN TEXT -->
+                                                        @foreach (var interactName in allReactionToName)
+                                                        {
+                                                            if (post.InteractPostStatus == interactName.InteractPostStatus)
+                                                            {
+                                                                <!-- SIMPLE DROPDOWN TEXT -->
+                                                                <p class="simple-dropdown-text">@interactName.UserAccount.FirstName @interactName.UserAccount.LastName</p>
+                                                                <!-- /SIMPLE DROPDOWN TEXT -->
+                                                            }
+                                                        }
+                                                        @* <!-- SIMPLE DROPDOWN TEXT -->
                                                 <p class="simple-dropdown-text"><span class="bold">and 6 more...</span></p>
                                                 <!-- /SIMPLE DROPDOWN TEXT --> *@
+                                                    </div>
+                                                    <!-- /SIMPLE DROPDOWN -->
                                                 </div>
-                                                <!-- /SIMPLE DROPDOWN -->
-                                            </div>
-                                            <!-- /REACTION ITEM -->
+                                                <!-- /REACTION ITEM -->
+                                            }
                                         </div>
                                         <!-- /META LINE LIST -->
                                         <!-- META LINE TEXT -->
-                                        <p class="meta-line-text">16</p>
+                                        <p class="meta-line-text">
+                                            @item.InteractWithPosts?.Where(i =>
+                                                     i.InteractPostStatus != ZAlpha.Domain.Enums.InteractPostStatus.Create).Count()
+                                        </p>
                                         <!-- /META LINE TEXT -->
                                     </div>
                                     <!-- /META LINE -->
@@ -824,14 +888,16 @@
                                     <!-- META LINE -->
                                     <div class="meta-line">
                                         <!-- META LINE LINK -->
-                                        <p class="meta-line-link">@item.Comments?.Count bình luận</p>
+                                        <a href="~/Post?postId=@item.Id">
+                                            <p class="meta-line-link">@item.Comments?.Count bình luận</p>
+                                        </a>
                                         <!-- /META LINE LINK -->
                                     </div>
                                     <!-- /META LINE -->
                                     <!-- META LINE -->
                                     <div class="meta-line">
                                         <!-- META LINE TEXT -->
-                                        <p class="meta-line-text">@item.WishListPosts?.Count lưu</p>
+                                        <p class="meta-line-text">@item.WishListPosts?.Where(w => w.IsDeleted == false).Count() lưu</p>
                                         <!-- /META LINE TEXT -->
                                     </div>
                                     <!-- /META LINE -->
@@ -847,18 +913,133 @@
                     <div class="post-options">
                         <!-- POST OPTION WRAP -->
                         <div class="post-option-wrap">
-                            <!-- POST OPTION -->
-                            <div class="post-option reaction-options-dropdown-trigger">
-                                <!-- POST OPTION ICON -->
-                                <svg class="post-option-icon icon-thumbs-up">
-                                    <use xlink:href="#svg-thumbs-up"></use>
-                                </svg>
-                                <!-- /POST OPTION ICON -->
-                                <!-- POST OPTION TEXT -->
-                                <p class="post-option-text">Tương tác !</p>
-                                <!-- /POST OPTION TEXT -->
-                            </div>
-                            <!-- /POST OPTION -->
+                            @{
+                                var interactedPostbyUser = item.InteractWithPosts?.FirstOrDefault(i =>
+                                i.InteractPostStatus != ZAlpha.Domain.Enums.InteractPostStatus.Create
+                                && i.UserAccount.UserName == User.Identity.Name);
+                                if (interactedPostbyUser != null)
+                                {
+                                    if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like)
+                                    {
+                                        <!-- POST OPTION -->
+                                        <div class="post-option reaction-options-dropdown-trigger">
+                                            <!-- POST OPTION ICON -->
+                                            <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/like.png" alt="reaction-like">
+                                            <!-- /POST OPTION ICON -->
+                                            <!-- POST OPTION TEXT -->
+                                            <p class="post-option-text">Like</p>
+                                            <!-- /POST OPTION TEXT -->
+                                        </div>
+                                        <!-- /POST OPTION -->
+                                    }
+                                    else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike)
+                                    {
+                                        <!-- POST OPTION -->
+                                        <div class="post-option reaction-options-dropdown-trigger">
+                                            <!-- POST OPTION ICON -->
+                                            <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/dislike.png" alt="reaction-dislike">
+                                            <!-- /POST OPTION ICON -->
+                                            <!-- POST OPTION TEXT -->
+                                            <p class="post-option-text">Dislike</p>
+                                            <!-- /POST OPTION TEXT -->
+                                        </div>
+                                        <!-- /POST OPTION -->
+                                    }
+                                    else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Sad)
+                                    {
+                                        <!-- POST OPTION -->
+                                        <div class="post-option reaction-options-dropdown-trigger">
+                                            <!-- POST OPTION ICON -->
+                                            <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/sad.png" alt="reaction-sad">
+                                            <!-- /POST OPTION ICON -->
+                                            <!-- POST OPTION TEXT -->
+                                            <p class="post-option-text">Sad</p>
+                                            <!-- /POST OPTION TEXT -->
+                                        </div>
+                                        <!-- /POST OPTION -->
+                                    }
+                                    else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Funny)
+                                    {
+                                        <!-- POST OPTION -->
+                                        <div class="post-option reaction-options-dropdown-trigger">
+                                            <!-- POST OPTION ICON -->
+                                            <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/funny.png" alt="reaction-funny">
+                                            <!-- /POST OPTION ICON -->
+                                            <!-- POST OPTION TEXT -->
+                                            <p class="post-option-text">Funny</p>
+                                            <!-- /POST OPTION TEXT -->
+                                        </div>
+                                        <!-- /POST OPTION -->
+                                    }
+                                    else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Angry)
+                                    {
+                                        <!-- POST OPTION -->
+                                        <div class="post-option reaction-options-dropdown-trigger">
+                                            <!-- POST OPTION ICON -->
+                                            <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/angry.png" alt="reaction-angry">
+                                            <!-- /POST OPTION ICON -->
+                                            <!-- POST OPTION TEXT -->
+                                            <p class="post-option-text">Angry</p>
+                                            <!-- /POST OPTION TEXT -->
+                                        </div>
+                                        <!-- /POST OPTION -->
+                                    }
+                                    else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Love)
+                                    {
+                                        <!-- POST OPTION -->
+                                        <div class="post-option reaction-options-dropdown-trigger">
+                                            <!-- POST OPTION ICON -->
+                                            <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/love.png" alt="reaction-love">
+                                            <!-- /POST OPTION ICON -->
+                                            <!-- POST OPTION TEXT -->
+                                            <p class="post-option-text">Love</p>
+                                            <!-- /POST OPTION TEXT -->
+                                        </div>
+                                        <!-- /POST OPTION -->
+                                    }
+                                    else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Happy)
+                                    {
+                                        <!-- POST OPTION -->
+                                        <div class="post-option reaction-options-dropdown-trigger">
+                                            <!-- POST OPTION ICON -->
+                                            <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/happy.png" alt="reaction-happy">
+                                            <!-- /POST OPTION ICON -->
+                                            <!-- POST OPTION TEXT -->
+                                            <p class="post-option-text">Happy</p>
+                                            <!-- /POST OPTION TEXT -->
+                                        </div>
+                                        <!-- /POST OPTION -->
+                                    }
+                                    else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Wow)
+                                    {
+                                        <!-- POST OPTION -->
+                                        <div class="post-option reaction-options-dropdown-trigger">
+                                            <!-- POST OPTION ICON -->
+                                            <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/wow.png" alt="reaction-wow">
+                                            <!-- /POST OPTION ICON -->
+                                            <!-- POST OPTION TEXT -->
+                                            <p class="post-option-text">Wow</p>
+                                            <!-- /POST OPTION TEXT -->
+                                        </div>
+                                        <!-- /POST OPTION -->
+                                    }
+                                }
+                                else
+                                {
+                                    <!-- POST OPTION -->
+                                    <div class="post-option reaction-options-dropdown-trigger">
+                                        <!-- POST OPTION ICON -->
+                                        <svg class="post-option-icon icon-thumbs-up">
+                                            <use xlink:href="#svg-thumbs-up"></use>
+                                        </svg>
+                                        <!-- /POST OPTION ICON -->
+                                        <!-- POST OPTION TEXT -->
+                                        <p class="post-option-text">Tương tác !</p>
+                                        <!-- /POST OPTION TEXT -->
+                                    </div>
+                                    <!-- /POST OPTION -->
+                                }
+                            }
                             <!-- REACTION OPTIONS -->
                             <div class="reaction-options reaction-options-dropdown" style="position: absolute; z-index: 9999; bottom: 54px; left: -16px; opacity: 0; visibility: hidden; transform: translate(0px, 20px); transition: transform 0.3s ease-in-out 0s, opacity 0.3s ease-in-out 0s, visibility 0.3s ease-in-out 0s;">
                                 <!-- REACTION OPTION -->
@@ -943,18 +1124,41 @@
                             </div>
                         </a>
                         <!-- /POST OPTION -->
-                        <!-- POST OPTION -->
-                        <div class="post-option">
-                            <!-- POST OPTION ICON -->
-                            <svg class="post-option-icon icon-share">
-                                <use xlink:href="#svg-share"></use>
-                            </svg>
-                            <!-- /POST OPTION ICON -->
-                            <!-- POST OPTION TEXT -->
-                            <p class="post-option-text">Lưu</p>
-                            <!-- /POST OPTION TEXT -->
-                        </div>
-                        <!-- /POST OPTION -->
+                        @{
+                            if (item
+                            .WishListPosts?
+                            .FirstOrDefault(w => w.UserAccount.UserName == User.Identity.Name
+                            && w.IsDeleted == false) != null)
+                            {
+                                <!-- POST OPTION -->
+                                <div class="post-option" onclick="savePost('@item.Id', 'true')">
+                                    <!-- POST OPTION ICON -->
+                                    <svg class="post-option-icon icon-share">
+                                        <use xlink:href="#svg-share"></use>
+                                    </svg>
+                                    <!-- /POST OPTION ICON -->
+                                    <!-- POST OPTION TEXT -->
+                                    <p class="post-option-text">Bỏ lưu</p>
+                                    <!-- /POST OPTION TEXT -->
+                                </div>
+                                <!-- /POST OPTION -->
+                            }
+                            else
+                            {
+                                <!-- POST OPTION -->
+                                <div class="post-option" onclick="savePost('@item.Id', 'false')">
+                                    <!-- POST OPTION ICON -->
+                                    <svg class="post-option-icon icon-share">
+                                        <use xlink:href="#svg-share"></use>
+                                    </svg>
+                                    <!-- /POST OPTION ICON -->
+                                    <!-- POST OPTION TEXT -->
+                                    <p class="post-option-text">Lưu</p>
+                                    <!-- /POST OPTION TEXT -->
+                                </div>
+                                <!-- /POST OPTION -->
+                            }
+                        }
                     </div>
                     <!-- /POST OPTIONS -->
                 </div>
@@ -1199,10 +1403,30 @@
             data: { postId: postId, status: statusPick },
             success: function (result) {
                 if (result.success) {
-                    alert(result.message);
+                    // alert(result.message);
                     window.location.reload();
                 } else {
                     alert(result.message);
+                    window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
+
+    function savePost(postId, statusSave) {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("WishListPost", "Home")",
+            data: { postId: postId, isDeleted: statusSave },
+            success: function (result) {
+                if (result.success) {
+                    //alert(result.message);
+                    window.location.reload();
+                } else {
+                    //alert(result.message);
                     window.location.href = '/login';
                 }
             },
