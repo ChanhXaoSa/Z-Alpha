@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ZAlpha.Application.Comment.Commands.DeleteComment;
 using ZAlpha.Application.Comment.Queries.GetAllComment;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
@@ -330,5 +331,19 @@ public class AdminController : ControllerBaseMVC
         {
             throw new Exception(ex.Message);
         }
-    } 
+    }
+    [HttpPost] 
+    public async Task<IActionResult> DeleteComment(Guid commentId)
+    {
+        try
+        {
+            var result = Mediator.Send(new DeleteCommentCommands { Id = commentId }).Result;
+            return View("./ManageComment/CommentDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    
 }
