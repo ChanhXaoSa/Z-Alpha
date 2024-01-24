@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Comment.Commands.DeleteComment;
+using ZAlpha.Application.Comment.Commands.UpdateComment;
 using ZAlpha.Application.Comment.Queries.GetAllComment;
 using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.Common.Models;
 using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
 using ZAlpha.Application.ManagerAccount.Queries.GetAllManagerAccount;
 using ZAlpha.Application.Post.Queries.GetAllPost;
@@ -88,7 +90,7 @@ public class AdminController : ControllerBaseMVC
 
     public IActionResult EmailRead()
     {
-           return View("./Email/EmailRead");
+        return View("./Email/EmailRead");
     }
 
     public IActionResult FormBasic()
@@ -98,7 +100,7 @@ public class AdminController : ControllerBaseMVC
 
     public IActionResult FormDropzone()
     {
-           return View("./Form/FormDropzone");
+        return View("./Form/FormDropzone");
     }
 
     public IActionResult FormEditor()
@@ -123,7 +125,7 @@ public class AdminController : ControllerBaseMVC
 
     public IActionResult LayoutBoxed()
     {
-           return View("./Layout/LayoutBoxed");
+        return View("./Layout/LayoutBoxed");
     }
 
     public IActionResult LayoutFixHeader()
@@ -133,7 +135,7 @@ public class AdminController : ControllerBaseMVC
 
     public IActionResult LayoutFixSidebar()
     {
-           return View("./Layout/LayoutFixSidebar");
+        return View("./Layout/LayoutFixSidebar");
     }
 
     public IActionResult MapGoogle()
@@ -214,7 +216,7 @@ public class AdminController : ControllerBaseMVC
     public IActionResult UiAlert()
     {
         return View("./UI/UiAlert");
-    }   
+    }
 
     public IActionResult UiButton()
     {
@@ -319,12 +321,12 @@ public class AdminController : ControllerBaseMVC
         {
             throw new Exception(ex.Message);
         }
-    }  
+    }
     public async Task<IActionResult> CommentDatatable()
     {
         try
         {
-            var result = Mediator.Send(new GetCommentRequest() { Page = 1, Size = 1000}).Result;
+            var result = Mediator.Send(new GetCommentRequest() { Page = 1, Size = 1000 }).Result;
             return View("./ManageComment/CommentDatatable", result);
         }
         catch (Exception ex)
@@ -332,18 +334,29 @@ public class AdminController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
-    [HttpPost] 
     public async Task<IActionResult> DeleteComment(Guid commentId)
     {
         try
         {
-            var result = Mediator.Send(new DeleteCommentCommands { Id = commentId }).Result;
-            return View("./ManageComment/CommentDatatable", result);
+            var isDeleted = Mediator.Send(new DeleteCommentCommands { Id = commentId }).Result;
+            return isDeleted ? Json("Deleted") : (IActionResult)Json("some thing went wrong ...");
         }
         catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }
     }
-    
+    public async Task<IActionResult> UpdateComment(Guid commentId)
+    {
+        try
+        {
+            //var isDeleted = Mediator.Send(new UpdateCommentCommands { Id = commentId }).Result;
+            //return isDeleted ? Json("Deleted") : (IActionResult)Json("some thing went wrong ...");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+        return View();
+    }
 }
