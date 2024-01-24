@@ -9,6 +9,7 @@ using ZAlpha.Application.WishListPost.Commands.CreateWishListPost;
 using ZAlpha.Application.Post.Queries.GetPostBySearch;
 using Microsoft.AspNetCore.Authorization;
 using NToastNotify;
+using ZAlpha.Application.Tag.Queries.GetTag;
 
 namespace WebUI.Controllers.MVC;
 
@@ -27,7 +28,12 @@ public class HomeController : ControllerBaseMVC
     {
         try
         {
-            
+
+            //Send data 
+            List<EmotionalStatus> emotionalStatusList = Enum.GetValues(typeof(EmotionalStatus)).Cast<EmotionalStatus>().ToList();
+            var tags = Mediator.Send(new GetAllTagQueries() { Page = 1, Size = 50 }).Result;
+            ViewBag.tags = tags;
+            ViewBag.emotionalStatusList = emotionalStatusList;
             var result =  Mediator.Send(new GetPostQueries() { Page = 1, Size = 100 }).Result;
             return View(result);
             //return View();
