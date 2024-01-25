@@ -145,7 +145,7 @@ public class CustomerController : ControllerBaseMVC
         {
             throw new Exception(ex.Message);
         }
-        return View();
+        return View("/");
     }
     public string ConvertIFormFileToBase64(IFormFile file)
     {

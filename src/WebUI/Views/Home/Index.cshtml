@@ -494,14 +494,14 @@
                 <!-- QUICK POST BODY -->
                 <div class="quick-post-body">
                     <!-- FORM -->
-                    <form class="form">
+                    <form class="form" >
                         <!-- FORM ROW -->
                         <div class="form-row">
                             <!-- FORM ITEM -->
                             <div class="form-item">
                                 <!-- FORM TEXTAREA -->
                                 <div class="form-textarea">
-                                    <textarea id="quick-post-text" name="quick-post-text" placeholder="Chào @User.Identity.Name! Chia sẻ vấn đề với mọi người nào ..."></textarea>
+                                    <textarea id="quick-post-text" name="postBody" placeholder="Chào @User.Identity.Name! Chia sẻ vấn đề với mọi người nào ..."></textarea>
                                     <!-- FORM TEXTAREA LIMIT TEXT -->
                                     @* <p class="form-textarea-limit-text">998/1000</p> *@
                                     <!-- /FORM TEXTAREA LIMIT TEXT -->
@@ -513,13 +513,45 @@
                         <!-- /FORM ROW -->
                         <!-- CHỖ HIỆN TAG LIST--------------------------------------------------------------->
                         <div class="form-row">
-                            
+                            <div class="grid grid-6-6 mobile-prefer-content">
+                                <div class="grid-column">
+
+                                    <div style="margin:1rem 0 0.3rem 0;">
+                                        <span style="color: black; font-size: 18px; font-family: Inter; font-weight: 600; word-wrap: break-word">Hãy đánh giá tình trạng tâm lí hiện tại của bản thân</span>
+                                    </div>
+                                    <div style="display:flex; justify-content: center;align-content: center;">
+                                        <select class="comboBoxNewPost" name="emostatus" id="emostatus">
+                                            <option value="emotionalStatusList[0]">Tình trạng của bạn:</option>
+                                            @{
+                                                emotionalStatusList.Remove(emotionalStatusList[0]);
+                                            };
+                                            @foreach (var item in emotionalStatusList)
+                                            {
+                                                <option value="@item">@item.ToString()</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="grid-column">
+                                    <div style="margin:1rem 0 0.3rem 0;">
+                                        <span style="color: black; font-size: 18px; font-family: Inter; font-weight: 600; word-wrap: break-word">Chọn thẻ:</span>
+
+                                    </div>
+
+                                    <div class="auto-group-brvk-CQM" style="overflow-y: scroll; height: 250px; font-size:1.1rem">
+                                        @foreach (var item in tags.Items)
+                                        {
+                                            <div class="auto-group-v2tf-14H" style="display: flex; align-items: center;">
+                                                <input class="auto-group-czch-9RP" type="checkbox" name="SelectedValues" value="@item.Id" />
+                                                <span style="margin-left: 10px;">@item.TagName</span>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>                           
 
                         </div>
-
                         <!----------------------------------------------------------------->
-
-
                     </form>
                     <!-- /FORM -->
                 </div>
@@ -537,329 +569,6 @@
                             <!-- /QUICK POST FOOTER ACTION ICON -->
                         </div>
                         <!-- /QUICK POST FOOTER ACTION -->
-                        <!-- QUICK POST FOOTER ACTION -->
-                        @* <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Insert GIF">
-                        <!-- QUICK POST FOOTER ACTION ICON -->
-                        <svg class="quick-post-footer-action-icon icon-gif">
-                        <use xlink:href="#svg-gif"></use>
-                        </svg>
-                        <!-- /QUICK POST FOOTER ACTION ICON -->
-                        </div>
-                        <!-- /QUICK POST FOOTER ACTION --> *@
-
-                        <!-- QUICK POST FOOTER ACTION -->
-                       @*  <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Insert Tag">
-                            <!-- QUICK POST FOOTER ACTION ICON -->
-                            <svg class="quick-post-footer-action-icon icon-tags">
-                                <use xlink:href="#svg-tags"></use>
-                            </svg>
-                            <!-- /QUICK POST FOOTER ACTION ICON -->
-                        </div> *@
-                        <!-- /QUICK POST FOOTER ACTION -->
-                        <!-- ACTION LIST ITEM WRAP --------------- này là pop up cái tag mà pop up hiện bên phải éo dc nó mặc định hiện bên trái-->
-                        <div class="action-list-item-wrap">
-                            <!-- ACTION LIST ITEM -->
-                            <div class="action-list-item header-dropdown-trigger">
-                                <!-- ACTION LIST ITEM ICON -->
-                                <svg class="action-list-item-icon icon-tags">
-                                    <use xlink:href="#svg-tags"></use>
-                                </svg>
-                                <!-- /ACTION LIST ITEM ICON -->
-                            </div>
-                            <!-- /ACTION LIST ITEM -->
-                            <!-- DROPDOWN BOX TagList -->
-                            <div class="dropdown-box header-dropdown update-dropdown-tag-new-post">
-                                <!-- DROPDOWN BOX HEADER -->
-                                <div class="dropdown-box-header">
-                                    <!-- DROPDOWN BOX HEADER TITLE -->
-                                    <p class="dropdown-box-header-title">Friend Requests</p>
-                                    <!-- /DROPDOWN BOX HEADER TITLE -->
-                                    <!-- DROPDOWN BOX HEADER ACTIONS -->
-                                    <div class="dropdown-box-header-actions">
-                                        <!-- DROPDOWN BOX HEADER ACTION -->
-                                        <p class="dropdown-box-header-action">Find Friends</p>
-                                        <!-- /DROPDOWN BOX HEADER ACTION -->
-                                        <!-- DROPDOWN BOX HEADER ACTION -->
-                                        <p class="dropdown-box-header-action">Settings</p>
-                                        <!-- /DROPDOWN BOX HEADER ACTION -->
-                                    </div>
-                                    <!-- /DROPDOWN BOX HEADER ACTIONS -->
-                                </div>
-                                <!-- /DROPDOWN BOX HEADER -->
-                                <!-- DROPDOWN BOX LIST -->
-                                <div class="dropdown-box-list no-hover" data-simplebar>
-                                    <!-- DROPDOWN BOX LIST ITEM -->
-                                    <div class="dropdown-box-list-item">
-                                        <!-- USER STATUS -->
-                                        <div class="user-status request">
-                                            <!-- USER STATUS AVATAR -->
-                                            <a class="user-status-avatar" href="profile-timeline.html">
-                                                <!-- USER AVATAR -->
-                                                <div class="user-avatar small no-outline">
-                                                    <!-- USER AVATAR CONTENT -->
-                                                    <div class="user-avatar-content">
-                                                        <!-- HEXAGON -->
-                                                        <div class="hexagon-image-30-32" data-src="img/avatar/16.jpg"></div>
-                                                        <!-- /HEXAGON -->
-                                                    </div>
-                                                    <!-- /USER AVATAR CONTENT -->
-                                                    <!-- USER AVATAR PROGRESS -->
-                                                    <div class="user-avatar-progress">
-                                                        <!-- HEXAGON -->
-                                                        <div class="hexagon-progress-40-44"></div>
-                                                        <!-- /HEXAGON -->
-                                                    </div>
-                                                    <!-- /USER AVATAR PROGRESS -->
-                                                    <!-- USER AVATAR PROGRESS BORDER -->
-                                                    <div class="user-avatar-progress-border">
-                                                        <!-- HEXAGON -->
-                                                        <div class="hexagon-border-40-44"></div>
-                                                        <!-- /HEXAGON -->
-                                                    </div>
-                                                    <!-- /USER AVATAR PROGRESS BORDER -->
-                                                    <!-- USER AVATAR BADGE -->
-                                                    <div class="user-avatar-badge">
-                                                        <!-- USER AVATAR BADGE BORDER -->
-                                                        <div class="user-avatar-badge-border">
-                                                            <!-- HEXAGON -->
-                                                            <div class="hexagon-22-24"></div>
-                                                            <!-- /HEXAGON -->
-                                                        </div>
-                                                        <!-- /USER AVATAR BADGE BORDER -->
-                                                        <!-- USER AVATAR BADGE CONTENT -->
-                                                        <div class="user-avatar-badge-content">
-                                                            <!-- HEXAGON -->
-                                                            <div class="hexagon-dark-16-18"></div>
-                                                            <!-- /HEXAGON -->
-                                                        </div>
-                                                        <!-- /USER AVATAR BADGE CONTENT -->
-                                                        <!-- USER AVATAR BADGE TEXT -->
-                                                        <p class="user-avatar-badge-text">14</p>
-                                                        <!-- /USER AVATAR BADGE TEXT -->
-                                                    </div>
-                                                    <!-- /USER AVATAR BADGE -->
-                                                </div>
-                                                <!-- /USER AVATAR -->
-                                            </a>
-                                            <!-- /USER STATUS AVATAR -->
-                                            <!-- USER STATUS TITLE -->
-                                            <p class="user-status-title"><a class="bold" href="profile-timeline.html">Ginny Danvers</a></p>
-                                            <!-- /USER STATUS TITLE -->
-                                            <!-- USER STATUS TEXT -->
-                                            <p class="user-status-text">6 friends in common</p>
-                                            <!-- /USER STATUS TEXT -->
-                                            <!-- ACTION REQUEST LIST -->
-                                            <div class="action-request-list">
-                                                <!-- ACTION REQUEST -->
-                                                <div class="action-request accept">
-                                                    <!-- ACTION REQUEST ICON -->
-                                                    <svg class="action-request-icon icon-add-friend">
-                                                        <use xlink:href="#svg-add-friend"></use>
-                                                    </svg>
-                                                    <!-- /ACTION REQUEST ICON -->
-                                                </div>
-                                                <!-- /ACTION REQUEST -->
-                                                <!-- ACTION REQUEST -->
-                                                <div class="action-request decline">
-                                                    <!-- ACTION REQUEST ICON -->
-                                                    <svg class="action-request-icon icon-remove-friend">
-                                                        <use xlink:href="#svg-remove-friend"></use>
-                                                    </svg>
-                                                    <!-- /ACTION REQUEST ICON -->
-                                                </div>
-                                                <!-- /ACTION REQUEST -->
-                                            </div>
-                                            <!-- ACTION REQUEST LIST -->
-                                        </div>
-                                        <!-- /USER STATUS -->
-                                    </div>
-                                    <!-- /DROPDOWN BOX LIST ITEM -->
-                                    <!-- DROPDOWN BOX LIST ITEM -->
-                                    <div class="dropdown-box-list-item">
-                                        <!-- USER STATUS -->
-                                        <div class="user-status request">
-                                            <!-- USER STATUS AVATAR -->
-                                            <a class="user-status-avatar" href="profile-timeline.html">
-                                                <!-- USER AVATAR -->
-                                                <div class="user-avatar small no-outline">
-                                                    <!-- USER AVATAR CONTENT -->
-                                                    <div class="user-avatar-content">
-                                                        <!-- HEXAGON -->
-                                                        <div class="hexagon-image-30-32" data-src="img/avatar/14.jpg"></div>
-                                                        <!-- /HEXAGON -->
-                                                    </div>
-                                                    <!-- /USER AVATAR CONTENT -->
-                                                    <!-- USER AVATAR PROGRESS -->
-                                                    <div class="user-avatar-progress">
-                                                        <!-- HEXAGON -->
-                                                        <div class="hexagon-progress-40-44"></div>
-                                                        <!-- /HEXAGON -->
-                                                    </div>
-                                                    <!-- /USER AVATAR PROGRESS -->
-                                                    <!-- USER AVATAR PROGRESS BORDER -->
-                                                    <div class="user-avatar-progress-border">
-                                                        <!-- HEXAGON -->
-                                                        <div class="hexagon-border-40-44"></div>
-                                                        <!-- /HEXAGON -->
-                                                    </div>
-                                                    <!-- /USER AVATAR PROGRESS BORDER -->
-                                                    <!-- USER AVATAR BADGE -->
-                                                    <div class="user-avatar-badge">
-                                                        <!-- USER AVATAR BADGE BORDER -->
-                                                        <div class="user-avatar-badge-border">
-                                                            <!-- HEXAGON -->
-                                                            <div class="hexagon-22-24"></div>
-                                                            <!-- /HEXAGON -->
-                                                        </div>
-                                                        <!-- /USER AVATAR BADGE BORDER -->
-                                                        <!-- USER AVATAR BADGE CONTENT -->
-                                                        <div class="user-avatar-badge-content">
-                                                            <!-- HEXAGON -->
-                                                            <div class="hexagon-dark-16-18"></div>
-                                                            <!-- /HEXAGON -->
-                                                        </div>
-                                                        <!-- /USER AVATAR BADGE CONTENT -->
-                                                        <!-- USER AVATAR BADGE TEXT -->
-                                                        <p class="user-avatar-badge-text">3</p>
-                                                        <!-- /USER AVATAR BADGE TEXT -->
-                                                    </div>
-                                                    <!-- /USER AVATAR BADGE -->
-                                                </div>
-                                                <!-- /USER AVATAR -->
-                                            </a>
-                                            <!-- /USER STATUS AVATAR -->
-                                            <!-- USER STATUS TITLE -->
-                                            <p class="user-status-title"><a class="bold" href="profile-timeline.html">Paul Lang</a></p>
-                                            <!-- /USER STATUS TITLE -->
-                                            <!-- USER STATUS TEXT -->
-                                            <p class="user-status-text">2 friends in common</p>
-                                            <!-- /USER STATUS TEXT -->
-                                            <!-- ACTION REQUEST LIST -->
-                                            <div class="action-request-list">
-                                                <!-- ACTION REQUEST -->
-                                                <div class="action-request accept">
-                                                    <!-- ACTION REQUEST ICON -->
-                                                    <svg class="action-request-icon icon-add-friend">
-                                                        <use xlink:href="#svg-add-friend"></use>
-                                                    </svg>
-                                                    <!-- /ACTION REQUEST ICON -->
-                                                </div>
-                                                <!-- /ACTION REQUEST -->
-                                                <!-- ACTION REQUEST -->
-                                                <div class="action-request decline">
-                                                    <!-- ACTION REQUEST ICON -->
-                                                    <svg class="action-request-icon icon-remove-friend">
-                                                        <use xlink:href="#svg-remove-friend"></use>
-                                                    </svg>
-                                                    <!-- /ACTION REQUEST ICON -->
-                                                </div>
-                                                <!-- /ACTION REQUEST -->
-                                            </div>
-                                            <!-- ACTION REQUEST LIST -->
-                                        </div>
-                                        <!-- /USER STATUS -->
-                                    </div>
-                                    <!-- /DROPDOWN BOX LIST ITEM -->
-                                    <!-- DROPDOWN BOX LIST ITEM -->
-                                    <div class="dropdown-box-list-item">
-                                        <!-- USER STATUS -->
-                                        <div class="user-status request">
-                                            <!-- USER STATUS AVATAR -->
-                                            <a class="user-status-avatar" href="profile-timeline.html">
-                                                <!-- USER AVATAR -->
-                                                <div class="user-avatar small no-outline">
-                                                    <!-- USER AVATAR CONTENT -->
-                                                    <div class="user-avatar-content">
-                                                        <!-- HEXAGON -->
-                                                        <div class="hexagon-image-30-32" data-src="img/avatar/11.jpg"></div>
-                                                        <!-- /HEXAGON -->
-                                                    </div>
-                                                    <!-- /USER AVATAR CONTENT -->
-                                                    <!-- USER AVATAR PROGRESS -->
-                                                    <div class="user-avatar-progress">
-                                                        <!-- HEXAGON -->
-                                                        <div class="hexagon-progress-40-44"></div>
-                                                        <!-- /HEXAGON -->
-                                                    </div>
-                                                    <!-- /USER AVATAR PROGRESS -->
-                                                    <!-- USER AVATAR PROGRESS BORDER -->
-                                                    <div class="user-avatar-progress-border">
-                                                        <!-- HEXAGON -->
-                                                        <div class="hexagon-border-40-44"></div>
-                                                        <!-- /HEXAGON -->
-                                                    </div>
-                                                    <!-- /USER AVATAR PROGRESS BORDER -->
-                                                    <!-- USER AVATAR BADGE -->
-                                                    <div class="user-avatar-badge">
-                                                        <!-- USER AVATAR BADGE BORDER -->
-                                                        <div class="user-avatar-badge-border">
-                                                            <!-- HEXAGON -->
-                                                            <div class="hexagon-22-24"></div>
-                                                            <!-- /HEXAGON -->
-                                                        </div>
-                                                        <!-- /USER AVATAR BADGE BORDER -->
-                                                        <!-- USER AVATAR BADGE CONTENT -->
-                                                        <div class="user-avatar-badge-content">
-                                                            <!-- HEXAGON -->
-                                                            <div class="hexagon-dark-16-18"></div>
-                                                            <!-- /HEXAGON -->
-                                                        </div>
-                                                        <!-- /USER AVATAR BADGE CONTENT -->
-                                                        <!-- USER AVATAR BADGE TEXT -->
-                                                        <p class="user-avatar-badge-text">9</p>
-                                                        <!-- /USER AVATAR BADGE TEXT -->
-                                                    </div>
-                                                    <!-- /USER AVATAR BADGE -->
-                                                </div>
-                                                <!-- /USER AVATAR -->
-                                            </a>
-                                            <!-- /USER STATUS AVATAR -->
-                                            <!-- USER STATUS TITLE -->
-                                            <p class="user-status-title"><a class="bold" href="profile-timeline.html">Cassie May</a></p>
-                                            <!-- /USER STATUS TITLE -->
-                                            <!-- USER STATUS TEXT -->
-                                            <p class="user-status-text">4 friends in common</p>
-                                            <!-- /USER STATUS TEXT -->
-                                            <!-- ACTION REQUEST LIST -->
-                                            <div class="action-request-list">
-                                                <!-- ACTION REQUEST -->
-                                                <div class="action-request accept">
-                                                    <!-- ACTION REQUEST ICON -->
-                                                    <svg class="action-request-icon icon-add-friend">
-                                                        <use xlink:href="#svg-add-friend"></use>
-                                                    </svg>
-                                                    <!-- /ACTION REQUEST ICON -->
-                                                </div>
-                                                <!-- /ACTION REQUEST -->
-                                                <!-- ACTION REQUEST -->
-                                                <div class="action-request decline">
-                                                    <!-- ACTION REQUEST ICON -->
-                                                    <svg class="action-request-icon icon-remove-friend">
-                                                        <use xlink:href="#svg-remove-friend"></use>
-                                                    </svg>
-                                                    <!-- /ACTION REQUEST ICON -->
-                                                </div>
-                                                <!-- /ACTION REQUEST -->
-                                            </div>
-                                            <!-- ACTION REQUEST LIST -->
-                                        </div>
-                                        <!-- /USER STATUS -->
-                                    </div>
-                                    <!-- /DROPDOWN BOX LIST ITEM -->
-                                </div>
-                                <!-- /DROPDOWN BOX LIST -->
-                                <!-- DROPDOWN BOX BUTTON -->
-                                <a class="dropdown-box-button secondary" href="hub-profile-requests.html">View all Requests</a>
-                                <!-- /DROPDOWN BOX BUTTON -->
-                            </div>
-                            <!-- /DROPDOWN BOX  -->
-                        </div>
-                        <!-- /ACTION LIST ITEM WRAP -->
-
-
-
-
-
                     </div>
                     <!-- /QUICK POST FOOTER ACTIONS -->
                     <!-- QUICK POST FOOTER ACTIONS -->
@@ -868,7 +577,7 @@
                         <p class="button small void">Huỷ</p>
                         <!-- /BUTTON -->
                         <!-- BUTTON -->
-                        <p class="button small secondary">Đăng</p>
+                        <p class="button small secondary" onclick="NewPost()">Đăng</p>
                         <!-- /BUTTON -->
                     </div>
                     <!-- /QUICK POST FOOTER ACTIONS -->
@@ -1743,6 +1452,26 @@
                 } else {
                     //alert(result.message);
                     window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
+    function NewPost() {
+        var postBody = document.getElementsByName("postBody")[0].value;
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("NewPost", "Home")",
+            data: { postBody: postBody },
+            success: function newPost(result) {
+                if (result.success) {
+                    //alert(result.message);
+                    window.location.reload();
+                } else {
+                    //alert(result.message);
+                    window.location.href = '/home';
                 }
             },
             error: function () {
