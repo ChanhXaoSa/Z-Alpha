@@ -45,10 +45,10 @@ public static class ConfigureServices
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
 
-        services.AddScoped<IUserClaimsPrincipalFactory<UserAccount>, UserClaimsPrincipalFactory<UserAccount, IdentityRole>>();
+        //services.AddScoped<IUserClaimsPrincipalFactory<UserAccount>, UserClaimsPrincipalFactory<UserAccount, IdentityRole>>();
 
-        services.AddIdentityServer()
-            .AddApiAuthorization<UserAccount, ApplicationDbContext>();
+        //services.AddIdentityServer()
+        //    .AddApiAuthorization<UserAccount, ApplicationDbContext>();
 
         services.AddTransient<IDateTime, DateTimeService>();
         services.AddTransient<IIdentityService, IdentityService>();
