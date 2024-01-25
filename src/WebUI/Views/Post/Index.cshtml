@@ -247,13 +247,24 @@
                         <!-- USER STATUS -->
                         <div class="user-status">
                             <!-- USER STATUS AVATAR -->
-                            <a class="user-status-avatar" href="#">
+                            <a class="user-status-avatar">
                                 <!-- USER AVATAR -->
                                 <div class="user-avatar small no-outline">
                                     <!-- USER AVATAR CONTENT -->
                                     <div class="user-avatar-content">
                                         <!-- HEXAGON -->
-                                        <div class="hexagon-image-30-32" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
+                                        @{
+                                            var imgUserPostUrl = Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.AvatarUrl;
+                                        }
+                                        @if (imgUserPostUrl != null)
+                                        {
+                                            <div class="hexagon-image-30-32" data-src="@imgUserPostUrl"></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="hexagon-image-30-32" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
+                                        }
+                                        
                                         <!-- /HEXAGON -->
                                     </div>
                                     <!-- /USER AVATAR CONTENT -->
@@ -278,10 +289,22 @@
                             <!-- /USER STATUS AVATAR -->
                             <!-- USER STATUS TITLE -->
                             <p class="user-status-title medium">
-                                <a class="bold" href="profile-timeline.html">
-                                    @Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.FirstName
-                                    @Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.LastName
-                                </a>
+                                @{
+                                    var linkUser = "Route/InfomationDetail?userId=" + Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create)?.UserAccount.Id;
+                                }
+                                @if (Model.AnonymousStatus == ZAlpha.Domain.Enums.AnonymousStatus.Active)
+                                {
+                                    <a class="bold">
+                                        Ẩn danh
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="bold" href="@linkUser">
+                                        @Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.FirstName
+                                        @Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.LastName
+                                    </a>
+                                }
                             </p>
                             <!-- /USER STATUS TITLE -->
                             <!-- USER STATUS TEXT -->
@@ -298,6 +321,7 @@
                         {
                             <img class="video-status-image" style="width:100%;" src="@Model.PostImagesUrl" alt="cover-50" />
                         }
+                      
                         @* <!-- VIDEO STATUS -->
                         <a class="video-status" href="https://www.youtube.com/" target="_blank">
                         <!-- VIDEO STATUS IMAGE -->
@@ -334,215 +358,184 @@
                         <!-- /TAG LIST -->
                         <!-- CONTENT ACTIONS -->
                         <div class="content-actions">
+                            @{
+                                var allReactionToName = Model.InteractWithPosts?
+                                .Where(i => i.InteractPostStatus != ZAlpha.Domain.Enums.InteractPostStatus.Create)
+                                .OrderBy(i => i.Created)
+                                .ToList();
+                                var top3reactionPost = Model.InteractWithPosts?
+                                .Where(i => i.InteractPostStatus != ZAlpha.Domain.Enums.InteractPostStatus.Create)
+                                .OrderByDescending(i => i.InteractPostStatus)
+                                .DistinctBy(i => i.InteractPostStatus)
+                                .Take(3)
+                                .ToList();
+                                var top3reactionPostRevert = new List<ZAlpha.Domain.Entities.InteractWithPosts>();
+                                foreach (var post in top3reactionPost)
+                                {
+                                    top3reactionPostRevert.Add(post);
+                                }
+                            }
                             <!-- CONTENT ACTION -->
                             <div class="content-action">
                                 <!-- META LINE -->
                                 <div class="meta-line">
                                     <!-- META LINE LIST -->
                                     <div class="meta-line-list reaction-item-list">
-                                        <!-- REACTION ITEM -->
-                                        <div class="reaction-item">
-                                            <!-- REACTION IMAGE -->
-                                            <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/happy.png" alt="reaction-happy">
-                                            <!-- /REACTION IMAGE -->
-                                            <!-- SIMPLE DROPDOWN -->
-                                            <div class="simple-dropdown padded reaction-item-dropdown">
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text"><img class="reaction" src="~/assets/images/reaction/happy.png" alt="reaction-happy"> <span class="bold">Happy</span></p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Matt Parker</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Destroy Dex</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">The Green Goo</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
+                                        @foreach (var post in top3reactionPostRevert)
+                                        {
+                                            <!-- REACTION ITEM -->
+                                            <div class="reaction-item">
+                                                <!-- REACTION IMAGE -->
+                                                @{
+                                                    if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like)
+                                                    {
+                                                        <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/like.png" alt="reaction-like">
+                                                    }
+                                                    else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Love)
+                                                    {
+                                                        <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/love.png" alt="reaction-love">
+                                                    }
+                                                    else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike)
+                                                    {
+                                                        <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/dislike.png" alt="reaction-dislike">
+                                                    }
+                                                    else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Happy)
+                                                    {
+                                                        <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/happy.png" alt="reaction-happy">
+                                                    }
+                                                    else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Funny)
+                                                    {
+                                                        <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/funny.png" alt="reaction-funny">
+                                                    }
+                                                    else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Wow)
+                                                    {
+                                                        <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/wow.png" alt="reaction-wow">
+                                                    }
+                                                    else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Angry)
+                                                    {
+                                                        <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/angry.png" alt="reaction-angry">
+                                                    }
+                                                    else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Sad)
+                                                    {
+                                                        <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/sad.png" alt="reaction-sad">
+                                                    }
+                                                }
+                                                <!-- /REACTION IMAGE -->
+                                                <!-- SIMPLE DROPDOWN -->
+                                                <div class="simple-dropdown padded reaction-item-dropdown">
+                                                    <!-- SIMPLE DROPDOWN TEXT -->
+                                                    @{
+                                                        if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like)
+                                                        {
+                                                            <p class="simple-dropdown-text">
+                                                                <img class="reaction" src="~/assets/images/reaction/like.png" alt="reaction-like">
+                                                                <span class="bold">Like</span>
+                                                            </p>
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Love)
+                                                        {
+                                                            <p class="simple-dropdown-text">
+                                                                <img class="reaction" src="~/assets/images/reaction/love.png" alt="reaction-love">
+                                                                <span class="bold">Love</span>
+                                                            </p>
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike)
+                                                        {
+                                                            <p class="simple-dropdown-text">
+                                                                <img class="reaction" src="~/assets/images/reaction/dislike.png" alt="reaction-dislike">
+                                                                <span class="bold">Dislike</span>
+                                                            </p>
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Happy)
+                                                        {
+                                                            <p class="simple-dropdown-text">
+                                                                <img class="reaction" src="~/assets/images/reaction/happy.png" alt="reaction-happy">
+                                                                <span class="bold">Happy</span>
+                                                            </p>
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Funny)
+                                                        {
+                                                            <p class="simple-dropdown-text">
+                                                                <img class="reaction" src="~/assets/images/reaction/funny.png" alt="reaction-funny">
+                                                                <span class="bold">Funny</span>
+                                                            </p>
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Wow)
+                                                        {
+                                                            <p class="simple-dropdown-text">
+                                                                <img class="reaction" src="~/assets/images/reaction/wow.png" alt="reaction-wow">
+                                                                <span class="bold">Wow</span>
+                                                            </p>
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Angry)
+                                                        {
+                                                            <p class="simple-dropdown-text">
+                                                                <img class="reaction" src="~/assets/images/reaction/angry.png" alt="reaction-angry">
+                                                                <span class="bold">Angry</span>
+                                                            </p>
+                                                        }
+                                                        else if (post.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Sad)
+                                                        {
+                                                            <p class="simple-dropdown-text">
+                                                                <img class="reaction" src="~/assets/images/reaction/sad.png" alt="reaction-sad">
+                                                                <span class="bold">Sad</span>
+                                                            </p>
+                                                        }
+                                                    }
+                                                    <!-- /SIMPLE DROPDOWN TEXT -->
+                                                    @foreach (var interactName in allReactionToName)
+                                                    {
+                                                        if (post.InteractPostStatus == interactName.InteractPostStatus)
+                                                        {
+                                                            <!-- SIMPLE DROPDOWN TEXT -->
+                                                            <p class="simple-dropdown-text">@interactName.UserAccount.FirstName @interactName.UserAccount.LastName</p>
+                                                            <!-- /SIMPLE DROPDOWN TEXT -->
+                                                        }
+                                                    }
+                                                    @* <!-- SIMPLE DROPDOWN TEXT -->
+                                                <p class="simple-dropdown-text"><span class="bold">and 6 more...</span></p>
+                                                <!-- /SIMPLE DROPDOWN TEXT --> *@
+                                                </div>
+                                                <!-- /SIMPLE DROPDOWN -->
                                             </div>
-                                            <!-- /SIMPLE DROPDOWN -->
-                                        </div>
-                                        <!-- /REACTION ITEM -->
-                                        <!-- REACTION ITEM -->
-                                        <div class="reaction-item">
-                                            <!-- REACTION IMAGE -->
-                                            <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/love.png" alt="reaction-love">
-                                            <!-- /REACTION IMAGE -->
-                                            <!-- SIMPLE DROPDOWN -->
-                                            <div class="simple-dropdown padded reaction-item-dropdown">
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text"><img class="reaction" src="~/assets/images/reaction/love.png" alt="reaction-love"> <span class="bold">Love</span></p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Sandra Strange</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Jane Rodgers</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                            </div>
-                                            <!-- /SIMPLE DROPDOWN -->
-                                        </div>
-                                        <!-- /REACTION ITEM -->
-                                        <!-- REACTION ITEM -->
-                                        <div class="reaction-item">
-                                            <!-- REACTION IMAGE -->
-                                            <img class="reaction-image reaction-item-dropdown-trigger" src="~/assets/images/reaction/funny.png" alt="reaction-funny">
-                                            <!-- /REACTION IMAGE -->
-                                            <!-- SIMPLE DROPDOWN -->
-                                            <div class="simple-dropdown padded reaction-item-dropdown">
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text"><img class="reaction" src="~/assets/images/reaction/funny.png" alt="reaction-funny"> <span class="bold">Funny</span></p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Neko Bebop</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Nick Grissom</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Sarah Diamond</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Jett Spiegel</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text">Marcus Jhonson</p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                                <!-- SIMPLE DROPDOWN TEXT -->
-                                                <p class="simple-dropdown-text"><span class="bold">and 12 more...</span></p>
-                                                <!-- /SIMPLE DROPDOWN TEXT -->
-                                            </div>
-                                            <!-- /SIMPLE DROPDOWN -->
-                                        </div>
-                                        <!-- /REACTION ITEM -->
+                                            <!-- /REACTION ITEM -->
+                                        }
                                     </div>
                                     <!-- /META LINE LIST -->
                                     <!-- META LINE TEXT -->
-                                    <p class="meta-line-text">22</p>
-                                    <!-- /META LINE TEXT -->
-                                </div>
-                                <!-- /META LINE -->
-                                <!-- META LINE -->
-                                <div class="meta-line">
-                                    <!-- META LINE LIST -->
-                                    <div class="meta-line-list user-avatar-list">
-                                        <!-- USER AVATAR -->
-                                        <div class="user-avatar micro no-stats">
-                                            <!-- USER AVATAR BORDER -->
-                                            <div class="user-avatar-border">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-22-24"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR BORDER -->
-                                            <!-- USER AVATAR CONTENT -->
-                                            <div class="user-avatar-content">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-image-18-20" data-src="img/avatar/09.jpg"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR CONTENT -->
-                                        </div>
-                                        <!-- /USER AVATAR -->
-                                        <!-- USER AVATAR -->
-                                        <div class="user-avatar micro no-stats">
-                                            <!-- USER AVATAR BORDER -->
-                                            <div class="user-avatar-border">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-22-24"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR BORDER -->
-                                            <!-- USER AVATAR CONTENT -->
-                                            <div class="user-avatar-content">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-image-18-20" data-src="img/avatar/08.jpg"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR CONTENT -->
-                                        </div>
-                                        <!-- /USER AVATAR -->
-                                        <!-- USER AVATAR -->
-                                        <div class="user-avatar micro no-stats">
-                                            <!-- USER AVATAR BORDER -->
-                                            <div class="user-avatar-border">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-22-24"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR BORDER -->
-                                            <!-- USER AVATAR CONTENT -->
-                                            <div class="user-avatar-content">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-image-18-20" data-src="img/avatar/12.jpg"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR CONTENT -->
-                                        </div>
-                                        <!-- /USER AVATAR -->
-                                        <!-- USER AVATAR -->
-                                        <div class="user-avatar micro no-stats">
-                                            <!-- USER AVATAR BORDER -->
-                                            <div class="user-avatar-border">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-22-24"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR BORDER -->
-                                            <!-- USER AVATAR CONTENT -->
-                                            <div class="user-avatar-content">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-image-18-20" data-src="img/avatar/16.jpg"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR CONTENT -->
-                                        </div>
-                                        <!-- /USER AVATAR -->
-                                        <!-- USER AVATAR -->
-                                        <div class="user-avatar micro no-stats">
-                                            <!-- USER AVATAR BORDER -->
-                                            <div class="user-avatar-border">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-22-24"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR BORDER -->
-                                            <!-- USER AVATAR CONTENT -->
-                                            <div class="user-avatar-content">
-                                                <!-- HEXAGON -->
-                                                <div class="hexagon-image-18-20" data-src="img/avatar/06.jpg"></div>
-                                                <!-- /HEXAGON -->
-                                            </div>
-                                            <!-- /USER AVATAR CONTENT -->
-                                        </div>
-                                        <!-- /USER AVATAR -->
-                                    </div>
-                                    <!-- /META LINE LIST -->
-                                    <!-- META LINE TEXT -->
-                                    <p class="meta-line-text">30 Participants</p>
+                                    <p class="meta-line-text">
+                                        @Model.InteractWithPosts?.Where(i =>
+                                        i.InteractPostStatus != ZAlpha.Domain.Enums.InteractPostStatus.Create).Count()
+                                    </p>
                                     <!-- /META LINE TEXT -->
                                 </div>
                                 <!-- /META LINE -->
                             </div>
                             <!-- /CONTENT ACTION -->
+
+
                             <!-- CONTENT ACTION -->
                             <div class="content-action">
                                 <!-- META LINE -->
                                 <div class="meta-line">
                                     <!-- META LINE LINK -->
-                                    <p class="meta-line-link">12 Comments</p>
+                                    <a href="~/Post?postId=@Model.Id">
+                                        <p class="meta-line-link">@Model.Comments?.Where(w => w.IsDeleted == false).Count() bình luận</p>
+                                    </a>
                                     <!-- /META LINE LINK -->
                                 </div>
                                 <!-- /META LINE -->
                                 <!-- META LINE -->
                                 <div class="meta-line">
                                     <!-- META LINE TEXT -->
-                                    <p class="meta-line-text">0 Shares</p>
+                                    <p class="meta-line-text">@Model.WishListPosts?.Where(w => w.IsDeleted == false).Count() lưu</p>
                                     <!-- /META LINE TEXT -->
                                 </div>
                                 <!-- /META LINE -->
                             </div>
                             <!-- /CONTENT ACTION -->
+
+
                         </div>
                         <!-- /CONTENT ACTIONS -->
                     </div>
@@ -553,74 +546,197 @@
                 <div class="post-options">
                     <!-- POST OPTION WRAP -->
                     <div class="post-option-wrap">
-                        <!-- POST OPTION -->
-                        <div class="post-option reaction-options-dropdown-trigger">
-                            <!-- POST OPTION ICON -->
-                            <svg class="post-option-icon icon-thumbs-up">
-                                <use xlink:href="#svg-thumbs-up"></use>
-                            </svg>
-                            <!-- /POST OPTION ICON -->
-                            <!-- POST OPTION TEXT -->
-                            <p class="post-option-text">Tương tác!</p>
-                            <!-- /POST OPTION TEXT -->
-                        </div>
-                        <!-- /POST OPTION -->
+                        @{
+                            var interactedPostbyUser = Model.InteractWithPosts?.FirstOrDefault(i =>
+                            i.InteractPostStatus != ZAlpha.Domain.Enums.InteractPostStatus.Create
+                            && i.UserAccount.UserName == User.Identity.Name);
+                            if (interactedPostbyUser != null)
+                            {
+                                if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like)
+                                {
+                                    <!-- POST OPTION -->
+                                    <div class="post-option reaction-options-dropdown-trigger">
+                                        <!-- POST OPTION ICON -->
+                                        <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/like.png" alt="reaction-like">
+                                        <!-- /POST OPTION ICON -->
+                                        <!-- POST OPTION TEXT -->
+                                        <p class="post-option-text">Like</p>
+                                        <!-- /POST OPTION TEXT -->
+                                    </div>
+                                    <!-- /POST OPTION -->
+                                }
+                                else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Dislike)
+                                {
+                                    <!-- POST OPTION -->
+                                    <div class="post-option reaction-options-dropdown-trigger">
+                                        <!-- POST OPTION ICON -->
+                                        <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/dislike.png" alt="reaction-dislike">
+                                        <!-- /POST OPTION ICON -->
+                                        <!-- POST OPTION TEXT -->
+                                        <p class="post-option-text">Dislike</p>
+                                        <!-- /POST OPTION TEXT -->
+                                    </div>
+                                    <!-- /POST OPTION -->
+                                }
+                                else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Sad)
+                                {
+                                    <!-- POST OPTION -->
+                                    <div class="post-option reaction-options-dropdown-trigger">
+                                        <!-- POST OPTION ICON -->
+                                        <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/sad.png" alt="reaction-sad">
+                                        <!-- /POST OPTION ICON -->
+                                        <!-- POST OPTION TEXT -->
+                                        <p class="post-option-text">Sad</p>
+                                        <!-- /POST OPTION TEXT -->
+                                    </div>
+                                    <!-- /POST OPTION -->
+                                }
+                                else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Funny)
+                                {
+                                    <!-- POST OPTION -->
+                                    <div class="post-option reaction-options-dropdown-trigger">
+                                        <!-- POST OPTION ICON -->
+                                        <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/funny.png" alt="reaction-funny">
+                                        <!-- /POST OPTION ICON -->
+                                        <!-- POST OPTION TEXT -->
+                                        <p class="post-option-text">Funny</p>
+                                        <!-- /POST OPTION TEXT -->
+                                    </div>
+                                    <!-- /POST OPTION -->
+                                }
+                                else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Angry)
+                                {
+                                    <!-- POST OPTION -->
+                                    <div class="post-option reaction-options-dropdown-trigger">
+                                        <!-- POST OPTION ICON -->
+                                        <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/angry.png" alt="reaction-angry">
+                                        <!-- /POST OPTION ICON -->
+                                        <!-- POST OPTION TEXT -->
+                                        <p class="post-option-text">Angry</p>
+                                        <!-- /POST OPTION TEXT -->
+                                    </div>
+                                    <!-- /POST OPTION -->
+                                }
+                                else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Love)
+                                {
+                                    <!-- POST OPTION -->
+                                    <div class="post-option reaction-options-dropdown-trigger">
+                                        <!-- POST OPTION ICON -->
+                                        <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/love.png" alt="reaction-love">
+                                        <!-- /POST OPTION ICON -->
+                                        <!-- POST OPTION TEXT -->
+                                        <p class="post-option-text">Love</p>
+                                        <!-- /POST OPTION TEXT -->
+                                    </div>
+                                    <!-- /POST OPTION -->
+                                }
+                                else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Happy)
+                                {
+                                    <!-- POST OPTION -->
+                                    <div class="post-option reaction-options-dropdown-trigger">
+                                        <!-- POST OPTION ICON -->
+                                        <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/happy.png" alt="reaction-happy">
+                                        <!-- /POST OPTION ICON -->
+                                        <!-- POST OPTION TEXT -->
+                                        <p class="post-option-text">Happy</p>
+                                        <!-- /POST OPTION TEXT -->
+                                    </div>
+                                    <!-- /POST OPTION -->
+                                }
+                                else if (interactedPostbyUser.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Wow)
+                                {
+                                    <!-- POST OPTION -->
+                                    <div class="post-option reaction-options-dropdown-trigger">
+                                        <!-- POST OPTION ICON -->
+                                        <img class="post-option-icon icon-thumbs-up" src="~/assets/images/reaction/wow.png" alt="reaction-wow">
+                                        <!-- /POST OPTION ICON -->
+                                        <!-- POST OPTION TEXT -->
+                                        <p class="post-option-text">Wow</p>
+                                        <!-- /POST OPTION TEXT -->
+                                    </div>
+                                    <!-- /POST OPTION -->
+                                }
+                            }
+                            else
+                            {
+                                <!-- POST OPTION -->
+                                <div class="post-option reaction-options-dropdown-trigger">
+                                    <!-- POST OPTION ICON -->
+                                    <svg class="post-option-icon icon-thumbs-up">
+                                        <use xlink:href="#svg-thumbs-up"></use>
+                                    </svg>
+                                    <!-- /POST OPTION ICON -->
+                                    <!-- POST OPTION TEXT -->
+                                    <p class="post-option-text">Tương tác !</p>
+                                    <!-- /POST OPTION TEXT -->
+                                </div>
+                                <!-- /POST OPTION -->
+                            }
+                        }
                         <!-- REACTION OPTIONS -->
-                        <div class="reaction-options reaction-options-dropdown">
+                        <div class="reaction-options reaction-options-dropdown" style="position: absolute; z-index: 9999; bottom: 54px; left: -16px; opacity: 0; visibility: hidden; transform: translate(0px, 20px); transition: transform 0.3s ease-in-out 0s, opacity 0.3s ease-in-out 0s, visibility 0.3s ease-in-out 0s;">
                             <!-- REACTION OPTION -->
-                            <div class="reaction-option text-tooltip-tft" data-title="Like">
+                            <div onclick="interactWithPost('@Model.Id.ToString()', 'Like')" class="reaction-option text-tooltip-tft" data-title="Like" style="position: relative;">
                                 <!-- REACTION OPTION IMAGE -->
                                 <img class="reaction-option-image" src="~/assets/images/reaction/like.png" alt="reaction-like">
                                 <!-- /REACTION OPTION IMAGE -->
+                                <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -28px; left: 50%; margin-left: -22px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Like</p></div>
                             </div>
                             <!-- /REACTION OPTION -->
                             <!-- REACTION OPTION -->
-                            <div class="reaction-option text-tooltip-tft" data-title="Love">
+                            <div onclick="interactWithPost('@Model.Id.ToString()', 'Love')" class="reaction-option text-tooltip-tft" data-title="Love" style="position: relative;">
                                 <!-- REACTION OPTION IMAGE -->
                                 <img class="reaction-option-image" src="~/assets/images/reaction/love.png" alt="reaction-love">
                                 <!-- /REACTION OPTION IMAGE -->
+                                <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -28px; left: 50%; margin-left: -23.5px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Love</p></div>
                             </div>
                             <!-- /REACTION OPTION -->
                             <!-- REACTION OPTION -->
-                            <div class="reaction-option text-tooltip-tft" data-title="Dislike">
+                            <div onclick="interactWithPost('@Model.Id.ToString()', 'Dislike')" class="reaction-option text-tooltip-tft" data-title="Dislike" style="position: relative;">
                                 <!-- REACTION OPTION IMAGE -->
                                 <img class="reaction-option-image" src="~/assets/images/reaction/dislike.png" alt="reaction-dislike">
                                 <!-- /REACTION OPTION IMAGE -->
+                                <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -28px; left: 50%; margin-left: -28px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Dislike</p></div>
                             </div>
                             <!-- /REACTION OPTION -->
                             <!-- REACTION OPTION -->
-                            <div class="reaction-option text-tooltip-tft" data-title="Happy">
+                            <div onclick="interactWithPost('@Model.Id.ToString()', 'Happy')" class="reaction-option text-tooltip-tft" data-title="Happy" style="position: relative;">
                                 <!-- REACTION OPTION IMAGE -->
                                 <img class="reaction-option-image" src="~/assets/images/reaction/happy.png" alt="reaction-happy">
                                 <!-- /REACTION OPTION IMAGE -->
+                                <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -28px; left: 50%; margin-left: -27.5px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Happy</p></div>
                             </div>
                             <!-- /REACTION OPTION -->
                             <!-- REACTION OPTION -->
-                            <div class="reaction-option text-tooltip-tft" data-title="Funny">
+                            <div onclick="interactWithPost('@Model.Id.ToString()', 'Funny')" class="reaction-option text-tooltip-tft" data-title="Funny" style="position: relative;">
                                 <!-- REACTION OPTION IMAGE -->
                                 <img class="reaction-option-image" src="~/assets/images/reaction/funny.png" alt="reaction-funny">
                                 <!-- /REACTION OPTION IMAGE -->
+                                <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -28px; left: 50%; margin-left: -27px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Funny</p></div>
                             </div>
                             <!-- /REACTION OPTION -->
                             <!-- REACTION OPTION -->
-                            <div class="reaction-option text-tooltip-tft" data-title="Wow">
+                            <div onclick="interactWithPost('@Model.Id.ToString()', 'Wow')" class="reaction-option text-tooltip-tft" data-title="Wow" style="position: relative;">
                                 <!-- REACTION OPTION IMAGE -->
                                 <img class="reaction-option-image" src="~/assets/images/reaction/wow.png" alt="reaction-wow">
                                 <!-- /REACTION OPTION IMAGE -->
+                                <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -28px; left: 50%; margin-left: -24px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Wow</p></div>
                             </div>
                             <!-- /REACTION OPTION -->
                             <!-- REACTION OPTION -->
-                            <div class="reaction-option text-tooltip-tft" data-title="Angry">
+                            <div onclick="interactWithPost('@Model.Id.ToString()', 'Angry')" class="reaction-option text-tooltip-tft" data-title="Angry" style="position: relative;">
                                 <!-- REACTION OPTION IMAGE -->
                                 <img class="reaction-option-image" src="~/assets/images/reaction/angry.png" alt="reaction-angry">
                                 <!-- /REACTION OPTION IMAGE -->
+                                <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -28px; left: 50%; margin-left: -26.5px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Angry</p></div>
                             </div>
                             <!-- /REACTION OPTION -->
                             <!-- REACTION OPTION -->
-                            <div class="reaction-option text-tooltip-tft" data-title="Sad">
+                            <div onclick="interactWithPost('@Model.Id.ToString()', 'Sad')" class="reaction-option text-tooltip-tft" data-title="Sad" style="position: relative;">
                                 <!-- REACTION OPTION IMAGE -->
                                 <img class="reaction-option-image" src="~/assets/images/reaction/sad.png" alt="reaction-sad">
                                 <!-- /REACTION OPTION IMAGE -->
+                                <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -28px; left: 50%; margin-left: -21.5px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Sad</p></div>
                             </div>
                             <!-- /REACTION OPTION -->
                         </div>
@@ -628,29 +744,54 @@
                     </div>
                     <!-- /POST OPTION WRAP -->
                     <!-- POST OPTION -->
-                    <div class="post-option">
-                        <!-- POST OPTION ICON -->
-                        <svg class="post-option-icon icon-comment">
-                            <use xlink:href="#svg-comment"></use>
-                        </svg>
-                        <!-- /POST OPTION ICON -->
-                        <!-- POST OPTION TEXT -->
-                        <p class="post-option-text">Comment</p>
-                        <!-- /POST OPTION TEXT -->
-                    </div>
+                    <a href="~/Post?postId=@Model.Id">
+                        <div class="post-option">
+                            <!-- POST OPTION ICON -->
+                            <svg class="post-option-icon icon-comment">
+                                <use xlink:href="#svg-comment"></use>
+                            </svg>
+                            <!-- /POST OPTION ICON -->
+                            <!-- POST OPTION TEXT -->
+                            <p class="post-option-text">Xem chi tiết</p>
+                            <!-- /POST OPTION TEXT -->
+                        </div>
+                    </a>
                     <!-- /POST OPTION -->
-                    <!-- POST OPTION -->
-                    <div class="post-option">
-                        <!-- POST OPTION ICON -->
-                        <svg class="post-option-icon icon-share">
-                            <use xlink:href="#svg-share"></use>
-                        </svg>
-                        <!-- /POST OPTION ICON -->
-                        <!-- POST OPTION TEXT -->
-                        <p class="post-option-text">Share</p>
-                        <!-- /POST OPTION TEXT -->
-                    </div>
-                    <!-- /POST OPTION -->
+                    @{
+                        if (Model
+                        .WishListPosts?
+                        .FirstOrDefault(w => w.UserAccount.UserName == User.Identity.Name
+                        && w.IsDeleted == false) != null)
+                        {
+                            <!-- POST OPTION -->
+                            <div class="post-option" onclick="savePost('@Model.Id', 'true')">
+                                <!-- POST OPTION ICON -->
+                                <svg class="post-option-icon icon-share">
+                                    <use xlink:href="#svg-share"></use>
+                                </svg>
+                                <!-- /POST OPTION ICON -->
+                                <!-- POST OPTION TEXT -->
+                                <p class="post-option-text">Bỏ lưu</p>
+                                <!-- /POST OPTION TEXT -->
+                            </div>
+                            <!-- /POST OPTION -->
+                        }
+                        else
+                        {
+                            <!-- POST OPTION -->
+                            <div class="post-option" onclick="savePost('@Model.Id', 'false')">
+                                <!-- POST OPTION ICON -->
+                                <svg class="post-option-icon icon-share">
+                                    <use xlink:href="#svg-share"></use>
+                                </svg>
+                                <!-- /POST OPTION ICON -->
+                                <!-- POST OPTION TEXT -->
+                                <p class="post-option-text">Lưu</p>
+                                <!-- /POST OPTION TEXT -->
+                            </div>
+                            <!-- /POST OPTION -->
+                        }
+                    }
                 </div>
                 <!-- /POST OPTIONS -->
             </div>
@@ -672,15 +813,30 @@
                                 <!-- USER STATUS ACTIVITY -->
                                 <div class="user-status-activity activity-reaction">
                                     <!-- USER STATUS ACTIVITY ICON -->
-                                    <svg class="user-status-activity-icon icon-thumbs-up">
+                                    @*   <svg class="user-status-activity-icon icon-thumbs-up">
                                         <use xlink:href="#svg-thumbs-up"></use>
-                                    </svg>
+                                    </svg>  *@
                                     <!-- /USER STATUS ACTIVITY ICON -->
+                                    @{
+                                        var imgUrl = comment.InteractWithComments?.FirstOrDefault(o => o.InteractCommentStatus == InteractCommentStatus.Create)?.UserAccount.AvatarUrl;
+                                    }
+                                    @if(imgUrl != null){
+                                        <img src="@imgUrl" style="width:100%; height:100%;border-radius: 50%; " />
+                                    }
+                                    else
+                                    {
+                                        <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg" style="width:100%; height:100%;border-radius: 50%; " />
+                                    }
+
                                 </div>
                                 <!-- /USER STATUS ACTIVITY -->
                                 <!-- USER STATUS TITLE -->
                                 <p class="user-status-title">
-                                    <a class="bold" href="profile-timeline.html">
+
+                                    @{
+                                        var linkUserComment = "Route/InfomationDetail?userId=" + comment.InteractWithComments?.FirstOrDefault(o => o.InteractCommentStatus == InteractCommentStatus.Create)?.UserAccount.Id;
+                                    }
+                                    <a class="bold" href="@linkUserComment">
                                         @comment.InteractWithComments?.FirstOrDefault(o => o.InteractCommentStatus == InteractCommentStatus.Create)?.UserAccount.FirstName
                                         @comment.InteractWithComments?.FirstOrDefault(o => o.InteractCommentStatus == InteractCommentStatus.Create)?.UserAccount.LastName
                                     </a>
@@ -698,6 +854,67 @@
                     <!-- /USER STATUS LIST -->
                 </div>
                 <!-- WIDGET BOX CONTENT -->
+
+
+
+                <!-- WIDGET BOX Input comment -->
+                <form class="chat-widget-form">
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- INTERACTIVE INPUT -->
+                            <div class="interactive-input small">
+                                <input type="hidden" name="postId" value="@Model.Id">
+                                <input type="text" id="inputComment" name="description" placeholder="Write a message...">
+                                
+                                <!-- INTERACTIVE INPUT ICON WRAP -->
+                                <div class="interactive-input-icon-wrap actionable">
+                                    <!-- TOOLTIP WRAP -->
+                                    <div class="tooltip-wrap text-tooltip-tft" data-title="Send Photo" style="position: relative;">
+                                        <!-- INTERACTIVE INPUT ICON -->
+                                        <svg class="interactive-input-icon icon-camera">
+                                            <use xlink:href="#svg-camera"></use>
+                                        </svg>
+                                        <!-- /INTERACTIVE INPUT ICON -->
+                                        <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -28px; left: 50%; margin-left: -45.5px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Send Photo</p></div>
+                                    </div>
+                                    <!-- /TOOLTIP WRAP -->
+                                </div>
+                                <!-- /INTERACTIVE INPUT ICON WRAP -->
+                                <!-- INTERACTIVE INPUT ACTION -->
+                                <div class="interactive-input-action">
+                                    <!-- INTERACTIVE INPUT ACTION ICON -->
+                                    <svg class="interactive-input-action-icon icon-cross-thin">
+                                        <use xlink:href="#svg-cross-thin"></use>
+                                    </svg>
+                                    <!-- /INTERACTIVE INPUT ACTION ICON -->
+                                </div>
+                                <!-- /INTERACTIVE INPUT ACTION -->
+                            </div>
+                            <!-- /INTERACTIVE INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item auto-width" id="buttonComment" onclick="sendComment()">
+                            <!-- BUTTON -->
+                            <p class="button primary padded"">
+                                <!-- BUTTON ICON -->
+                                <svg class="button-icon no-space icon-send-message">
+                                    <use xlink:href="#svg-send-message"></use>
+                                </svg>
+                                <!-- /BUTTON ICON -->
+                            </p>
+                            <!-- /BUTTON -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                </form>
+                <!-- WIDGET BOX Input comment -->
+
+
+
             </div>
             <!-- /WIDGET BOX -->
         </div>
@@ -709,109 +926,70 @@
 
 
 </div>
-<!-- /CONTENT GRID -->
+
 
 <script>
-    //Hàm đăng bình luận
-    document.getElementById("commentDescription").addEventListener("keypress", function (event) {
+
+
+    @* document.getElementById("inputComment").addEventListener("keypress", function (event) {
         if (event.key === "Enter" || event.keyCode === 13) {
             event.preventDefault();
-            submitComment();
+            sendComment();
         }
-    });
-    $("#submitComment").click(function () {
-        submitComment();
-    });
-    function submitComment() {
-        var postId = "@Model.Id";
-        var description = $("#commentDescription").val();
+    }); *@
 
+    function sendComment() {
+        var description = document.getElementsByName("description")[0].value;
+        var postId = @Model.Id;
         $.ajax({
             type: "POST",
             url: "@Url.Action("AddComment", "Post")",
             data: { postId: postId, description: description },
             success: function (result) {
                 if (result.success) {
+                    //alert(result.message);
+                    window.location.reload();
+                } else {
+                    //alert(result.message);
+                    window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
+
+    function interactWithPost(postId, reactionType) {
+        var reaction = reactionType;
+        var statusPick = 0;
+        if (reaction === "Like") {
+            statusPick = 1;
+        } else if (reaction === "Love") {
+            statusPick = 2;
+        } else if (reaction === "Dislike") {
+            statusPick = 3;
+        } else if (reaction === "Happy") {
+            statusPick = 4;
+        } else if (reaction === "Funny") {
+            statusPick = 5;
+        } else if (reaction === "Wow") {
+            statusPick = 6;
+        } else if (reaction === "Angry") {
+            statusPick = 7;
+        } else if (reaction === "Sad") {
+            statusPick = 8;
+        }
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("InteractWithPost", "Post")",
+            data: { postId: postId, status: statusPick },
+            success: function (result) {
+                if (result.success) {
                     // alert(result.message);
-                    $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
+                    window.location.reload();
                 } else {
-                    //alert(result.message);
-                    window.location.href = '/login';
-                }
-            },
-            error: function () {
-                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
-            }
-        });
-    }
-    // $(document).ready(function () {
-    //     $("#submitComment").click(function () {
-    //         var postId = "@Model.Id";
-    //         var description = $("#commentDescription").val();
-
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "@Url.Action("AddComment", "Post")",
-    //             data: { postId: postId, description: description },
-    //             success: function (result) {
-    //                 if (result.success) {
-    //                     alert(result.message);
-    //                     $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
-    //                 } else {
-    //                     alert(result.message);
-    //                     window.location.href = '/login';
-    //                 }
-    //             },
-    //             error: function () {
-    //                 alert("Đã xảy ra lỗi khi gửi yêu cầu.");
-    //             }
-    //         });
-    //     });
-    // });
-
-    //Hàm tương tác với bài viết
-    $(document).on("click", "#btnPostLike", function () {
-        likePost();
-    });
-
-    $(document).on("click", "#btnPostDislike", function () {
-        dislikePost();
-    });
-
-    function likePost() {
-        var postId = "@Model.Id";
-
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("InteractWithPost", "Post")",
-            data: { postId: postId, status: 1 },
-            success: function (result) {
-                if (result.success) {
-                    //alert(result.message);
-                    $("#postSection").load("/Post/Index?postId=" + postId + " #postSection");
-                } else {
-                    //alert(result.message);
-                    window.location.href = '/login';
-                }
-            },
-            error: function () {
-                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
-            }
-        });
-    }
-    function dislikePost() {
-        var postId = "@Model.Id";
-
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("InteractWithPost", "Post")",
-            data: { postId: postId, status: 2 },
-            success: function (result) {
-                if (result.success) {
-                    //alert(result.message);
-                    $("#postSection").load("/Post/Index?postId=" + postId + " #postSection");
-                } else {
-                    //alert(result.message);
+                    alert(result.message);
                     window.location.href = '/login';
                 }
             },
@@ -821,11 +999,11 @@
         });
     }
 
-    function wishlistPost(postId) {
+    function savePost(postId, statusSave) {
         $.ajax({
             type: "POST",
             url: "@Url.Action("WishListPost", "Home")",
-            data: { postId: postId, isDeleted: false },
+            data: { postId: postId, isDeleted: statusSave },
             success: function (result) {
                 if (result.success) {
                     //alert(result.message);
@@ -840,24 +1018,6 @@
             }
         });
     }
-    function unWishlistPost(postId) {
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("WishListPost", "Home")",
-            data: { postId: postId, isDeleted: true },
-            success: function (result) {
-                if (result.success) {
-                    //alert(result.message);
-                    window.location.reload();
-                } else {
-                    //alert(result.message);
-                    window.location.href = '/login';
-                }
-            },
-            error: function () {
-                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
-            }
-        });
-    }
+   
 
 </script>

@@ -10506,6 +10506,7 @@ figure > img {
   border-radius: 12px;
   background-color: #fff;
   box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+  margin:16px 0;
 }
 
 .profile-header.v2 .profile-header-info {
@@ -15170,12 +15171,14 @@ figure > img {
     4. SECTION NAVIGATION
 -----------------------------*/
 .section-navigation {
-  height: 80px;
-  padding: 0 43px;
-  border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
-  position: relative;
+   
+    height: 80px;
+    padding: 0 43px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+    position: relative;
+    margin: 16px 0;
 }
 
 .section-navigation .slider-controls .slider-control {

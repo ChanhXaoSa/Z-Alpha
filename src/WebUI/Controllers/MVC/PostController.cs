@@ -52,24 +52,14 @@ public class PostController : ControllerBaseMVC
             return Redirect("~/Login");
         }
         var post = await Mediator.Send(new GetPostByIdQueries() { Id = postId });
-        var interactedPost = post.InteractWithPosts?.FirstOrDefault(i => i.UserAccountId == user.Id);
-        if (interactedPost != null)
-        {
-            if (interactedPost.InteractPostStatus == InteractPostStatus.Create)
-            {
-                ViewBag.interactedPostStatus = "Create";
-            }
-            else if (interactedPost.InteractPostStatus == InteractPostStatus.Like)
-            {
-                ViewBag.interactedPostStatus = "Like";
-            }
-            else
-            {
-                ViewBag.interactedPostStatus = "Dislike";
-            }
-        }
         var listComment = await Mediator.Send(new GetCommentByPostIdQueries() { PostId = postId, Page = 1, Size = 100 });
         ViewBag.listComment = listComment;
+
+        if(description != null)
+        {
+            string returnUrl = "~/Post?postId=" + postId;
+            return Redirect(returnUrl);
+        }
         return View(post);
     }
 

@@ -53,6 +53,30 @@ public class CustomerController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
+    [HttpGet]
+    public async Task<IActionResult> Index(string? userId)
+    {
+        try
+        {
+
+            if(userId == null)
+            {
+                var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+                var result = Mediator.Send(new GetCustomerAccountByUserIdQueries() { UserAccountId = user.Id }).Result;
+                return View(result);
+            }
+            else
+            {
+                var result = Mediator.Send(new GetCustomerAccountByUserIdQueries() { UserAccountId = userId }).Result;
+                return View(result);
+            }
+            
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
     public async Task<IActionResult> PostList()
     {
         try
