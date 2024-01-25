@@ -15,7 +15,7 @@ public class Post : BaseAuditableEntity
     public virtual UserAccount? UserAccount { get; set; }*/
     [ForeignKey("Post")]
     public Guid Id { get; set; }
-    public string PostTitle { get; set; }
+    public string? PostTitle { get; set; }
     public string PostBody { get; set; }
     public string? PostImagesUrl { get; set; }
     public EmotionalStatus? EmotionalStatus { get; set; }    
