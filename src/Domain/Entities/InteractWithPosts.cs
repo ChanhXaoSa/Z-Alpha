@@ -11,7 +11,7 @@ public class InteractWithPosts : BaseAuditableEntity
 {
     [ForeignKey("UserAccount")]
     public string UserAccountId { get; set; }
-    public virtual UserAccount UserAccount { get; set; }
+    public virtual UserAccount? UserAccount { get; set; }
     [ForeignKey("Post")]
     public Guid PostId { get; set; }
     public virtual Post Post { get; set; }

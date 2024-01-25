@@ -19,7 +19,7 @@ using ZAlpha.Infrastructure.Persistence;
 
 namespace WebUI.Controllers.MVC;
 
-
+//[Authorize]
 public class HomeController : ControllerBaseMVC
 {
     private readonly IIdentityService _identityService;

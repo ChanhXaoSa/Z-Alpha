@@ -13,6 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using System.Transactions;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Facebook;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -67,21 +70,45 @@ public static class ConfigureServices
             options.Cookie.IsEssential = true;
             options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
             options.Cookie.SameSite = SameSiteMode.Lax;
-        }).AddGoogle(googleOptions =>
+        }).AddGoogle(GoogleDefaults.AuthenticationScheme , googleOptions =>
         {
             googleOptions.ClientId = "577296753487-9mrj2rur4m3glod7l5o1ljfvr9aj1bec.apps.googleusercontent.com";
             googleOptions.ClientSecret = "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";
+
             googleOptions.AccessDeniedPath = "/Forbidden/";
-            googleOptions.ReturnUrlParameter = "RedirectUrl";
+            googleOptions.ReturnUrlParameter = "redirectUrl";
             googleOptions.SaveTokens = true;
 
             googleOptions.SignInScheme = IdentityConstants.ExternalScheme;
 
             googleOptions.Events.OnCreatingTicket = OnCreatingTicket;
+        }).AddFacebook(FacebookDefaults.AuthenticationScheme , option =>
+        {
+            option.AppId = "731092935665884";
+            option.AppSecret = "a963603584803d49d9564adc914727aa";
+            option.AccessDeniedPath = "/Forbidden/";
+            option.ReturnUrlParameter = "redirectUrl";
+            option.SaveTokens = true;
+
+            option.SignInScheme = IdentityConstants.ExternalScheme;
+            option.Events.OnCreatingTicket = OnCreatingTicket;
         });
 
         services.AddAuthorization(options =>
-            options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));
+        {
+            options.DefaultPolicy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+
+            options.AddPolicy("admin", policy => policy
+                .Combine(options.DefaultPolicy)
+                .RequireRole("Administrator")
+                .Build());
+            options.AddPolicy("customer", policy => policy
+                .Combine(options.DefaultPolicy)
+                .RequireRole("Customer")
+                .Build());
+        });
 
         return services;
     }
@@ -95,11 +122,12 @@ public static class ConfigureServices
 
                 var email = ctx.Principal.Claims.First(x => x.Type == ClaimTypes.Email).Value;
 
-                var isUserExisted = await manager.FindByEmailAsync(email) != null;
+                var isUserExisted = await manager.FindByNameAsync(email) != null;
                 if (isUserExisted) return;
 
                 var user = new UserAccount();
-                user.FirstName = ctx.Principal.Claims.First(x => x.Type == ClaimTypes.Name).Value;
+                user.FirstName = ctx.Principal.FindFirstValue(ClaimTypes.GivenName);
+                user.LastName = ctx.Principal.FindFirstValue(ClaimTypes.Surname);
                 user.Email = user.UserName = email;
 
                 var result = await manager.CreateAsync(user);

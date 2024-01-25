@@ -70,7 +70,7 @@
                 <h2 class="form-box-title">Account Login</h2>
                 <!-- /FORM BOX TITLE -->
                 <!-- FORM -->
-                <form class="form" method="post" action="/login">
+                <form class="form" method="post" action="/login?redirectUrl=@ViewBag.RedirectUrl">
                     @if (ViewBag.error != null)
                     {
                         <div class="mb-3" style="word-wrap: break-word; word-break: break-word; display: block; width: inherit; font-size:14px;">
@@ -154,7 +154,7 @@
                 <!-- SOCIAL LINKS -->
                 <div class="social-links">
                     <!-- SOCIAL LINK -->
-                    <a class="social-link facebook" href="#">
+                    <a class="social-link facebook" href="login/facebook">
                         <!-- ICON FACEBOOK -->
                         <svg class="icon-facebook">
                             <use xlink:href="#svg-facebook"></use>
@@ -163,7 +163,7 @@
                     </a>
                     <!-- /SOCIAL LINK -->
                     <!-- SOCIAL LINK -->
-                    <a class="social-link google" href="#">
+                    <a class="social-link twitter" href="login/google">
                         <!-- ICON TWITTER -->
                         <svg class="icon-google">
                             <use xlink:href="#svg-google"></use>
