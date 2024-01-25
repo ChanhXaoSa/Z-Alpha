@@ -337,7 +337,7 @@
             </div>
             <!-- /SIMPLE TAB ITEMS -->
             <!-------------------------------------------------------------------------------------------------------------------------------------->
-            <!--Dòng for render-->
+            <!---------------Dòng for render----------------->
             <!-------------------------------------------------------------------------------------------------------------------------------------->
             @foreach (var item in Model.Items)
             {
@@ -387,7 +387,7 @@
                             <!-- USER STATUS -->
                             <div class="user-status">
                                 <!-- USER STATUS AVATAR -->
-                                <a class="user-status-avatar" href="profile-timeline.html">
+                                <a class="user-status-avatar">
                                     <!-- USER AVATAR -->
                                     <div class="user-avatar small no-outline">
                                         <!-- USER AVATAR CONTENT -->
@@ -397,7 +397,7 @@
                                             @{
                                                 var imgUserPostUrl = item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create).UserAccount.AvatarUrl;
                                             }
-                                            @if (imgUserPostUrl != null)
+                                            @if (imgUserPostUrl != null && item.AnonymousStatus == ZAlpha.Domain.Enums.AnonymousStatus.UnActive)
                                             {
                                                 <!-- HEXAGON -->
                                                 <div class="hexagon-image-30-32"
@@ -436,14 +436,25 @@
                                 <!-- USER STATUS TITLE -->
                                 <p class="user-status-title medium">
                                     @{
-
-
                                         var linkUser = "Route/InfomationDetail?userId=" + item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.Id;
+                                        if (item.AnonymousStatus == ZAlpha.Domain.Enums.AnonymousStatus.Active)
+                                        {
+                                            linkUser = "#";
+                                        }
                                     }
-                                    <a class="bold" href="@linkUser">
-                                        @item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.FirstName
-                                        @item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.LastName
-                                    </a>
+                                    @if (item.AnonymousStatus == ZAlpha.Domain.Enums.AnonymousStatus.Active)
+                                    {
+                                        <a class="bold">
+                                            Ẩn danh
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="bold" href="@linkUser">
+                                            @item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.FirstName
+                                            @item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.LastName
+                                        </a>
+                                    }                                   
                                 </p>
                                 <!-- /USER STATUS TITLE -->
                                 <!-- USER STATUS TEXT -->

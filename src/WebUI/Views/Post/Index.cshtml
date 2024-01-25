@@ -247,7 +247,7 @@
                         <!-- USER STATUS -->
                         <div class="user-status">
                             <!-- USER STATUS AVATAR -->
-                            <a class="user-status-avatar" href="#">
+                            <a class="user-status-avatar">
                                 <!-- USER AVATAR -->
                                 <div class="user-avatar small no-outline">
                                     <!-- USER AVATAR CONTENT -->
@@ -292,10 +292,19 @@
                                 @{
                                     var linkUser = "Route/InfomationDetail?userId=" + Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create)?.UserAccount.Id;
                                 }
-                                <a class="bold" href="@linkUser">
-                                    @Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.FirstName
-                                    @Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.LastName
-                                </a>
+                                @if (Model.AnonymousStatus == ZAlpha.Domain.Enums.AnonymousStatus.Active)
+                                {
+                                    <a class="bold">
+                                        Ẩn danh
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="bold" href="@linkUser">
+                                        @Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.FirstName
+                                        @Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.LastName
+                                    </a>
+                                }
                             </p>
                             <!-- /USER STATUS TITLE -->
                             <!-- USER STATUS TEXT -->
