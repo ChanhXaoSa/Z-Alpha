@@ -385,6 +385,7 @@ public class AdminController : ControllerBaseMVC
     {
         try
         {
+            
             //var isDeleted = Mediator.Send(new UpdateCommentCommands { Id = commentId }).Result;
             //return isDeleted ? Json("Deleted") : (IActionResult)Json("some thing went wrong ...");
         }

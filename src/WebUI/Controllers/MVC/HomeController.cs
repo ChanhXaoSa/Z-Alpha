@@ -15,6 +15,7 @@ using ZAlpha.Application.PostTag.Commands.CreatePostTag;
 using Microsoft.AspNetCore.Identity;
 using ZAlpha.Domain.Identity;
 using Microsoft.AspNetCore.Http;
+using ZAlpha.Infrastructure.Persistence;
 
 namespace WebUI.Controllers.MVC;
 
@@ -26,6 +27,7 @@ public class HomeController : ControllerBaseMVC
     private readonly UserManager<UserAccount> _userManager;
     private readonly SignInManager<UserAccount> _signInManager;
     private readonly IWebHostEnvironment _hostingEnvironment;
+    private readonly ApplicationDbContext _applicationDbContext;
 
     public HomeController(IIdentityService identityService, UserManager<UserAccount> userManager, SignInManager<UserAccount> signInManager, IWebHostEnvironment hostingEnvironment , IToastNotification notification)
     {
@@ -97,10 +99,10 @@ public class HomeController : ControllerBaseMVC
     }
 
     [HttpPost]
-    public async Task<IActionResult> NewPost(string postBody)
+    public async Task<IActionResult> NewPost(string postBody, EmotionalStatus emostatus, IFormFile file, string checkboxIds, int isAnomymous)
     {
-        string postTitle = null; EmotionalStatus emostatus = 0; IFormFile file = null; IFormCollection formCollection = null;
-
+        //string postTitle = null; EmotionalStatus emostatus = 0; IFormFile file = null; IFormCollection formCollection = null;
+        string postTitle = null;
         try
         {  
             if (postBody == null) return Json("fail;");
@@ -112,18 +114,22 @@ public class HomeController : ControllerBaseMVC
                 return Json("not file Image");
             else
                 postImgUrl = SaveFileImage(file);
+            AnonymousStatus isAno = AnonymousStatus.UnActive;
+            if (isAnomymous == 1) isAno = AnonymousStatus.Active;
+            
             // tao postID
-            var postId = Mediator.Send(new CreatePostCommands { PostDescription = postBody, PostImgUrl = postImgUrl, PostTitle = postTitle, emotionalStatus = emostatus }).Result;
+            var postId = Mediator.Send(new CreatePostCommands { PostDescription = postBody, PostImgUrl = postImgUrl, PostTitle = postTitle, emotionalStatus = emostatus, anonymousStatus = isAno }).Result;
             // get UserId
             var userId = await _identityService.GetUserByNameAsync(User.Identity.Name);
             // Tao interacId
             var interactId = await Mediator.Send(new CreateInteractWithPostCommand() { UserAccountId = userId.Id, PostId = postId, InteractPostStatus = InteractPostStatus.Create });
 
-            List<string> selectedValues = formCollection["SelectedValues"].ToList();
-            foreach (var item in selectedValues)
+            var tagIds = checkboxIds.Split('_');
+            tagIds = tagIds.SkipLast(1).ToArray();
+            tagIds.ToList().ForEach(t => Guid.Parse(t));
+            for (int i = 0; i < tagIds.Length; i++)
             {
-                Guid tagId = Guid.Parse(item);
-                var postTagId = await Mediator.Send(new CreatePostTagCommands() { postID = postId, TagID = tagId });
+                var postTagId = await Mediator.Send(new CreatePostTagCommands() { postID = postId, TagID = Guid.Parse(tagIds[i]) });
             }
             _notification.AddSuccessToastMessage("Đăng thành công");
             return Json(new { success = true, message = "Đăng thành công" });        

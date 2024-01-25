@@ -13,6 +13,7 @@ public record UpdateCommentCommands : IRequest<Guid>
 {
     public Guid Id { get; init; }
     //public IList<UserInteractComment>? UserInteractComments { get; private set; }
+    public string Description { get; init; }
 }
 
 public class UpdateCommentCommandsHandler : IRequestHandler<UpdateCommentCommands, Guid>

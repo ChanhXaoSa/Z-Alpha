@@ -19,7 +19,7 @@ public class Post : BaseAuditableEntity
     public string PostBody { get; set; }
     public string? PostImagesUrl { get; set; }
     public EmotionalStatus? EmotionalStatus { get; set; }    
-    public AnonymousStatus AnonymousStatus { get; set; }
+    public AnonymousStatus? AnonymousStatus { get; set; }
     public IList<PostTag>? PostTags { get;  set; }
     public IList<InteractWithPosts>? InteractWithPosts { get;  set; }
     public IList<WishListPost>? WishListPosts { get;  set; }

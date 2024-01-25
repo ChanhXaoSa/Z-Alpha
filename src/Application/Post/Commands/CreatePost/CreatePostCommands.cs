@@ -15,6 +15,7 @@ public class CreatePostCommands : IRequest<Guid>
     public string PostDescription { get; set; }
     public string? PostImgUrl { get; set; }
     public EmotionalStatus? emotionalStatus { get; set; }
+    public AnonymousStatus? anonymousStatus { get; set; }
     
 }
 public class CreatePostCommandsHandler : IRequestHandler<CreatePostCommands, Guid>
@@ -35,6 +36,7 @@ public class CreatePostCommandsHandler : IRequestHandler<CreatePostCommands, Gui
             PostBody = request.PostDescription,
             PostImagesUrl = request.PostImgUrl,
             EmotionalStatus = request.emotionalStatus,
+            AnonymousStatus = request.anonymousStatus,
         };
 
         _context.Get<Domain.Entities.Post>().Add(post);

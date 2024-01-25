@@ -203,14 +203,14 @@
                 <!-- QUICK POST BODY -->
                 <div class="quick-post-body">
                     <!-- FORM -->
-                    <form class="form" >
+                    <form class="form">
                         <!-- FORM ROW -->
                         <div class="form-row">
                             <!-- FORM ITEM -->
                             <div class="form-item">
                                 <!-- FORM TEXTAREA -->
                                 <div class="form-textarea">
-                                    <textarea id="quick-post-text" name="postBody" placeholder="Chào @User.Identity.Name! Chia sẻ vấn đề với mọi người nào ..."></textarea>
+                                    <textarea id="postbody" placeholder="Chà @User.Identity.Name! Chia sẻ vấn đề với mọi người nào ..."></textarea>
                                     <!-- FORM TEXTAREA LIMIT TEXT -->
                                     @* <p class="form-textarea-limit-text">998/1000</p> *@
                                     <!-- /FORM TEXTAREA LIMIT TEXT -->
@@ -224,12 +224,11 @@
                         <div class="form-row">
                             <div class="grid grid-6-6 mobile-prefer-content">
                                 <div class="grid-column">
-
                                     <div style="margin:1rem 0 0.3rem 0;">
                                         <span style="color: black; font-size: 18px; font-family: Inter; font-weight: 600; word-wrap: break-word">Hãy đánh giá tình trạng tâm lí hiện tại của bản thân</span>
                                     </div>
                                     <div style="display:flex; justify-content: center;align-content: center;">
-                                        <select class="comboBoxNewPost" name="emostatus" id="emostatus">
+                                        <select class="comboBoxNewPost" id="emostatus">
                                             <option value="emotionalStatusList[0]">Tình trạng của bạn:</option>
                                             @{
                                                 emotionalStatusList.Remove(emotionalStatusList[0]);
@@ -243,21 +242,24 @@
                                 </div>
                                 <div class="grid-column">
                                     <div style="margin:1rem 0 0.3rem 0;">
+                                        @* <label for="new-post-file" class="new-post-footer" name="fileImg">
+
+                                        </label> *@
+                                        <input id="newpostfile" type="file" accept="image/jpeg" />
+
                                         <span style="color: black; font-size: 18px; font-family: Inter; font-weight: 600; word-wrap: break-word">Chọn thẻ:</span>
-
                                     </div>
-
                                     <div class="auto-group-brvk-CQM" style="overflow-y: scroll; height: 250px; font-size:1.1rem">
-                                        @foreach (var item in tags.Items)
+                                        @for (int i = 0; i < tags.Items.Count; i++)
                                         {
                                             <div class="auto-group-v2tf-14H" style="display: flex; align-items: center;">
-                                                <input class="auto-group-czch-9RP" type="checkbox" name="SelectedValues" value="@item.Id" />
-                                                <span style="margin-left: 10px;">@item.TagName</span>
+                                                <input class="auto-group-czch-9RP" id="checkboxtag_@i" type="checkbox" value="@tags.Items.ToArray()[i].Id" />
+                                                <span style="margin-left: 10px;">@tags.Items.ToArray()[i].TagName</span>
                                             </div>
                                         }
                                     </div>
                                 </div>
-                            </div>                           
+                            </div>
 
                         </div>
                         <!----------------------------------------------------------------->
@@ -286,7 +288,9 @@
                         <p class="button small void">Huỷ</p>
                         <!-- /BUTTON -->
                         <!-- BUTTON -->
-                        <p class="button small secondary" onclick="NewPost()">Đăng</p>
+                        <p class="button small secondary" onclick="NewPost(0)">Đăng</p>
+
+                        <p class="button small secondary" onclick="NewPost(1)">Đăng Ảnh Danh</p>
                         <!-- /BUTTON -->
                     </div>
                     <!-- /QUICK POST FOOTER ACTIONS -->
@@ -356,25 +360,25 @@
                                 <!-- /POST SETTINGS ICON -->
                             </div>
                             <!-- /POST SETTINGS -->
-                            @if (item.InteractWithPosts.FirstOrDefault(r => r.InteractPostStatus
-                           == ZAlpha.Domain.Enums.InteractPostStatus.Create).UserAccount.UserName
-                           == User.Identity.Name)
-                            {
-                                <!-- SIMPLE DROPDOWN -->
-                                <div class="simple-dropdown widget-box-post-settings-dropdown">
-                                    <p class="simple-dropdown-link">Edit Post</p>
-                                    <p class="simple-dropdown-link">Delete Post</p>
-                                </div>
-                                <!-- /SIMPLE DROPDOWN -->
-                            }
+                            @* @if (item.InteractWithPosts.FirstOrDefault(r => r.InteractPostStatus
+                        == ZAlpha.Domain.Enums.InteractPostStatus.Create).UserAccount.UserName
+                        == User.Identity.Name)
+                        {
+                        <!-- SIMPLE DROPDOWN -->
+                        <div class="simple-dropdown widget-box-post-settings-dropdown">
+                        <p class="simple-dropdown-link">Edit Post</p>
+                        <p class="simple-dropdown-link">Delete Post</p>
+                        </div>
+                        <!-- /SIMPLE DROPDOWN -->
+                        } *@
                             else
                             {
-                                <!-- SIMPLE DROPDOWN -->
-                                <div class="simple-dropdown widget-box-post-settings-dropdown">
-                                    <p class="simple-dropdown-link">Report Post</p>
-                                    <p class="simple-dropdown-link">Report Author</p>
-                                </div>
-                                <!-- /SIMPLE DROPDOWN -->
+                            <!-- SIMPLE DROPDOWN -->
+                            <div class="simple-dropdown widget-box-post-settings-dropdown">
+                                <p class="simple-dropdown-link">Report Post</p>
+                                <p class="simple-dropdown-link">Report Author</p>
+                            </div>
+                            <!-- /SIMPLE DROPDOWN -->
                             }
                         </div>
                         <!-- /POST SETTINGS WRAP -->
@@ -640,7 +644,7 @@
                                         <!-- META LINE TEXT -->
                                         <p class="meta-line-text">
                                             @item.InteractWithPosts?.Where(i =>
-                                                     i.InteractPostStatus != ZAlpha.Domain.Enums.InteractPostStatus.Create).Count()
+                                        i.InteractPostStatus != ZAlpha.Domain.Enums.InteractPostStatus.Create).Count()
                                         </p>
                                         <!-- /META LINE TEXT -->
                                     </div>
@@ -1201,23 +1205,35 @@
             }
         });
     }
-    function NewPost() {
-        var postBody = document.getElementsByName("postBody")[0].value;
+    function NewPost(isAnomymous) {
+        var postbody = $("#postbody").val();
+        var emostatus = $("#emostatus").find(":selected").val();       
+
+        var ids = "";
+        var funtionCount = @tags.Items.Count;
+        for (var i = 0; i < parseInt(funtionCount, 10); i++) {
+            if ($("#checkboxtag_" + i).is(":checked")) {
+                ids += $("#checkboxtag_" + i).val() + "_";
+            }
+        }
+        var formData = new FormData();
+        formData.append("postBody", postbody);
+        formData.append("emostatus", emostatus);
+        formData.append("file", $("#newpostfile")[0].files[0]);
+        formData.append("checkboxIds", ids);
+        formData.append("isAnomymous", isAnomymous);
+
         $.ajax({
             type: "POST",
             url: "@Url.Action("NewPost", "Home")",
-            data: { postBody: postBody },
-            success: function newPost(result) {
-                if (result.success) {
-                    //alert(result.message);
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                setTimeout(function () {
                     window.location.reload();
-                } else {
-                    //alert(result.message);
-                    window.location.href = '/home';
-                }
-            },
-            error: function () {
-                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+                }, 1000);
+                alert(data.message);
             }
         });
     }
