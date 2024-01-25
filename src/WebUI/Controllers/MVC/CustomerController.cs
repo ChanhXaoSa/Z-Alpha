@@ -107,7 +107,7 @@ public class CustomerController : ControllerBaseMVC
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> NewPost(string postbody, string postTitle, EmotionalStatus emostatus, IFormFile file, IFormCollection formCollection)
+    public async Task<IActionResult> NewPost(string postbody, EmotionalStatus emostatus, IFormFile file, IFormCollection formCollection)
     {
         try
         {
@@ -117,7 +117,7 @@ public class CustomerController : ControllerBaseMVC
             ViewBag.tags = tags;
             ViewBag.emotionalStatusList = emotionalStatusList;
             //
-            if (postbody == null || postTitle == null) return Json("fail;");
+            if (postbody == null) return Json("fail;");
             string postImgUrl = "";
             //// check file co phai la img khong || co file hay ko
             if (file == null)
@@ -127,7 +127,7 @@ public class CustomerController : ControllerBaseMVC
             else
                 postImgUrl = SaveFileImage(file);
             // tao postID
-            var postId = Mediator.Send(new CreatePostCommands { PostDescription = postbody, PostImgUrl = postImgUrl, PostTitle = postTitle, emotionalStatus = emostatus }).Result;
+            var postId = Mediator.Send(new CreatePostCommands { PostDescription = postbody, PostImgUrl = postImgUrl, emotionalStatus = emostatus }).Result;
             // get UserId
             var userId = await _identityService.GetUserByNameAsync(User.Identity.Name);
             // Tao interacId
