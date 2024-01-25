@@ -289,7 +289,10 @@
                             <!-- /USER STATUS AVATAR -->
                             <!-- USER STATUS TITLE -->
                             <p class="user-status-title medium">
-                                <a class="bold" href="profile-timeline.html">
+                                @{
+                                    var linkUser = "Route/InfomationDetail?userId=" + Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create)?.UserAccount.Id;
+                                }
+                                <a class="bold" href="@linkUser">
                                     @Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.FirstName
                                     @Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.LastName
                                 </a>
@@ -820,7 +823,11 @@
                                 <!-- /USER STATUS ACTIVITY -->
                                 <!-- USER STATUS TITLE -->
                                 <p class="user-status-title">
-                                    <a class="bold" href="profile-timeline.html">
+
+                                    @{
+                                        var linkUserComment = "Route/InfomationDetail?userId=" + comment.InteractWithComments?.FirstOrDefault(o => o.InteractCommentStatus == InteractCommentStatus.Create)?.UserAccount.Id;
+                                    }
+                                    <a class="bold" href="@linkUserComment">
                                         @comment.InteractWithComments?.FirstOrDefault(o => o.InteractCommentStatus == InteractCommentStatus.Create)?.UserAccount.FirstName
                                         @comment.InteractWithComments?.FirstOrDefault(o => o.InteractCommentStatus == InteractCommentStatus.Create)?.UserAccount.LastName
                                     </a>

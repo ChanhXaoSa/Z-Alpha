@@ -62,4 +62,23 @@ public class RouteController : Controller
         }
         return RedirectToAction("Index", "Home");
     }
+    public async Task<IActionResult> InfomationDetail(string userId)
+    {
+       
+        var isCustomer = await _identityService.IsInRoleAsync(userId, AppRole.Customer);
+        if (isCustomer)
+        {
+            return Redirect("~/Customer?userId=" + userId);
+        }
+        else
+        {
+            var isSpychologist = await _identityService.IsInRoleAsync(userId, AppRole.Psychologist);
+            if (isSpychologist)
+            {
+                return Redirect("~/Psychologist?userId=" + userId);
+            }
+        }
+        
+        return RedirectToAction("Index", "Home");
+    }
 }

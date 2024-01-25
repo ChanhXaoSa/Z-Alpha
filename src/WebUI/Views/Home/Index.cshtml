@@ -435,7 +435,12 @@
                                 <!-- /USER STATUS AVATAR -->
                                 <!-- USER STATUS TITLE -->
                                 <p class="user-status-title medium">
-                                    <a class="bold" href="profile-timeline.html">
+                                    @{
+
+
+                                        var linkUser = "Route/InfomationDetail?userId=" + item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.Id;
+                                    }
+                                    <a class="bold" href="@linkUser">
                                         @item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.FirstName
                                         @item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.LastName
                                     </a>
