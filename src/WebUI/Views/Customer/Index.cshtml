@@ -205,9 +205,24 @@
                     <!-- /USER AVATAR BORDER -->
                     <!-- USER AVATAR CONTENT -->
                     <div class="user-avatar-content">
-                        <!-- HEXAGON -->
-                        <div class="hexagon-image-100-110" data-src="img/avatar/01.jpg" style="width: 100px; height: 110px; position: relative;"><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
-                        <!-- /HEXAGON -->
+
+
+                        @{
+                            var imgUserPostUrl = Model.UserAccount.AvatarUrl;
+                        }
+                        @if (imgUserPostUrl != null)
+                        {
+                            <!-- HEXAGON -->
+                            <div class="hexagon-image-100-110" data-src="@imgUserPostUrl" style="width: 100px; height: 110px; position: relative;"><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                            <!-- /HEXAGON -->
+                        }
+                        else
+                        {
+                            <!-- HEXAGON -->
+                            <div class="hexagon-image-100-110" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" style="width: 100px; height: 110px; position: relative;"><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                            <!-- /HEXAGON -->
+                        }
+
                     </div>
                     <!-- /USER AVATAR CONTENT -->
                     <!-- USER AVATAR PROGRESS -->
@@ -224,27 +239,7 @@
                         <!-- /HEXAGON -->
                     </div>
                     <!-- /USER AVATAR PROGRESS BORDER -->
-                    <!-- USER AVATAR BADGE -->
-                    <div class="user-avatar-badge">
-                        <!-- USER AVATAR BADGE BORDER -->
-                        <div class="user-avatar-badge-border">
-                            <!-- HEXAGON -->
-                            <div class="hexagon-40-44" style="width: 40px; height: 44px; position: relative;"><canvas width="40" height="44" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
-                            <!-- /HEXAGON -->
-                        </div>
-                        <!-- /USER AVATAR BADGE BORDER -->
-                        <!-- USER AVATAR BADGE CONTENT -->
-                        <div class="user-avatar-badge-content">
-                            <!-- HEXAGON -->
-                            <div class="hexagon-dark-32-34" style="width: 32px; height: 34px; position: relative;"><canvas width="32" height="34" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
-                            <!-- /HEXAGON -->
-                        </div>
-                        <!-- /USER AVATAR BADGE CONTENT -->
-                        <!-- USER AVATAR BADGE TEXT -->
-                        <p class="user-avatar-badge-text">24</p>
-                        <!-- /USER AVATAR BADGE TEXT -->
-                    </div>
-                    <!-- /USER AVATAR BADGE -->
+                   
                 </a>
                 <!-- /USER SHORT DESCRIPTION AVATAR -->
                 <!-- USER SHORT DESCRIPTION AVATAR -->
@@ -432,7 +427,7 @@
                 <!-- USER STAT -->
                 <div class="user-stat big">
                     <!-- USER STAT TITLE -->
-                    <p class="user-stat-title">930</p>
+                    <p class="user-stat-title">@Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create && o.IsDeleted == false).Count()</p>
                     <!-- /USER STAT TITLE -->
                     <!-- USER STAT TEXT -->
                     <p class="user-stat-text">posts</p>
@@ -442,24 +437,15 @@
                 <!-- USER STAT -->
                 <div class="user-stat big">
                     <!-- USER STAT TITLE -->
-                    <p class="user-stat-title">82</p>
+                    <p class="user-stat-title">0</p>
                     <!-- /USER STAT TITLE -->
                     <!-- USER STAT TEXT -->
                     <p class="user-stat-text">friends</p>
                     <!-- /USER STAT TEXT -->
                 </div>
                 <!-- /USER STAT -->
-                <!-- USER STAT -->
-                <div class="user-stat big">
-                    <!-- USER STAT TITLE -->
-                    <p class="user-stat-title">5.7k</p>
-                    <!-- /USER STAT TITLE -->
-                    <!-- USER STAT TEXT -->
-                    <p class="user-stat-text">visits</p>
-                    <!-- /USER STAT TEXT -->
-                </div>
-                <!-- /USER STAT -->
-                <!-- USER STAT -->
+                
+               @*  <!-- USER STAT -->
                 <div class="user-stat big">
                     <!-- USER STAT IMAGE -->
                     <img class="user-stat-image" src="img/flag/usa.png" alt="flag-usa">
@@ -467,7 +453,7 @@
                     <!-- USER STAT TEXT -->
                     <p class="user-stat-text">usa</p>
                     <!-- /USER STAT TEXT -->
-                </div>
+                </div> *@
                 <!-- /USER STAT -->
             </div>
             <!-- /USER STATS -->
