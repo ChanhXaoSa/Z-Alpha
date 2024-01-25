@@ -11,10 +11,10 @@ using ZAlpha.Domain.Enums;
 namespace ZAlpha.Application.Post.Commands.CreatePost;
 public class CreatePostCommands : IRequest<Guid>
 {
-    public string PostTitle { get; set; }
+    public string? PostTitle { get; set; }
     public string PostDescription { get; set; }
-    public string PostImgUrl { get; set; }
-    public EmotionalStatus emotionalStatus { get; set; }
+    public string? PostImgUrl { get; set; }
+    public EmotionalStatus? emotionalStatus { get; set; }
     
 }
 public class CreatePostCommandsHandler : IRequestHandler<CreatePostCommands, Guid>

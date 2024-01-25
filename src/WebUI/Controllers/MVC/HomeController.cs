@@ -10,6 +10,11 @@ using ZAlpha.Application.Post.Queries.GetPostBySearch;
 using Microsoft.AspNetCore.Authorization;
 using NToastNotify;
 using ZAlpha.Application.Tag.Queries.GetTag;
+using ZAlpha.Application.Post.Commands.CreatePost;
+using ZAlpha.Application.PostTag.Commands.CreatePostTag;
+using Microsoft.AspNetCore.Identity;
+using ZAlpha.Domain.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace WebUI.Controllers.MVC;
 
@@ -18,10 +23,16 @@ public class HomeController : ControllerBaseMVC
 {
     private readonly IIdentityService _identityService;
     private readonly IToastNotification _notification;
+    private readonly UserManager<UserAccount> _userManager;
+    private readonly SignInManager<UserAccount> _signInManager;
+    private readonly IWebHostEnvironment _hostingEnvironment;
 
-    public HomeController(IIdentityService identityService, IToastNotification notification)
+    public HomeController(IIdentityService identityService, UserManager<UserAccount> userManager, SignInManager<UserAccount> signInManager, IWebHostEnvironment hostingEnvironment , IToastNotification notification)
     {
         _identityService = identityService;
+        _userManager = userManager;
+        _signInManager = signInManager;
+        _hostingEnvironment = hostingEnvironment;
         _notification = notification;
     }
     public IActionResult index() 
@@ -84,4 +95,84 @@ public class HomeController : ControllerBaseMVC
             return Json(new { success = false, message = "Đăng nhập để lưu bài viết" });
         }
     }
+
+    [HttpPost]
+    public async Task<IActionResult> NewPost(string postBody)
+    {
+        string postTitle = null; EmotionalStatus emostatus = 0; IFormFile file = null; IFormCollection formCollection = null;
+
+        try
+        {  
+            if (postBody == null) return Json("fail;");
+            string postImgUrl = "";
+            //// check file co phai la img khong || co file hay ko
+            if (file == null)
+                postImgUrl = "";
+            else if (!(IsImageFile(file) && file.Length > 0))
+                return Json("not file Image");
+            else
+                postImgUrl = SaveFileImage(file);
+            // tao postID
+            var postId = Mediator.Send(new CreatePostCommands { PostDescription = postBody, PostImgUrl = postImgUrl, PostTitle = postTitle, emotionalStatus = emostatus }).Result;
+            // get UserId
+            var userId = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            // Tao interacId
+            var interactId = await Mediator.Send(new CreateInteractWithPostCommand() { UserAccountId = userId.Id, PostId = postId, InteractPostStatus = InteractPostStatus.Create });
+
+            List<string> selectedValues = formCollection["SelectedValues"].ToList();
+            foreach (var item in selectedValues)
+            {
+                Guid tagId = Guid.Parse(item);
+                var postTagId = await Mediator.Send(new CreatePostTagCommands() { postID = postId, TagID = tagId });
+            }
+            _notification.AddSuccessToastMessage("Đăng thành công");
+            return Json(new { success = true, message = "Đăng thành công" });        
+        }
+        catch (Exception ex)
+        {
+            _notification.AddWarningToastMessage("Đã có lỗi xảy ra");
+            return Json(new { success = false, message = "Đã có lỗi xảy ra" });
+            throw new Exception(ex.Message);
+        }
+
+    }
+
+    private bool IsImageFile(IFormFile file)
+    {
+        if (Path.GetExtension(file.FileName).ToLower() != ".jpg"
+            && Path.GetExtension(file.FileName).ToLower() != ".png"
+            && Path.GetExtension(file.FileName).ToLower() != ".gif"
+            && Path.GetExtension(file.FileName).ToLower() != ".jpeg")
+        {
+            return false;
+        }
+        return true;
+    }
+    private string SaveFileImage(IFormFile file)
+    {
+        string fileUrl = "";
+        var webRootPath = _hostingEnvironment.WebRootPath;
+        var uploadsFolder = Path.Combine(webRootPath, "uploads");
+
+        // Ensure the uploads folder exists, create if not
+        if (!Directory.Exists(uploadsFolder))
+        {
+            Directory.CreateDirectory(uploadsFolder);
+        }
+
+        // Generate a unique file name (you might want to use a GUID or something similar)
+        var uniqueFileName = $"{file.FileName}";
+
+        // Combine the uploads folder with the unique file name to get the full file path
+        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+        // Copy the file to the target location
+        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        {
+            file.CopyTo(fileStream);
+            fileUrl = Path.Combine("uploads", file.FileName);
+        }
+        return fileUrl;
+    }
+
 }
