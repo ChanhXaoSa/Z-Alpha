@@ -8,6 +8,7 @@
 @using ZAlpha.Application.Common.Models;
 @using ZAlpha.Application.Tag.Queries;
 @using ZAlpha.Application.Post.Queries.GetAllPost;
+@using ZAlpha.Application.Utils.FormatDate;
 @model ZAlpha.Application.Common.Models.PaginatedList<PostModel>
 @using Microsoft.AspNetCore.Mvc;
 @{
@@ -441,7 +442,7 @@
                                 </p>
                                 <!-- /USER STATUS TITLE -->
                                 <!-- USER STATUS TEXT -->
-                                <p class="user-status-text small">@item.Created</p>
+                                <p class="user-status-text small">@FormatDate.CalTimeBetweenTwoDate(item.Created)</p>
                                 <!-- /USER STATUS TEXT -->
                             </div>
                             <!-- /USER STATUS -->
