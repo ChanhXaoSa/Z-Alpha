@@ -334,18 +334,6 @@ public class AdminController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
-    public async Task<IActionResult> DeleteComment(Guid commentId)
-    {
-        try
-        {
-            var isDeleted = Mediator.Send(new DeleteCommentCommands { Id = commentId }).Result;
-            return isDeleted ? Json("Deleted") : (IActionResult)Json("some thing went wrong ...");
-        }
-        catch (Exception ex)
-        {
-            throw new Exception(ex.Message);
-        }
-    }
     public async Task<IActionResult> UpdateComment(Guid commentId)
     {
         try
@@ -360,4 +348,17 @@ public class AdminController : ControllerBaseMVC
         }
         return View();
     }
+    public async Task<IActionResult> DeleteComment(Guid commentId)
+    {
+        try
+        {
+            var isDeleted = Mediator.Send(new DeleteCommentCommands { Id = commentId }).Result;
+            return isDeleted ? Json("Deleted") : (IActionResult)Json("some thing went wrong ...");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    
 }
