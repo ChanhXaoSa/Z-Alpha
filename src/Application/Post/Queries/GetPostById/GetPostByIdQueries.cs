@@ -37,6 +37,7 @@ public class GetPostByIdQueriesHandler : IRequestHandler<GetPostByIdQueries, Get
         // get 
         var Post = _context.Get<Domain.Entities.Post>()
             .Where(x => x.IsDeleted == false && x.Id.Equals(request.Id))
+            .Include(o =>o.Comments)
             .Include(o => o.PostTags)
             .ThenInclude(o => o.Tag)
             .Include(o => o.InteractWithPosts)
