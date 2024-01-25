@@ -11,6 +11,8 @@ using ZAlpha.Application.Common.Models;
 using System.Text.RegularExpressions;
 using ZAlpha.Application.CustomerAccount.Commands.CreateCustomerAccount;
 using ZAlpha.Application.PsychologistAccount.Commands.CreatePsychologistAccount;
+using Microsoft.AspNetCore.Authentication.Facebook;
+using Microsoft.Identity.Client;
 
 namespace WebUI.Controllers.MVC;
 
@@ -32,8 +34,18 @@ public class LoginController : ControllerBaseMVC
     [ApiExplorerSettings(IgnoreApi = true)]
     [AllowAnonymous]
     [HttpGet("login")]
-    public IActionResult index()
+    public IActionResult index([FromQuery] string redirectUrl)
     {
+        if (redirectUrl != null)
+        {
+
+            ViewBag.RedirectUrl = redirectUrl;
+
+        }
+        else
+        {
+            ViewBag.RedirectUrl = "~/";
+        }
         if (_signInManager.IsSignedIn(User))
         {
             return RedirectToAction("Index", "Home");
@@ -75,7 +87,7 @@ public class LoginController : ControllerBaseMVC
     [ApiExplorerSettings(IgnoreApi = true)]
     [AllowAnonymous]
     [HttpGet("login/{provider}")]
-    public async Task<IActionResult> LoginExternal(string provider, [FromQuery] string redirectUrl)
+    public IActionResult ExternalLogin(string provider, [FromQuery] string redirectUrl)
     {
         if (!User.Identity.IsAuthenticated)
         {
@@ -87,6 +99,12 @@ public class LoginController : ControllerBaseMVC
                         var props = _signInManager.ConfigureExternalAuthenticationProperties("Google", returnUrl);
                         return new ChallengeResult("Google", props);
                     }
+                case FacebookDefaults.AuthenticationScheme or "facebook":
+                    {
+                        var returnUrl = Url.Action("ExternalLoginCallback", "Confirm", new { RedirectUrl = redirectUrl });
+                        var propeties = _signInManager.ConfigureExternalAuthenticationProperties("Facebook", returnUrl);
+                        return new ChallengeResult("Facebook", propeties);
+                    }
             }
 
             throw new Exception($"Provider {provider} not support");
@@ -94,56 +112,6 @@ public class LoginController : ControllerBaseMVC
         else
         {
             return RedirectToAction("Index", "Home");
-        }
-    }
-
-    [ApiExplorerSettings(IgnoreApi = true)]
-    [AllowAnonymous]
-    public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
-    {
-        if (remoteError != null)
-        {
-            ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
-            return RedirectToAction(nameof(Index));
-        }
-
-        var info = await _signInManager.GetExternalLoginInfoAsync();
-        if (info == null)
-        {
-            return RedirectToAction(nameof(Index));
-        }
-
-        // Kiểm tra xem người dùng đã đăng nhập hay chưa
-        var signInResult = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
-
-        if (signInResult.Succeeded)
-        {
-            return LocalRedirect(returnUrl);
-        }
-        else
-        {
-            // Nếu người dùng chưa đăng ký, tạo một tài khoản mới
-            var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-            var user = new UserAccount { UserName = email, Email = email };
-            var result = await _userManager.CreateAsync(user);
-
-            if (result.Succeeded)
-            {
-                result = await _userManager.AddLoginAsync(user, info);
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
-                }
-            }
-
-            // Xử lý lỗi nếu có
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
-
-            return RedirectToAction(nameof(Index));
         }
     }
 

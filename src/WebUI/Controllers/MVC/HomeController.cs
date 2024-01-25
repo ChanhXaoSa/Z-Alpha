@@ -13,7 +13,7 @@ using ZAlpha.Application.Tag.Queries.GetTag;
 
 namespace WebUI.Controllers.MVC;
 
-
+//[Authorize]
 public class HomeController : ControllerBaseMVC
 {
     private readonly IIdentityService _identityService;
