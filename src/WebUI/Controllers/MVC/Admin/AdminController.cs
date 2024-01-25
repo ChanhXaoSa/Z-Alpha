@@ -341,13 +341,13 @@ public class AdminController : ControllerBaseMVC
         }
     }
 
-    public async Task<IActionResult> UpdateTag(Guid tagId, Tag tag)
+    public async Task<IActionResult> UpdateTag(Guid tagId, string TagName)
     {
         try
         {
-            var result = Mediator.Send(new UpdateTagCommands { Id = tagId, TagName = tag.TagName}).Result;
+            var result = Mediator.Send(new UpdateTagCommands { Id = tagId, TagName = TagName}).Result;
             TagDatatable();
-            return View("./ManageTag/TagDatatable", result);
+            return View("./ManageTag/TagDatatable");
         }
         catch (Exception ex)
         {
