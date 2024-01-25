@@ -256,7 +256,7 @@
                                         @{
                                             var imgUserPostUrl = Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.AvatarUrl;
                                         }
-                                        @if (imgUserPostUrl != null)
+                                        @if (imgUserPostUrl != null && Model.AnonymousStatus == AnonymousStatus.UnActive)
                                         {
                                             <div class="hexagon-image-30-32" data-src="@imgUserPostUrl"></div>
                                         }
