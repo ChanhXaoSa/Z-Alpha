@@ -630,13 +630,15 @@
                                     <!-- /META LINE -->
                                 </div>
                                 <!-- /CONTENT ACTION -->
+
+
                                 <!-- CONTENT ACTION -->
                                 <div class="content-action">
                                     <!-- META LINE -->
                                     <div class="meta-line">
                                         <!-- META LINE LINK -->
                                         <a href="~/Post?postId=@item.Id">
-                                            <p class="meta-line-link">@item.Comments?.Count bình luận</p>
+                                            <p class="meta-line-link">@item.Comments?.Where(w => w.IsDeleted == false).Count() bình luận</p>
                                         </a>
                                         <!-- /META LINE LINK -->
                                     </div>
