@@ -9,7 +9,11 @@ using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
 using ZAlpha.Application.ManagerAccount.Queries.GetAllManagerAccount;
 using ZAlpha.Application.Post.Queries.GetAllPost;
 using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
+using ZAlpha.Application.Tag.Commands.CreateTag;
+using ZAlpha.Application.Tag.Commands.DeleteTag;
+using ZAlpha.Application.Tag.Commands.UpdateTag;
 using ZAlpha.Application.Tag.Queries.GetTag;
+using ZAlpha.Domain.Entities;
 using ZAlpha.Domain.Identity;
 
 namespace WebUI.Controllers.MVC.Admin;
@@ -322,6 +326,49 @@ public class AdminController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
+
+    public async Task<IActionResult> CreateTag(string TagName)
+    {
+        try
+        {
+            var result = Mediator.Send(new CreateTagCommands { TagName = TagName }).Result;
+            TagDatatable();
+            return View("./ManageTag/TagDatatable");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public async Task<IActionResult> UpdateTag(Guid tagId, Tag tag)
+    {
+        try
+        {
+            var result = Mediator.Send(new UpdateTagCommands { Id = tagId, TagName = tag.TagName}).Result;
+            TagDatatable();
+            return View("./ManageTag/TagDatatable", result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public async Task<IActionResult> DeleteTag(Guid tagId)
+    {
+        try
+        {
+            var isDeleted = Mediator.Send(new DeleteTagCommands { Id = tagId }).Result;
+            return isDeleted ? Json("Deleted") : (IActionResult)Json("some thing went wrong ...");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    // Coment DataTable
     public async Task<IActionResult> CommentDatatable()
     {
         try

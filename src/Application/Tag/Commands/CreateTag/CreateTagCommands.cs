@@ -10,7 +10,7 @@ using ZAlpha.Application.Common.Interfaces;
 namespace ZAlpha.Application.Tag.Commands.CreateTag;
 public class CreateTagCommands : IRequest<Guid>
 {
-    public string? TagName { get; set; }
+    public string TagName { get; set; }
 }
 
 public class CreateTagCommandsHandler : IRequestHandler<CreateTagCommands, Guid>
