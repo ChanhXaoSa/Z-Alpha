@@ -391,10 +391,25 @@
                                     <div class="user-avatar small no-outline">
                                         <!-- USER AVATAR CONTENT -->
                                         <div class="user-avatar-content">
-                                            <!-- HEXAGON -->
-                                            <div class="hexagon-image-30-32"
-                                                 data-src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t1.6435-9/191815536_1305384429858113_8269960277638413432_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=7a1959&_nc_ohc=gwmw3i4ssq4AX89l7nM&_nc_ht=scontent.fsgn5-3.fna&oh=00_AfBBdaYdhMd37qfcnR9dkrenPGExGLHkzy8Vvli7ZFwnEA&oe=65D73E08"></div>
-                                            <!-- /HEXAGON -->
+
+
+                                            @{
+                                                var imgUserPostUrl = item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create).UserAccount.AvatarUrl;
+                                            }
+                                            @if (imgUserPostUrl != null)
+                                            {
+                                                <!-- HEXAGON -->
+                                                <div class="hexagon-image-30-32"
+                                                     data-src="@imgUserPostUrl"></div>
+                                                <!-- /HEXAGON -->
+                                            }
+                                            else
+                                            {
+                                                <!-- HEXAGON -->
+                                                <div class="hexagon-image-30-32"
+                                                     data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
+                                                <!-- /HEXAGON -->
+                                            }
                                         </div>
                                         <!-- /USER AVATAR CONTENT -->
                                         <!-- USER AVATAR PROGRESS -->
@@ -615,13 +630,15 @@
                                     <!-- /META LINE -->
                                 </div>
                                 <!-- /CONTENT ACTION -->
+
+
                                 <!-- CONTENT ACTION -->
                                 <div class="content-action">
                                     <!-- META LINE -->
                                     <div class="meta-line">
                                         <!-- META LINE LINK -->
                                         <a href="~/Post?postId=@item.Id">
-                                            <p class="meta-line-link">@item.Comments?.Count bình luận</p>
+                                            <p class="meta-line-link">@item.Comments?.Where(w => w.IsDeleted == false).Count() bình luận</p>
                                         </a>
                                         <!-- /META LINE LINK -->
                                     </div>
