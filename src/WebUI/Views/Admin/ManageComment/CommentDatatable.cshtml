@@ -234,6 +234,7 @@
         </div>
     </div>
     <!-- Create/Update pop up end -->
+
     <!-- Delete pop up  -->
     <div class="form-popup" style="
     position: absolute;
@@ -252,9 +253,11 @@
         </div>
     </div>
     <!-- Delete pop up end -->
+
     <!-- End Page wrapper  -->
 </body>
 
+<!-- Update, Delete form -->
 <script>
     function openFormDelete(comment_id) {
         document.getElementById("deleteForm").style.display = "block";
@@ -274,6 +277,7 @@
         document.getElementById("updateForm").style.display = "none";
     }
 </script>
+
 <script>
     $(document).ready(function () {
         $("button[id^='btn_delete_comment_']").click(function () {
@@ -337,3 +341,4 @@
         });
     }
 </script>
+<!-- End Script Update, Delete Form -->
