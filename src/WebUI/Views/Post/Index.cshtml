@@ -253,7 +253,18 @@
                                     <!-- USER AVATAR CONTENT -->
                                     <div class="user-avatar-content">
                                         <!-- HEXAGON -->
-                                        <div class="hexagon-image-30-32" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
+                                        @{
+                                            var imgUserPostUrl = Model.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == InteractPostStatus.Create).UserAccount.AvatarUrl;
+                                        }
+                                        @if (imgUserPostUrl != null)
+                                        {
+                                            <div class="hexagon-image-30-32" data-src="@imgUserPostUrl"></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="hexagon-image-30-32" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
+                                        }
+                                        
                                         <!-- /HEXAGON -->
                                     </div>
                                     <!-- /USER AVATAR CONTENT -->
@@ -298,6 +309,7 @@
                         {
                             <img class="video-status-image" style="width:100%;" src="@Model.PostImagesUrl" alt="cover-50" />
                         }
+                      
                         @* <!-- VIDEO STATUS -->
                         <a class="video-status" href="https://www.youtube.com/" target="_blank">
                         <!-- VIDEO STATUS IMAGE -->
@@ -672,10 +684,21 @@
                                 <!-- USER STATUS ACTIVITY -->
                                 <div class="user-status-activity activity-reaction">
                                     <!-- USER STATUS ACTIVITY ICON -->
-                                    <svg class="user-status-activity-icon icon-thumbs-up">
+                                    @*   <svg class="user-status-activity-icon icon-thumbs-up">
                                         <use xlink:href="#svg-thumbs-up"></use>
-                                    </svg>
+                                    </svg>  *@
                                     <!-- /USER STATUS ACTIVITY ICON -->
+                                    @{
+                                        var imgUrl = comment.InteractWithComments?.FirstOrDefault(o => o.InteractCommentStatus == InteractCommentStatus.Create)?.UserAccount.AvatarUrl;
+                                    }
+                                    @if(imgUrl != null){
+                                        <img src="@imgUrl" style="width:100%; height:100%;border-radius: 50%; " />
+                                    }
+                                    else
+                                    {
+                                        <img src="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg" style="width:100%; height:100%;border-radius: 50%; " />
+                                    }
+
                                 </div>
                                 <!-- /USER STATUS ACTIVITY -->
                                 <!-- USER STATUS TITLE -->
@@ -698,6 +721,67 @@
                     <!-- /USER STATUS LIST -->
                 </div>
                 <!-- WIDGET BOX CONTENT -->
+
+
+
+                <!-- WIDGET BOX Input comment -->
+                <form class="chat-widget-form">
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- INTERACTIVE INPUT -->
+                            <div class="interactive-input small">
+                                <input type="hidden" name="postId" value="@Model.Id">
+                                <input type="text" id="inputComment" name="description" placeholder="Write a message...">
+                                
+                                <!-- INTERACTIVE INPUT ICON WRAP -->
+                                <div class="interactive-input-icon-wrap actionable">
+                                    <!-- TOOLTIP WRAP -->
+                                    <div class="tooltip-wrap text-tooltip-tft" data-title="Send Photo" style="position: relative;">
+                                        <!-- INTERACTIVE INPUT ICON -->
+                                        <svg class="interactive-input-icon icon-camera">
+                                            <use xlink:href="#svg-camera"></use>
+                                        </svg>
+                                        <!-- /INTERACTIVE INPUT ICON -->
+                                        <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -28px; left: 50%; margin-left: -45.5px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Send Photo</p></div>
+                                    </div>
+                                    <!-- /TOOLTIP WRAP -->
+                                </div>
+                                <!-- /INTERACTIVE INPUT ICON WRAP -->
+                                <!-- INTERACTIVE INPUT ACTION -->
+                                <div class="interactive-input-action">
+                                    <!-- INTERACTIVE INPUT ACTION ICON -->
+                                    <svg class="interactive-input-action-icon icon-cross-thin">
+                                        <use xlink:href="#svg-cross-thin"></use>
+                                    </svg>
+                                    <!-- /INTERACTIVE INPUT ACTION ICON -->
+                                </div>
+                                <!-- /INTERACTIVE INPUT ACTION -->
+                            </div>
+                            <!-- /INTERACTIVE INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item auto-width" id="buttonComment" onclick="sendComment()">
+                            <!-- BUTTON -->
+                            <p class="button primary padded"">
+                                <!-- BUTTON ICON -->
+                                <svg class="button-icon no-space icon-send-message">
+                                    <use xlink:href="#svg-send-message"></use>
+                                </svg>
+                                <!-- /BUTTON ICON -->
+                            </p>
+                            <!-- /BUTTON -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                </form>
+                <!-- WIDGET BOX Input comment -->
+
+
+
             </div>
             <!-- /WIDGET BOX -->
         </div>
@@ -845,6 +929,35 @@
             type: "POST",
             url: "@Url.Action("WishListPost", "Home")",
             data: { postId: postId, isDeleted: true },
+            success: function (result) {
+                if (result.success) {
+                    //alert(result.message);
+                    window.location.reload();
+                } else {
+                    //alert(result.message);
+                    window.location.href = '/login';
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        });
+    }
+
+    @* document.getElementById("inputComment").addEventListener("keypress", function (event) {
+        if (event.key === "Enter" || event.keyCode === 13) {
+            event.preventDefault();
+            sendComment();
+        }
+    }); *@
+
+    function sendComment() {
+        var description = document.getElementsByName("description")[0].value;
+        var postId = @Model.Id;
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AddComment", "Post")",
+            data: { postId: postId, description: description },
             success: function (result) {
                 if (result.success) {
                     //alert(result.message);
