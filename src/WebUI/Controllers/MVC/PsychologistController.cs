@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Common.Interfaces;
+using ZAlpha.Application.CustomerAccount.Queries.GetCustomerAccountById;
 using ZAlpha.Application.InteractWithPost.Queries.GetAllInteractWithPostByUserId;
 using ZAlpha.Application.Post.Queries.GetAllPost;
 using ZAlpha.Application.PsychologistAccount.Queries.GetPsychologistById;
@@ -35,6 +36,30 @@ public class PsychologistController : ControllerBaseMVC
             }            
             //
             return View(result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    [HttpGet]
+    public async Task<IActionResult> Index(string? userId)
+    {
+        try
+        {
+
+            if (userId == null)
+            {
+                var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+                var result = Mediator.Send(new GetPsychologistAccountByUserIdQueries() { UserAccountId = user.Id }).Result;
+                return View(result);
+            }
+            else
+            {
+                var result = Mediator.Send(new GetPsychologistAccountByUserIdQueries() { UserAccountId = userId }).Result;
+                return View(result);
+            }
+
         }
         catch (Exception ex)
         {
