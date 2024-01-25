@@ -9222,7 +9222,8 @@ figure > img {
 .profile-header {
     border-radius: 12px;
     background-color: #fff;
-    box-shadow: 0 0 40px 0 rgba(94,92,154,.06)
+    box-shadow: 0 0 40px 0 rgba(94,92,154,.06);
+    margin: 16px 0;
 }
 
     .profile-header.v2 .profile-header-info {
@@ -13550,7 +13551,8 @@ figure > img {
     border-radius: 12px;
     background-color: #fff;
     box-shadow: 0 0 40px 0 rgba(94,92,154,.06);
-    position: relative
+    position: relative;
+   margin: 16px 0;
 }
 
     .section-navigation .slider-controls .slider-control {

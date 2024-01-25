@@ -508,7 +508,7 @@
                                 <div class="meta-line">
                                     <!-- META LINE LINK -->
                                     <a href="~/Post?postId=@Model.Id">
-                                        <p class="meta-line-link">@Model.Comments.Count() bình luận</p>
+                                        <p class="meta-line-link">@Model.Comments?.Where(w => w.IsDeleted == false).Count() bình luận</p>
                                     </a>
                                     <!-- /META LINE LINK -->
                                 </div>
@@ -910,156 +910,10 @@
 
 
 </div>
-<!-- /CONTENT GRID -->
+
 
 <script>
-    //Hàm đăng bình luận
-    document.getElementById("commentDescription").addEventListener("keypress", function (event) {
-        if (event.key === "Enter" || event.keyCode === 13) {
-            event.preventDefault();
-            submitComment();
-        }
-    });
-    $("#submitComment").click(function () {
-        submitComment();
-    });
-    function submitComment() {
-        var postId = "@Model.Id";
-        var description = $("#commentDescription").val();
 
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("AddComment", "Post")",
-            data: { postId: postId, description: description },
-            success: function (result) {
-                if (result.success) {
-                    // alert(result.message);
-                    $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
-                } else {
-                    //alert(result.message);
-                    window.location.href = '/login';
-                }
-            },
-            error: function () {
-                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
-            }
-        });
-    }
-    // $(document).ready(function () {
-    //     $("#submitComment").click(function () {
-    //         var postId = "@Model.Id";
-    //         var description = $("#commentDescription").val();
-
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "@Url.Action("AddComment", "Post")",
-    //             data: { postId: postId, description: description },
-    //             success: function (result) {
-    //                 if (result.success) {
-    //                     alert(result.message);
-    //                     $("#commentSection").load("/Post/Index?postId=" + postId + " #commentSection");
-    //                 } else {
-    //                     alert(result.message);
-    //                     window.location.href = '/login';
-    //                 }
-    //             },
-    //             error: function () {
-    //                 alert("Đã xảy ra lỗi khi gửi yêu cầu.");
-    //             }
-    //         });
-    //     });
-    // });
-
-    //Hàm tương tác với bài viết
-    $(document).on("click", "#btnPostLike", function () {
-        likePost();
-    });
-
-    $(document).on("click", "#btnPostDislike", function () {
-        dislikePost();
-    });
-
-    function likePost() {
-        var postId = "@Model.Id";
-
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("InteractWithPost", "Post")",
-            data: { postId: postId, status: 1 },
-            success: function (result) {
-                if (result.success) {
-                    //alert(result.message);
-                    $("#postSection").load("/Post/Index?postId=" + postId + " #postSection");
-                } else {
-                    //alert(result.message);
-                    window.location.href = '/login';
-                }
-            },
-            error: function () {
-                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
-            }
-        });
-    }
-    function dislikePost() {
-        var postId = "@Model.Id";
-
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("InteractWithPost", "Post")",
-            data: { postId: postId, status: 2 },
-            success: function (result) {
-                if (result.success) {
-                    //alert(result.message);
-                    $("#postSection").load("/Post/Index?postId=" + postId + " #postSection");
-                } else {
-                    //alert(result.message);
-                    window.location.href = '/login';
-                }
-            },
-            error: function () {
-                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
-            }
-        });
-    }
-
-    function wishlistPost(postId) {
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("WishListPost", "Home")",
-            data: { postId: postId, isDeleted: false },
-            success: function (result) {
-                if (result.success) {
-                    //alert(result.message);
-                    window.location.reload();
-                } else {
-                    //alert(result.message);
-                    window.location.href = '/login';
-                }
-            },
-            error: function () {
-                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
-            }
-        });
-    }
-    function unWishlistPost(postId) {
-        $.ajax({
-            type: "POST",
-            url: "@Url.Action("WishListPost", "Home")",
-            data: { postId: postId, isDeleted: true },
-            success: function (result) {
-                if (result.success) {
-                    //alert(result.message);
-                    window.location.reload();
-                } else {
-                    //alert(result.message);
-                    window.location.href = '/login';
-                }
-            },
-            error: function () {
-                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
-            }
-        });
-    }
 
     @* document.getElementById("inputComment").addEventListener("keypress", function (event) {
         if (event.key === "Enter" || event.keyCode === 13) {
