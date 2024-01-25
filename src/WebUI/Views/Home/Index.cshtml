@@ -632,7 +632,7 @@
             @foreach (var item in Model.Items)
             {
                 <!-- WIDGET BOX -->
-                <div class="widget-box no-padding" id="PostBox">
+                <div class="widget-box no-padding">
                     <!-- WIDGET BOX SETTINGS -->
                     <div class="widget-box-settings">
                         <!-- POST SETTINGS WRAP -->
@@ -1427,7 +1427,7 @@
             success: function (result) {
                 if (result.success) {
                     // alert(result.message);
-                    window.location.reload(true);
+                    window.location.reload();
                 } else {
                     alert(result.message);
                     window.location.href = '/login';
