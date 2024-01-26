@@ -37,7 +37,7 @@ public class EmailSender
         email.Body = builder.ToMessageBody();
         using var smtp = new SmtpClient();
         smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-        smtp.Authenticate("tuankietgg291@gmail.com", "pmnx ycmh xcsn itel");
+        smtp.Authenticate("tuankietgg29@gmail.com", "pmnx ycmh xcsn itel");
         try
         {
             smtp.Send(email);

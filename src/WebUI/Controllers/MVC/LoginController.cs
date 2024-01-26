@@ -17,6 +17,9 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 using System.Text.Encodings.Web;
 using NToastNotify;
+using MailKit.Net.Smtp;
+using MimeKit;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WebUI.Controllers.MVC;
 
@@ -203,7 +206,6 @@ public class LoginController : ControllerBaseMVC
                     {
                         UserAccountId = user.Id
                     });
-                    /*return Redirect("~/login");*/
                 }
                 else
                 {
@@ -211,10 +213,9 @@ public class LoginController : ControllerBaseMVC
                     {
                         UserAccountId = user.Id
                     });
-                    /*return Redirect("~/login");*/
                 }
 
-                // Gửi email xác nhận (đang lỗi)
+                // Gửi email xác nhận
                 EmailSender mail = new EmailSender(_environment);
                 var temp = mail.SendEmailNoBccAsync(model.Email, "Email Xác Nhận Từ Hệ Thống Zalpha",
             "<div style=\"font-family: Helvetica, Arial, sans-serif\">\r\n    <div>Xin chào: " + model.Username +
@@ -251,6 +252,238 @@ public class LoginController : ControllerBaseMVC
         {
             ViewBag.RegisterValidate = "false";
             return View(model);
+        }
+    }
+
+    // Send Email
+    private async Task<bool> SendEmailAsync(string toMail, string subject, string confirmLink)
+    {
+        var email = new MimeMessage();
+
+        email.From.Add(MailboxAddress.Parse("tuankietgg29@gmail.com"));
+        email.To.Add(MailboxAddress.Parse(toMail));
+        email.Subject = subject;
+
+        email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = confirmLink };
+        using var smtp = new MailKit.Net.Smtp.SmtpClient();
+        smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+        smtp.Authenticate("tuankietgg29@gmail.com", "pmnx ycmh xcsn itel");
+        try
+        {
+            smtp.Send(email);
+        }
+        catch (SmtpCommandException ex)
+        {
+            return false;
+        }
+        smtp.Disconnect(true);
+        return true;
+    }
+
+    // Forgot Password
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [AllowAnonymous]
+    [HttpGet("forgotPassword")]
+    public IActionResult ForgotPassword([FromQuery] string redirectUrl)
+    {
+        ViewBag.Title = "Quên mật khẩu - Zalpha";
+        ViewBag.canonicalLink = Url.Action("forgotpassword", "login", new { redirectUrl }, protocol: Request.Scheme);
+        ViewBag.metaDescription = "";
+        ViewBag.metaKeywords = "Zalpha";
+        ViewBag.imageOg = "wwwroot/assets/images/zalpha.png";
+
+        ViewBag.activeMenu = 100;
+        if (redirectUrl != null)
+        {
+            ViewBag.RedirectUrl = redirectUrl;
+        }
+        else
+        {
+            ViewBag.RedirectUrl = "~/";
+        }
+        if (User.Identity.IsAuthenticated)
+        {
+            _toastNotification.AddWarningToastMessage("Bạn đã đăng nhập vào tài khoản!");
+            return RedirectToAction("Index", "Home");
+        }
+        else
+        {
+            return View();
+        }
+    }
+
+
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [AllowAnonymous]
+    [HttpPost("forgotPassword")]
+    public async Task<IActionResult> ForgotPassword([FromQuery] string redirectUrl, string email)
+    {
+        ViewBag.Title = "Quên mật khẩu - Zalpha";
+        ViewBag.canonicalLink = Url.Action("forgotpassword", "login", new { redirectUrl }, protocol: Request.Scheme);
+        ViewBag.metaDescription = "";
+        ViewBag.metaKeywords = "Zalpha";
+        ViewBag.imageOg = "wwwroot/assets/images/zalpha.png";
+
+        ViewBag.activeMenu = 100;
+
+        if (string.IsNullOrEmpty(redirectUrl)) redirectUrl = "~/";
+        ClaimsPrincipal? result;
+        try
+        {
+            var tempUsername = await _identityService.GetUserByEmailAsync(email);
+            UserAccount user = new UserAccount();
+            if (tempUsername == null)
+            {
+                ViewBag.email = "Email " + email + " chưa được đăng ký!";
+                return View();
+            }
+            else
+            {
+                user = await _identityService.GetUserByEmailAsync(email);
+            }
+            if (user.LockoutEnd != null && user.LockoutEnd > DateTime.Now)
+            {
+                ViewBag.email = "Tài khoản email này đã bị khóa hoặc chưa kích hoạt trên Hệ Thống Zalpha. Vui lòng liên hệ với Quản trị viên Của Zalpha để được hỗ trợ!";
+                return View();
+            }
+            else
+            {
+                string code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+                var callbackUrl = Url.Action(
+                        "resetPass",
+                        "login",
+                         new { code, userId = user.Id, redirectUrl = redirectUrl, email = email },
+                        protocol: Request.Scheme);
+
+                var temp = await SendEmailAsync(email, "Email Xác Nhận Đặt Lại Mật Khẩu Từ Hệ Thống Zalpha",
+            "<div style=\"font-family: Helvetica, Arial, sans-serif\">\r\n    <div>Xin chào: " + user.FirstName + user.LastName + "</div>\r\n    <br>\r\n    <div>Chúng tôi đã nhận được yêu cầu ĐẶT LẠI MẬT KHẨU cho tài khoản để dùng cho hệ thống Zalpha.</div>\r\n    <br>\r\n    <div>Đây là link xác thực của bạn: " + $" <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Link xác thực</a>" + ".</div>\r\n    <br>\r\n    <div>\r\n        Nếu không phải bạn vừa yêu cầu ĐẶT LẠI MẬT KHẨU tài khoản Zalpha, hoặc có một ai đó khác đang dùng email\r\n        của bạn để yêu cầu ĐẶT LẠI MẬT KHẨU cho tài khoản; bạn có thể bỏ qua bước xác thực email này.\r\n    </div>\r\n    <br>\r\n    <div style=\"font-weight: bold\">\r\n        Xin cảm ơn, <br>\r\n        <div style=\"color: #FF630E;\">Hệ thống BSmart</div>\r\n    </div>\r\n</div>");
+                _toastNotification.AddSuccessToastMessage("Gửi Email xác nhận thành công, Vui lòng truy cập Email để tiếp tục Đặt lại Mật Khẩu");
+                return Redirect("/login");
+            }
+        }
+        catch (Exception ex)
+        {
+            ViewBag.email = "Email " + email + " chưa được đăng ký!";
+            return View();
+        }
+    }
+
+
+
+
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [AllowAnonymous]
+    [HttpGet("resetPass")]
+    public async Task<IActionResult> ResetPass([FromQuery] string redirectUrl, string email, string code)
+    {
+        if (code.IsNullOrEmpty())
+        {
+            _toastNotification.AddWarningToastMessage("Không được copy đường dẫn khi reset mật khẩu!");
+            return RedirectToAction("login", "auth");
+        }
+
+        ViewBag.canonicalLink = Url.Action("resetpass", "login", new { redirectUrl, email, code }, protocol: Request.Scheme);
+        ViewBag.metaDescription = "";
+        ViewBag.metaKeywords = "Zalpha";
+        ViewBag.email = email;
+        ViewBag.token = code;
+        ViewBag.imageOg = "wwwroot/assets/images/zalpha.png";
+        var user = await _identityService.GetUserByEmailAsync(email);
+        var purpose = UserManager<UserAccount>.ResetPasswordTokenPurpose;
+        var token = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+        var opt = new IdentityOptions();
+        if (!await _userManager.VerifyUserTokenAsync(user, opt.Tokens.PasswordResetTokenProvider, purpose, token).ConfigureAwait(false))
+        {
+            _toastNotification.AddWarningToastMessage("Link xác nhận không chính xác hoặc đã hết hạn!");
+            return RedirectToAction("login", "auth");
+        }
+        if (redirectUrl != null)
+        {
+            ViewBag.RedirectUrl = redirectUrl;
+        }
+        else
+        {
+            ViewBag.RedirectUrl = "~/";
+        }
+        if (User.Identity.IsAuthenticated)
+        {
+            _toastNotification.AddWarningToastMessage("Bạn đã đăng nhập vào tài khoản!");
+            return RedirectToAction("Index", "Home");
+        }
+        else
+        {
+            return View();
+        }
+    }
+
+
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [AllowAnonymous]
+    [HttpPost("resetPass")]
+    public async Task<IActionResult> ResetPass([FromQuery] string redirectUrl, [FromForm] string newPass, string confirmPass, string? email, string? token)
+    {
+
+        ViewBag.Title = "Đặt lại mật khẩu - Zalpha";
+
+        ViewBag.canonicalLink = Url.Action("resetpass", "login", new { redirectUrl }, protocol: Request.Scheme);
+        ViewBag.metaDescription = "";
+        ViewBag.metaKeywords = "Zalpha";
+        ViewBag.imageOg = "wwwroot/assets/images/zalpha.png";
+
+        ViewBag.activeMenu = 100;
+
+        if (email == null || email.Equals("") || token == null || token.Equals(""))
+        {
+            _toastNotification.AddWarningToastMessage("Bạn không thể đặt lại mật khẩu! Vui lòng sử dụng link đã được gửi tới trong Email của bạn!");
+            return RedirectToAction("Login", "auth");
+        }
+
+        if (string.IsNullOrEmpty(redirectUrl)) redirectUrl = "~/";
+        ClaimsPrincipal? result;
+        try
+        {
+            if (newPass.Equals(confirmPass))
+            {
+                if (!Regex.IsMatch(newPass, "^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()<>?|{}~:]).*$"))
+                {
+                    ViewBag.email = email;
+                    ViewBag.token = token;
+                    ViewBag.RedirectUrl = redirectUrl;
+                    ViewBag.error = "Mật khẩu phải bao gồm ít nhất 6 ký tự, 1 ký tự in hoa, 1 số, 1 ký tự đặc biệt và không chứa khoảng trắng!";
+                    return View();
+                }
+                var user = await _userManager.FindByEmailAsync(email);
+                if (user == null)
+                {
+                    _toastNotification.AddWarningToastMessage("Bạn không thể đặt lại mật khẩu! Vui lòng sử dụng link đã được gửi tới trong Email của bạn!");
+                    return RedirectToAction("login", "auth");
+                }
+                var temp = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(token));
+                var resetPassResult = await _userManager.ResetPasswordAsync(user, temp, newPass);
+                if (!resetPassResult.Succeeded)
+                {
+                    _toastNotification.AddWarningToastMessage("Link xác nhận không chính xác hoặc đã hết hạn! Vui lòng sử dụng link đã được gửi tới trong Email của bạn!");
+                    return RedirectToAction("login", "auth");
+                }
+                _toastNotification.AddSuccessToastMessage("Bạn đã đặt lại mật khẩu thành công!");
+                return RedirectToAction("login", "auth", new { RedirectUrl = redirectUrl });
+            }
+            else
+            {
+                ViewBag.email = email;
+                ViewBag.token = token;
+                ViewBag.RedirectUrl = redirectUrl;
+                ViewBag.error = "Mật khẩu và mật khẩu xác nhận không trùng nhau!";
+                return View();
+            }
+        }
+        catch (Exception ex)
+        {
+            ViewBag.RedirectUrl = redirectUrl;
+            ViewBag.error = ex.Message;
+            return View();
         }
     }
 
