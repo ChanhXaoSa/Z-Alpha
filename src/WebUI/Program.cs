@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using WebUI.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,8 +54,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllersWithViews().AddNToastNotifyNoty(new NToastNotify.NotyOptions(){
     ProgressBar = true,
     Timeout = 500
-
 });
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -118,6 +119,10 @@ app.UseCors(MyAllowSpecificOrigins);
 //});
 
 app.MapDefaultControllerRoute();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/chat");
+});
 app.MapControllerRoute(
     name: "default",
     pattern: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
