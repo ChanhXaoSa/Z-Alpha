@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ZAlpha.Application.Comment.Commands.CreateComment;
 using ZAlpha.Application.Comment.Commands.DeleteComment;
 using ZAlpha.Application.Comment.Commands.UpdateComment;
 using ZAlpha.Application.Comment.Queries.GetAllComment;
@@ -380,12 +381,25 @@ public class AdminController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
-    public async Task<IActionResult> UpdateComment(Guid commentId, string decripstion)
+    public async Task<IActionResult> CreateComment(string CommentDes)
+    {
+        try
+        {
+            if (CommentDes == null) return Json("Null");
+            var result = Mediator.Send(new CreateCommentCommands { Description = CommentDes }).Result;
+            return Json("Success");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    public async Task<IActionResult> UpdateComment(Guid commentId, string description)
     {
         try
         {
             bool isUpdated = false;
-            var commendId = Mediator.Send(new UpdateCommentCommands { Id = commentId , Description = decripstion}).Result;
+            var commendId = Mediator.Send(new UpdateCommentCommands { Id = commentId , Description = description }).Result;
             if (commendId != Guid.Empty)
             {
                 isUpdated = true;
