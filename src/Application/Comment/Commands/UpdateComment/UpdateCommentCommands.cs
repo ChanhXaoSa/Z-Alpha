@@ -35,6 +35,7 @@ public class UpdateCommentCommandsHandler : IRequestHandler<UpdateCommentCommand
             throw new NotFoundException(nameof(Domain.Entities.Comment), request.Id);
         }
 
+        customer.Description = request.Description;
 
         await _context.SaveChangesAsync(cancellationToken);
 

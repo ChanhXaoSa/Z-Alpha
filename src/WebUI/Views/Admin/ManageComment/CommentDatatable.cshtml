@@ -36,6 +36,9 @@
                     <div class="card">
                         <div class="card-body" style="margin-top:-60px">
                             <div class="table-responsive m-t-40">
+                                <div>
+                                    <button class="btn btn-primary" onclick="openFormCreate()">Create</button>
+                                </div>
                                 <table id="myTable" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -54,10 +57,10 @@
                                                 <td width="400px">@item.Description</td>
                                                 <td>
                                                     @* @if (@item.InteractWithComments.Count > 0)
-                                                    {
-                                                        
-                                                        @item.InteractWithComments.FirstOrDefault(o =>o.InteractCommentStatus == ZAlpha.Domain.Enums.InteractCommentStatus.Create).UserAccount.FirstName
-                                                    } *@
+                                                {
+
+                                                @item.InteractWithComments.FirstOrDefault(o =>o.InteractCommentStatus == ZAlpha.Domain.Enums.InteractCommentStatus.Create).UserAccount.FirstName
+                                                } *@
                                                 </td>
                                                 @if (item.IsDeleted)
                                                 {
@@ -90,43 +93,73 @@
         <!-- End Container fluid  -->
     </div>
 
-    <!-- Create/Update pop up  -->
+    <!-- Create pop up  -->
     <div class="form-popup" style="
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;"
-         id="updateForm">
+        position: fixed;
+        width: 20%;
+        height: 20%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;"
+         id="createForm">
         <div class="card card-outline-primary">
             <div class="card-header">
-                <h4 class="m-b-0 text-white">Sample form</h4>
+                <h4 class="m-b-0 text-white">Tạo comment</h4>
             </div>
             <div class="card-body">
+                <form action="~/Admin/CreateComment" method="post">
                     <div class="form-body">
-                        <h3 class="card-title m-t-15">Person Info</h3>
-                        <hr>
                         <div class="row p-t-20">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label">First Name</label>
-                                    <input type="text" id="firstName" class="form-control" placeholder="John doe">
-                                    <small class="form-control-feedback"> This is inline help </small>
+                                    <input type="text" id="CommentDes" name="CommentDes" class="form-control" placeholder="Nội dung comment">
                                 </div>
                             </div>
-                            <!--/span-->
-                        </div>                        
+                        </div>
                     </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-success" id="btn_submit_update_comment"><i class="fa fa-check"></i> Save</button>
-                        <h5 hidden id="dialog_hidden_comment_id"></h5>
-                        <button type="button" class="btn btn-inverse" onclick="closeFormUpdate()">Cancel</button>
+                    <div class="form-actions" style="float:right">
+                        <button type="submit" class="btn btn-success" id="btn_submit_create_comment"><i class="fa fa-check"></i> Tạo mới </button>
+                        <button type="button" class="btn btn-inverse" onclick="closeFormCreate()"> Huỷ </button>
                     </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-- Create/Update pop up end -->
-
+    <!-- Create pop up end -->
+    <!-- Update pop up  -->
+    <div class="form-popup" style="
+        position: fixed;
+        width: 20%;
+        height: 20%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;"
+         id="updateForm">
+        <div class="card card-outline-primary">
+            <div class="card-header">
+                <h4 class="m-b-0 text-white">Sửa thẻ</h4>
+            </div>
+            <div class="card-body">
+                <div class="form-body">
+                    <div class="row p-t-20">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" id="comment_description_update" class="form-control" placeholder="sửa nội dung">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success" id="btn_submit_update_comment"><i class="fa fa-check"></i> Save</button>
+                    <h5 hidden id="dialog_hidden_comment_id"></h5>
+                    <button type="button" class="btn btn-inverse" onclick="closeFormUpdate()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Update pop up end -->
     <!-- Delete pop up  -->
     <div class="form-popup" style="
     position: absolute;
@@ -145,12 +178,19 @@
         </div>
     </div>
     <!-- Delete pop up end -->
-
     <!-- End Page wrapper  -->
 </body>
 
 <!-- Update, Delete form -->
 <script>
+    function openFormCreate() {
+        document.getElementById("createForm").style.display = "block";
+    }
+
+    function closeFormCreate() {
+        document.getElementById("createForm").style.display = "none";
+    }
+
     function openFormDelete(comment_id) {
         document.getElementById("deleteForm").style.display = "block";
         $("#dialog_hidden_comment_id").text(comment_id);
@@ -160,9 +200,9 @@
         document.getElementById("deleteForm").style.display = "none";
     }
 
-    function openFormUpdate() {
+    function openFormUpdate(commend_id) {
         document.getElementById("updateForm").style.display = "block";
-        $("#dialog_hidden_comment_id").text(comment_id);
+        $("#dialog_hidden_comment_id").text(commend_id);
     }
 
     function closeFormUpdate() {
@@ -188,7 +228,8 @@
         });
         $("#btn_submit_update_comment").click(function () {
             var comment_id = $("#dialog_hidden_comment_id").text();
-            update_comment(comment_id);
+            var description = $("#comment_description_update").val();
+            update_comment(comment_id, description);
         });
     });
 
@@ -215,9 +256,10 @@
             }
         });
     }
-    function update_comment(comment_id) {
+    function update_comment(comment_id, description) {       
         var data = {
             commentId: comment_id,
+            description: description,
         };
         $.ajax({
             type: "POST",
