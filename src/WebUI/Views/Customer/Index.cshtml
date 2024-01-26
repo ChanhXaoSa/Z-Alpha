@@ -182,7 +182,6 @@
         <!-- /SLIDER CONTROLS -->
     </nav>
     <!-- /SECTION NAVIGATION -->
-
     <!-- PROFILE HEADER -->
     <div class="profile-header">
         <!-- PROFILE HEADER COVER -->
@@ -239,7 +238,7 @@
                         <!-- /HEXAGON -->
                     </div>
                     <!-- /USER AVATAR PROGRESS BORDER -->
-                   
+
                 </a>
                 <!-- /USER SHORT DESCRIPTION AVATAR -->
                 <!-- USER SHORT DESCRIPTION AVATAR -->
@@ -299,7 +298,20 @@
                 <p class="user-short-description-title"><a href="profile-timeline.html"> @Model.UserAccount.FirstName @Model.UserAccount.LastName </a></p>
                 <!-- /USER SHORT DESCRIPTION TITLE -->
                 <!-- USER SHORT DESCRIPTION TEXT -->
-                <p class="user-short-description-text"><a href="#"> @Model.UserAccount.Email </a></p>
+                <p class="user-short-description-text">
+                    <a href="#">
+                        @{
+                            string accountType = "Freemium";
+
+                            if (Model.UserAccount.IsPremium.HasValue && Model.UserAccount.IsPremium.Value != 0)
+                            {
+                                accountType = "Premium";
+                            }
+
+                            @accountType
+                        }
+                    </a>
+                </p>
                 <!-- /USER SHORT DESCRIPTION TEXT -->
             </div>
             <!-- /USER SHORT DESCRIPTION -->
@@ -444,15 +456,14 @@
                     <!-- /USER STAT TEXT -->
                 </div>
                 <!-- /USER STAT -->
-                
-               @*  <!-- USER STAT -->
+                @*  <!-- USER STAT -->
                 <div class="user-stat big">
-                    <!-- USER STAT IMAGE -->
-                    <img class="user-stat-image" src="img/flag/usa.png" alt="flag-usa">
-                    <!-- /USER STAT IMAGE -->
-                    <!-- USER STAT TEXT -->
-                    <p class="user-stat-text">usa</p>
-                    <!-- /USER STAT TEXT -->
+                <!-- USER STAT IMAGE -->
+                <img class="user-stat-image" src="img/flag/usa.png" alt="flag-usa">
+                <!-- /USER STAT IMAGE -->
+                <!-- USER STAT TEXT -->
+                <p class="user-stat-text">usa</p>
+                <!-- /USER STAT TEXT -->
                 </div> *@
                 <!-- /USER STAT -->
             </div>
