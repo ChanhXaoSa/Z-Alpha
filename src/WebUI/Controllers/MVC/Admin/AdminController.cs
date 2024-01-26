@@ -341,7 +341,7 @@ public class AdminController : ControllerBaseMVC
         }
     }
 
-    public async Task<IActionResult> UpdateTag(Guid tagId, string TagName)
+    public async Task<IActionResult> UpdateTag(string tagId, string TagName)
     {
         try
         {
