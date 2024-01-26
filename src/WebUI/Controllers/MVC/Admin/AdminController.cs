@@ -332,7 +332,6 @@ public class AdminController : ControllerBaseMVC
         try
         {
             var result = Mediator.Send(new CreateTagCommands { TagName = TagName }).Result;
-            TagDatatable();
             return View("./ManageTag/TagDatatable");
         }
         catch (Exception ex)
@@ -345,9 +344,9 @@ public class AdminController : ControllerBaseMVC
     {
         try
         {
+            if (TagName == null) return Json("Tagname is null");
             var result = Mediator.Send(new UpdateTagCommands { Id = tagId, TagName = TagName}).Result;
-            TagDatatable();
-            return View("./ManageTag/TagDatatable");
+            return Json("Successed");
         }
         catch (Exception ex)
         {
@@ -381,19 +380,22 @@ public class AdminController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
-    public async Task<IActionResult> UpdateComment(Guid commentId)
+    public async Task<IActionResult> UpdateComment(Guid commentId, string decripstion)
     {
         try
         {
-            
-            //var isDeleted = Mediator.Send(new UpdateCommentCommands { Id = commentId }).Result;
-            //return isDeleted ? Json("Deleted") : (IActionResult)Json("some thing went wrong ...");
+            bool isUpdated = false;
+            var commendId = Mediator.Send(new UpdateCommentCommands { Id = commentId , Description = decripstion}).Result;
+            if (commendId != Guid.Empty)
+            {
+                isUpdated = true;
+            }
+            return isUpdated ? Json("Updated") : (IActionResult)Json("some thing went wrong ...");
         }
         catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }
-        return View();
     }
     public async Task<IActionResult> DeleteComment(Guid commentId)
     {
