@@ -9,13 +9,13 @@ using ZAlpha.Application.Common.Exceptions;
 using ZAlpha.Application.Common.Interfaces;
 
 namespace ZAlpha.Application.Tag.Commands.UpdateTag;
-public class UpdateTagCommands : IRequest<Guid>
+public class UpdateTagCommands : IRequest<string>
 {
-    public Guid Id { get; init; }
+    public string Id { get; init; }
     public string? TagName { get; set; }
 }
 
-public class UpdateTagCommandsHandler : IRequestHandler<UpdateTagCommands, Guid>
+public class UpdateTagCommandsHandler : IRequestHandler<UpdateTagCommands, string>
 {
     private readonly IApplicationDbContext _context;
 
@@ -24,21 +24,24 @@ public class UpdateTagCommandsHandler : IRequestHandler<UpdateTagCommands, Guid>
         _context = context;
     }
 
-    public async Task<Guid> Handle(UpdateTagCommands request, CancellationToken cancellationToken)
+    public async Task<string> Handle(UpdateTagCommands request, CancellationToken cancellationToken)
     {
         var tag = await _context.Get<Domain.Entities.Tag>()
-            .FindAsync(new object[] { request.Id }, cancellationToken);
+            .FindAsync(request.Id, cancellationToken);
 
         if (tag == null)
         {
             throw new NotFoundException(nameof(Domain.Entities.Tag), request.Id);
         }
-
-        // Update tag, nếu TagName bằng null thì giữ nguyên TagName cũ  
-        tag.TagName = request.TagName == null ? tag.TagName : request.TagName;
+        else
+        {
+            // Update tag, nếu TagName bằng null thì giữ nguyên TagName cũ  
+            tag.TagName = request.TagName == null ? tag.TagName : request.TagName;
+            _context.Get<Domain.Entities.Tag>().Update(tag);
+        }
 
         await _context.SaveChangesAsync(cancellationToken);
 
-        return tag.Id;
+        return tag.Id.ToString();
     }
 }

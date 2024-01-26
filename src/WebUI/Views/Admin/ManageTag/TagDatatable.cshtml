@@ -8,6 +8,9 @@
 @using ZAlpha.Application.Common.Models;
 @using ZAlpha.Application.Tag.Queries.GetTag;
 @model ZAlpha.Application.Common.Models.PaginatedList<TagModel>
+<!-- Conflict thu vien voi admin layout  -->
+<script src="~/assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
+
 <body>
     <!-- Page wrapper  -->
     <div class="page-wrapper">
@@ -57,6 +60,8 @@
                                                     <button value="@item.Id" type="submit" id="btn_delete_tag_@item.Id" onclick="openFormDelete()" class="btn btn-danger">Delete</button>
                                                 </td>
                                             </tr>
+
+
                                         }
                                     </tbody>
                                 </table>
@@ -97,7 +102,6 @@
                     </div>
                     <div class="form-actions" style="float:right">
                         <button type="submit" class="btn btn-success" id="btn_submit_update_tag"><i class="fa fa-check"></i> Tạo mới </button>
-                        <h5 hidden id="dialog_hidden_tag_id"></h5>
                         <button type="button" class="btn btn-inverse" onclick="closeFormCreate()"> Huỷ </button>
                     </div>
                 </form>
@@ -126,7 +130,7 @@
                         <div class="row p-t-20">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" id="firstName" name="TagName" class="form-control" placeholder="Sửa tên thẻ">
+                                    <input type="text" id="tag_id" name="TagName" class="form-control" placeholder="Sửa tên thẻ">
                                 </div>
                             </div>
                         </div>
@@ -209,17 +213,6 @@
         });
     });
 
-    $(document).ready(function () {
-        $("button[id^='btn_update_tag_']").click(function () {
-            var tag_id = $(this).attr("id").split("_")[3];
-            handle_confirm_update_comment_dialog(tag_id);
-        });
-        $("#btn_submit_update_tag").click(function () {
-            var tag_id = $("#dialog_hidden_tag_id").text();
-            update_comment(tag_id);
-        });
-    });
-
     function handle_confirm_update_comment_dialog(tag_id) {
         openFormUpdate(tag_id);
     }
@@ -241,6 +234,7 @@
         });
     }
 
+    // Delete Comment
     $(document).ready(function () {
         $("button[id^='btn_delete_tag_']").click(function () {
             var tag_id = $(this).attr("id").split("_")[3];
@@ -251,8 +245,6 @@
             delete_comment(tag_id);
         });
     });
-
-    // Delete Comment
     function handle_confirm_delete_comment_dialog(tag_id) {
         openFormDelete(tag_id);
     }
@@ -273,6 +265,5 @@
             }
         });
     }
-
 </script>
 <!-- End Script Update, Delete Form -->
