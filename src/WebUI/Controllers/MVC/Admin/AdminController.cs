@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.ComponentModel.Design;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ZAlpha.Application.Comment.Commands.CreateComment;
 using ZAlpha.Application.Comment.Commands.DeleteComment;
 using ZAlpha.Application.Comment.Commands.UpdateComment;
 using ZAlpha.Application.Comment.Queries.GetAllComment;
@@ -332,7 +334,6 @@ public class AdminController : ControllerBaseMVC
         try
         {
             var result = Mediator.Send(new CreateTagCommands { TagName = TagName }).Result;
-            TagDatatable();
             return View("./ManageTag/TagDatatable");
         }
         catch (Exception ex)
@@ -345,9 +346,9 @@ public class AdminController : ControllerBaseMVC
     {
         try
         {
+            if (TagName == null) return Json("Tagname is null");
             var result = Mediator.Send(new UpdateTagCommands { Id = tagId, TagName = TagName}).Result;
-            TagDatatable();
-            return View("./ManageTag/TagDatatable");
+            return Json("Successed");
         }
         catch (Exception ex)
         {
@@ -381,19 +382,35 @@ public class AdminController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
-    public async Task<IActionResult> UpdateComment(Guid commentId)
+    public async Task<IActionResult> CreateComment(string CommentDes)
     {
         try
         {
-            
-            //var isDeleted = Mediator.Send(new UpdateCommentCommands { Id = commentId }).Result;
-            //return isDeleted ? Json("Deleted") : (IActionResult)Json("some thing went wrong ...");
+            if (CommentDes == null) return Json("Null");
+
+            return Json("Success");            //var result = Mediator.Send(new CreateCommentCommands { Description = CommentDes }).Result;
         }
         catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }
-        return View();
+    }
+    public async Task<IActionResult> UpdateComment(Guid commentId, string description)
+    {
+        try
+        {
+            bool isUpdated = false;
+            if (commentId != Guid.Empty)
+            {
+                var commendId = Mediator.Send(new UpdateCommentCommands { Id = commentId , Description = description }).Result;            
+                isUpdated = true;
+            }
+            return isUpdated ? Json("Updated") : (IActionResult)Json("some thing went wrong ...");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
     public async Task<IActionResult> DeleteComment(Guid commentId)
     {
