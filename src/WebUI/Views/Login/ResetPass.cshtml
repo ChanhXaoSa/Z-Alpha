@@ -1,0 +1,104 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Reset Password";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body>
+    <div class="content-grid" style="transform: translate(0px, 0px); transition: transform 0.4s ease-in-out 0s;">
+        <!-- SECTION BANNER -->
+        <div class="section-banner">
+            <!-- SECTION BANNER ICON -->
+            <img class="section-banner-icon" src="~/assets/images/banner/accounthub-icon.png" alt="accounthub-icon">
+            <!-- /SECTION BANNER ICON -->
+            <!-- SECTION BANNER TITLE -->
+            <p class="section-banner-title">Quên mật khẩu</p>
+            <!-- /SECTION BANNER TITLE -->
+            <!-- SECTION BANNER TEXT -->
+            <p class="section-banner-text">Email xác thực sẽ được gửi đến Email bạn đã đăng kí tài khoản</p>
+            <!-- /SECTION BANNER TEXT -->
+        </div>
+        <!-- /SECTION BANNER -->
+        <!-- GRID -->
+        <div class="grid grid-12-0 medium-space">
+            <!-- GRID COLUMN -->
+            <div class="account-hub-content">
+                <!-- SECTION HEADER -->
+                <div class="section-header">
+                    <!-- SECTION HEADER INFO -->
+                    <div class="section-header-info">
+                        <!-- SECTION PRETITLE -->
+                        <p class="section-pretitle">Account</p>
+                        <!-- /SECTION PRETITLE -->
+                        <!-- SECTION TITLE -->
+                        <h2 class="section-title">Quên mật khẩu</h2>
+                        <!-- /SECTION TITLE -->
+                    </div>
+                    <!-- /SECTION HEADER INFO -->
+                </div>
+                <!-- /SECTION HEADER -->
+                <!-- GRID COLUMN -->
+                <div class="grid-column">
+                    <!-- WIDGET BOX -->
+                    <div class="widget-box">
+                        <!-- WIDGET BOX CONTENT -->
+                        <div class="widget-box-content">
+                            <!-- FORM -->
+                            <form class="form">
+                                <!-- FORM ROW -->
+                                <div class="form-row split">
+                                    <!-- FORM ITEM -->
+                                    <div class="form-item">
+                                        <!-- FORM INPUT -->
+                                        <div class="form-input small">
+                                            <label for="account-new-password">Mật khẩu mới</label>
+                                            <input type="password" id="account-new-password" name="account_new_password">
+                                        </div>
+                                        <!-- /FORM INPUT -->
+                                    </div>
+                                    <!-- /FORM ITEM -->
+                                    <!-- FORM ITEM -->
+                                    <div class="form-item">
+                                        <!-- FORM INPUT -->
+                                        <div class="form-input small">
+                                            <label for="account-new-password-confirm">Nhập lại mật khẩu mới</label>
+                                            <input type="password" id="account-new-password-confirm" name="account_new_password_confirm">
+                                        </div>
+                                        <!-- /FORM INPUT -->
+                                    </div>
+                                    <!-- /FORM ITEM -->
+                                </div>
+                                <!-- /FORM ROW -->
+                                <!-- FORM ROW -->
+                                <div class="form-row split">
+                                    <!-- FORM ITEM -->
+                                    <div class="form-item">
+                                        <!-- BUTTON -->
+                                        <p class="button full secondary">Reset</p>
+                                        <!-- /BUTTON -->
+                                    </div>
+                                    <!-- /FORM ITEM -->
+                                    <!-- FORM ITEM -->
+                                    <div class="form-item">
+                                        <!-- BUTTON -->
+                                        <p class="button full primary">Đổi mật khẩu</p>
+                                        <!-- /BUTTON -->
+                                    </div>
+                                    <!-- /FORM ITEM -->
+                                </div>
+                                <!-- /FORM ROW -->
+                            </form>
+                            <!-- /FORM -->
+                        </div>
+                        <!-- WIDGET BOX CONTENT -->
+                    </div>
+                    <!-- /WIDGET BOX -->
+                </div>
+                <!-- /GRID COLUMN -->
+            </div>
+            <!-- /GRID COLUMN -->
+        </div>
+        <!-- /GRID -->
+    </div>
+</body>

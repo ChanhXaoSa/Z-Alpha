@@ -33,6 +33,8 @@ public class CustomerController : ControllerBaseMVC
         _signInManager = signInManager;
         _hostingEnvironment = hostingEnvironment;
     }
+
+    // Get Customer Info
     public async Task<IActionResult> Index()
     {
         try
@@ -53,6 +55,8 @@ public class CustomerController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
+
+    // Get Customer Info with route
     [HttpGet]
     public async Task<IActionResult> Index(string? userId)
     {
@@ -77,6 +81,46 @@ public class CustomerController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
+
+    // Update Customer Info
+    [HttpPost]
+    public async Task<IActionResult> UpdateCustomer(string FirstName, string LastName, string Phone, string Address, DateTime BirthDay)
+    {
+        try
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+                user.FirstName = FirstName;
+                user.LastName = LastName;
+                user.Phone = Phone;
+                user.Address = Address;
+                user.BirthDay = BirthDay;
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    Json(new { success = true, message = "Bạn đã chỉnh sửa thành công" });
+                    return Redirect("~/Customer/Index");
+                }
+                else
+                {
+                    Json(new { success = false, message = "Chỉnh sửa thất bại" });
+                    return Redirect("~/Customer/Index");
+                }
+            }
+            else
+            {
+                Json(new { success = false, message = "Bạn cần phải đăng nhập" });
+                return Redirect("~/Login");
+            }
+        }
+        catch (Exception ex)
+        {
+            return Json(new { success = false, message = "Chỉnh sửa thất bại!" });
+        }
+    }
+
+    // Get Post List By Customer
     public async Task<IActionResult> PostList()
     {
         try
@@ -95,6 +139,8 @@ public class CustomerController : ControllerBaseMVC
         }
         return View();
     }
+
+    // Get Post save by Customer
     [HttpGet]
     public async Task<IActionResult> PostSaved()
     {
@@ -115,6 +161,8 @@ public class CustomerController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
+
+
     public IActionResult Payment()
     {
         return View();

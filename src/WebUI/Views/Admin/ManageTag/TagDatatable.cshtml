@@ -27,14 +27,13 @@
             </div>
         </div>
         <!-- End Bread crumb -->
-
         <!-- Container fluid  -->
         <div class="container-fluid">
             <!-- Start Page Content -->
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body" style="margin-top:-40px">                      
+                        <div class="card-body" style="margin-top:-40px">
                             <div class="table-responsive m-t-40">
                                 <div>
                                     <button class="btn btn-primary" onclick="openFormCreate()">Create</button>
@@ -56,12 +55,10 @@
                                                 <td>@item.Created</td>
                                                 <td>@item.LastModified</td>
                                                 <td>
-                                                    <button value="@item.Id" type="button" id="btn_update_tag_@item.Id" onclick="openFormUpdate()" class="btn btn-success">Update</button>
-                                                    <button value="@item.Id" type="submit" id="btn_delete_tag_@item.Id" onclick="openFormDelete()" class="btn btn-danger">Delete</button>
+                                                    <button value="@item.Id" type="button" id="btn_update_tag_@item.Id" class="btn btn-success">Update</button>
+                                                    <button value="@item.Id" type="submit" id="btn_delete_tag_@item.Id" class="btn btn-danger">Delete</button>
                                                 </td>
                                             </tr>
-
-
                                         }
                                     </tbody>
                                 </table>
@@ -98,10 +95,10 @@
                                     <input type="text" id="firstName" name="TagName" class="form-control" placeholder="Tên thẻ">
                                 </div>
                             </div>
-                        </div>                  
+                        </div>
                     </div>
                     <div class="form-actions" style="float:right">
-                        <button type="submit" class="btn btn-success" id="btn_submit_update_tag"><i class="fa fa-check"></i> Tạo mới </button>
+                        <button type="submit" class="btn btn-success" id="btn_submit_create_tag"><i class="fa fa-check"></i> Tạo mới </button>
                         <button type="button" class="btn btn-inverse" onclick="closeFormCreate()"> Huỷ </button>
                     </div>
                 </form>
@@ -109,7 +106,6 @@
         </div>
     </div>
     <!-- Create pop up end -->
-
     <!-- Update pop up  -->
     <div class="form-popup" style="
         position: fixed;
@@ -125,27 +121,24 @@
                 <h4 class="m-b-0 text-white">Sửa thẻ</h4>
             </div>
             <div class="card-body">
-                <form action="#">
+                <div class="form-actions">
                     <div class="form-body">
                         <div class="row p-t-20">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" id="tag_id" name="TagName" class="form-control" placeholder="Sửa tên thẻ">
+                                    <input type="text" id="tag_name_update" class="form-control" placeholder="Sửa tên thẻ">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-success" id="btn_submit_update_tag"><i class="fa fa-check"></i> Lưu </button>
-                        <h5 hidden id="dialog_hidden_tag_id"></h5>
-                        <button type="button" class="btn btn-inverse" onclick="closeFormUpdate()"> Huỷ </button>
-                    </div>
-                </form>
+                    <button type="submit" class="btn btn-success" id="btn_submit_update_tag"><i class="fa fa-check"></i> Lưu </button>
+                    <h5 hidden id="dialog_hidden_tag_id"></h5>
+                    <button type="button" class="btn btn-inverse" onclick="closeFormUpdate()"> Huỷ </button>
+                </div>
             </div>
         </div>
     </div>
     <!-- Update pop up end -->
-
     <!-- Delete pop up  -->
     <div class="form-popup" style="
     position: absolute;
@@ -164,7 +157,6 @@
         </div>
     </div>
     <!-- Delete pop up end -->
-
     <!-- End Page wrapper  -->
 </body>
 
@@ -180,7 +172,7 @@
     }
 
     // Update
-    function openFormUpdate() {
+    function openFormUpdate(tag_id) {
         document.getElementById("updateForm").style.display = "block";
         $("#dialog_hidden_tag_id").text(tag_id);
     }
@@ -204,21 +196,26 @@
     // Update Comment
     $(document).ready(function () {
         $("button[id^='btn_update_tag_']").click(function () {
+            console.log(1);
             var tag_id = $(this).attr("id").split("_")[3];
             handle_confirm_update_comment_dialog(tag_id);
         });
         $("#btn_submit_update_tag").click(function () {
             var tag_id = $("#dialog_hidden_tag_id").text();
-            update_comment(tag_id);
+            var tag_name = $("#tag_name_update").val();
+            update_comment(tag_id, tag_name);
         });
     });
 
     function handle_confirm_update_comment_dialog(tag_id) {
         openFormUpdate(tag_id);
+
     }
-    function update_comment(tag_id) {
+
+    function update_comment(tag_id, tag_name) {
         var data = {
             tagId: tag_id,
+            TagName: tag_name,
         };
         $.ajax({
             type: "POST",
