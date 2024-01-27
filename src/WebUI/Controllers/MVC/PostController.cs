@@ -36,20 +36,19 @@ public class PostController : ControllerBaseMVC
 
     [HttpGet]
     public async Task<IActionResult> Index(string userAccountId, Guid postId, string description)
-    {
-        
+    {        
         var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
         if (User.Identity.IsAuthenticated && description != null)
         {
-            var commentId = Mediator.Send(new CreateCommentCommands() { PostId = postId, Description = description }).Result;
-            var interactWithCommentId = Mediator.Send(new CreateInteractWithCommentCommand() 
-                    { UserAccountId = user.Id, CommentId = commentId, InteractCommentStatus= InteractCommentStatus.Create }).Result;
+            //var commentId = Mediator.Send(new CreateCommentCommands() { PostId = postId, Description = description }).Result;
+            //var interactWithCommentId = Mediator.Send(new CreateInteractWithCommentCommand() 
+            //        { UserAccountId = user.Id, CommentId = commentId, InteractCommentStatus= InteractCommentStatus.Create }).Result;
 
-            //TempData["Message"] = "Bạn đã đăng bình luận thành công";
-            _notification.AddSuccessToastMessage(message: "Đăng bình luận thành công");
+            ////TempData["Message"] = "Bạn đã đăng bình luận thành công";
+            //_notification.AddSuccessToastMessage(message: "Đăng bình luận thành công");
         } else if (!User.Identity.IsAuthenticated && description != null)
         {
-            return Redirect("~/Login");
+            //return Redirect("~/Login");
         }
         var post = await Mediator.Send(new GetPostByIdQueries() { Id = postId });
         var listComment = await Mediator.Send(new GetCommentByPostIdQueries() { PostId = postId, Page = 1, Size = 100 });
@@ -72,7 +71,6 @@ public class PostController : ControllerBaseMVC
             var commentId = await Mediator.Send(new CreateCommentCommands() { PostId = Guid.Parse(postId), Description = description });
             var interactWithCommentId = Mediator.Send(new CreateInteractWithCommentCommand()
                 { UserAccountId = user.Id, CommentId = commentId, InteractCommentStatus = InteractCommentStatus.Create }).Result;
-
 
             //var listComment = await Mediator.Send(new GetCommentByPostIdQueries() { PostId = Guid.Parse(postId), Page = 1, Size = 100 });
             //return PartialView("_CommentListPartial", listComment.Items);
