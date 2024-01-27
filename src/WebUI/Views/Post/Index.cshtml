@@ -858,14 +858,14 @@
 
 
                 <!-- WIDGET BOX Input comment -->
-                <form class="chat-widget-form">
+                <div class="chat-widget-form">
                     <!-- FORM ROW -->
                     <div class="form-row split">
                         <!-- FORM ITEM -->
                         <div class="form-item">
                             <!-- INTERACTIVE INPUT -->
                             <div class="interactive-input small">
-                                <input type="hidden" name="postId" value="@Model.Id">
+                                <input type="hidden" id="postId_comment" name="postId" value="@Model.Id">
                                 <input type="text" id="inputComment" name="description" placeholder="Write a message...">
                                 
                                 <!-- INTERACTIVE INPUT ICON WRAP -->
@@ -898,7 +898,7 @@
                         <!-- FORM ITEM -->
                         <div class="form-item auto-width" id="buttonComment" onclick="sendComment()">
                             <!-- BUTTON -->
-                            <p class="button primary padded"">
+                            <p class="button primary padded">
                                 <!-- BUTTON ICON -->
                                 <svg class="button-icon no-space icon-send-message">
                                     <use xlink:href="#svg-send-message"></use>
@@ -910,7 +910,7 @@
                         <!-- /FORM ITEM -->
                     </div>
                     <!-- /FORM ROW -->
-                </form>
+                </div>
                 <!-- WIDGET BOX Input comment -->
 
 
@@ -930,17 +930,10 @@
 
 <script>
 
-
-    @* document.getElementById("inputComment").addEventListener("keypress", function (event) {
-        if (event.key === "Enter" || event.keyCode === 13) {
-            event.preventDefault();
-            sendComment();
-        }
-    }); *@
-
     function sendComment() {
         var description = document.getElementsByName("description")[0].value;
-        var postId = @Model.Id;
+        var postId = $("#postId_comment").val();
+        console.log(postId);
         $.ajax({
             type: "POST",
             url: "@Url.Action("AddComment", "Post")",
