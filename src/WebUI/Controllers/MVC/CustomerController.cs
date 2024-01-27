@@ -84,7 +84,7 @@ public class CustomerController : ControllerBaseMVC
 
     // Update Customer Info
     [HttpPost]
-    public async Task<IActionResult> UpdateCustomer(string FirstName, string LastName, string Email, string Phone, string Address, DateTime BirthDay)
+    public async Task<IActionResult> UpdateCustomer(string FirstName, string LastName, string Phone, string Address, DateTime BirthDay)
     {
         try
         {
@@ -93,23 +93,25 @@ public class CustomerController : ControllerBaseMVC
                 var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
                 user.FirstName = FirstName;
                 user.LastName = LastName;
-                user.Email = Email;
                 user.Phone = Phone;
                 user.Address = Address;
                 user.BirthDay = BirthDay;
                 var result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    return Json(new { success = true, message = "Bạn đã chỉnh sửa thành công" });
+                    Json(new { success = true, message = "Bạn đã chỉnh sửa thành công" });
+                    return Redirect("~/Customer/Index");
                 }
                 else
                 {
-                    return Json(new { success = false, message = "Chỉnh sửa thất bại" });
+                    Json(new { success = false, message = "Chỉnh sửa thất bại" });
+                    return Redirect("~/Customer/Index");
                 }
             }
             else
             {
-                return Json(new { success = false, message = "Bạn cần phải đăng nhập" });
+                Json(new { success = false, message = "Bạn cần phải đăng nhập" });
+                return Redirect("~/Login");
             }
         }
         catch (Exception ex)

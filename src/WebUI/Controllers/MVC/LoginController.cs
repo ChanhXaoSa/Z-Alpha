@@ -358,7 +358,7 @@ public class LoginController : ControllerBaseMVC
                         protocol: Request.Scheme);
 
                 var temp = await SendEmailAsync(email, "Email Xác Nhận Đặt Lại Mật Khẩu Từ Hệ Thống Zalpha",
-            "<div style=\"font-family: Helvetica, Arial, sans-serif\">\r\n    <div>Xin chào: " + user.FirstName + user.LastName + "</div>\r\n    <br>\r\n    <div>Chúng tôi đã nhận được yêu cầu ĐẶT LẠI MẬT KHẨU cho tài khoản để dùng cho hệ thống Zalpha.</div>\r\n    <br>\r\n    <div>Đây là link xác thực của bạn: " + $" <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Link xác thực</a>" + ".</div>\r\n    <br>\r\n    <div>\r\n        Nếu không phải bạn vừa yêu cầu ĐẶT LẠI MẬT KHẨU tài khoản Zalpha, hoặc có một ai đó khác đang dùng email\r\n        của bạn để yêu cầu ĐẶT LẠI MẬT KHẨU cho tài khoản; bạn có thể bỏ qua bước xác thực email này.\r\n    </div>\r\n    <br>\r\n    <div style=\"font-weight: bold\">\r\n        Xin cảm ơn, <br>\r\n        <div style=\"color: #FF630E;\">Hệ thống BSmart</div>\r\n    </div>\r\n</div>");
+            "<div style=\"font-family: Helvetica, Arial, sans-serif\">\r\n    <div>Xin chào: " + user.FirstName +" "+ user.LastName + "</div>\r\n    <br>\r\n    <div>Chúng tôi đã nhận được yêu cầu ĐẶT LẠI MẬT KHẨU cho tài khoản để dùng cho hệ thống Zalpha.</div>\r\n    <br>\r\n    <div>Đây là link xác thực của bạn: " + $" <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Link xác thực</a>" + ".</div>\r\n    <br>\r\n    <div>\r\n        Nếu không phải bạn vừa yêu cầu ĐẶT LẠI MẬT KHẨU tài khoản Zalpha, hoặc có một ai đó khác đang dùng email\r\n        của bạn để yêu cầu ĐẶT LẠI MẬT KHẨU cho tài khoản; bạn có thể bỏ qua bước xác thực email này.\r\n    </div>\r\n    <br>\r\n    <div style=\"font-weight: bold\">\r\n        Xin cảm ơn, <br>\r\n        <div style=\"color: #FF630E;\">Hệ thống BSmart</div>\r\n    </div>\r\n</div>");
                 _toastNotification.AddSuccessToastMessage("Gửi Email xác nhận thành công, Vui lòng truy cập Email để tiếp tục Đặt lại Mật Khẩu");
                 return Redirect("/login");
             }
@@ -381,7 +381,7 @@ public class LoginController : ControllerBaseMVC
         if (code.IsNullOrEmpty())
         {
             _toastNotification.AddWarningToastMessage("Không được copy đường dẫn khi reset mật khẩu!");
-            return RedirectToAction("login", "auth");
+            return RedirectToAction("login", "login");
         }
 
         ViewBag.canonicalLink = Url.Action("resetpass", "login", new { redirectUrl, email, code }, protocol: Request.Scheme);
@@ -397,7 +397,7 @@ public class LoginController : ControllerBaseMVC
         if (!await _userManager.VerifyUserTokenAsync(user, opt.Tokens.PasswordResetTokenProvider, purpose, token).ConfigureAwait(false))
         {
             _toastNotification.AddWarningToastMessage("Link xác nhận không chính xác hoặc đã hết hạn!");
-            return RedirectToAction("login", "auth");
+            return RedirectToAction("login", "login");
         }
         if (redirectUrl != null)
         {
@@ -437,7 +437,7 @@ public class LoginController : ControllerBaseMVC
         if (email == null || email.Equals("") || token == null || token.Equals(""))
         {
             _toastNotification.AddWarningToastMessage("Bạn không thể đặt lại mật khẩu! Vui lòng sử dụng link đã được gửi tới trong Email của bạn!");
-            return RedirectToAction("Login", "auth");
+            return RedirectToAction("Login", "login");
         }
 
         if (string.IsNullOrEmpty(redirectUrl)) redirectUrl = "~/";
@@ -458,17 +458,17 @@ public class LoginController : ControllerBaseMVC
                 if (user == null)
                 {
                     _toastNotification.AddWarningToastMessage("Bạn không thể đặt lại mật khẩu! Vui lòng sử dụng link đã được gửi tới trong Email của bạn!");
-                    return RedirectToAction("login", "auth");
+                    return RedirectToAction("login", "login");
                 }
                 var temp = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(token));
                 var resetPassResult = await _userManager.ResetPasswordAsync(user, temp, newPass);
                 if (!resetPassResult.Succeeded)
                 {
                     _toastNotification.AddWarningToastMessage("Link xác nhận không chính xác hoặc đã hết hạn! Vui lòng sử dụng link đã được gửi tới trong Email của bạn!");
-                    return RedirectToAction("login", "auth");
+                    return RedirectToAction("login", "login");
                 }
                 _toastNotification.AddSuccessToastMessage("Bạn đã đặt lại mật khẩu thành công!");
-                return RedirectToAction("login", "auth", new { RedirectUrl = redirectUrl });
+                return RedirectToAction("login", "login", new { RedirectUrl = redirectUrl });
             }
             else
             {
