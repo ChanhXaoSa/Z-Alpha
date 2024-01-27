@@ -355,15 +355,15 @@
             <!-- WIDGET BOX CONTENT -->
             <div class="widget-box-content">
                 <!-- FORM -->
-                <form class="form">
+                <form class="form" action="~/Customer/UpdateCustomer" method="post">
                     <!-- FORM ROW -->
                     <div class="form-row split">
                         <!-- FORM ITEM -->
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input small active">
-                                <label for="profile-name">Profile Name</label>
-                                <input type="text" id="profile-name" name="profile_name" value="@Model.UserAccount.FirstName @Model.UserAccount.LastName">
+                                <label for="profile-tagline">Username</label>
+                                <input type="text" id="profile-tagline" name="profile_tagline" readonly value="@Model.UserAccount.UserName">
                             </div>
                             <!-- /FORM INPUT -->
                         </div>
@@ -372,8 +372,93 @@
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input small active">
-                                <label for="profile-tagline">Username</label>
-                                <input type="text" id="profile-tagline" name="profile_tagline" value="@Model.UserAccount.UserName">
+                                <label for="profile-public-email">Email</label>
+                                <input type="text" id="profile-public-email" name="profile_public_email" readonly value="@Model.UserAccount.Email">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-occupation">Address</label>
+                                <input type="text" id="profile-occupation" name="Address" value="@Model.UserAccount.Address">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small">
+                                <label for="profile-public-website">Phone</label>
+                                <input type="text" id="profile-public-website" name="Phone" value="@Model.UserAccount.Phone">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Fisrt Name</label>
+                                <input type="text" id="profile-name" name="FirstName" value="@Model.UserAccount.FirstName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Last Name</label>
+                                <input type="text" id="profile-name" name="LastName" value="@Model.UserAccount.LastName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT DECORATED -->
+                            <div class="form-input-decorated">
+                                <!-- FORM INPUT -->
+                                <div class="form-input small active">
+                                    <label for="profile-birthday">Birthday</label>
+                                    <input type="text" id="profile-birthday" name="Birthday" value="@Model.UserAccount.BirthDay">
+                                </div>
+                                <!-- /FORM INPUT -->
+                                <!-- FORM INPUT ICON -->
+                                <svg class="form-input-icon icon-events">
+                                    <use xlink:href="#svg-events"></use>
+                                </svg>
+                                <!-- /FORM INPUT ICON -->
+                            </div>
+                            <!-- /FORM INPUT DECORATED -->
+                        </div>
+                        <!-- /FORM ITEM -->
+
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Profile Name</label>
+                                <input type="text" id="profile-name" name="profile_name" value="">
                             </div>
                             <!-- /FORM INPUT -->
                         </div>
@@ -391,129 +476,24 @@
                             <!-- /FORM INPUT -->
                         </div>
                         <!-- /FORM ITEM -->
-                        <!-- FORM ITEM -->
-                        <div class="form-item">
-                            <!-- FORM INPUT -->
-                            <div class="form-input small active">
-                                <label for="profile-public-email">Email</label>
-                                <input type="text" id="profile-public-email" name="profile_public_email" value="@Model.UserAccount.Email">
-                            </div>
-                            <!-- /FORM INPUT -->
-                            <!-- FORM INPUT -->
-                            <div class="form-input small">
-                                <label for="profile-public-website">Phone</label>
-                                <input type="text" id="profile-public-website" name="@Model.UserAccount.Phone">
-                            </div>
-                            <!-- /FORM INPUT -->
-                        </div>
-                        <!-- /FORM ITEM -->
                     </div>
                     <!-- /FORM ROW -->
-                    <!-- FORM ROW -->
                     <div class="form-row split">
                         <!-- FORM ITEM -->
                         <div class="form-item">
-                            <!-- FORM SELECT -->
-                            <div class="form-select">
-                                <label for="profile-country">Country</label>
-                                <select id="profile-country" name="profile_country">
-                                    <option value="0">Select your Country</option>
-                                    <option value="1" selected="">United States</option>
-                                </select>
-                                <!-- FORM SELECT ICON -->
-                                <svg class="form-select-icon icon-small-arrow">
-                                    <use xlink:href="#svg-small-arrow"></use>
-                                </svg>
-                                <!-- /FORM SELECT ICON -->
-                            </div>
-                            <!-- /FORM SELECT -->
+                            <!-- BUTTON -->
+                            <button class="button full secondary">  </button>
+                            <!-- /BUTTON -->
                         </div>
                         <!-- /FORM ITEM -->
                         <!-- FORM ITEM -->
                         <div class="form-item">
-                            <!-- FORM SELECT -->
-                            <div class="form-select">
-                                <label for="profile-city">City</label>
-                                <select id="profile-city" name="profile_city">
-                                    <option value="0">Select your City</option>
-                                    <option value="1" selected="">New York</option>
-                                </select>
-                                <!-- FORM SELECT ICON -->
-                                <svg class="form-select-icon icon-small-arrow">
-                                    <use xlink:href="#svg-small-arrow"></use>
-                                </svg>
-                                <!-- /FORM SELECT ICON -->
-                            </div>
-                            <!-- /FORM SELECT -->
+                            <!-- BUTTON -->
+                            <button class="button full primary" type="submit">Lưu thông tin</button>
+                            <!-- /BUTTON -->
                         </div>
                         <!-- /FORM ITEM -->
                     </div>
-                    <!-- /FORM ROW -->
-                    <!-- FORM ROW -->
-                    <div class="form-row split">
-                        <!-- FORM ITEM -->
-                        <div class="form-item">
-                            <!-- FORM INPUT DECORATED -->
-                            <div class="form-input-decorated">
-                                <!-- FORM INPUT -->
-                                <div class="form-input small active">
-                                    <label for="profile-birthday">Birthday</label>
-                                    <input type="text" id="profile-birthday" name="profile_birthday" value="@Model.UserAccount.BirthDay">
-                                </div>
-                                <!-- /FORM INPUT -->
-                                <!-- FORM INPUT ICON -->
-                                <svg class="form-input-icon icon-events">
-                                    <use xlink:href="#svg-events"></use>
-                                </svg>
-                                <!-- /FORM INPUT ICON -->
-                            </div>
-                            <!-- /FORM INPUT DECORATED -->
-                        </div>
-                        <!-- /FORM ITEM -->
-                        <!-- FORM ITEM -->
-                        <div class="form-item">
-                            <!-- FORM INPUT -->
-                            <div class="form-input small active">
-                                <label for="profile-occupation">Address</label>
-                                <input type="text" id="profile-occupation" name="profile_occupation" value="@Model.UserAccount.Address">
-                            </div>
-                            <!-- /FORM INPUT -->
-                        </div>
-                        <!-- /FORM ITEM -->
-                    </div>
-                    <!-- /FORM ROW -->
-                    <!-- FORM ROW -->
-                    <div class="form-row split">
-                        <!-- FORM ITEM -->
-                        <div class="form-item">
-                            <!-- FORM SELECT -->
-                            <div class="form-select">
-                                <label for="profile-status">Status</label>
-                                <select id="profile-status" name="profile_status">
-                                    <option value="0">Select your Status</option>
-                                    <option value="1" selected="">In a Relationship</option>
-                                </select>
-                                <!-- FORM SELECT ICON -->
-                                <svg class="form-select-icon icon-small-arrow">
-                                    <use xlink:href="#svg-small-arrow"></use>
-                                </svg>
-                                <!-- /FORM SELECT ICON -->
-                            </div>
-                            <!-- /FORM SELECT -->
-                        </div>
-                        <!-- /FORM ITEM -->
-                        <!-- FORM ITEM -->
-                        <div class="form-item">
-                            <!-- FORM INPUT -->
-                            <div class="form-input small">
-                                <label for="profile-birthplace">Birthplace</label>
-                                <input type="text" id="profile-birthplace" name="profile_birthplace">
-                            </div>
-                            <!-- /FORM INPUT -->
-                        </div>
-                        <!-- /FORM ITEM -->
-                    </div>
-                    <!-- /FORM ROW -->
                 </form>
                 <!-- /FORM -->
             </div>
