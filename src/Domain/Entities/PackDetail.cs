@@ -18,7 +18,7 @@ public class PackDetail : BaseAuditableEntity
 
     // #
     //public PackStatus PackStatus { get; set; }
-    public DateTime StartDay { get; set; }
-    public DateTime EndDay { get; set; }
+    public DateTime? StartDay { get; set; }
+    public DateTime? EndDay { get; set; }
 
 }

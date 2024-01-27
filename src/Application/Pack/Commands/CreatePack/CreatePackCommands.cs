@@ -12,7 +12,7 @@ public class CreatePackCommands : IRequest<Guid>
 {
     public string PackName { get; set; }
     public string? PackInfomation { get; set; }
-    public double? PackPrice { get; set; }
+    public double PackPrice { get; set; }
 }
 
 public class CreatePackCommandsHandler : IRequestHandler<CreatePackCommands, Guid>

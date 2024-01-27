@@ -14,7 +14,7 @@ public record UpdatePackCommands : IRequest<Guid>
     public Guid Id { get; init; }
     public string PackName { get; set; }
     public string? PackInfomation { get; set; }
-    public double? PackPrice { get; set; }
+    public double PackPrice { get; set; }
 }
 
 public class UpdatePackCommandsHandler : IRequestHandler<UpdatePackCommands, Guid>
