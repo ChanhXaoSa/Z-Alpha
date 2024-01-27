@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.ComponentModel.Design;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Comment.Commands.CreateComment;
 using ZAlpha.Application.Comment.Commands.DeleteComment;
@@ -386,8 +387,8 @@ public class AdminController : ControllerBaseMVC
         try
         {
             if (CommentDes == null) return Json("Null");
-            var result = Mediator.Send(new CreateCommentCommands { Description = CommentDes }).Result;
-            return Json("Success");
+
+            return Json("Success");            //var result = Mediator.Send(new CreateCommentCommands { Description = CommentDes }).Result;
         }
         catch (Exception ex)
         {
@@ -399,9 +400,9 @@ public class AdminController : ControllerBaseMVC
         try
         {
             bool isUpdated = false;
-            var commendId = Mediator.Send(new UpdateCommentCommands { Id = commentId , Description = description }).Result;
-            if (commendId != Guid.Empty)
+            if (commentId != Guid.Empty)
             {
+                var commendId = Mediator.Send(new UpdateCommentCommands { Id = commentId , Description = description }).Result;            
                 isUpdated = true;
             }
             return isUpdated ? Json("Updated") : (IActionResult)Json("some thing went wrong ...");
