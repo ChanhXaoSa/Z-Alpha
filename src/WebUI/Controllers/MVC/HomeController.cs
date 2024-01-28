@@ -21,7 +21,7 @@ using ZAlpha.Application.PackDetail.Queries.GetPackDetailByUserId;
 
 namespace WebUI.Controllers.MVC;
 
-//[Authorize]
+[Authorize]
 public class HomeController : ControllerBaseMVC
 {
     private readonly IIdentityService _identityService;
