@@ -127,7 +127,9 @@ public class CustomerController : ControllerBaseMVC
         try
         {
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
-            var result = Mediator.Send(new GetPostByUserIdQuery() { UserId = user.Id , Page = 1, Size = 100 }).Result;
+            var postList = Mediator.Send(new GetPostByUserIdQuery() { UserId = user.Id , Page = 1, Size = 100 }).Result;
+            var result = Mediator.Send(new GetCustomerAccountByUserIdQueries() { UserAccountId = user.Id }).Result;
+            ViewBag.postList = postList;
             if (user != null)
             {
                 SetUpViewData(user);
