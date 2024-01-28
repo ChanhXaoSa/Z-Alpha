@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Chat";
+
+}
+<div>
+    Chat tong:
+    <div>
+        <label>ten:</label>
+        <input type="text" id="displayname" />
+    </div>
+    <div>
+        <label>message:</label>
+        <input type="text" id="message" />
+        <input type="button" id="sendmessage" value="send" />
+    </div>
+    <div>
+        <ul id="discussion">
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@@microsoft/signalr@7.0.2/dist/browser/signalr.min.js"></script>
+    <!-- Corrected code -->
+    <script>
+        var connection = new signalR.HubConnectionBuilder().withUrl("/chat").build();
+        connection.start().catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        document.getElementById("sendmessage").addEventListener("click", function (event) {
+            var user = document.getElementById("displayname").value;
+            var message = document.getElementById("message").value;
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+            event.preventDefault();
+        });
+
+        connection.on("ReceiveMessage", function (user, message) {
+            var encodedMsg = user + ": " + message;
+            var li = document.createElement("li");
+            li.textContent = encodedMsg;
+            document.getElementById("discussion").appendChild(li);
+        });
+    </script>
+
+</div>

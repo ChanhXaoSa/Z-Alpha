@@ -59,8 +59,10 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
             new UserAccount
             {
                 Id = "871a809a-b3fa-495b-9cc2-c5d738a866cf",
+                UserName = "vinh",
                 Email = "vinhtc191@gmail.com",
-                FirstName = "Tran",
+                PasswordHash = "AQAAAAIAAYagAAAAEJy3zCJul9KHCbPBHbaSbsgb9wFameULYiABmfOqOk4dGeF5cqYu9WcHaFm5ZcQ0vA==",
+                FirstName = "Trần",
                 LastName = "Vinh",
                 Status = UserStatus.Active,
                 Wallet = 10000000
@@ -68,12 +70,36 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
              new UserAccount
              {
                  Id = "424ab531-d60a-487e-9625-a74a7f5747be",
-                 Email = "test@gmail.com",
-                 FirstName = "Chan",
-                 LastName = "Dinh",
+                 UserName = "trieu",
+                 Email = "trieu@gmail.com",
+                 PasswordHash = "AQAAAAIAAYagAAAAEJy3zCJul9KHCbPBHbaSbsgb9wFameULYiABmfOqOk4dGeF5cqYu9WcHaFm5ZcQ0vA==",
+                 FirstName = "Triệu",
+                 LastName = "Gà",
                  Status = UserStatus.Active,
                  Wallet = 1000
-             }
+             },
+              new UserAccount
+              {
+                  Id = "41d8778f-80e0-4dd5-b7db-86eb1c32d40d",
+                  UserName = "kiet",
+                  Email = "kiet@gmail.com",
+                  PasswordHash = "AQAAAAIAAYagAAAAEJy3zCJul9KHCbPBHbaSbsgb9wFameULYiABmfOqOk4dGeF5cqYu9WcHaFm5ZcQ0vA==",
+                  FirstName = "Kiệt",
+                  LastName = "Kiệt",
+                  Status = UserStatus.Active,
+                  Wallet = 1000
+              },
+               new UserAccount
+               {
+                   Id = "a1c48523-eee4-4151-9c82-23ebf8b0f762",
+                   UserName = "kien",
+                   Email = "kien@gmail.com",
+                   PasswordHash = "AQAAAAIAAYagAAAAEJy3zCJul9KHCbPBHbaSbsgb9wFameULYiABmfOqOk4dGeF5cqYu9WcHaFm5ZcQ0vA==",
+                   FirstName = "kiên",
+                   LastName = "kiên",
+                   Status = UserStatus.Active,
+                   Wallet = 1000
+               }
         );
         builder.Entity<Post>()
            .HasData(
@@ -180,8 +206,55 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
                 PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
                 InteractPostStatus = InteractPostStatus.Create
             }
-
        );
+        builder.Entity<Pack>()
+      .HasData(
+           new Pack
+           {
+               Id = new Guid("8e5b48df-713e-4fe3-844b-8258c785ff7e"),
+               PackName = "Dùng thử",
+               PackInfomation = "Giới hạn lượt đăng bài và tương tác",
+               PackPrice = 0
+           },
+           new Pack
+           {
+               Id = new Guid("e609e43f-b6ad-468e-91d1-785b282d345b"),
+               PackName = "Tháng",
+               PackInfomation = "30 ngày",
+               PackPrice = 49000
+           },
+           new Pack
+           {
+               Id = new Guid("92b2fb8c-866c-445b-87b4-dc7bb3c828ac"),
+               PackName = "Quý",
+               PackInfomation = "3 tháng, tương đương 90 ngày",
+               PackPrice = 129000
+           },
+           new Pack
+           {
+               Id = new Guid("8853faf2-87f1-4c17-8e20-7253720265be"),
+               PackName = "Năm",
+               PackInfomation = "tương đương 365 ngày",
+               PackPrice = 499000
+           }
+      );
+        builder.Entity<PackDetail>()
+     .HasData(
+          new PackDetail
+          {
+              Id = new Guid("9ce9944f-8958-48bd-9e20-5ec5b7b283e9"),
+              UserAccountId = "871a809a-b3fa-495b-9cc2-c5d738a866cf",
+              PackId = new Guid("8e5b48df-713e-4fe3-844b-8258c785ff7e")
+          },
+           new PackDetail
+           {
+               Id = new Guid("85ff8767-adac-4dfa-a49a-18c20d071c09"),
+               UserAccountId = "424ab531-d60a-487e-9625-a74a7f5747be",
+               PackId = new Guid("e609e43f-b6ad-468e-91d1-785b282d345b"),
+               StartDay = DateTime.Parse("2024-01-27 08:30:56"),
+               EndDay = DateTime.Parse("2024-01-29 08:30:56")
+           }
+     );
 
 
 

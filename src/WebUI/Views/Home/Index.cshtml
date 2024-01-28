@@ -445,19 +445,28 @@
                                         {
                                             linkUser = "#";
                                         }
+                                        var emotionalString = item.EmotionalStatus.ToString();
                                     }
                                     @if (item.AnonymousStatus == ZAlpha.Domain.Enums.AnonymousStatus.Active)
                                     {
-                                        <a class="bold">
+                                        <a class="bold" >
                                             Ẩn danh
-                                        </a>
+                                            @if (emotionalString != null && !emotionalString.Equals("None"))
+                                            {
+                                                <p class="user-status-text small">cảm thấy @emotionalString</p>
+                                            }
+                                        </a>                                                        
                                     }
                                     else
                                     {
                                         <a class="bold" href="@linkUser">
                                             @item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.FirstName
                                             @item.InteractWithPosts?.FirstOrDefault(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create)?.UserAccount.LastName
-                                        </a>
+                                            @if (emotionalString != null && !emotionalString.Equals("None"))
+                                            {
+                                                <p class="user-status-text small">cảm thấy @emotionalString</p>
+                                            }
+                                        </a>                                       
                                     }                                   
                                 </p>
                                 <!-- /USER STATUS TITLE -->

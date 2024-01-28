@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Identity;
 using ZAlpha.Domain.Identity;
 using Microsoft.AspNetCore.Http;
 using ZAlpha.Infrastructure.Persistence;
+using ZAlpha.Application.Post.Queries.GetPostByUserIdInMonthQuery;
+using ZAlpha.Application.PackDetail.Queries.GetPackDetailByUserId;
 
 namespace WebUI.Controllers.MVC;
 
@@ -101,13 +103,37 @@ public class HomeController : ControllerBaseMVC
     [HttpPost]
     public async Task<IActionResult> NewPost(string postBody, EmotionalStatus emostatus, IFormFile file, string checkboxIds, int isAnomymous)
     {
-        //string postTitle = null; EmotionalStatus emostatus = 0; IFormFile file = null; IFormCollection formCollection = null;
         string postTitle = null;
         try
-        {  
+        {
+            //Xét gói package đăng ký
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            var pack = Mediator.Send(new GetPackDetailByUseridQuery() { UserId = user.Id }).Result;
+            //Chưa đăng ký gói
+            if (pack == null)
+            {
+                var postListOfUser = Mediator.Send(new GetPostByUserIdInMonthQuery() { Page = 1, Size = 100, UserId = user.Id }).Result;
+                var countOfPost = postListOfUser.Items.Count();
+                if (countOfPost >= 3)
+                {
+                    _notification.AddWarningToastMessage("Bạn đã hết lượt đăng bài trong 30 ngày! Hãy đăng ký gói tài khoản để mở khóa chức năng");
+                    return Json(new { success = false, message = "Bạn đã hết lượt đăng bài trong 30 ngày! Hãy đăng ký gói tài khoản để mở khóa chức năng" });
+                }
+            }
+            //hết hạn gói
+            if (pack != null) //phải có k thì nó quăng lỗi
+            {
+                if (pack.EndDay < DateTime.Now)
+                {
+                    _notification.AddWarningToastMessage("Gói tài khoản của bạn đã hết hạn. Vui lòng đăng ký");
+                    return Json(new { success = false, message = "Gói tài khoản của bạn đã hết hạn. Vui lòng đăng ký" });
+                }
+            }
+
+            //check postBody
             if (postBody == null) return Json("fail;");
             string postImgUrl = "";
-            //// check file co phai la img khong || co file hay ko
+            // check file co phai la img khong || co file hay ko
             if (file == null)
                 postImgUrl = "";
             else if (!(IsImageFile(file) && file.Length > 0))
@@ -124,12 +150,15 @@ public class HomeController : ControllerBaseMVC
             // Tao interacId
             var interactId = await Mediator.Send(new CreateInteractWithPostCommand() { UserAccountId = userId.Id, PostId = postId, InteractPostStatus = InteractPostStatus.Create });
 
-            var tagIds = checkboxIds.Split('_');
-            tagIds = tagIds.SkipLast(1).ToArray();
-            tagIds.ToList().ForEach(t => Guid.Parse(t));
-            for (int i = 0; i < tagIds.Length; i++)
+            if(checkboxIds != null)
             {
-                var postTagId = await Mediator.Send(new CreatePostTagCommands() { postID = postId, TagID = Guid.Parse(tagIds[i]) });
+                var tagIds = checkboxIds.Split('_');
+                tagIds = tagIds.SkipLast(1).ToArray();
+                tagIds.ToList().ForEach(t => Guid.Parse(t));
+                for (int i = 0; i < tagIds.Length; i++)
+                {
+                    var postTagId = await Mediator.Send(new CreatePostTagCommands() { postID = postId, TagID = Guid.Parse(tagIds[i]) });
+                }
             }
             _notification.AddSuccessToastMessage("Đăng thành công");
             return Json(new { success = true, message = "Đăng thành công" });        

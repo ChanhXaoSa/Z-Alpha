@@ -11,7 +11,7 @@ public class Pack : BaseAuditableEntity
 
     public string PackName { get; set; }
     public string? PackInfomation { get; set; }
-    public double? PackPrice { get; set; }
+    public double PackPrice { get; set; }
    
     public virtual IList<PackDetail>? PackDetails { get; set; }
 }
