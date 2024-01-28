@@ -31,7 +31,7 @@
                         <!-- FORM INPUT -->
                         <div class="form-input small active">
                             <label for="profile-tagline">Username</label>
-                            <input type="text" id="profile-tagline" name="profile_tagline" readonly="" value="vinh2">
+                            <input type="text" id="profile-tagline" name="profile_tagline" readonly="" value="@Model.UserAccount.UserName">
                         </div>
                         <!-- /FORM INPUT -->
                     </div>
@@ -41,31 +41,7 @@
                         <!-- FORM INPUT -->
                         <div class="form-input small active">
                             <label for="profile-public-email">Email</label>
-                            <input type="text" id="profile-public-email" name="profile_public_email" readonly="" value="vinhtc192@gmail.com">
-                        </div>
-                        <!-- /FORM INPUT -->
-                    </div>
-                    <!-- /FORM ITEM -->
-                </div>
-                <!-- /FORM ROW -->
-                <!-- FORM ROW -->
-                <div class="form-row split">
-                    <!-- FORM ITEM -->
-                    <div class="form-item">
-                        <!-- FORM INPUT -->
-                        <div class="form-input small active">
-                            <label for="profile-occupation">Address</label>
-                            <input type="text" id="profile-occupation" name="@Model.UserAccount.Address">
-                        </div>
-                        <!-- /FORM INPUT -->
-                    </div>
-                    <!-- /FORM ITEM -->
-                    <!-- FORM ITEM -->
-                    <div class="form-item">
-                        <!-- FORM INPUT -->
-                        <div class="form-input small">
-                            <label for="profile-public-website">Phone</label>
-                            <input type="text" id="profile-public-website" name="@Model.UserAccount.Phone">
+                            <input type="text" id="profile-public-email" name="profile_public_email" readonly="" value="@Model.UserAccount.Email">
                         </div>
                         <!-- /FORM INPUT -->
                     </div>
@@ -100,6 +76,31 @@
                 <div class="form-row split">
                     <!-- FORM ITEM -->
                     <div class="form-item">
+                        <!-- FORM INPUT -->
+                        <div class="form-input small active">
+                            <label for="profile-occupation">Address</label>
+                            <input type="text" id="profile-occupation" name="Address" value="@Model.UserAccount.Address">
+                        </div>
+                        <!-- /FORM INPUT -->
+                    </div>
+                    <!-- /FORM ITEM -->
+                    <!-- FORM ITEM -->
+                    <div class="form-item">
+                        <!-- FORM INPUT -->
+                        <div class="form-input small active">
+                            <label for="profile-public-website">Phone</label>
+                            <input type="text" id="profile-public-website" name="Phone" value="@Model.UserAccount.Phone">
+                        </div>
+                        <!-- /FORM INPUT -->
+                    </div>
+                    <!-- /FORM ITEM -->
+                </div>
+                <!-- /FORM ROW -->
+               
+                <!-- FORM ROW -->
+                <div class="form-row split">
+                    <!-- FORM ITEM -->
+                    <div class="form-item">
                         <!-- FORM INPUT DECORATED -->
                         <div class="form-input-decorated">
                             <!-- FORM INPUT -->
@@ -117,11 +118,21 @@
                         <!-- /FORM INPUT DECORATED -->
                     </div>
                     <!-- /FORM ITEM -->
+                    <!-- FORM ITEM -->
+                    <div class="form-item">
+                        <!-- FORM INPUT -->
+                        <div class="form-input small active">
+                            <label for="profile-name">Wallet</label>
+                            <input type="text" id="profile-name" name="LastName" value="@Model.UserAccount.Wallet">
+                        </div>
+                        <!-- /FORM INPUT -->
+                    </div>
+                    <!-- /FORM ITEM -->
 
                 </div>
                 <!-- /FORM ROW -->
                 <!-- FORM ROW -->
-                <div class="form-row split">
+                @* <div class="form-row split">
                     <!-- FORM ITEM -->
                     <div class="form-item">
                         <!-- FORM INPUT -->
@@ -131,12 +142,12 @@
                         <!-- /FORM INPUT -->
                     </div>
                     <!-- /FORM ITEM -->
-                </div>
+                </div> *@
                 <!-- /FORM ROW -->
                 @{
                     var userLogined = await _identityServices.GetUserByNameAsync(User.Identity!.Name!);
                 }
-                @if (userLogined!=null && Model.UserAccount.Id.Equal(userLogined.Id))
+                @if (userLogined != null && Model.UserAccount.Id == userLogined.Id)
                 {
                     <div class="form-row split">
                         <!-- FORM ITEM -->
