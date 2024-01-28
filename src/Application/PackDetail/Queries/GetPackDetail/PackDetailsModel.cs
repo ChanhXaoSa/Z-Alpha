@@ -10,10 +10,8 @@ using ZAlpha.Domain.Identity;
 namespace ZAlpha.Application.PackDetail.Queries.GetPackDetail;
 public class PackDetailsModel : IMapFrom<Domain.Entities.PackDetail>
 {
-    public Guid UserAccountId { get; set; }
+    public string UserAccountId { get; set; }
     public Guid PackId { get; set; }
-
-    //public PackStatus PackStatus { get; set; }
-    public DateTime StartDay { get; set; }
-    public DateTime EndDay { get; set; }
+    public DateTime? StartDay { get; set; }
+    public DateTime? EndDay { get; set; }
 }

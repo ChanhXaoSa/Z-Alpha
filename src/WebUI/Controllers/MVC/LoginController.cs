@@ -23,8 +23,8 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace WebUI.Controllers.MVC;
 
-//[Authorize]
-//[Route("/Home")]
+[Authorize]
+[Route("/Home")]
 public class LoginController : ControllerBaseMVC
 {
     private readonly IIdentityService _identityService;

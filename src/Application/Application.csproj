@@ -11,12 +11,15 @@
     <ItemGroup>
       <Compile Remove="InteractWithPosts\**" />
       <Compile Remove="PaymentMethod\**" />
+      <Compile Remove="Post\Queries\GetPostByUserInMonthQueries\**" />
       <Compile Remove="UserInteractComment\**" />
       <EmbeddedResource Remove="InteractWithPosts\**" />
       <EmbeddedResource Remove="PaymentMethod\**" />
+      <EmbeddedResource Remove="Post\Queries\GetPostByUserInMonthQueries\**" />
       <EmbeddedResource Remove="UserInteractComment\**" />
       <None Remove="InteractWithPosts\**" />
       <None Remove="PaymentMethod\**" />
+      <None Remove="Post\Queries\GetPostByUserInMonthQueries\**" />
       <None Remove="UserInteractComment\**" />
     </ItemGroup>
 

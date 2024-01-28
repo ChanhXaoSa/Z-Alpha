@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Common.Interfaces;
-using ZAlpha.Application.CustomerAccount.Queries.GetCustomerAccountById;
+using ZAlpha.Application.PsychologistAccount.Queries.GetPsychologistById;
 using ZAlpha.Application.InteractWithPost.Queries.GetAllInteractWithPostByUserId;
 using ZAlpha.Application.Post.Queries.GetAllPost;
-using ZAlpha.Application.PsychologistAccount.Queries.GetPsychologistById;
+using ZAlpha.Application.PsychologistAccount.Commands.UpdatePsychologistAccountCommand;
 using ZAlpha.Application.WishListPost.Queries.GetWishListPost;
 using ZAlpha.Domain.Identity;
 
@@ -118,5 +118,46 @@ public class PsychologistController : ControllerBaseMVC
         var wishPosts = Mediator.Send(new GetWishlistPostQueries() { UserId = user.Id, Page = 1, Size = 100 }).Result;
         ViewData["psyInteractPostCount"] = interactPosts.TotalCount;
         ViewData["psyWishPostCount"] = wishPosts.TotalCount;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdatePsychologistAccount(string FirstName,
+        string LastName, string Phone, string Address, DateTime BirthDay, string Specialize,
+        string Workplace, string Position, string Milestones, string Intro)
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            user.FirstName = FirstName;
+            user.LastName = LastName;
+            user.Phone = Phone;
+            user.Address = Address;
+            user.BirthDay = BirthDay;
+            var result = await _userManager.UpdateAsync(user);
+
+            var result1 = Mediator.Send(new UpdatePsychologistAccountCommand()
+            {
+                UserAccountId = user.Id,
+                Specialization = Specialize,
+                Workplace = Workplace,
+                Position = Position,
+                Milestone = Milestones,
+                Intro = Intro
+            }).Result;
+
+            if (result.Succeeded)
+            {               
+                return Redirect("~/Psychologist/Index");
+            }
+            else
+            {
+                return Redirect("~/Psychologist/Index");
+            }
+        }
+        else
+        {
+            Json(new { success = false, message = "Bạn cần phải đăng nhập" });
+            return Redirect("~/login");
+        }
     }
 }
