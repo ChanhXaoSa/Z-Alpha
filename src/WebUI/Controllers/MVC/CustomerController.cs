@@ -17,6 +17,7 @@ using ZAlpha.Application.WishListPost.Queries.GetWishListPost;
 using ZAlpha.Application.Comment.Commands.CreateComment;
 using ZAlpha.Application.InteractWithComments.Commands.CreateInteractWithComment;
 using System.ComponentModel.Design;
+using ZAlpha.Application.Post.Queries.GetPostByUserIdQuery;
 
 namespace WebUI.Controllers.MVC;
 public class CustomerController : ControllerBaseMVC
@@ -126,7 +127,7 @@ public class CustomerController : ControllerBaseMVC
         try
         {
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
-            var result = Mediator.Send(new GetAllInteractWithPostByUserIdQueries() { UserId = user.Id /*"871a809a-b3fa-495b-9cc2-c5d738a866cf"*/, Page = 1, Size = 100 }).Result;
+            var result = Mediator.Send(new GetPostByUserIdQuery() { UserId = user.Id , Page = 1, Size = 100 }).Result;
             if (user != null)
             {
                 SetUpViewData(user);
@@ -137,7 +138,6 @@ public class CustomerController : ControllerBaseMVC
         {
             throw new Exception(ex.Message);
         }
-        return View();
     }
 
     // Get Post save by Customer
