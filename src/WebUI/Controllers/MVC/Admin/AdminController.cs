@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Design;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ZAlpha.Application.Ban.BanAccount;
 using ZAlpha.Application.Comment.Commands.CreateComment;
 using ZAlpha.Application.Comment.Commands.DeleteComment;
 using ZAlpha.Application.Comment.Commands.UpdateComment;
@@ -435,6 +436,18 @@ public class AdminController : ControllerBaseMVC
             return View("./ManageTransaction/TransactionDatatable", result);
         }
         catch(Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    public async Task<IActionResult> BanAccountCustomer(string userId)
+    {        
+        try
+        {
+            var isBanned = Mediator.Send(new BanAccountCommands { Id = userId }).Result;
+            return isBanned ? Json("Banned") : (IActionResult)Json("some thing went wrong ...");
+        }
+        catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }
