@@ -7,6 +7,9 @@ using ZAlpha.Application.Post.Queries.GetAllPost;
 using ZAlpha.Application.PsychologistAccount.Commands.UpdatePsychologistAccountCommand;
 using ZAlpha.Application.WishListPost.Queries.GetWishListPost;
 using ZAlpha.Domain.Identity;
+using ZAlpha.Application.CustomerAccount.Queries.GetCustomerAccountById;
+using ZAlpha.Application.Post.Queries.GetPostByUserIdQuery;
+using ZAlpha.Domain.Entities;
 
 namespace WebUI.Controllers.MVC;
 public class PsychologistController : ControllerBaseMVC
@@ -72,7 +75,9 @@ public class PsychologistController : ControllerBaseMVC
         try
         {
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
-            var result = Mediator.Send(new GetAllInteractWithPostByUserIdQueries() {UserId = user.Id, Page = 1, Size = 100 }).Result;
+            var postList = Mediator.Send(new GetPostByUserIdQuery() { UserId = user.Id, Page = 1, Size = 100 }).Result;
+            var result = Mediator.Send(new GetPsychologistAccountByUserIdQueries() { UserAccountId = user.Id }).Result;
+            ViewBag.postList = postList;
             if (user != null)
             {
                 SetUpViewData(user);
@@ -121,7 +126,7 @@ public class PsychologistController : ControllerBaseMVC
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpdatePsychologistAccount(string FirstName,
+    public async Task<IActionResult> UpdatePsychologistAccount(Guid Id,string FirstName,
         string LastName, string Phone, string Address, DateTime BirthDay, string Specialize,
         string Workplace, string Position, string Milestones, string Intro)
     {
@@ -135,8 +140,9 @@ public class PsychologistController : ControllerBaseMVC
             user.BirthDay = BirthDay;
             var result = await _userManager.UpdateAsync(user);
 
-            var result1 = Mediator.Send(new UpdatePsychologistAccountCommand()
+            var account = Mediator.Send(new UpdatePsychologistAccountCommand()
             {
+                Id = Id,
                 UserAccountId = user.Id,
                 Specialization = Specialize,
                 Workplace = Workplace,

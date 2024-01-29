@@ -10,7 +10,7 @@ using ZAlpha.Application.Common.Interfaces;
 namespace ZAlpha.Application.PsychologistAccount.Commands.UpdatePsychologistAccountCommand;
 public class UpdatePsychologistAccountCommand : IRequest<Guid>
 {
-    public string Id { get; init; }
+    public Guid Id { get; set; }
     public string UserAccountId { get; set; }
     public string? Workplace { get; set; }
     public string? Position { get; set; }   

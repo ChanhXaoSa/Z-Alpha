@@ -1,7 +1,154 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
+@model PsychologistAccountModel
 <div class="content-grid" style="transform: translate(0px, 0px); transition: transform 0.4s ease-in-out 0s;">
+    <title>Customer Profile</title>
+
+    <!-- PROFILE HEADER -->
+    <div class="profile-header">
+        <!-- PROFILE HEADER COVER -->
+        <figure class="profile-header-cover liquid" style="background: url(&quot;https://wallpapercave.com/wp/wp7577930.jpg&quot;) center center / cover no-repeat;">
+            <img src="https://wallpapercave.com/wp/wp7577930.jpg" alt="cover-01" style="display: none;">
+        </figure>
+        <!-- /PROFILE HEADER COVER -->
+        <!-- PROFILE HEADER INFO -->
+        <div class="profile-header-info">
+            <!-- USER SHORT DESCRIPTION -->
+            <div class="user-short-description big">
+                <!-- USER SHORT DESCRIPTION AVATAR -->
+                <a class="user-short-description-avatar user-avatar big" href="profile-timeline.html">
+                    <!-- USER AVATAR BORDER -->
+                    <div class="user-avatar-border">
+                        <!-- HEXAGON -->
+                        <div class="hexagon-148-164" style="width: 148px; height: 164px; position: relative;"><canvas width="148" height="164" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="148" height="164" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                        <!-- /HEXAGON -->
+                    </div>
+                    <!-- /USER AVATAR BORDER -->
+                    <!-- USER AVATAR CONTENT -->
+                    <div class="user-avatar-content">
+
+
+                        <!-- HEXAGON -->
+                        <div class="hexagon-image-100-110" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" style="width: 100px; height: 110px; position: relative;"><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                        <!-- /HEXAGON -->
+
+                    </div>
+                    <!-- /USER AVATAR CONTENT -->
+                    <!-- USER AVATAR PROGRESS -->
+                    <div class="user-avatar-progress">
+                        <!-- HEXAGON -->
+                        <div class="hexagon-progress-124-136" style="width: 124px; height: 136px; position: relative;"><canvas width="124" height="136" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="124" height="136" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                        <!-- /HEXAGON -->
+                    </div>
+                    <!-- /USER AVATAR PROGRESS -->
+                    <!-- USER AVATAR PROGRESS BORDER -->
+                    <div class="user-avatar-progress-border">
+                        <!-- HEXAGON -->
+                        <div class="hexagon-border-124-136" style="width: 124px; height: 136px; position: relative;"><canvas width="124" height="136" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="124" height="136" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                        <!-- /HEXAGON -->
+                    </div>
+                    <!-- /USER AVATAR PROGRESS BORDER -->
+
+                </a>
+                <!-- /USER SHORT DESCRIPTION AVATAR -->
+                <!-- USER SHORT DESCRIPTION AVATAR -->
+                <a class="user-short-description-avatar user-short-description-avatar-mobile user-avatar medium" href="profile-timeline.html">
+                    <!-- USER AVATAR BORDER -->
+                    <div class="user-avatar-border">
+                        <!-- HEXAGON -->
+                        <div class="hexagon-120-132" style="width: 120px; height: 132px; position: relative;"><canvas width="120" height="132" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="120" height="132" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                        <!-- /HEXAGON -->
+                    </div>
+                    <!-- /USER AVATAR BORDER -->
+                    <!-- USER AVATAR CONTENT -->
+                    <div class="user-avatar-content">
+                        <!-- HEXAGON -->
+                        <div class="hexagon-image-82-90" data-src="img/avatar/01.jpg" style="width: 82px; height: 90px; position: relative;"><canvas width="82" height="90" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="82" height="90" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                        <!-- /HEXAGON -->
+                    </div>
+                    <!-- /USER AVATAR CONTENT -->
+                    <!-- USER AVATAR PROGRESS -->
+                    <div class="user-avatar-progress">
+                        <!-- HEXAGON -->
+                        <div class="hexagon-progress-100-110" style="width: 100px; height: 110px; position: relative;"><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                        <!-- /HEXAGON -->
+                    </div>
+                    <!-- /USER AVATAR PROGRESS -->
+                    <!-- USER AVATAR PROGRESS BORDER -->
+                    <div class="user-avatar-progress-border">
+                        <!-- HEXAGON -->
+                        <div class="hexagon-border-100-110" style="width: 100px; height: 110px; position: relative;"><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                        <!-- /HEXAGON -->
+                    </div>
+                    <!-- /USER AVATAR PROGRESS BORDER -->
+                    <!-- USER AVATAR BADGE -->
+                    <div class="user-avatar-badge">
+                        <!-- USER AVATAR BADGE BORDER -->
+                        <div class="user-avatar-badge-border">
+                            <!-- HEXAGON -->
+                            <div class="hexagon-32-36" style="width: 32px; height: 36px; position: relative;"><canvas width="32" height="36" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="32" height="36" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                            <!-- /HEXAGON -->
+                        </div>
+                        <!-- /USER AVATAR BADGE BORDER -->
+                        <!-- USER AVATAR BADGE CONTENT -->
+                        <div class="user-avatar-badge-content">
+                            <!-- HEXAGON -->
+                            <div class="hexagon-dark-26-28" style="width: 26px; height: 28px; position: relative;"><canvas width="26" height="28" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="26" height="28" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                            <!-- /HEXAGON -->
+                        </div>
+                        <!-- /USER AVATAR BADGE CONTENT -->
+                        <!-- USER AVATAR BADGE TEXT -->
+                        <p class="user-avatar-badge-text">24</p>
+                        <!-- /USER AVATAR BADGE TEXT -->
+                    </div>
+                    <!-- /USER AVATAR BADGE -->
+                </a>
+                <!-- /USER SHORT DESCRIPTION AVATAR -->
+                <!-- USER SHORT DESCRIPTION TITLE -->
+                <p class="user-short-description-title"><a> @Model.UserAccount.FirstName @Model.UserAccount.LastName </a></p>
+                <!-- /USER SHORT DESCRIPTION TITLE -->
+                <!-- USER SHORT DESCRIPTION TEXT -->
+                <p class="user-short-description-text"><a href="#">@Model.UserAccount.Email </a></p>
+                <!-- /USER SHORT DESCRIPTION TEXT -->
+            </div>
+            <!-- /USER SHORT DESCRIPTION -->
+            <!-- USER STATS -->
+            <div class="user-stats">
+                <!-- USER STAT -->
+                <div class="user-stat big">
+                    <!-- USER STAT TITLE -->
+                    <p class="user-stat-title">@Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create && o.IsDeleted == false).Count()</p>
+                    <!-- /USER STAT TITLE -->
+                    <!-- USER STAT TEXT -->
+                    <p class="user-stat-text">posts</p>
+                    <!-- /USER STAT TEXT -->
+                </div>
+                <!-- /USER STAT -->
+                <!-- USER STAT -->
+                <div class="user-stat big">
+                    <!-- USER STAT TITLE -->
+                    <p class="user-stat-title">0</p>
+                    <!-- /USER STAT TITLE -->
+                    <!-- USER STAT TEXT -->
+                    <p class="user-stat-text">friends</p>
+                    <!-- /USER STAT TEXT -->
+                </div>
+                <!-- /USER STAT -->
+                <!-- /USER STAT -->
+            </div>
+            <!-- /USER STATS -->
+        </div>
+        <!-- /PROFILE HEADER INFO -->
+    </div>
+    <!-- /PROFILE HEADER -->
+
     @RenderBody()
+
+    <!-- Visual Studio Browser Link -->
+    <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestid="08d0d597440f4e0a9bce9e276bffb181" data-requestmappingfromserver="false" data-connecturl="http://localhost:56555/17dc76bc99ba4984902dca5467a3a87e/browserLink"></script>
+    <!-- End Browser Link -->
+
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
 </div>
