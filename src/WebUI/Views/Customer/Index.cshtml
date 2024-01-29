@@ -8,8 +8,6 @@
     ViewBag.Title = "Ppychologist Info";
     Layout = "~/Views/Shared/Customer_Layout.cshtml";
 }
-
-
 @inject IIdentityService _identityServices;
 
 <!-- SECTION NAVIGATION -->
@@ -70,7 +68,18 @@
                                     <!-- /SECTION MENU ITEM TEXT -->
                                 </a>
                                 <!-- /SECTION MENU ITEM -->
-
+                                <!-- SECTION MENU ITEM -->
+                                <a class="section-menu-item tns-item tns-slide-active" href="/Customer/Transaction/" id="section-navigation-slider-item2">
+                                    <!-- SECTION MENU ITEM ICON -->
+                                    <svg class="section-menu-item-icon icon-friend">
+                                        <use xlink:href="#svg-blog-posts"></use>
+                                    </svg>
+                                    <!-- /SECTION MENU ITEM ICON -->
+                                    <!-- SECTION MENU ITEM TEXT -->
+                                    <p class="section-menu-item-text">Giao dịch</p>
+                                    <!-- /SECTION MENU ITEM TEXT -->
+                                </a>
+                                <!-- /SECTION MENU ITEM -->
                             </div>
                         </div>
                     </div>
@@ -103,6 +112,7 @@
     <!-- /SLIDER CONTROLS -->
 </nav>
 <!-- /SECTION NAVIGATION -->
+
 <div class="grid-column">
     <!-- GRID -->
     <!-- /GRID -->
@@ -320,10 +330,23 @@
         </div>
         <!-- /PRODUCT PREVIEW INFO -->
         <!-- PRODUCT PREVIEW META -->
-        <div class="product-preview-meta" style="text-align:center;justify-content:center;align-items:center">
-            <a class="button secondary" href="#" target="_blank" style="padding:0px 10px 0px 10px;">Nâng cấp ngay</a>
-            <!-- /RATING LIST -->
-        </div>
+        @{
+            if (userLogined.IsPremium == ZAlpha.Domain.Enums.PremiumStatus.UnActive)
+            {
+                <div class="product-preview-meta" style="text-align:center;justify-content:center;align-items:center">
+                    <a class="secondary" href="#" target="_blank" style="padding:0px 10px 0px 10px;">Đang ở gói này</a>
+                    <!-- /RATING LIST -->
+                </div>
+            } else
+            {
+                <div class="product-preview-meta" style="text-align:center;justify-content:center;align-items:center">
+                    <a class="button secondary" href="#" target="_blank" style="padding:0px 10px 0px 10px;">Nâng cấp ngay</a>
+                    <!-- /RATING LIST -->
+                </div>
+            }
+
+        }
+        
         <!-- /PRODUCT PREVIEW META -->
     </div>
     <!-- /PRODUCT PREVIEW -->
@@ -414,9 +437,17 @@
         </div>
         <!-- /PRODUCT PREVIEW INFO -->
         <!-- PRODUCT PREVIEW META -->
-        <div class="product-preview-meta" style="text-align:center;justify-content:center;align-items:center">
-            <a class="button secondary" href="#" target="_blank" style="padding:0px 10px 0px 10px;">Nâng cấp ngay</a>
-        </div>
+        @if (userLogined.IsPremium == ZAlpha.Domain.Enums.PremiumStatus.UnActive)
+        {
+            <div class="product-preview-meta" style="text-align:center;justify-content:center;align-items:center">
+                <a class="button secondary" href="/Upgrade" target="_blank" style="padding:0px 10px 0px 10px;">Nâng cấp ngay</a>
+            </div>
+        } else {
+            <div class="product-preview-meta" style="text-align:center;justify-content:center;align-items:center">
+                <a class="secondary" href="/Upgrade" target="_blank" style="padding:0px 10px 0px 10px;">Đang ở gói này</a>
+            </div>
+        }
+        
         <!-- /PRODUCT PREVIEW META -->
     </div>
     <!-- /PRODUCT PREVIEW -->

@@ -2,7 +2,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
+@using Microsoft.AspNetCore.Identity;
+@using ZAlpha.Domain.Identity;
+@using ZAlpha.Application.Common.Interfaces;
+
 @model CustomerAccountModel
+@* @inject IIdentityService _identityServices; *@
+
 <div class="content-grid" style="transform: translate(0px, 0px); transition: transform 0.4s ease-in-out 0s;">
     <title>Customer Profile</title>
 

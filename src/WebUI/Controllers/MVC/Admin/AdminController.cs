@@ -16,6 +16,8 @@ using ZAlpha.Application.Tag.Commands.CreateTag;
 using ZAlpha.Application.Tag.Commands.DeleteTag;
 using ZAlpha.Application.Tag.Commands.UpdateTag;
 using ZAlpha.Application.Tag.Queries.GetTag;
+using ZAlpha.Application.Transaction.Queries.GetAllTransaction;
+using ZAlpha.Application.Transaction.Queries.GetTransactionById;
 using ZAlpha.Domain.Entities;
 using ZAlpha.Domain.Identity;
 
@@ -425,7 +427,19 @@ public class AdminController : ControllerBaseMVC
             throw new Exception(ex.Message);
         }
     }
-    
+
+    public async Task<IActionResult> TransactionDatatable()
+    {
+        try
+        {
+            var result = Mediator.Send(new GetAllTransactionQueries() { Page = 1, Size = 1000 }).Result;
+            return View("./ManageTransaction/TransactionDatatable", result);
+        }
+        catch(Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
     public async Task<IActionResult> BanAccountCustomer(string userId)
     {        
         try
