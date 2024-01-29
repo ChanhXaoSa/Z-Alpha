@@ -171,7 +171,8 @@ public class LoginController : ControllerBaseMVC
 
             if (checker == false)
             {
-                throw new Exception();
+                ViewBag.RegisterValidate = "false";
+                return View(model);
             }
 
             var result = await _identityService.CreateNewUserAsync(model.Email, model.Username, model.FirstName, model.Lastname, model.Birthday, model.Address, model.Phone, model.Password);
@@ -247,7 +248,7 @@ public class LoginController : ControllerBaseMVC
                 return View(model);
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             ViewBag.RegisterValidate = "false";
             return View(model);

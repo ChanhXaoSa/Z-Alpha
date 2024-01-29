@@ -22,4 +22,6 @@ public interface IIdentityService
     Task<Result> DeleteUserAsync(string userId);
 
     Task<UserAccount> GetUserAsync(string userId);
+
+    Task<List<UserAccount>> GetListUsersAsync();
 }
