@@ -38,7 +38,7 @@ public class GetAllPsychologistAccountQueriesHandler : IRequestHandler<GetAllPsy
 
         if (request.filter == 0)
         {
-            customerAccount = customerAccount.OrderByDescending(x => x.UserAccount.InteractWithPosts.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create && o.IsDeleted == false).Count);
+            customerAccount = customerAccount.OrderByDescending(x => x.UserAccount.InteractWithPosts.Count());
         }
         else if (request.filter == 1)
         {

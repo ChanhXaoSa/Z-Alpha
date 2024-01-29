@@ -15,5 +15,6 @@ public enum InteractPostStatus
     Funny =5 ,
     Wow =6,
     Angry= 7,
-    Sad =8
+    Sad =8,
+    Share = 9
 }

@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using ZAlpha.Application.Utils.FormatDate;
 @using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
 @model PsychologistAccountModel
 <div class="content-grid" style="transform: translate(0px, 0px); transition: transform 0.4s ease-in-out 0s;">
@@ -39,33 +40,6 @@
                     <!-- STAT BLOCK DECORATION -->
                     <div class="stat-block-decoration">
                         <!-- STAT BLOCK DECORATION ICON -->
-                        <svg class="stat-block-decoration-icon icon-friend">
-                            <use xlink:href="#svg-friend"></use>
-                        </svg>
-                        <!-- /STAT BLOCK DECORATION ICON -->
-                    </div>
-                    <!-- /STAT BLOCK DECORATION -->
-                    <!-- STAT BLOCK INFO -->
-                    <div class="stat-block-info">
-                        <!-- STAT BLOCK TITLE -->
-                        <p class="stat-block-title">Last friend added</p>
-                        <!-- /STAT BLOCK TITLE -->
-                        <!-- STAT BLOCK TEXT -->
-                        <p class="stat-block-text">5 Days Ago</p>
-                        <!-- /STAT BLOCK TEXT -->
-                    </div>
-                    <!-- /STAT BLOCK INFO -->
-                </div>
-                <!-- /STAT BLOCK -->
-            </div>
-            <!-- /SLIDER SLIDE -->
-            <!-- SLIDER SLIDE -->
-            <div class="slider-slide">
-                <!-- STAT BLOCK -->
-                <div class="stat-block">
-                    <!-- STAT BLOCK DECORATION -->
-                    <div class="stat-block-decoration">
-                        <!-- STAT BLOCK DECORATION ICON -->
                         <svg class="stat-block-decoration-icon icon-status">
                             <use xlink:href="#svg-status"></use>
                         </svg>
@@ -75,10 +49,17 @@
                     <!-- STAT BLOCK INFO -->
                     <div class="stat-block-info">
                         <!-- STAT BLOCK TITLE -->
-                        <p class="stat-block-title">Last post update</p>
+                        <p class="stat-block-title">Bài đăng gần nhất</p>
                         <!-- /STAT BLOCK TITLE -->
                         <!-- STAT BLOCK TEXT -->
-                        <p class="stat-block-text">1 Day Ago</p>
+                        @{
+                            var latestPost = Model.UserAccount.InteractWithPosts?.OrderByDescending(o => o.Created)?.FirstOrDefault();
+                        }
+
+                        @if (latestPost != null)
+                        {
+                            <p class="stat-block-text">@FormatDate.CalTimeBetweenTwoDate(latestPost.Created) Day Ago</p>
+                        }
                         <!-- /STAT BLOCK TEXT -->
                     </div>
                     <!-- /STAT BLOCK INFO -->
@@ -102,10 +83,10 @@
                     <!-- STAT BLOCK INFO -->
                     <div class="stat-block-info">
                         <!-- STAT BLOCK TITLE -->
-                        <p class="stat-block-title">Most commented post</p>
+                        <p class="stat-block-title">Bài đăng được bình luận nhiều nhất</p>
                         <!-- /STAT BLOCK TITLE -->
                         <!-- STAT BLOCK TEXT -->
-                        <p class="stat-block-text">56 Comments</p>
+                        <p class="stat-block-text">@(Model.UserAccount.InteractWithComments?.Where(o => o.IsDeleted == false).Count() == null ? 0 : Model.UserAccount.InteractWithComments?.Where(o => o.IsDeleted == false).Count()) Bình luận</p>
                         <!-- /STAT BLOCK TEXT -->
                     </div>
                     <!-- /STAT BLOCK INFO -->
@@ -129,10 +110,10 @@
                     <!-- STAT BLOCK INFO -->
                     <div class="stat-block-info">
                         <!-- STAT BLOCK TITLE -->
-                        <p class="stat-block-title">Most liked post</p>
+                        <p class="stat-block-title">Bài đăng được nhiều lượt thích nhất</p>
                         <!-- /STAT BLOCK TITLE -->
                         <!-- STAT BLOCK TEXT -->
-                        <p class="stat-block-text">904 Likes</p>
+                        <p class="stat-block-text">@(Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like && o.IsDeleted == false).Count() == null ? 0 : Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like && o.IsDeleted == false).Count()) Likes</p>
                         <!-- /STAT BLOCK TEXT -->
                     </div>
                     <!-- /STAT BLOCK INFO -->
@@ -156,10 +137,10 @@
                     <!-- STAT BLOCK INFO -->
                     <div class="stat-block-info">
                         <!-- STAT BLOCK TITLE -->
-                        <p class="stat-block-title">Most shared post</p>
+                        <p class="stat-block-title">Bài đăng được chia sẻ nhiều nhất</p>
                         <!-- /STAT BLOCK TITLE -->
                         <!-- STAT BLOCK TEXT -->
-                        <p class="stat-block-text">156 Shares</p>
+                        <p class="stat-block-text">@(Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Share && o.IsDeleted == false).Count() == null ? 0 : Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Share && o.IsDeleted == false).Count()) lượt chia sẻ</p>
                         <!-- /STAT BLOCK TEXT -->
                     </div>
                     <!-- /STAT BLOCK INFO -->

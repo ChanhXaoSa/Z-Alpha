@@ -49,7 +49,8 @@
                     </div>
                     <!-- /FORM INPUT -->
                     <!-- FORM SELECT -->
-                    <div class="form-select">
+                    <!-- Phần này cmt lại khi nào sửa đc filter sau-->
+                    @* <div class="form-select">
                         <label for="stream-filter-criteria">Filter By</label>
                         <select id="stream-filter-criteria" name="filter">
                             <option value="0">Số lượng bài viết</option>
@@ -60,7 +61,7 @@
                             <use xlink:href="#svg-small-arrow"></use>
                         </svg>
                         <!-- /FORM SELECT ICON -->
-                    </div>
+                    </div> *@
                     <!-- /FORM SELECT -->
                     <!-- BUTTON -->
                     <button class="button secondary" type="submit">Tìm kiếm</button>
@@ -85,15 +86,6 @@
                     <!-- /USER PREVIEW COVER -->
                     <!-- USER PREVIEW INFO -->
                     <div class="user-preview-info">
-                        <!-- TAG STICKER -->
-                        <div class="tag-sticker">
-                            <!-- TAG STICKER ICON -->
-                            <svg class="tag-sticker-icon icon-public">
-                                <use xlink:href="#svg-public"></use>
-                            </svg>
-                            <!-- /TAG STICKER ICON -->
-                        </div>
-                        <!-- /TAG STICKER -->
                         <!-- USER SHORT DESCRIPTION -->
                         <div class="user-short-description small">
                             <!-- USER SHORT DESCRIPTION AVATAR -->
@@ -127,10 +119,10 @@
                             <!-- USER STAT -->
                             <div class="user-stat">
                                 <!-- USER STAT TITLE -->
-                                <p class="user-stat-title">139</p>
+                                <p class="user-stat-title">@(item.UserAccount.InteractWithComments?.Where(o => o.IsDeleted == false).Count() == null ? 0 : item.UserAccount.InteractWithComments?.Where(o => o.IsDeleted == false).Count())</p>
                                 <!-- /USER STAT TITLE -->
                                 <!-- USER STAT TEXT -->
-                                <p class="user-stat-text">members</p>
+                                <p class="user-stat-text">Số lượng bình luận</p>
                                 <!-- /USER STAT TEXT -->
                             </div>
                             <!-- /USER STAT -->
@@ -140,20 +132,10 @@
                                 <p class="user-stat-title"> @(item.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create && o.IsDeleted == false).Count() == null ? 0 : item.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Create && o.IsDeleted == false).Count())</p>
                                 <!-- /USER STAT TITLE -->
                                 <!-- USER STAT TEXT -->
-                                <p class="user-stat-text">posts</p>
+                                <p class="user-stat-text">Số lượng bài viết</p>
                                 <!-- /USER STAT TEXT -->
                             </div>
-                            <!-- /USER STAT -->
-                            <!-- USER STAT -->
-                            <div class="user-stat">
-                                <!-- USER STAT TITLE -->
-                                <p class="user-stat-title">7.3k</p>
-                                <!-- /USER STAT TITLE -->
-                                <!-- USER STAT TEXT -->
-                                <p class="user-stat-text">visits</p>
-                                <!-- /USER STAT TEXT -->
-                            </div>
-                            <!-- /USER STAT -->
+                            <!-- /USER STAT -->                      
                         </div>
                         <!-- /USER STATS -->
                     </div>
