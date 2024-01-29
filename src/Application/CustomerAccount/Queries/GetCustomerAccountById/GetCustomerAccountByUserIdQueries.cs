@@ -33,9 +33,10 @@ public class GetCustomerAccountByUserIdQueriesHandler : IRequestHandler<GetCusto
     {
         // get 
         var psychologist = _context.Get<Domain.Entities.CustomerAccount>()
-            .Where(x => x.IsDeleted == false && x.UserAccountId.Equals(request.UserAccountId))
             .Include(x => x.UserAccount)
-            .ThenInclude(x => x.InteractWithPosts)
+            .Include(x => x.UserAccount.InteractWithPosts)
+            .Include(x => x.UserAccount.InteractWithComments)
+            .Where(x => x.IsDeleted == false && x.UserAccountId.Equals(request.UserAccountId))
             .AsNoTracking()
             .FirstOrDefault();
         if (psychologist == null)

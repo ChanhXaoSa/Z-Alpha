@@ -34,6 +34,8 @@ public class GetCustomerAccountRequestHandler : IRequestHandler<GetCustomerAccou
     {
         var customerAccount = _context.Get<Domain.Entities.CustomerAccount>()
             .Include(x => x.UserAccount)
+            .Include(x => x.UserAccount.InteractWithPosts)
+            .Include(x => x.UserAccount.InteractWithComments)
             .Where(x => x.IsDeleted == false).AsNoTracking();
 
         var map = _mapper.ProjectTo<CustomerAccountModel>(customerAccount);

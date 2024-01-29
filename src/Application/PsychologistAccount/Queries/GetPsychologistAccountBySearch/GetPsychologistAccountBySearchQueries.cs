@@ -41,14 +41,14 @@ public class GetPsychologistAccountBySearchQueriesHandler : IRequestHandler<GetP
             || x.UserAccount.LastName.Contains(request.KeySearch)
             || x.UserAccount.UserName.Contains(request.KeySearch)));
 
-        if (request.filter == 0)
+        /*if (request.filter == 0)
         {
             customerAccount = customerAccount.OrderByDescending(x => x.UserAccount.InteractWithPosts.Count);
         }
         else if (request.filter == 1)
         {
             customerAccount = customerAccount.OrderByDescending(x => x.UserAccount.InteractWithComments.Count);
-        }
+        }*/
 
         var map = _mapper.ProjectTo<PsychologistAccountModel>(customerAccount);
 

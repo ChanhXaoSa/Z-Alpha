@@ -36,14 +36,14 @@ public class GetAllPsychologistAccountQueriesHandler : IRequestHandler<GetAllPsy
             .Include(x => x.UserAccount.InteractWithComments)
             .Where(x => x.IsDeleted == false);
 
-        if (request.filter == 0)
+        /*if (request.filter == 0)
         {
             customerAccount = customerAccount.OrderByDescending(x => x.UserAccount.InteractWithPosts.Count());
         }
         else if (request.filter == 1)
         {
             customerAccount = customerAccount.OrderByDescending(x => x.UserAccount.InteractWithComments.Count);
-        }
+        }*/
 
         var map = _mapper.ProjectTo<PsychologistAccountModel>(customerAccount);
 

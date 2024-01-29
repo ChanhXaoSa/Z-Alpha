@@ -7,151 +7,125 @@
 <div class="content-grid" style="transform: translate(0px, 0px); transition: transform 0.4s ease-in-out 0s;">
     <title>Customer Profile</title>
 
-    <!-- SLIDER LINE -->
-    <div class="slider-line">
-        <!-- SLIDER CONTROLS -->
-        <div id="stat-block-slider-controls" class="slider-controls">
-            <!-- SLIDER CONTROL -->
-            <div class="slider-control left">
-                <!-- SLIDER CONTROL ICON -->
-                <svg class="slider-control-icon icon-small-arrow">
-                    <use xlink:href="#svg-small-arrow"></use>
-                </svg>
-                <!-- /SLIDER CONTROL ICON -->
-            </div>
-            <!-- /SLIDER CONTROL -->
-            <!-- SLIDER CONTROL -->
-            <div class="slider-control right">
-                <!-- SLIDER CONTROL ICON -->
-                <svg class="slider-control-icon icon-small-arrow">
-                    <use xlink:href="#svg-small-arrow"></use>
-                </svg>
-                <!-- /SLIDER CONTROL ICON -->
-            </div>
-            <!-- /SLIDER CONTROL -->
-        </div>
-        <!-- /SLIDER CONTROLS -->
-        <!-- SLIDER SLIDES -->
-        <div id="stat-block-slider" class="slider-slides">
-            <!-- SLIDER SLIDE -->
-            <div class="slider-slide">
-                <!-- STAT BLOCK -->
-                <div class="stat-block">
-                    <!-- STAT BLOCK DECORATION -->
-                    <div class="stat-block-decoration">
-                        <!-- STAT BLOCK DECORATION ICON -->
-                        <svg class="stat-block-decoration-icon icon-status">
-                            <use xlink:href="#svg-status"></use>
-                        </svg>
-                        <!-- /STAT BLOCK DECORATION ICON -->
-                    </div>
-                    <!-- /STAT BLOCK DECORATION -->
-                    <!-- STAT BLOCK INFO -->
-                    <div class="stat-block-info">
-                        <!-- STAT BLOCK TITLE -->
-                        <p class="stat-block-title">Bài đăng gần nhất</p>
-                        <!-- /STAT BLOCK TITLE -->
-                        <!-- STAT BLOCK TEXT -->
-                        @{
-                            var latestPost = Model.UserAccount.InteractWithPosts?.OrderByDescending(o => o.Created)?.FirstOrDefault();
-                        }
+    <!-- SLIDER SLIDES -->
+    <div id="stat-block-slider" class="slider-slides">
+        <!-- SLIDER SLIDE -->
+        <div class="slider-slide">
+            <!-- STAT BLOCK -->
+            <div class="stat-block">
+                <!-- STAT BLOCK DECORATION -->
+                <div class="stat-block-decoration">
+                    <!-- STAT BLOCK DECORATION ICON -->
+                    <svg class="stat-block-decoration-icon icon-status">
+                        <use xlink:href="#svg-status"></use>
+                    </svg>
+                    <!-- /STAT BLOCK DECORATION ICON -->
+                </div>
+                <!-- /STAT BLOCK DECORATION -->
+                <!-- STAT BLOCK INFO -->
+                <div class="stat-block-info">
+                    <!-- STAT BLOCK TITLE -->
+                    <p class="stat-block-title">Bài đăng gần nhất</p>
+                    <!-- /STAT BLOCK TITLE -->
+                    <!-- STAT BLOCK TEXT -->
+                    @{
+                        var latestPost = Model.UserAccount.InteractWithPosts?.OrderByDescending(o => o.Created)?.FirstOrDefault();
+                    }
 
-                        @if (latestPost != null)
-                        {
-                            <p class="stat-block-text">@FormatDate.CalTimeBetweenTwoDate(latestPost.Created) Day Ago</p>
-                        }
-                        <!-- /STAT BLOCK TEXT -->
-                    </div>
-                    <!-- /STAT BLOCK INFO -->
+                    @if (latestPost != null)
+                    {
+                        <p class="stat-block-text">@FormatDate.CalTimeBetweenTwoDate(latestPost.Created) Day Ago</p>
+                    }
+                    <!-- /STAT BLOCK TEXT -->
                 </div>
-                <!-- /STAT BLOCK -->
+                <!-- /STAT BLOCK INFO -->
             </div>
-            <!-- /SLIDER SLIDE -->
-            <!-- SLIDER SLIDE -->
-            <div class="slider-slide">
-                <!-- STAT BLOCK -->
-                <div class="stat-block">
-                    <!-- STAT BLOCK DECORATION -->
-                    <div class="stat-block-decoration">
-                        <!-- STAT BLOCK DECORATION ICON -->
-                        <svg class="stat-block-decoration-icon icon-comment">
-                            <use xlink:href="#svg-comment"></use>
-                        </svg>
-                        <!-- /STAT BLOCK DECORATION ICON -->
-                    </div>
-                    <!-- /STAT BLOCK DECORATION -->
-                    <!-- STAT BLOCK INFO -->
-                    <div class="stat-block-info">
-                        <!-- STAT BLOCK TITLE -->
-                        <p class="stat-block-title">Bài đăng được bình luận nhiều nhất</p>
-                        <!-- /STAT BLOCK TITLE -->
-                        <!-- STAT BLOCK TEXT -->
-                        <p class="stat-block-text">@(Model.UserAccount.InteractWithComments?.Where(o => o.IsDeleted == false).Count() == null ? 0 : Model.UserAccount.InteractWithComments?.Where(o => o.IsDeleted == false).Count()) Bình luận</p>
-                        <!-- /STAT BLOCK TEXT -->
-                    </div>
-                    <!-- /STAT BLOCK INFO -->
-                </div>
-                <!-- /STAT BLOCK -->
-            </div>
-            <!-- /SLIDER SLIDE -->
-            <!-- SLIDER SLIDE -->
-            <div class="slider-slide">
-                <!-- STAT BLOCK -->
-                <div class="stat-block">
-                    <!-- STAT BLOCK DECORATION -->
-                    <div class="stat-block-decoration">
-                        <!-- STAT BLOCK DECORATION ICON -->
-                        <svg class="stat-block-decoration-icon icon-thumbs-up">
-                            <use xlink:href="#svg-thumbs-up"></use>
-                        </svg>
-                        <!-- /STAT BLOCK DECORATION ICON -->
-                    </div>
-                    <!-- /STAT BLOCK DECORATION -->
-                    <!-- STAT BLOCK INFO -->
-                    <div class="stat-block-info">
-                        <!-- STAT BLOCK TITLE -->
-                        <p class="stat-block-title">Bài đăng được nhiều lượt thích nhất</p>
-                        <!-- /STAT BLOCK TITLE -->
-                        <!-- STAT BLOCK TEXT -->
-                        <p class="stat-block-text">@(Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like && o.IsDeleted == false).Count() == null ? 0 : Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like && o.IsDeleted == false).Count()) Likes</p>
-                        <!-- /STAT BLOCK TEXT -->
-                    </div>
-                    <!-- /STAT BLOCK INFO -->
-                </div>
-                <!-- /STAT BLOCK -->
-            </div>
-            <!-- /SLIDER SLIDE -->
-            <!-- SLIDER SLIDE -->
-            <div class="slider-slide">
-                <!-- STAT BLOCK -->
-                <div class="stat-block">
-                    <!-- STAT BLOCK DECORATION -->
-                    <div class="stat-block-decoration">
-                        <!-- STAT BLOCK DECORATION ICON -->
-                        <svg class="stat-block-decoration-icon icon-share">
-                            <use xlink:href="#svg-share"></use>
-                        </svg>
-                        <!-- /STAT BLOCK DECORATION ICON -->
-                    </div>
-                    <!-- /STAT BLOCK DECORATION -->
-                    <!-- STAT BLOCK INFO -->
-                    <div class="stat-block-info">
-                        <!-- STAT BLOCK TITLE -->
-                        <p class="stat-block-title">Bài đăng được chia sẻ nhiều nhất</p>
-                        <!-- /STAT BLOCK TITLE -->
-                        <!-- STAT BLOCK TEXT -->
-                        <p class="stat-block-text">@(Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Share && o.IsDeleted == false).Count() == null ? 0 : Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Share && o.IsDeleted == false).Count()) lượt chia sẻ</p>
-                        <!-- /STAT BLOCK TEXT -->
-                    </div>
-                    <!-- /STAT BLOCK INFO -->
-                </div>
-                <!-- /STAT BLOCK -->
-            </div>
-            <!-- /SLIDER SLIDE -->
+            <!-- /STAT BLOCK -->
         </div>
-        <!-- /SLIDER SLIDES -->
+        <!-- /SLIDER SLIDE -->
+        <!-- SLIDER SLIDE -->
+        <div class="slider-slide">
+            <!-- STAT BLOCK -->
+            <div class="stat-block">
+                <!-- STAT BLOCK DECORATION -->
+                <div class="stat-block-decoration">
+                    <!-- STAT BLOCK DECORATION ICON -->
+                    <svg class="stat-block-decoration-icon icon-comment">
+                        <use xlink:href="#svg-comment"></use>
+                    </svg>
+                    <!-- /STAT BLOCK DECORATION ICON -->
+                </div>
+                <!-- /STAT BLOCK DECORATION -->
+                <!-- STAT BLOCK INFO -->
+                <div class="stat-block-info">
+                    <!-- STAT BLOCK TITLE -->
+                    <p class="stat-block-title">Tổng lượt bình luận</p>
+                    <!-- /STAT BLOCK TITLE -->
+                    <!-- STAT BLOCK TEXT -->
+                    <p class="stat-block-text">@(Model.UserAccount.InteractWithComments?.Where(o => o.IsDeleted == false).Count() == null ? 0 : Model.UserAccount.InteractWithComments?.Where(o => o.IsDeleted == false).Count()) Bình luận</p>
+                    <!-- /STAT BLOCK TEXT -->
+                </div>
+                <!-- /STAT BLOCK INFO -->
+            </div>
+            <!-- /STAT BLOCK -->
+        </div>
+        <!-- /SLIDER SLIDE -->
+        <!-- SLIDER SLIDE -->
+        <div class="slider-slide">
+            <!-- STAT BLOCK -->
+            <div class="stat-block">
+                <!-- STAT BLOCK DECORATION -->
+                <div class="stat-block-decoration">
+                    <!-- STAT BLOCK DECORATION ICON -->
+                    <svg class="stat-block-decoration-icon icon-thumbs-up">
+                        <use xlink:href="#svg-thumbs-up"></use>
+                    </svg>
+                    <!-- /STAT BLOCK DECORATION ICON -->
+                </div>
+                <!-- /STAT BLOCK DECORATION -->
+                <!-- STAT BLOCK INFO -->
+                <div class="stat-block-info">
+                    <!-- STAT BLOCK TITLE -->
+                    <p class="stat-block-title">Tổng lượt thích</p>
+                    <!-- /STAT BLOCK TITLE -->
+                    <!-- STAT BLOCK TEXT -->
+                    <p class="stat-block-text">@(Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like && o.IsDeleted == false).Count() == null ? 0 : Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Like && o.IsDeleted == false).Count()) Likes</p>
+                    <!-- /STAT BLOCK TEXT -->
+                </div>
+                <!-- /STAT BLOCK INFO -->
+            </div>
+            <!-- /STAT BLOCK -->
+        </div>
+        <!-- /SLIDER SLIDE -->
+        <!-- SLIDER SLIDE -->
+        <div class="slider-slide">
+            <!-- STAT BLOCK -->
+            <div class="stat-block">
+                <!-- STAT BLOCK DECORATION -->
+                <div class="stat-block-decoration">
+                    <!-- STAT BLOCK DECORATION ICON -->
+                    <svg class="stat-block-decoration-icon icon-share">
+                        <use xlink:href="#svg-share"></use>
+                    </svg>
+                    <!-- /STAT BLOCK DECORATION ICON -->
+                </div>
+                <!-- /STAT BLOCK DECORATION -->
+                <!-- STAT BLOCK INFO -->
+                <div class="stat-block-info">
+                    <!-- STAT BLOCK TITLE -->
+                    <p class="stat-block-title">Tổng lượt chia sẻ</p>
+                    <!-- /STAT BLOCK TITLE -->
+                    <!-- STAT BLOCK TEXT -->
+                    <p class="stat-block-text">@(Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Share && o.IsDeleted == false).Count() == null ? 0 : Model.UserAccount.InteractWithPosts?.Where(o => o.InteractPostStatus == ZAlpha.Domain.Enums.InteractPostStatus.Share && o.IsDeleted == false).Count()) lượt chia sẻ</p>
+                    <!-- /STAT BLOCK TEXT -->
+                </div>
+                <!-- /STAT BLOCK INFO -->
+            </div>
+            <!-- /STAT BLOCK -->
+        </div>
+        <!-- /SLIDER SLIDE -->
     </div>
-    <!-- /SLIDER LINE -->
+    <!-- /SLIDER SLIDES -->
 
     <!-- PROFILE HEADER -->
     <div class="profile-header">
