@@ -116,67 +116,73 @@
     </nav>
     <!-- /SECTION NAVIGATION -->
 
-    <div class="grid grid-3-6-3 mobile-prefer-content">
-        <!--GRID-COLUMN-->
-        <div class="grid-column">
-            
-        </div>
-        <!--/GRID-COLUMN-->
-
-        <!--GRID COLUMN-->
-        <div class="grid-column">
-            <div class="widget-box">
-                <!-- WIDGET BOX TITLE -->
-                <p class="widget-box-title">Lịch sử giao dịch</p>
-                <!-- /WIDGET BOX TITLE -->
-                <!-- WIDGET BOX CONTENT -->
-                <div class="widget-box-content">
-                    <!-- TABLE WRAP -->
-                    <div class="table-wrap" data-simplebar="init">
-                        <div class="simplebar-wrapper" style="margin: 0px;">
-                            <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask">
-                                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                                    <div class="simplebar-content-wrapper" style="height: auto; overflow: hidden;">
-                                        <div class="simplebar-content" style="padding: 0px;">
-                                            <!-- TABLE -->                                   
-                                            <div class="table table-payments join-rows">
-                                                <!-- TABLE HEADER -->
-                                                <div class="table-header">
-                                                    <!-- TABLE HEADER COLUMN -->
-                                                    <div class="table-header-column">
-                                                        <!-- TABLE HEADER TITLE -->
+    <div class="grid-column">
+        <div class="widget-box">
+            <!-- WIDGET BOX TITLE -->
+            <p class="widget-box-title">Lịch sử giao dịch</p>
+            <!-- /WIDGET BOX TITLE -->
+            <!-- WIDGET BOX CONTENT -->
+            <div class="widget-box-content">
+                <!-- TABLE WRAP -->
+                <div class="table-wrap" data-simplebar="init">
+                    <div class="simplebar-wrapper" style="margin: 0px;">
+                        <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask">
+                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                <div class="simplebar-content-wrapper" style="height: auto; overflow: hidden;">
+                                    <div class="simplebar-content" style="padding: 0px;">
+                                        <!-- TABLE -->
+                                        <div class="table table-payments join-rows">
+                                            <!-- TABLE HEADER -->
+                                            <div class="table-header">
+                                                <!-- TABLE HEADER COLUMN -->
+                                                <div class="table-header-column">
+                                                    <!-- TABLE HEADER TITLE -->
                                                         <p class="table-header-title">Ngày giao dịch</p>
-                                                        <!-- /TABLE HEADER TITLE -->
-                                                    </div>
-                                                    <!-- /TABLE HEADER COLUMN -->
-                                                    <!-- TABLE HEADER COLUMN -->
-                                                    <div class="table-header-column padded">
-                                                        <!-- TABLE HEADER TITLE -->
-                                                        <p class="table-header-title">Phương thức thanh toán</p>
-                                                        <!-- /TABLE HEADER TITLE -->
-                                                    </div>
-                                                    <!-- /TABLE HEADER COLUMN -->
-                                                    <!-- TABLE HEADER COLUMN -->
-                                                    <div class="table-header-column centered padded">
-                                                        <!-- TABLE HEADER TITLE -->
-                                                        <p class="table-header-title">Số tiền</p>
-                                                        <!-- /TABLE HEADER TITLE -->
-                                                    </div>
-                                                    <!-- /TABLE HEADER COLUMN -->
-                                                    <!-- TABLE HEADER COLUMN -->
-                                                    <div class="table-header-column padded-left align-right">
-                                                        <!-- TABLE HEADER TITLE -->
-                                                        <p class="table-header-title">Số dư</p>
-                                                        <!-- /TABLE HEADER TITLE -->
-                                                    </div>
-                                                    <!-- /TABLE HEADER COLUMN -->
+                                                    <!-- /TABLE HEADER TITLE -->
                                                 </div>
-                                                <!-- /TABLE HEADER -->
-                                                <!-- TABLE BODY -->
-                                                <div class="table-body">
-                                                    <!-- TABLE ROW -->
-                                                    @foreach (var item in transactionList.Items)
-                                                    {
+                                                <!-- /TABLE HEADER COLUMN -->
+                                                <!-- TABLE HEADER COLUMN -->
+                                                <div class="table-header-column padded">
+                                                    <!-- TABLE HEADER TITLE -->
+                                                    <p class="table-header-title">Phương thức thanh toán</p>
+                                                    <!-- /TABLE HEADER TITLE -->
+                                                </div>
+                                                <!-- /TABLE HEADER COLUMN -->                                        
+                                                <!-- TABLE HEADER COLUMN -->
+                                                <div class="table-header-column centered padded">
+                                                    <!-- TABLE HEADER TITLE -->
+                                                    <p class="table-header-title">Số tiền</p>
+                                                    <!-- /TABLE HEADER TITLE -->
+                                                </div>
+                                                <!-- /TABLE HEADER COLUMN -->
+                                                <!-- TABLE HEADER COLUMN -->
+                                                <div class="table-header-column centered padded">
+                                                    <!-- TABLE HEADER TITLE -->
+                                                    <p class="table-header-title">Phí giao dịch</p>
+                                                    <!-- /TABLE HEADER TITLE -->
+                                                </div>
+                                                <!-- /TABLE HEADER COLUMN -->
+                                                <!-- TABLE HEADER COLUMN -->
+                                                <div class="table-header-column centered padded">
+                                                    <!-- TABLE HEADER TITLE -->
+                                                    <p class="table-header-title">Số dư</p>
+                                                    <!-- /TABLE HEADER TITLE -->
+                                                </div>
+                                                <!-- /TABLE HEADER COLUMN -->
+                                                <!-- TABLE HEADER COLUMN -->
+                                                <div class="table-header-column centered padded">
+                                                    <!-- TABLE HEADER TITLE -->
+                                                    <p class="table-header-title"></p>
+                                                    <!-- /TABLE HEADER TITLE -->
+                                                </div>
+                                                <!-- /TABLE HEADER COLUMN -->
+                                            </div>
+                                            <!-- /TABLE HEADER -->
+                                            <!-- TABLE BODY -->
+                                            <div class="table-body">
+                                                <!-- TABLE ROW -->
+                                                @foreach (var item in transactionList.Items)
+                                                {
                                                     <div class="table-row micro">
                                                         <!-- TABLE COLUMN -->
                                                         <div class="table-column">
@@ -200,30 +206,42 @@
                                                         </div>
                                                         <!-- /TABLE COLUMN -->
                                                         <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded-left align-right">
+                                                        <div class="table-column centered padded">
+                                                            <!-- TABLE TITLE -->
+                                                            <p class="table-title">@item.TransactionFee</p>
+                                                            <!-- /TABLE TITLE -->
+                                                        </div>
+                                                        <!-- /TABLE COLUMN -->
+                                                        <!-- TABLE COLUMN -->
+                                                        <div class="table-column centered padded">
                                                             <!-- TABLE TEXT -->
                                                             <p class="table-text"><span class="light">@item.Balance</span></p>
                                                             <!-- /TABLE TEXT -->
                                                         </div>
                                                         <!-- /TABLE COLUMN -->
+                                                        <!-- TABLE COLUMN -->
+                                                        <div class="table-column centered padded">
+                                                            <!-- TABLE TEXT -->
+                                                            <p class="table-text"><a class="light" href="#">Xem chi tiết</a></p>
+                                                            <!-- /TABLE TEXT -->
+                                                        </div>
+                                                        <!-- /TABLE COLUMN -->
                                                     </div>
-                                                    }
-                                                    <!-- /TABLE ROW -->                                                   
-                                                </div>
-                                                <!-- /TABLE BODY -->
+                                                }
+                                                <!-- /TABLE ROW -->
                                             </div>
-                                            <!-- /TABLE -->
+                                            <!-- /TABLE BODY -->
                                         </div>
+                                        <!-- /TABLE -->
                                     </div>
                                 </div>
-                            </div><div class="simplebar-placeholder" style="width: auto; height: 351px;"></div>
-                        </div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div>
-                    </div>
-                    <!-- /TABLE WRAP -->
+                            </div>
+                        </div><div class="simplebar-placeholder" style="width: auto; height: 351px;"></div>
+                    </div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div>
                 </div>
-                <!-- WIDGET BOX CONTENT -->
+                <!-- /TABLE WRAP -->
             </div>
+            <!-- WIDGET BOX CONTENT -->
         </div>
-        <!--/GRID COLUMN-->
     </div>
 </body>
