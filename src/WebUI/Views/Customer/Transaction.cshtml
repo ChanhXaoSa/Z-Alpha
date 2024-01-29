@@ -2,16 +2,15 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewBag.Title = "Customer Post";
+    ViewBag.Title = "Transaction";
     Layout = "~/Views/Shared/Customer_Layout.cshtml";
 }
 @using ZAlpha.Application.Common.Models;
-@using ZAlpha.Application.Tag.Queries;
-@using ZAlpha.Application.Transaction.Queries.GetAllTransaction;
+@using ZAlpha.Application.Transaction.Queries.GetTransaction;
 @using ZAlpha.Application.Utils.FormatDate;
 @using Microsoft.AspNetCore.Mvc;
 @{
-    PaginatedList<ZAlpha.Application.Transaction.Queries.GetAllTransaction.GetAllTransactionQueries> postList = ViewBag.postList;
+    PaginatedList<TransactionModel> transactionList = ViewBag.transactionList;
 }
 <body>
     <!-- SECTION NAVIGATION -->
@@ -120,105 +119,7 @@
     <div class="grid grid-3-6-3 mobile-prefer-content">
         <!--GRID-COLUMN-->
         <div class="grid-column">
-            <div class="grid-column">
-                <!-- WIDGET BOX -->
-                <div class="widget-box">
-                    <!-- WIDGET BOX TITLE -->
-                    <p class="widget-box-title">Payment Method</p>
-                    <!-- /WIDGET BOX TITLE -->
-                    <!-- WIDGET BOX CONTENT -->
-                    <div class="widget-box-content">
-                        <!-- FORM -->
-                        <form class="form">
-                            <!-- FORM ROW -->
-                            <div class="form-row">
-                                <!-- CHECKBOX WRAP -->
-                                <div class="checkbox-wrap selected">
-                                    <input type="radio" id="payment-method-paypal" name="payment_method" value="payment-method-paypal" checked="">
-                                    <!-- CHECKBOX BOX -->
-                                    <div class="checkbox-box round"></div>
-                                    <!-- /CHECKBOX BOX -->
-                                    <label class="accordion-trigger-linked" for="payment-method-paypal">Paypal</label>
-
-                                    <!-- CHECKBOX INFO -->
-                                    <!-- /CHECKBOX INFO -->
-                                    <div style="overflow: hidden; height: 52px; transition: all 0.3s ease-in-out 0s;">
-                                        <div class="checkbox-info accordion-content-linked accordion-open">
-                                            <!-- CHECKBOX INFO TEXT -->
-                                            <p class="checkbox-info-text">Click "Confirm Method" to be redirected to login and confirm your account.</p>
-                                            <!-- /CHECKBOX INFO TEXT -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /CHECKBOX WRAP -->
-                            </div>
-                            <!-- /FORM ROW -->
-                            <!-- FORM ROW -->
-                            <div class="form-row">
-                                <!-- CHECKBOX WRAP -->
-                                <div class="checkbox-wrap">
-                                    <input type="radio" id="payment-method-payoneer" name="payment_method" value="payment-method-payoneer">
-                                    <!-- CHECKBOX BOX -->
-                                    <div class="checkbox-box round"></div>
-                                    <!-- /CHECKBOX BOX -->
-                                    <label class="accordion-trigger-linked" for="payment-method-payoneer">Payoneer</label>
-
-                                    <!-- CHECKBOX INFO -->
-                                    <!-- /CHECKBOX INFO -->
-                                    <div style="overflow: hidden; height: 0px; transition: all 0.3s ease-in-out 0s;">
-                                        <div class="checkbox-info accordion-content-linked">
-                                            <!-- CHECKBOX INFO TEXT -->
-                                            <p class="checkbox-info-text">Click "Confirm Method" to be redirected to login and confirm your account.</p>
-                                            <!-- /CHECKBOX INFO TEXT -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /CHECKBOX WRAP -->
-                            </div>
-                            <!-- /FORM ROW -->
-                        </form>
-                        <!-- /FORM -->
-                        <!-- BUTTON -->
-                        <p class="button full primary">Confirm Method</p>
-                        <!-- /BUTTON -->
-                    </div>
-                    <!-- WIDGET BOX CONTENT -->
-                </div>
-                <!-- /WIDGET BOX -->
-                <!-- WIDGET BOX -->
-                <div class="widget-box">
-                    <!-- WIDGET BOX TITLE -->
-                    <p class="widget-box-title">Confirmed Method</p>
-                    <!-- /WIDGET BOX TITLE -->
-                    <!-- WIDGET BOX CONTENT -->
-                    <div class="widget-box-content">
-                        <!-- STATUS INFO -->
-                        <div class="status-info success">
-                            <!-- STATUS ICON WRAP -->
-                            <div class="status-icon-wrap">
-                                <!-- STATUS ICON -->
-                                <svg class="status-icon icon-check">
-                                    <use xlink:href="#svg-check"></use>
-                                </svg>
-                                <!-- /STATUS ICON -->
-                            </div>
-                            <!-- /STATUS ICON WRAP -->
-                            <!-- STATUS TITLE -->
-                            <p class="status-title">marinav@payments.com</p>
-                            <!-- /STATUS TITLE -->
-                            <!-- STATUS TEXT -->
-                            <p class="status-text">PayPal</p>
-                            <!-- /STATUS TEXT -->
-                            <!-- STATUS DESCRIPTION -->
-                            <p class="status-description">Your selected payout method was confirmed on Jan 17, 2019</p>
-                            <!-- /STATUS DESCRIPTION -->
-                        </div>
-                        <!-- /STATUS INFO -->
-                    </div>
-                    <!-- WIDGET BOX CONTENT -->
-                </div>
-                <!-- /WIDGET BOX -->
-            </div>
+            
         </div>
         <!--/GRID-COLUMN-->
 
@@ -226,7 +127,7 @@
         <div class="grid-column">
             <div class="widget-box">
                 <!-- WIDGET BOX TITLE -->
-                <p class="widget-box-title">Payments History</p>
+                <p class="widget-box-title">Lịch sử giao dịch</p>
                 <!-- /WIDGET BOX TITLE -->
                 <!-- WIDGET BOX CONTENT -->
                 <div class="widget-box-content">
@@ -237,35 +138,35 @@
                                 <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
                                     <div class="simplebar-content-wrapper" style="height: auto; overflow: hidden;">
                                         <div class="simplebar-content" style="padding: 0px;">
-                                            <!-- TABLE -->
+                                            <!-- TABLE -->                                   
                                             <div class="table table-payments join-rows">
                                                 <!-- TABLE HEADER -->
                                                 <div class="table-header">
                                                     <!-- TABLE HEADER COLUMN -->
                                                     <div class="table-header-column">
                                                         <!-- TABLE HEADER TITLE -->
-                                                        <p class="table-header-title">Date</p>
+                                                        <p class="table-header-title">Ngày giao dịch</p>
                                                         <!-- /TABLE HEADER TITLE -->
                                                     </div>
                                                     <!-- /TABLE HEADER COLUMN -->
                                                     <!-- TABLE HEADER COLUMN -->
                                                     <div class="table-header-column padded">
                                                         <!-- TABLE HEADER TITLE -->
-                                                        <p class="table-header-title">Method</p>
+                                                        <p class="table-header-title">Phương thức thanh toán</p>
                                                         <!-- /TABLE HEADER TITLE -->
                                                     </div>
                                                     <!-- /TABLE HEADER COLUMN -->
                                                     <!-- TABLE HEADER COLUMN -->
                                                     <div class="table-header-column centered padded">
                                                         <!-- TABLE HEADER TITLE -->
-                                                        <p class="table-header-title">Amount</p>
+                                                        <p class="table-header-title">Số tiền</p>
                                                         <!-- /TABLE HEADER TITLE -->
                                                     </div>
                                                     <!-- /TABLE HEADER COLUMN -->
                                                     <!-- TABLE HEADER COLUMN -->
                                                     <div class="table-header-column padded-left align-right">
                                                         <!-- TABLE HEADER TITLE -->
-                                                        <p class="table-header-title">Status</p>
+                                                        <p class="table-header-title">Số dư</p>
                                                         <!-- /TABLE HEADER TITLE -->
                                                     </div>
                                                     <!-- /TABLE HEADER COLUMN -->
@@ -274,229 +175,40 @@
                                                 <!-- TABLE BODY -->
                                                 <div class="table-body">
                                                     <!-- TABLE ROW -->
+                                                    @foreach (var item in transactionList.Items)
+                                                    {
                                                     <div class="table-row micro">
                                                         <!-- TABLE COLUMN -->
                                                         <div class="table-column">
                                                             <!-- TABLE TEXT -->
-                                                            <p class="table-text"><span class="light">Nov 15th, 2019</span></p>
+                                                            <p class="table-text"><span class="light">@item.Created</span></p>
                                                             <!-- /TABLE TEXT -->
                                                         </div>
                                                         <!-- /TABLE COLUMN -->
                                                         <!-- TABLE COLUMN -->
                                                         <div class="table-column padded">
                                                             <!-- TABLE TITLE -->
-                                                            <p class="table-title">marinav@payments.com</p>
+                                                            <p class="table-title">@item.PaymentMethod.PaymentMethodName</p>
                                                             <!-- /TABLE TITLE -->
                                                         </div>
                                                         <!-- /TABLE COLUMN -->
                                                         <!-- TABLE COLUMN -->
                                                         <div class="table-column centered padded">
                                                             <!-- TABLE TITLE -->
-                                                            <p class="table-title">$250.32</p>
+                                                            <p class="table-title">@item.Money</p>
                                                             <!-- /TABLE TITLE -->
                                                         </div>
                                                         <!-- /TABLE COLUMN -->
                                                         <!-- TABLE COLUMN -->
                                                         <div class="table-column padded-left align-right">
                                                             <!-- TABLE TEXT -->
-                                                            <p class="table-text"><span class="light">Pending</span></p>
+                                                            <p class="table-text"><span class="light">@item.Balance</span></p>
                                                             <!-- /TABLE TEXT -->
                                                         </div>
                                                         <!-- /TABLE COLUMN -->
                                                     </div>
-                                                    <!-- /TABLE ROW -->
-                                                    <!-- TABLE ROW -->
-                                                    <div class="table-row micro">
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column">
-                                                            <!-- TABLE TEXT -->
-                                                            <p class="table-text"><span class="light">Oct 15th, 2019</span></p>
-                                                            <!-- /TABLE TEXT -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">marinav@payments.com</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column centered padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">$118.24</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded-left align-right">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title"><span class="highlighted">Paid</span></p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                    </div>
-                                                    <!-- /TABLE ROW -->
-                                                    <!-- TABLE ROW -->
-                                                    <div class="table-row micro">
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column">
-                                                            <!-- TABLE TEXT -->
-                                                            <p class="table-text"><span class="light">Sep 15th, 2019</span></p>
-                                                            <!-- /TABLE TEXT -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">marinav@payments.com</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column centered padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">$337.20</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded-left align-right">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title"><span class="highlighted">Paid</span></p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                    </div>
-                                                    <!-- /TABLE ROW -->
-                                                    <!-- TABLE ROW -->
-                                                    <div class="table-row micro">
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column">
-                                                            <!-- TABLE TEXT -->
-                                                            <p class="table-text"><span class="light">Aug 15th, 2019</span></p>
-                                                            <!-- /TABLE TEXT -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">marinav@payments.com</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column centered padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">$101.68</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded-left align-right">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title"><span class="highlighted">Paid</span></p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                    </div>
-                                                    <!-- /TABLE ROW -->
-                                                    <!-- TABLE ROW -->
-                                                    <div class="table-row micro">
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column">
-                                                            <!-- TABLE TEXT -->
-                                                            <p class="table-text"><span class="light">Jul 15th, 2019</span></p>
-                                                            <!-- /TABLE TEXT -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">marinav@payments.com</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column centered padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">$89.44</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded-left align-right">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title"><span class="highlighted">Paid</span></p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                    </div>
-                                                    <!-- /TABLE ROW -->
-                                                    <!-- TABLE ROW -->
-                                                    <div class="table-row micro">
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column">
-                                                            <!-- TABLE TEXT -->
-                                                            <p class="table-text"><span class="light">Jun 15th, 2019</span></p>
-                                                            <!-- /TABLE TEXT -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">marinav@payments.com</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column centered padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">$109.82</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded-left align-right">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title"><span class="highlighted">Paid</span></p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                    </div>
-                                                    <!-- /TABLE ROW -->
-                                                    <!-- TABLE ROW -->
-                                                    <div class="table-row micro">
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column">
-                                                            <!-- TABLE TEXT -->
-                                                            <p class="table-text"><span class="light">May 15th, 2019</span></p>
-                                                            <!-- /TABLE TEXT -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">marinav@payments.com</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column centered padded">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title">$52.17</p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                        <!-- TABLE COLUMN -->
-                                                        <div class="table-column padded-left align-right">
-                                                            <!-- TABLE TITLE -->
-                                                            <p class="table-title"><span class="highlighted">Paid</span></p>
-                                                            <!-- /TABLE TITLE -->
-                                                        </div>
-                                                        <!-- /TABLE COLUMN -->
-                                                    </div>
-                                                    <!-- /TABLE ROW -->
+                                                    }
+                                                    <!-- /TABLE ROW -->                                                   
                                                 </div>
                                                 <!-- /TABLE BODY -->
                                             </div>

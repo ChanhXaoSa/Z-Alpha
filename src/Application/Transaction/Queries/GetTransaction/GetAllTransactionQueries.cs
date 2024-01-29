@@ -32,6 +32,9 @@ public class GetAllTransactionQueriesHandler : IRequestHandler<GetAllTransaction
     public async Task<PaginatedList<TransactionModel>> Handle(GetAllTransactionQueries request, CancellationToken cancellationToken)
     {
         var tags = _context.Get<Domain.Entities.Transaction>()
+            .Include(x => x.UserAccount)
+            .Include(x => x.PaymentMethod)
+            .OrderByDescending(o => o.Created)
             .Where(x => x.IsDeleted == false).AsNoTracking();
 
         var map = _mapper.ProjectTo<TransactionModel>(tags);

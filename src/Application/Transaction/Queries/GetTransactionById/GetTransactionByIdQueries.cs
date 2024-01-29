@@ -33,10 +33,9 @@ public class GetTransactionByIdQueriesHandler : IRequestHandler<GetTransactionBy
     public async Task<PaginatedList<TransactionModel>> Handle(GetTransactionByIdQueries request, CancellationToken cancellationToken)
     {
         var listTransaction = _context.Get<Domain.Entities.Transaction>()
-            .Where(x => x.IsDeleted == false)
-            .Include(o => o.UserAccount)
-            .Where(o => o.UserAccount.Id.Equals(request.UserId))
-            .Include(o => o.PaymentMethod)
+            .Where(x => x.IsDeleted == false || x.UserAccountId.Equals(request.UserId))
+            .Include(x => x.UserAccount)
+            .Include(x => x.PaymentMethod)
             .OrderByDescending(o => o.Created)
             .AsNoTracking();
 
