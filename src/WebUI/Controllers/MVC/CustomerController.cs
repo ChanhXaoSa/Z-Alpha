@@ -19,6 +19,7 @@ using ZAlpha.Application.InteractWithComments.Commands.CreateInteractWithComment
 using System.ComponentModel.Design;
 using ZAlpha.Application.Post.Queries.GetPostByUserIdQuery;
 using ZAlpha.Application.Post.Queries.GetPostWishListByUserIdQuery;
+using ZAlpha.Application.Transaction.Queries.GetTransactionById;
 
 namespace WebUI.Controllers.MVC;
 public class CustomerController : ControllerBaseMVC
@@ -308,6 +309,27 @@ public class CustomerController : ControllerBaseMVC
         catch (Exception ex)
         {
             return Json(new { success = false, message = "Chỉnh sửa thất bại!" });
+        }
+    }
+
+    public async Task<IActionResult> Transaction()
+    {
+        try
+        {
+            var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+            var transactionList = Mediator.Send(new GetTransactionByIdQueries() { UserId = user.Id, Page = 1, Size = 100 }).Result;
+            var result = Mediator.Send(new GetCustomerAccountByUserIdQueries() { UserAccountId = user.Id }).Result;
+
+            ViewBag.transactionList = transactionList;
+            if (user != null)
+            {
+                SetUpViewData(user);
+            }
+            return View(result);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
         }
     }
 }
