@@ -50,10 +50,10 @@
             <!-- TAB SWITCH -->
             <div class="tab-switch">
                 <!-- TAB SWITCH BUTTON -->
-                <p class="tab-switch-button login-register-form-trigger">Login</p>
+                <p class="tab-switch-button login-register-form-trigger">Đăng nhập</p>
                 <!-- /TAB SWITCH BUTTON -->
                 <!-- TAB SWITCH BUTTON -->
-                <p class="tab-switch-button login-register-form-trigger">Register</p>
+                <p class="tab-switch-button login-register-form-trigger">Đăng ký</p>
                 <!-- /TAB SWITCH BUTTON -->
             </div>
             <!-- /TAB SWITCH -->
@@ -67,7 +67,7 @@
                 @* <img class="form-box-decoration overflowing" src="/assets/images/logo.png" alt="rocket"> *@
                 <!-- /FORM BOX DECORATION -->
                 <!-- FORM BOX TITLE -->
-                <h2 class="form-box-title">Account Login</h2>
+                <h2 class="form-box-title">Đăng nhập</h2>
                 <!-- /FORM BOX TITLE -->
                 <!-- FORM -->
                 <form class="form" method="post" action="/login?redirectUrl=@ViewBag.RedirectUrl">
@@ -83,7 +83,7 @@
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input">
-                                <label for="login-username">Username or Email</label>
+                                <label for="login-username">Email hoặc tên đăng nhập</label>
                                 <input type="text" required id="login-username" name="login_username">
                             </div>
                             <!-- /FORM INPUT -->
@@ -97,7 +97,7 @@
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input">
-                                <label for="login-password">Password</label>
+                                <label for="login-password">Mật khẩu</label>
                                 <input type="password" required id="login-password" name="login_password">
                             </div>
                             <!-- /FORM INPUT -->
@@ -121,7 +121,7 @@
                                     <!-- /ICON CROSS -->
                                 </div>
                                 <!-- /CHECKBOX BOX -->
-                                <label for="login-remember">Remember Me</label>
+                                <label for="login-remember">Nhớ tài khoản</label>
                             </div>
                             <!-- /CHECKBOX WRAP -->
                         </div>
@@ -129,7 +129,7 @@
                         <!-- FORM ITEM -->
                         <div class="form-item">
                             <!-- FORM LINK -->
-                            <a class="form-link" href="/forgotPassword?RedirectUrl=@ViewBag.RedirectUrl">Forgot Password?</a>
+                            <a class="form-link" href="/forgotPassword?RedirectUrl=@ViewBag.RedirectUrl">Quên mật khẩu?</a>
                             <!-- /FORM LINK -->
                         </div>
                         <!-- /FORM ITEM -->
@@ -140,7 +140,7 @@
                         <!-- FORM ITEM -->
                         <div class="form-item">
                             <!-- BUTTON -->
-                            <button class="button medium secondary">Login to your Account!</button>
+                            <button class="button medium secondary">Đăng nhập!</button>
                             <!-- /BUTTON -->
                         </div>
                         <!-- /FORM ITEM -->
@@ -149,7 +149,7 @@
                 </form>
                 <!-- /FORM -->
                 <!-- LINED TEXT -->
-                <p class="lined-text">Login with your Social Account</p>
+                <p class="lined-text">Đăng nhập với tài khoản Social</p>
                 <!-- /LINED TEXT -->
                 <!-- SOCIAL LINKS -->
                 <div class="social-links">
@@ -199,7 +199,7 @@
                 <img class="form-box-decoration" src="~/assets/images/landing/rocket.png" alt="rocket">
                 <!-- /FORM BOX DECORATION -->
                 <!-- FORM BOX TITLE -->
-                <h2 class="form-box-title">Create your Account!</h2>
+                <h2 class="form-box-title">Tạo tài khoản!</h2>
                 <!-- /FORM BOX TITLE -->
                 <!-- FORM -->
                 <form class="form" method="post" action="/register">
@@ -209,7 +209,7 @@
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input">
-                                <label for="register-email">Your Email</label>
+                                <label for="register-email">Email</label>
                                 <input type="text" required id="register-email" name="Email" value="@Model?.Email">
                             </div>
                             @if (ViewBag.EmailValidate != null)
@@ -229,7 +229,7 @@
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input">
-                                <label for="register-username">Username</label>
+                                <label for="register-username">Tên đăng nhập</label>
                                 <input type="text" required id="register-username" name="Username" value="@Model?.Username">
                             </div>
                             @if (ViewBag.UsernameValidate != null)
@@ -249,7 +249,7 @@
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input">
-                                <label for="register-firstname">FirstName</label>
+                                <label for="register-firstname">Họ</label>
                                 <input type="text" required id="register-firstname" name="FirstName" value="@Model?.FirstName">
                             </div>
                             <!-- /FORM INPUT -->
@@ -263,7 +263,7 @@
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input">
-                                <label for="register-lastname">Lastname</label>
+                                <label for="register-lastname">Tên</label>
                                 <input type="text" required id="register-lastname" name="Lastname" value="@Model?.Lastname">
                             </div>
                             <!-- /FORM INPUT -->
@@ -277,7 +277,7 @@
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input">
-                                <label for="register-password">Password</label>
+                                <label for="register-password">Mật khẩu</label>
                                 <input type="password" required id="register-password" name="Password" value="@Model?.Password">
                             </div>
                             @if (ViewBag.PasswordValidate != null)
@@ -297,7 +297,7 @@
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input">
-                                <label for="register-password-repeat">Repeat Password</label>
+                                <label for="register-password-repeat">Nhập lại mật khẩu</label>
                                 <input type="password" required id="register-password-repeat" name="ConfirmPassword" value="@Model?.ConfirmPassword">
                             </div>
                             @if (ViewBag.PasswordConfirmValidate != null)
@@ -322,22 +322,22 @@
                                     {
                                         <label>
                                             <input type="radio" name="radio" checked="" value="Customer">
-                                            <span>Customer</span>
+                                            <span>Người dùng</span>
                                         </label>
                                         <label>
                                             <input type="radio" name="radio" value="Psychologist">
-                                            <span>Spychologist</span>
+                                            <span>Nhà tâm lý</span>
                                         </label>
                                     }
                                     else
                                     {
                                         <label>
                                             <input type="radio" name="radio" value="Customer">
-                                            <span>Customer</span>
+                                            <span>Người dùng</span>
                                         </label>
                                         <label>
                                             <input type="radio" name="radio" checked="" value="Psychologist">
-                                            <span>Spychologist</span>
+                                            <span>Nhà tâm lý</span>
                                         </label>
                                     }
                                 </div>
@@ -363,7 +363,7 @@
                                     <!-- /ICON CROSS -->
                                 </div>
                                 <!-- /CHECKBOX BOX -->
-                                <label for="register-newsletter">Send me news and updates via email</label>
+                                <label for="register-newsletter">Gửi cho tôi thông tin mới qua email</label>
                             </div>
                             <!-- /CHECKBOX WRAP -->
                         </div>
@@ -375,7 +375,7 @@
                         <!-- FORM ITEM -->
                         <div class="form-item">
                             <!-- BUTTON -->
-                            <button class="button medium primary">Register Now!</button>
+                            <button class="button medium primary">Đăng ký ngay!</button>
                             <!-- /BUTTON -->
                         </div>
                         <!-- /FORM ITEM -->
@@ -384,7 +384,7 @@
                 </form>
                 <!-- /FORM -->
                 <!-- FORM TEXT -->
-                <p class="form-text">You'll receive a confirmation email in your inbox with a link to activate your account. If you have any problems, <a href="#">contact us</a>!</p>
+                <p class="form-text">Bạn sẽ nhận được mail xác nhận để kích hoạt tài khoản. Nếu gặp vấn đề gì, <a href="#">liên hệ với chúng tôi</a>!</p>
                 <!-- /FORM TEXT -->
             </div>
             <!-- /FORM BOX -->
