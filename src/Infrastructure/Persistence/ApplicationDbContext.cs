@@ -255,6 +255,21 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
                EndDay = DateTime.Parse("2024-01-29 08:30:56")
            }
      );
+        builder.Entity<PaymentMethod>()
+            .HasData(
+            new PaymentMethod
+            {
+                Id= new Guid("94422c85-1d58-4f47-b5cb-a2794e757268"),
+                PaymentMethodName = "VNPay",
+                PaymentMethodStatus = PaymentMethodStatus.Available,
+            },
+            new PaymentMethod
+            {
+                Id = new Guid("d49773a8-6f63-4803-8c46-69f1349a5c20"),
+                PaymentMethodName = "MoMo",
+                PaymentMethodStatus = PaymentMethodStatus.Unavailable,
+            }
+            );
 
 
 
