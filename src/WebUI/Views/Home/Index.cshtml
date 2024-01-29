@@ -20,6 +20,8 @@
     List<ZAlpha.Domain.Enums.EmotionalStatus> emotionalStatusList = ViewBag.emotionalStatusList;
     var userLogined = await _identityServices.GetUserByNameAsync(User.Identity.Name);
 }
+<link rel="stylesheet" href="~/assets/css/Home.css" />
+
 <!-- CONTENT GRID -->
 <div class="content-grid">
     <!-- SECTION BANNER -->
@@ -227,45 +229,42 @@
                         <!-- /FORM ROW -->
                         <!-- CHỖ HIỆN TAG LIST--------------------------------------------------------------->
                         <div class="form-row">
-                            <div class="grid grid-6-6 mobile-prefer-content">
-                                <div class="grid-column">
-                                    <div style="margin:1rem 0 0.3rem 0;">
-                                        <span style="color: black; font-size: 18px; font-family: Inter; font-weight: 600; word-wrap: break-word">Hãy đánh giá tình trạng tâm lí hiện tại của bản thân</span>
-                                    </div>
-                                    <div style="display:flex; justify-content: center;align-content: center;">
-                                        <select class="comboBoxNewPost" id="emostatus">
-                                            <option value="emotionalStatusList[0]">Tình trạng của bạn:</option>
-                                            @{
-                                                emotionalStatusList.Remove(emotionalStatusList[0]);
-                                            };
-                                            @foreach (var item in emotionalStatusList)
-                                            {
-                                                <option value="@item">@item.ToString()</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="grid-column">
-                                    <div style="margin:1rem 0 0.3rem 0;">
-                                        @* <label for="new-post-file" class="new-post-footer" name="fileImg">
-
-                                        </label> *@
-                                        <input id="newpostfile" type="file" accept="image/jpeg" />
-
-                                        <span style="color: black; font-size: 18px; font-family: Inter; font-weight: 600; word-wrap: break-word">Chọn thẻ:</span>
-                                    </div>
-                                    <div class="auto-group-brvk-CQM" style="overflow-y: scroll; height: 250px; font-size:1.1rem">
-                                        @for (int i = 0; i < tags.Items.Count; i++)
-                                        {
-                                            <div class="auto-group-v2tf-14H" style="display: flex; align-items: center;">
-                                                <input class="auto-group-czch-9RP" id="checkboxtag_@i" type="checkbox" value="@tags.Items.ToArray()[i].Id" />
-                                                <span style="margin-left: 10px;">@tags.Items.ToArray()[i].TagName</span>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
+                            <div style="margin:1rem 0 0.3rem 0;">
+                                <span class="user-status-text medium">Hãy đánh giá tình trạng tâm lí hiện tại của bản thân</span>
                             </div>
-
+                            <div>
+                                <select class="comboBoxNewPost" id="emostatus">
+                                    <option class="user-status-text medium" value="emotionalStatusList[0]">Tình trạng của bạn:</option>
+                                    @{
+                                        emotionalStatusList.Remove(emotionalStatusList[0]);
+                                    };
+                                    @foreach (var item in emotionalStatusList)
+                                    {
+                                        <option value="@item">@item.ToString()</option>
+                                    }
+                                </select>
+                            </div>
+                            <div style="margin:1rem 0 0.3rem 0;">
+                                <span class="user-status-text medium">Chọn thẻ:</span>
+                            </div>
+                            <div class="group-tag-post" style="overflow-y: scroll; height: 250px; font-size:1.1rem">
+                                @for (int i = 0; i < tags.Items.Count; i++)
+                                {
+                                    <div class="customCheckBoxHolder">
+                                        <input type="checkbox" id="checkboxtag_@i" class="customCheckBoxInput" value="@tags.Items.ToArray()[i].Id">
+                                        <label for="checkboxtag_@i" class="customCheckBoxWrapper">
+                                            <div class="customCheckBox">
+                                                <div class="inner">@tags.Items.ToArray()[i].TagName</div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    @* <div class="auto-group-v2tf-14H" style="display: flex; align-items: center;">
+                                <input class="auto-group-czch-9RP" id="checkboxtag_@i" type="checkbox" value="@tags.Items.ToArray()[i].Id" />
+                                <span style="margin-left: 10px;">@tags.Items.ToArray()[i].TagName</span>
+                                </div> *@
+                                }
+                            </div>
+                            <input id="newpostfile" type="file" accept="image/jpeg" />
                         </div>
                         <!----------------------------------------------------------------->
                     </form>
