@@ -33,14 +33,13 @@ public class GetPsychologistAccountByUserIdQueriesHandler : IRequestHandler<GetP
     {
         // get 
         var psychologist = _context.Get<Domain.Entities.PsychologistAccount>()
-            .Include(x => x.UserAccount)
+           .Include(x => x.UserAccount)
+            .ThenInclude(o => o.WishListPosts)
             .Include(x => x.UserAccount.InteractWithPosts)
             .Include(x => x.UserAccount.InteractWithComments)
             .Where(x => x.IsDeleted == false && x.UserAccountId.Equals(request.UserAccountId))
-            .Include(x=> x.UserAccount)
-            .ThenInclude(x => x.InteractWithPosts)
             .AsNoTracking()
-            .FirstOrDefault();                      
+            .FirstOrDefault();
         if (psychologist == null)
         {
             throw new NotFoundException(nameof(Domain.Entities.PsychologistAccount), request.UserAccountId);

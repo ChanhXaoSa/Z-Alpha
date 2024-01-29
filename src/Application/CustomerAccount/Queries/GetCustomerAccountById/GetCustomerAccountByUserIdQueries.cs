@@ -34,6 +34,7 @@ public class GetCustomerAccountByUserIdQueriesHandler : IRequestHandler<GetCusto
         // get 
         var psychologist = _context.Get<Domain.Entities.CustomerAccount>()
             .Include(x => x.UserAccount)
+            .ThenInclude(o => o.WishListPosts)
             .Include(x => x.UserAccount.InteractWithPosts)
             .Include(x => x.UserAccount.InteractWithComments)
             .Where(x => x.IsDeleted == false && x.UserAccountId.Equals(request.UserAccountId))
