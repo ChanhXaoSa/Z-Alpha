@@ -43,6 +43,7 @@ public class HomeController : ControllerBaseMVC
     {
         try
         {
+            ViewBag.TotalPosts = Mediator.Send(new GetAllPostQueries()).Result.Count;
             var listUser = _identityService.GetListUsersAsync();
             ViewBag.PopularUsers = listUser.Result.Take(10);
             ViewBag.NewestUsers = listUser.Result
@@ -55,6 +56,7 @@ public class HomeController : ControllerBaseMVC
                 .OrderByDescending(u => u.LatestCustomerAccount.Created)
                 .Select(u => u.User)
                 .Take(10);
+            
             //Send data 
             List<EmotionalStatus> emotionalStatusList = Enum.GetValues(typeof(EmotionalStatus)).Cast<EmotionalStatus>().ToList();
             var tags = Mediator.Send(new GetAllTagQueries() { Page = 1, Size = 50 }).Result;
