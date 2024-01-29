@@ -19,4 +19,5 @@ public class Transaction : BaseAuditableEntity
     public double Money { get; set; }
     public double TransactionFee { get; set; }
     public double Balance { get; set; }
+    public TransactionStatus Status { get; set; }
 }
