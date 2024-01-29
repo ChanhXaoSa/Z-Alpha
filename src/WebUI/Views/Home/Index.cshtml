@@ -44,7 +44,7 @@
             <!-- WIDGET BOX -->
             <div class="widget-box">
                 <!-- WIDGET BOX SETTINGS -->
-                <div class="widget-box-settings">
+                @* <div class="widget-box-settings">
                     <!-- POST SETTINGS WRAP -->
                     <div class="post-settings-wrap">
                         <!-- POST SETTINGS -->
@@ -65,7 +65,7 @@
                         <!-- /SIMPLE DROPDOWN -->
                     </div>
                     <!-- /POST SETTINGS WRAP -->
-                </div>
+                </div> *@
                 <!-- /WIDGET BOX SETTINGS -->
                 <!-- WIDGET BOX TITLE -->
                 <p class="widget-box-title">Members</p>
@@ -75,10 +75,10 @@
                     <!-- FILTERS -->
                     <div class="filters">
                         <!-- FILTER -->
-                        <p class="filter">Newest</p>
+                        <p class="filter">Mới nhất</p>
                         <!-- /FILTER -->
                         <!-- FILTER -->
-                        <p class="filter active">Popular</p>
+                        <p class="filter active">Nổi bật</p>
                         <!-- /FILTER -->
                         <!-- FILTER -->
                         <p class="filter">Active</p>
@@ -88,77 +88,93 @@
                     <!-- USER STATUS LIST -->
                     <div class="user-status-list">
                         <!-- USER STATUS -->
-                        <div class="user-status request-small">
-                            <!-- USER STATUS AVATAR -->
-                            <a class="user-status-avatar" href="#">
-                                <!-- USER AVATAR -->
-                                <div class="user-avatar small no-outline">
-                                    <!-- USER AVATAR CONTENT -->
-                                    <div class="user-avatar-content">
-                                        <!-- HEXAGON -->
-                                        <div class="hexagon-image-30-32" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
-                                        <!-- /HEXAGON -->
-                                    </div>
-                                    <!-- /USER AVATAR CONTENT -->
-                                    <!-- USER AVATAR PROGRESS -->
-                                    <div class="user-avatar-progress">
-                                        <!-- HEXAGON -->
-                                        <div class="hexagon-progress-40-44"></div>
-                                        <!-- /HEXAGON -->
-                                    </div>
-                                    <!-- /USER AVATAR PROGRESS -->
-                                    <!-- USER AVATAR PROGRESS BORDER -->
-                                    <div class="user-avatar-progress-border">
-                                        <!-- HEXAGON -->
-                                        <div class="hexagon-border-40-44"></div>
-                                        <!-- /HEXAGON -->
-                                    </div>
-                                    <!-- /USER AVATAR PROGRESS BORDER -->
-                                    <!-- USER AVATAR BADGE -->
-                                    <div class="user-avatar-badge">
-                                        <!-- USER AVATAR BADGE BORDER -->
-                                        <div class="user-avatar-badge-border">
-                                            <!-- HEXAGON -->
-                                            <div class="hexagon-22-24"></div>
-                                            <!-- /HEXAGON -->
+                        @{
+                            IEnumerable<UserAccount> userPopular = ViewBag.PopularUsers;
+                            foreach (var popUser in userPopular)
+                            {
+                                <div class="user-status request-small">
+                                    <!-- USER STATUS AVATAR -->
+                                    <a class="user-status-avatar" href="#">
+                                        <!-- USER AVATAR -->
+                                        <div class="user-avatar small no-outline">
+                                            <!-- USER AVATAR CONTENT -->
+                                            <div class="user-avatar-content">
+                                                <!-- HEXAGON -->
+                                                @if (popUser.Avatar?.Length > 0)
+                                                {
+                                                    <div class="hexagon-image-30-32" data-src="@popUser.AvatarUrl"></div>
+                                                } else
+                                                {
+                                                    <div class="hexagon-image-30-32" data-src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"></div>
+                                                }
+                                                <!-- /HEXAGON -->
+                                            </div>
+                                            <!-- /USER AVATAR CONTENT -->
+                                            <!-- USER AVATAR PROGRESS -->
+                                            <div class="user-avatar-progress">
+                                                <!-- HEXAGON -->
+                                                <div class="hexagon-progress-40-44"></div>
+                                                <!-- /HEXAGON -->
+                                            </div>
+                                            <!-- /USER AVATAR PROGRESS -->
+                                            <!-- USER AVATAR PROGRESS BORDER -->
+                                            <div class="user-avatar-progress-border">
+                                                <!-- HEXAGON -->
+                                                <div class="hexagon-border-40-44"></div>
+                                                <!-- /HEXAGON -->
+                                            </div>
+                                            <!-- /USER AVATAR PROGRESS BORDER -->
+                                            <!-- USER AVATAR BADGE -->
+                                            <div class="user-avatar-badge">
+                                                <!-- USER AVATAR BADGE BORDER -->
+                                                <div class="user-avatar-badge-border">
+                                                    <!-- HEXAGON -->
+                                                    <div class="hexagon-22-24"></div>
+                                                    <!-- /HEXAGON -->
+                                                </div>
+                                                <!-- /USER AVATAR BADGE BORDER -->
+                                                <!-- USER AVATAR BADGE CONTENT -->
+                                                <div class="user-avatar-badge-content">
+                                                    <!-- HEXAGON -->
+                                                    <div class="hexagon-dark-16-18"></div>
+                                                    <!-- /HEXAGON -->
+                                                </div>
+                                                <!-- /USER AVATAR BADGE CONTENT -->
+                                                <!-- USER AVATAR BADGE TEXT -->
+                                                <p class="user-avatar-badge-text">26</p>
+                                                <!-- /USER AVATAR BADGE TEXT -->
+                                            </div>
+                                            <!-- /USER AVATAR BADGE -->
                                         </div>
-                                        <!-- /USER AVATAR BADGE BORDER -->
-                                        <!-- USER AVATAR BADGE CONTENT -->
-                                        <div class="user-avatar-badge-content">
-                                            <!-- HEXAGON -->
-                                            <div class="hexagon-dark-16-18"></div>
-                                            <!-- /HEXAGON -->
+                                        <!-- /USER AVATAR -->
+                                    </a>
+                                    <!-- /USER STATUS AVATAR -->
+                                    <!-- USER STATUS TITLE -->
+                                    <p class="user-status-title"><a class="bold" href="#">@popUser.FirstName @popUser.LastName</a></p>
+                                    <!-- /USER STATUS TITLE -->
+                                    <!-- USER STATUS TEXT -->
+                                    <p class="user-status-text small">@popUser.InteractWithPosts?.Where(p => p.InteractPostStatus
+                                             == ZAlpha.Domain.Enums.InteractPostStatus.Create).Count() bài viết, @popUser.InteractWithComments?.Where(i => i.InteractCommentStatus
+                                == ZAlpha.Domain.Enums.InteractCommentStatus.Create).Count() bình luận
+                                    </p>
+                                    @*<p class="user-status-text small"></p>*@
+                                    <!-- /USER STATUS TEXT -->
+                                    <!-- ACTION REQUEST LIST -->
+                                    <div class="action-request-list">
+                                        <!-- ACTION REQUEST -->
+                                        <div class="action-request accept">
+                                            <!-- ACTION REQUEST ICON -->
+                                            <svg class="action-request-icon icon-add-friend">
+                                                <use xlink:href="#svg-add-friend"></use>
+                                            </svg>
+                                            <!-- /ACTION REQUEST ICON -->
                                         </div>
-                                        <!-- /USER AVATAR BADGE CONTENT -->
-                                        <!-- USER AVATAR BADGE TEXT -->
-                                        <p class="user-avatar-badge-text">26</p>
-                                        <!-- /USER AVATAR BADGE TEXT -->
+                                        <!-- /ACTION REQUEST -->
                                     </div>
-                                    <!-- /USER AVATAR BADGE -->
+                                    <!-- ACTION REQUEST LIST -->
                                 </div>
-                                <!-- /USER AVATAR -->
-                            </a>
-                            <!-- /USER STATUS AVATAR -->
-                            <!-- USER STATUS TITLE -->
-                            <p class="user-status-title"><a class="bold" href="#">Test User</a></p>
-                            <!-- /USER STATUS TITLE -->
-                            <!-- USER STATUS TEXT -->
-                            <p class="user-status-text small">24.5K profile views</p>
-                            <!-- /USER STATUS TEXT -->
-                            <!-- ACTION REQUEST LIST -->
-                            <div class="action-request-list">
-                                <!-- ACTION REQUEST -->
-                                <div class="action-request accept">
-                                    <!-- ACTION REQUEST ICON -->
-                                    <svg class="action-request-icon icon-add-friend">
-                                        <use xlink:href="#svg-add-friend"></use>
-                                    </svg>
-                                    <!-- /ACTION REQUEST ICON -->
-                                </div>
-                                <!-- /ACTION REQUEST -->
-                            </div>
-                            <!-- ACTION REQUEST LIST -->
-                        </div>
+                            }
+                        }
                         <!-- /USER STATUS -->
                     </div>
                     <!-- /USER STATUS LIST -->
@@ -1023,7 +1039,7 @@
                                 <!-- STATS BOX VALUE WRAP -->
                                 <div class="stats-box-value-wrap">
                                     <!-- STATS BOX VALUE -->
-                                    <p class="stats-box-value">294</p>
+                                    <p class="stats-box-value">@ViewBag.TotalPosts</p>
                                     <!-- /STATS BOX VALUE -->
                                     <!-- STATS BOX DIFF -->
                                     <div class="stats-box-diff">
