@@ -989,7 +989,7 @@
         <div class="header-actions search-bar">
             <!-- INTERACTIVE INPUT -->
             <div class="interactive-input dark">
-                <input type="text" id="search-main" name="search_main" placeholder="Tìm kiếm các bài viết thú vị">
+                <input type="text" id="search-main" name="search_main" onkeydown="searchOnEnter(event)" placeholder="Tìm kiếm các bài viết thú vị">
                 <!-- INTERACTIVE INPUT ICON WRAP -->
                 <div class="interactive-input-icon-wrap">
                     <!-- INTERACTIVE INPUT ICON -->
@@ -2326,5 +2326,32 @@
     <script src="~/assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
     <!-- Bootstrap -->
     <script src="~/assets/css/vendor/bootstrap.min.js"></script>
+
+
+    <script>
+        function searchOnEnter(event) {
+            if (event.key === 'Enter') {
+                search();
+            }
+        }
+
+        function search() {
+            var txtSearch = $("#search-main").val();
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("Index", "Home")",
+                data: {  search: txtSearch },
+                success: function (result) {
+                    if (result.success) {
+                        window.location.href = '/Home?search='+txtSearch+'&reload=true';
+                    } 
+                },
+                error: function () {
+                    alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>

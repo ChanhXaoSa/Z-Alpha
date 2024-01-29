@@ -39,7 +39,8 @@ public class HomeController : ControllerBaseMVC
         _hostingEnvironment = hostingEnvironment;
         _notification = notification;
     }
-    public IActionResult index()
+    [HttpGet]
+    public async Task<IActionResult> Index(string search, bool reload)
     {
         try
         {
@@ -62,9 +63,25 @@ public class HomeController : ControllerBaseMVC
             var tags = Mediator.Send(new GetAllTagQueries() { Page = 1, Size = 50 }).Result;
             ViewBag.tags = tags;
             ViewBag.emotionalStatusList = emotionalStatusList;
-            var result = Mediator.Send(new GetPostQueries() { Page = 1, Size = 100 }).Result;
-            return View(result);
-            //return View();
+            if(search!=null && reload)
+            {
+                var result = Mediator.Send(new GetPostBySearchQueries() { keySearch = search.Trim(), Page = 1, Size = 100 }).Result;
+                ViewBag.result = result;
+                return View();
+            }
+            if(search != null && !reload)
+            {
+                var result = Mediator.Send(new GetPostBySearchQueries() { keySearch = search.Trim(), Page = 1, Size = 100 }).Result;
+                ViewBag.result = result;
+                _notification.AddSuccessToastMessage(message: "Tìm kiếm thành công");
+                return Json(new { success = true, message = "Tìm kiếm thành công" });
+            }
+            else
+            {
+                var result = Mediator.Send(new GetPostQueries() { Page = 1, Size = 100 }).Result;
+                ViewBag.result = result;
+                return View();
+            }
         }
         catch (Exception ex)
         {
