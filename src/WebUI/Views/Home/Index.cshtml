@@ -13,12 +13,13 @@
 @using ZAlpha.Application.Tag.Queries;
 @using ZAlpha.Application.Post.Queries.GetAllPost;
 @using ZAlpha.Application.Utils.FormatDate;
-@model ZAlpha.Application.Common.Models.PaginatedList<PostModel>
+@* @model ZAlpha.Application.Common.Models.PaginatedList<PostModel> *@
 @using Microsoft.AspNetCore.Mvc;
 @{
     PaginatedList<ZAlpha.Application.Tag.Queries.GetTag.TagModel> tags = ViewBag.tags;
     List<ZAlpha.Domain.Enums.EmotionalStatus> emotionalStatusList = ViewBag.emotionalStatusList;
     var userLogined = await _identityServices.GetUserByNameAsync(User.Identity.Name);
+    ZAlpha.Application.Common.Models.PaginatedList<PostModel> Result = ViewBag.result;
 }
 <link rel="stylesheet" href="~/assets/css/Home.css" />
 
@@ -364,7 +365,7 @@
             <!-------------------------------------------------------------------------------------------------------------------------------------->
             <!---------------Dòng for render----------------->
             <!-------------------------------------------------------------------------------------------------------------------------------------->
-            @foreach (var item in Model.Items)
+            @foreach (var item in Result.Items)
             {
                 <!-- WIDGET BOX -->
                 <div class="widget-box no-padding">
