@@ -20,8 +20,12 @@ using System.ComponentModel.Design;
 using ZAlpha.Application.Post.Queries.GetPostByUserIdQuery;
 using ZAlpha.Application.Post.Queries.GetPostWishListByUserIdQuery;
 using ZAlpha.Application.Transaction.Queries.GetTransactionById;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebUI.Controllers.MVC;
+
+
+[Authorize]
 public class CustomerController : ControllerBaseMVC
 {
     private readonly IIdentityService _identityService;

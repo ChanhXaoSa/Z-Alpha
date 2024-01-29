@@ -5,7 +5,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewBag.Title = "Ppychologist Info";
+    ViewBag.Title = "Customer Info";
     Layout = "~/Views/Shared/Customer_Layout.cshtml";
 }
 @inject IIdentityService _identityServices;
@@ -119,136 +119,123 @@
     <!-- WIDGET BOX -->
     <div class="widget-box">
         <!-- WIDGET BOX TITLE -->
-        <p class="widget-box-title">About Your Profile</p>
+        <p class="widget-box-title">Thông tin tài khoản</p>
         <!-- /WIDGET BOX TITLE -->
         <!-- WIDGET BOX CONTENT -->
         <div class="widget-box-content">
             <!-- FORM -->
             <form class="form" action="/Customer/UpdateCustomer" method="post">
-                <!-- FORM ROW -->
-                <div class="form-row split">
-                    <!-- FORM ITEM -->
-                    <div class="form-item">
-                        <!-- FORM INPUT -->
-                        <div class="form-input small active">
-                            <label for="profile-tagline">Username</label>
-                            <input type="text" id="profile-tagline" name="profile_tagline" readonly="" value="@Model.UserAccount.UserName">
-                        </div>
-                        <!-- /FORM INPUT -->
-                    </div>
-                    <!-- /FORM ITEM -->
-                    <!-- FORM ITEM -->
-                    <div class="form-item">
-                        <!-- FORM INPUT -->
-                        <div class="form-input small active">
-                            <label for="profile-public-email">Email</label>
-                            <input type="text" id="profile-public-email" name="profile_public_email" readonly="" value="@Model.UserAccount.Email">
-                        </div>
-                        <!-- /FORM INPUT -->
-                    </div>
-                    <!-- /FORM ITEM -->
-                </div>
-                <!-- /FORM ROW -->
-                <!-- FORM ROW -->
-                <div class="form-row split">
-                    <!-- FORM ITEM -->
-                    <div class="form-item">
-                        <!-- FORM INPUT -->
-                        <div class="form-input small active">
-                            <label for="profile-name">Fisrt Name</label>
-                            <input type="text" id="profile-name" name="FirstName" value="@Model.UserAccount.FirstName">
-                        </div>
-                        <!-- /FORM INPUT -->
-                    </div>
-                    <!-- /FORM ITEM -->
-                    <!-- FORM ITEM -->
-                    <div class="form-item">
-                        <!-- FORM INPUT -->
-                        <div class="form-input small active">
-                            <label for="profile-name">Last Name</label>
-                            <input type="text" id="profile-name" name="LastName" value="@Model.UserAccount.LastName">
-                        </div>
-                        <!-- /FORM INPUT -->
-                    </div>
-                    <!-- /FORM ITEM -->
-                </div>
-                <!-- /FORM ROW -->
-                <!-- FORM ROW -->
-                <div class="form-row split">
-                    <!-- FORM ITEM -->
-                    <div class="form-item">
-                        <!-- FORM INPUT -->
-                        <div class="form-input small active">
-                            <label for="profile-occupation">Address</label>
-                            <input type="text" id="profile-occupation" name="Address" value="@Model.UserAccount.Address">
-                        </div>
-                        <!-- /FORM INPUT -->
-                    </div>
-                    <!-- /FORM ITEM -->
-                    <!-- FORM ITEM -->
-                    <div class="form-item">
-                        <!-- FORM INPUT -->
-                        <div class="form-input small active">
-                            <label for="profile-public-website">Phone</label>
-                            <input type="text" id="profile-public-website" name="Phone" value="@Model.UserAccount.Phone">
-                        </div>
-                        <!-- /FORM INPUT -->
-                    </div>
-                    <!-- /FORM ITEM -->
-                </div>
-                <!-- /FORM ROW -->
-                <!-- FORM ROW -->
-                <div class="form-row split">
-                    <!-- FORM ITEM -->
-                    <div class="form-item">
-                        <!-- FORM INPUT DECORATED -->
-                        <div class="form-input-decorated">
-                            <!-- FORM INPUT -->
-                            <div class="form-input small active">
-                                <label for="profile-birthday">Birthday</label>
-                                <input type="date" id="profile-birthday" name="Birthday" value="@Model.UserAccount.BirthDay?.ToString("yyyy-MM-dd")">
-                            </div>
-                            <!-- /FORM INPUT -->
-                            <!-- FORM INPUT ICON -->
-                            <svg class="form-input-icon icon-events">
-                                <use xlink:href="#svg-events"></use>
-                            </svg>
-                            <!-- /FORM INPUT ICON -->
-                        </div>
-                        <!-- /FORM INPUT DECORATED -->
-                    </div>
-                    <!-- /FORM ITEM -->
-                    <!-- FORM ITEM -->
-                    <div class="form-item">
-                        <!-- FORM INPUT -->
-                        <div class="form-input small active">
-                            <label for="profile-name">Wallet</label>
-                            <input type="text" id="profile-name" name="LastName" value="@Model.UserAccount.Wallet">
-                        </div>
-                        <!-- /FORM INPUT -->
-                    </div>
-                    <!-- /FORM ITEM -->
-
-                </div>
-                <!-- /FORM ROW -->
-                <!-- FORM ROW -->
-                @* <div class="form-row split">
-                <!-- FORM ITEM -->
-                <div class="form-item">
-                <!-- FORM INPUT -->
-                <div class="form-input small full">
-                <textarea id="profile-description" name="profile_description" placeholder="Write a little description about you..."></textarea>
-                </div>
-                <!-- /FORM INPUT -->
-                </div>
-                <!-- /FORM ITEM -->
-                </div> *@
-                <!-- /FORM ROW -->
                 @{
                     var userLogined = await _identityServices.GetUserByNameAsync(User.Identity!.Name!);
                 }
                 @if (userLogined != null && Model.UserAccount.Id == userLogined.Id)
                 {
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-tagline">Tên tài khoản</label>
+                                <input type="text" id="profile-tagline" name="profile_tagline" readonly="" value="@Model.UserAccount.UserName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-public-email">Email</label>
+                                <input type="text" id="profile-public-email" name="profile_public_email" readonly="" value="@Model.UserAccount.Email">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Tên</label>
+                                <input type="text" id="profile-name" name="FirstName" value="@Model.UserAccount.FirstName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Họ</label>
+                                <input type="text" id="profile-name" name="LastName" value="@Model.UserAccount.LastName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-occupation">Địa chỉ</label>
+                                <input type="text" id="profile-occupation" name="Address" value="@Model.UserAccount.Address">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-public-website">Số điện thoại</label>
+                                <input type="text" id="profile-public-website" name="Phone" value="@Model.UserAccount.Phone">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT DECORATED -->
+                            <div class="form-input-decorated">
+                                <!-- FORM INPUT -->
+                                <div class="form-input small active">
+                                    <label for="profile-birthday">Birthday</label>
+                                    <input type="date" id="profile-birthday" name="Birthday" value="@Model.UserAccount.BirthDay?.ToString("yyyy-MM-dd")">
+                                </div>
+                                <!-- /FORM INPUT -->
+                                <!-- FORM INPUT ICON -->
+                                <svg class="form-input-icon icon-events">
+                                    <use xlink:href="#svg-events"></use>
+                                </svg>
+                                <!-- /FORM INPUT ICON -->
+                            </div>
+                            <!-- /FORM INPUT DECORATED -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Wallet</label>
+                                <input type="text" id="profile-name" name="Wallet" readonly value="@Model.UserAccount.Wallet">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+
+                    </div>
+                    <!-- /FORM ROW -->
                     <div class="form-row split">
                         <!-- FORM ITEM -->
                         <div class="form-item">
@@ -258,8 +245,108 @@
                         </div>
                         <!-- /FORM ITEM -->
                     </div>
+                  
                 }
+                else
+                {
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-tagline">Tên tài khoản</label>
+                                <input type="text" id="profile-tagline" name="profile_tagline" readonly="" value="@Model.UserAccount.UserName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-public-email">Email</label>
+                                <input type="text" id="profile-public-email" name="profile_public_email" readonly="" value="@Model.UserAccount.Email">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Tên</label>
+                                <input type="text" id="profile-name" name="FirstName" readonly value="@Model.UserAccount.FirstName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Họ</label>
+                                <input type="text" id="profile-name" name="LastName" readonly value="@Model.UserAccount.LastName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-occupation">Địa chỉ</label>
+                                <input type="text" id="profile-occupation" name="Address" readonly value="@Model.UserAccount.Address">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-public-website">Số điện thoại</label>
+                                <input type="text" id="profile-public-website" name="Phone" readonly value="@Model.UserAccount.Phone">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT DECORATED -->
+                            <div class="form-input-decorated">
+                                <!-- FORM INPUT -->
+                                <div class="form-input small active">
+                                    <label for="profile-birthday">Ngày sinh</label>
+                                    <input type="date" id="profile-birthday" name="Birthday" readonly value="@Model.UserAccount.BirthDay?.ToString("yyyy-MM-dd")">
+                                </div>
+                                <!-- /FORM INPUT -->
+                                <!-- FORM INPUT ICON -->
+                                <svg class="form-input-icon icon-events">
+                                    <use xlink:href="#svg-events"></use>
+                                </svg>
+                                <!-- /FORM INPUT ICON -->
+                            </div>
+                            <!-- /FORM INPUT DECORATED -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                       
 
+                    </div>
+                    <!-- /FORM ROW -->
+                }
             </form>
             <!-- /FORM -->
         </div>
