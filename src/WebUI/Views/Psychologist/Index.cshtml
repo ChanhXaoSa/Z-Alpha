@@ -1,4 +1,7 @@
-﻿@*
+﻿@using Microsoft.AspNetCore.Identity;
+@using ZAlpha.Domain.Identity;
+@using ZAlpha.Application.Common.Interfaces;
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -7,196 +10,155 @@
 }
 @using ZAlpha.Application.Common.Models;
 @using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
-@model PsychologistAccountModel
+@inject IIdentityService _identityServices;
 
-<head>
-    <title>Psychologist Profile</title>
-</head>
 
-<body>
-    <!-- SECTION NAVIGATION -->
-    <nav class="section-navigation">
-        <!-- SECTION MENU -->
-        <div class="tns-outer" id="section-navigation-slider-ow">
-            <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">1 to 6</span>  of 11</div><div id="section-navigation-slider-mw" class="tns-ovh">
-                <div class="tns-inner" id="section-navigation-slider-iw">
-                    <div id="section-navigation-slider" class="section-menu  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" style="transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-                        <!-- SECTION MENU ITEM -->
-                        <a class="section-menu-item active tns-item tns-slide-active" href="~/Psychologist/Index/" id="section-navigation-slider-item0">
-                            <!-- SECTION MENU ITEM ICON -->
-                            <svg class="section-menu-item-icon icon-profile">
-                                <use xlink:href="#svg-profile"></use>
-                            </svg>
-                            <!-- /SECTION MENU ITEM ICON -->
-                            <!-- SECTION MENU ITEM TEXT -->
-                            <p class="section-menu-item-text">About</p>
-                            <!-- /SECTION MENU ITEM TEXT -->
-                        </a>
-                        <!-- /SECTION MENU ITEM -->
-                        <!-- SECTION MENU ITEM -->
-                        <a class="section-menu-item tns-item tns-slide-active" href="~/Psychologist/PostList/" id="section-navigation-slider-item1">
-                            <!-- SECTION MENU ITEM ICON -->
-                            <svg class="section-menu-item-icon icon-timeline">
-                                <use xlink:href="#svg-timeline"></use>
-                            </svg>
-                            <!-- /SECTION MENU ITEM ICON -->
-                            <!-- SECTION MENU ITEM TEXT -->
-                            <p class="section-menu-item-text">Timeline</p>
-                            <!-- /SECTION MENU ITEM TEXT -->
-                        </a>
-                        <!-- /SECTION MENU ITEM -->
-                        <!-- SECTION MENU ITEM -->
-                        <a class="section-menu-item tns-item tns-slide-active" href="profile-friends.html" id="section-navigation-slider-item2">
-                            <!-- SECTION MENU ITEM ICON -->
-                            <svg class="section-menu-item-icon icon-friend">
-                                <use xlink:href="#svg-friend"></use>
-                            </svg>
-                            <!-- /SECTION MENU ITEM ICON -->
-                            <!-- SECTION MENU ITEM TEXT -->
-                            <p class="section-menu-item-text">Friends</p>
-                            <!-- /SECTION MENU ITEM TEXT -->
-                        </a>
-                        <!-- /SECTION MENU ITEM -->
-                        <!-- SECTION MENU ITEM -->
-                        <a class="section-menu-item tns-item tns-slide-active" href="profile-groups.html" id="section-navigation-slider-item3">
-                            <!-- SECTION MENU ITEM ICON -->
-                            <svg class="section-menu-item-icon icon-group">
-                                <use xlink:href="#svg-group"></use>
-                            </svg>
-                            <!-- /SECTION MENU ITEM ICON -->
-                            <!-- SECTION MENU ITEM TEXT -->
-                            <p class="section-menu-item-text">Groups</p>
-                            <!-- /SECTION MENU ITEM TEXT -->
-                        </a>
-                        <!-- /SECTION MENU ITEM -->
-                        <!-- SECTION MENU ITEM -->
-                        <a class="section-menu-item tns-item tns-slide-active" href="profile-photos.html" id="section-navigation-slider-item4">
-                            <!-- SECTION MENU ITEM ICON -->
-                            <svg class="section-menu-item-icon icon-photos">
-                                <use xlink:href="#svg-photos"></use>
-                            </svg>
-                            <!-- /SECTION MENU ITEM ICON -->
-                            <!-- SECTION MENU ITEM TEXT -->
-                            <p class="section-menu-item-text">Photos</p>
-                            <!-- /SECTION MENU ITEM TEXT -->
-                        </a>
-                        <!-- /SECTION MENU ITEM -->
-                        <!-- SECTION MENU ITEM -->
-                        <a class="section-menu-item tns-item tns-slide-active" href="profile-videos.html" id="section-navigation-slider-item5">
-                            <!-- SECTION MENU ITEM ICON -->
-                            <svg class="section-menu-item-icon icon-videos">
-                                <use xlink:href="#svg-videos"></use>
-                            </svg>
-                            <!-- /SECTION MENU ITEM ICON -->
-                            <!-- SECTION MENU ITEM TEXT -->
-                            <p class="section-menu-item-text">Videos</p>
-                            <!-- /SECTION MENU ITEM TEXT -->
-                        </a>
-                        <!-- /SECTION MENU ITEM -->
-                        <!-- SECTION MENU ITEM -->
-                        <a class="section-menu-item tns-item" href="profile-badges.html" id="section-navigation-slider-item6" aria-hidden="true" tabindex="-1">
-                            <!-- SECTION MENU ITEM ICON -->
-                            <svg class="section-menu-item-icon icon-badges">
-                                <use xlink:href="#svg-badges"></use>
-                            </svg>
-                            <!-- /SECTION MENU ITEM ICON -->
-                            <!-- SECTION MENU ITEM TEXT -->
-                            <p class="section-menu-item-text">Badges</p>
-                            <!-- /SECTION MENU ITEM TEXT -->
-                        </a>
-                        <!-- /SECTION MENU ITEM -->
-                        <!-- SECTION MENU ITEM -->
-                        <a class="section-menu-item tns-item" href="profile-stream.html" id="section-navigation-slider-item7" aria-hidden="true" tabindex="-1">
-                            <!-- SECTION MENU ITEM ICON -->
-                            <svg class="section-menu-item-icon icon-streams">
-                                <use xlink:href="#svg-streams"></use>
-                            </svg>
-                            <!-- /SECTION MENU ITEM ICON -->
-                            <!-- SECTION MENU ITEM TEXT -->
-                            <p class="section-menu-item-text">Streams</p>
-                            <!-- /SECTION MENU ITEM TEXT -->
-                        </a>
-                        <!-- /SECTION MENU ITEM -->
-                        <!-- SECTION MENU ITEM -->
-                        <a class="section-menu-item tns-item" href="profile-blog.html" id="section-navigation-slider-item8" aria-hidden="true" tabindex="-1">
-                            <!-- SECTION MENU ITEM ICON -->
-                            <svg class="section-menu-item-icon icon-blog-posts">
-                                <use xlink:href="#svg-blog-posts"></use>
-                            </svg>
-                            <!-- /SECTION MENU ITEM ICON -->
-                            <!-- SECTION MENU ITEM TEXT -->
-                            <p class="section-menu-item-text">Blog</p>
-                            <!-- /SECTION MENU ITEM TEXT -->
-                        </a>
-                        <!-- /SECTION MENU ITEM -->
-                        <!-- SECTION MENU ITEM -->
-                        <a class="section-menu-item tns-item" href="profile-forum.html" id="section-navigation-slider-item9" aria-hidden="true" tabindex="-1">
-                            <!-- SECTION MENU ITEM ICON -->
-                            <svg class="section-menu-item-icon icon-forum">
-                                <use xlink:href="#svg-forum"></use>
-                            </svg>
-                            <!-- /SECTION MENU ITEM ICON -->
-                            <!-- SECTION MENU ITEM TEXT -->
-                            <p class="section-menu-item-text">Forum</p>
-                            <!-- /SECTION MENU ITEM TEXT -->
-                        </a>
-                        <!-- /SECTION MENU ITEM -->
-                        <!-- SECTION MENU ITEM -->
-                        <a class="section-menu-item tns-item" href="profile-store.html" id="section-navigation-slider-item10" aria-hidden="true" tabindex="-1">
-                            <!-- SECTION MENU ITEM ICON -->
-                            <svg class="section-menu-item-icon icon-store">
-                                <use xlink:href="#svg-store"></use>
-                            </svg>
-                            <!-- /SECTION MENU ITEM ICON -->
-                            <!-- SECTION MENU ITEM TEXT -->
-                            <p class="section-menu-item-text">Store</p>
-                            <!-- /SECTION MENU ITEM TEXT -->
-                        </a>
-                        <!-- /SECTION MENU ITEM -->
+<!-- SECTION NAVIGATION -->
+<nav class="section-navigation">
+    <!-- SECTION MENU -->
+    <div class="tns-outer" id="section-navigation-slider-ow">
+        <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">1 to 6</span>  of 11</div><div id="section-navigation-slider-mw" class="tns-ovh">
+            <div class="tns-inner" id="section-navigation-slider-iw">
+                <div class="tns-outer" id="section-navigation-slider-ow">
+                    <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">1 to 6</span>  of 6</div><div id="section-navigation-slider-mw" class="tns-ovh">
+                        <div class="tns-inner" id="section-navigation-slider-iw">
+                            @{
+                                var userLogined = await _identityServices.GetUserByNameAsync(User.Identity!.Name!);
+                            }
+                            @if (userLogined != null && Model.UserAccount.Id == userLogined.Id)
+                            {
+                                <div id="section-navigation-slider" class="section-menu  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" style="transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item active tns-item tns-slide-active" href="/Psychologist/Index/" id="section-navigation-slider-item0">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-profile">
+                                            <use xlink:href="#svg-profile"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Thông tin</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item tns-item tns-slide-active" href="/Psychologist/PostList/" id="section-navigation-slider-item1">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-timeline">
+                                            <use xlink:href="#svg-timeline"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Bài viết của bạn</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item tns-item tns-slide-active" href="/Psychologist/PostSaved/" id="section-navigation-slider-item2">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-pinned">
+                                            <use xlink:href="#svg-pinned"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Bài viết đã lưu</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item tns-item tns-slide-active" href="#" id="section-navigation-slider-item2">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-friend">
+                                            <use xlink:href="#svg-friend"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Bạn bè</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item tns-item tns-slide-active" href="/Psychologist/Transaction/" id="section-navigation-slider-item2">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-friend">
+                                            <use xlink:href="#svg-blog-posts"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Giao dịch</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="section-navigation-slider" class="section-menu  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" style="transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item active tns-item tns-slide-active" href="/Psychologist/Index/" id="section-navigation-slider-item0">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-profile">
+                                            <use xlink:href="#svg-profile"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Thông tin</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->                                  
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /SECTION MENU -->
-        <!-- SLIDER CONTROLS -->
-        <div id="section-navigation-slider-controls" class="slider-controls" aria-label="Carousel Navigation" tabindex="0">
-            <!-- SLIDER CONTROL -->
-            <div class="slider-control left" aria-controls="section-navigation-slider" tabindex="-1" data-controls="prev" aria-disabled="true">
-                <!-- SLIDER CONTROL ICON -->
-                <svg class="slider-control-icon icon-small-arrow">
-                    <use xlink:href="#svg-small-arrow"></use>
-                </svg>
-                <!-- /SLIDER CONTROL ICON -->
-            </div>
-            <!-- /SLIDER CONTROL -->
-            <!-- SLIDER CONTROL -->
-            <div class="slider-control right" aria-controls="section-navigation-slider" tabindex="-1" data-controls="next">
-                <!-- SLIDER CONTROL ICON -->
-                <svg class="slider-control-icon icon-small-arrow">
-                    <use xlink:href="#svg-small-arrow"></use>
-                </svg>
-                <!-- /SLIDER CONTROL ICON -->
-            </div>
-            <!-- /SLIDER CONTROL -->
+    </div>
+    <!-- /SECTION MENU -->
+    <!-- SLIDER CONTROLS -->
+    <div id="section-navigation-slider-controls" class="slider-controls" aria-label="Carousel Navigation" tabindex="0" style="">
+        <!-- SLIDER CONTROL -->
+        <div class="slider-control left" aria-controls="section-navigation-slider" tabindex="-1" data-controls="prev" aria-disabled="true">
+            <!-- SLIDER CONTROL ICON -->
+            <svg class="slider-control-icon icon-small-arrow">
+                <use xlink:href="#svg-small-arrow"></use>
+            </svg>
+            <!-- /SLIDER CONTROL ICON -->
         </div>
-        <!-- /SLIDER CONTROLS -->
-    </nav>
-    <!-- /SECTION NAVIGATION -->
+        <!-- /SLIDER CONTROL -->
+        <!-- SLIDER CONTROL -->
+        <div class="slider-control right" aria-controls="section-navigation-slider" tabindex="-1" data-controls="next">
+            <!-- SLIDER CONTROL ICON -->
+            <svg class="slider-control-icon icon-small-arrow">
+                <use xlink:href="#svg-small-arrow"></use>
+            </svg>
+            <!-- /SLIDER CONTROL ICON -->
+        </div>
+        <!-- /SLIDER CONTROL -->
+    </div>
+    <!-- /SLIDER CONTROLS -->
+</nav>
+<!-- /SECTION NAVIGATION -->
 
-    <div class="grid-column">
-        <!-- GRID -->
-        <!-- /GRID -->
-        <!-- WIDGET BOX -->
-        <div class="widget-box">
-            <!-- WIDGET BOX TITLE -->
-            <p class="widget-box-title">About Your Profile</p>
-            <!-- /WIDGET BOX TITLE -->
-            <!-- WIDGET BOX CONTENT -->
-            <div class="widget-box-content">
-                <!-- FORM -->
-                <form class="form" action="~/Psychologist/UpdatePsychologistAccount" method="post">
+<div class="grid-column">
+    <!-- GRID -->
+    <!-- /GRID -->
+    <!-- WIDGET BOX -->
+    <div class="widget-box">
+        <!-- WIDGET BOX TITLE -->
+        <p class="widget-box-title">Thông tin tài khoản</p>
+        <!-- /WIDGET BOX TITLE -->
+        <!-- WIDGET BOX CONTENT -->
+        <div class="widget-box-content">
+            <!-- FORM -->
+            <form class="form" action="~/Psychologist/UpdatePsychologistAccount" method="post">
+
+                @{
+                    var userLogined = await _identityServices.GetUserByNameAsync(User.Identity!.Name!);
+                }
+                @if (userLogined != null && Model.UserAccount.Id == userLogined.Id)
+                {
                     <!-- FORM ROW -->
-                    <div class="form-row split">                    
+                    <div class="form-row split">
                         <!-- FORM ITEM -->
                         <div class="form-item">
                             <!-- FORM INPUT -->
@@ -214,30 +176,6 @@
                             <div class="form-input small active">
                                 <label for="profile-name">Email</label>
                                 <input type="text" id="profile-name" name="profile_name" readonly value="@Model.UserAccount.Email">
-                            </div>
-                            <!-- /FORM INPUT -->
-                        </div>
-                        <!-- /FORM ITEM -->
-                    </div>
-                    <!-- /FORM ROW -->
-                    <!-- FORM ROW -->
-                    <div class="form-row split">
-                        <!-- FORM ITEM -->
-                        <div class="form-item">
-                            <!-- FORM INPUT -->
-                            <div class="form-input small active">
-                                <label for="profile-tagline">Địa chỉ</label>
-                                <input type="text" id="profile-tagline" name="Address" value="@Model.UserAccount.Address">
-                            </div>
-                            <!-- /FORM INPUT -->
-                        </div>
-                        <!-- /FORM ITEM -->
-                        <!-- FORM ITEM -->
-                        <div class="form-item">
-                            <!-- FORM INPUT -->
-                            <div class="form-input small active">
-                                <label for="profile-name">Số điện thoại</label>
-                                <input type="text" id="profile-name" name="Phone" value="@Model.UserAccount.Phone">
                             </div>
                             <!-- /FORM INPUT -->
                         </div>
@@ -274,6 +212,30 @@
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input small active">
+                                <label for="profile-tagline">Địa chỉ</label>
+                                <input type="text" id="profile-tagline" name="Address" value="@Model.UserAccount.Address">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Số điện thoại</label>
+                                <input type="text" id="profile-name" name="Phone" value="@Model.UserAccount.Phone">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
                                 <label for="profile-name">Cột mốc</label>
                                 <input type="text" id="profile-name" name="Milestones" value="@Model.Milestones">
                             </div>
@@ -289,7 +251,7 @@
                             </div>
                             <!-- /FORM INPUT -->
                             <!-- FORM INPUT -->
-                            <div class="form-input small">
+                            <div class="form-input small active">
                                 <label for="profile-public-website">Vị trí công tác</label>
                                 <input type="text" id="profile-public-website" name="Position" value="@Model.Position">
                             </div>
@@ -297,7 +259,7 @@
                         </div>
                         <!-- /FORM ITEM -->
                     </div>
-                    <!-- /FORM ROW -->              
+                    <!-- /FORM ROW -->
                     <!-- FORM ROW -->
                     <div class="form-row split">
                         <!-- FORM ITEM -->
@@ -317,7 +279,7 @@
                                 <!-- FORM INPUT -->
                                 <div class="form-input small active">
                                     <label for="profile-birthday">Ngày sinh</label>
-                                    <input type="text" id="profile-birthday" name="BirthDay" value="@Model.UserAccount.BirthDay">
+                                    <input type="date" id="profile-birthday" name="Birthday" value="@Model.UserAccount.BirthDay?.ToString("yyyy-MM-dd")">
                                 </div>
                                 <!-- /FORM INPUT -->
                                 <!-- FORM INPUT ICON -->
@@ -328,7 +290,7 @@
                             </div>
                             <!-- /FORM INPUT DECORATED -->
                         </div>
-                        <!-- /FORM ITEM -->                 
+                        <!-- /FORM ITEM -->
                     </div>
                     <!-- /FORM ROW -->
                     <!-- FORM ROW -->
@@ -350,24 +312,172 @@
                         <!-- FORM ITEM -->
                         <div class="form-item">
                             <!-- BUTTON -->
-                            <button class="button full secondary">  </button>
-                            <!-- /BUTTON -->
-                        </div>
-                        <!-- /FORM ITEM -->
-                        <!-- FORM ITEM -->
-                        <div class="form-item">
-                            <!-- BUTTON -->
                             <button class="button full primary" type="submit">Lưu thông tin</button>
                             <!-- /BUTTON -->
                         </div>
                         <!-- /FORM ITEM -->
                     </div>
                     <!-- /FORM ROW -->
-                </form>
-                <!-- /FORM -->
-            </div>
-            <!-- WIDGET BOX CONTENT -->
+                }
+                else
+                {
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-tagline">Tên tài khoản</label>
+                                <input type="hidden" name="Id" value="@Model.Id" />
+                                <input type="text" id="profile-tagline" name="profile_tagline" readonly value="@Model.UserAccount.UserName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Email</label>
+                                <input type="text" id="profile-name" name="profile_name" readonly value="@Model.UserAccount.Email">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-tagline">Họ</label>
+                                <input type="text" id="profile-tagline" name="FirstName" readonly value="@Model.UserAccount.FirstName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Tên</label>
+                                <input type="text" id="profile-name" name="LastName" readonly value="@Model.UserAccount.LastName">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-tagline">Địa chỉ</label>
+                                <input type="text" id="profile-tagline" name="Address" readonly value="@Model.UserAccount.Address">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Số điện thoại</label>
+                                <input type="text" id="profile-name" name="Phone" readonly value="@Model.UserAccount.Phone">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Cột mốc</label>
+                                <input type="text" id="profile-name" name="Milestones" readonly value="@Model.Milestones">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-public-email">Nơi làm việc</label>
+                                <input type="text" id="profile-public-email" name="Workplace" readonly value="@Model.Workplace">
+                            </div>
+                            <!-- /FORM INPUT -->
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-public-website">Vị trí công tác</label>
+                                <input type="text" id="profile-public-website" name="Position" readonly value="@Model.Position">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-occupation">Chuyên ngành</label>
+                                <input type="text" id="profile-occupation" name="Specialize" readonly value="@Model.Specialize">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT DECORATED -->
+                            <div class="form-input-decorated">
+                                <!-- FORM INPUT -->
+                                <div class="form-input small active">
+                                    <label for="profile-birthday">Ngày sinh</label>
+                                    <input type="date" id="profile-birthday" name="Birthday" readonly value="@Model.UserAccount.BirthDay?.ToString("yyyy-MM-dd")">
+                                </div>
+                                <!-- /FORM INPUT -->
+                                <!-- FORM INPUT ICON -->
+                                <svg class="form-input-icon icon-events">
+                                    <use xlink:href="#svg-events"></use>
+                                </svg>
+                                <!-- /FORM INPUT ICON -->
+                            </div>
+                            <!-- /FORM INPUT DECORATED -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                    <!-- FORM ROW -->
+                    <div class="form-row split">
+                        <!-- FORM ITEM -->
+                        <div class="form-item">
+                            <!-- FORM INPUT -->
+                            <div class="form-input small active">
+                                <label for="profile-name">Giới thiệu về bản thân</label>
+                                <input type="text" id="profile-name" name="Intro" readonly value="@Model.Intro">
+                            </div>
+                            <!-- /FORM INPUT -->
+                        </div>
+                        <!-- /FORM ITEM -->
+                    </div>
+                    <!-- /FORM ROW -->
+                }
+
+            </form>
+            <!-- /FORM -->
         </div>
-        <!-- /WIDGET BOX -->
+        <!-- WIDGET BOX CONTENT -->
     </div>
-</body>
+    <!-- /WIDGET BOX -->
+</div>
+

@@ -119,7 +119,11 @@ app.UseCors(MyAllowSpecificOrigins);
 //    name: "default",
 //    pattern: "{controller}/{action=Index}/{id?}");
 //});
-
+app.UseCookiePolicy(new CookiePolicyOptions
+{
+    HttpOnly = HttpOnlyPolicy.Always,
+    Secure = CookieSecurePolicy.Always,
+});
 app.MapDefaultControllerRoute();
 app.UseEndpoints(endpoints =>
 {

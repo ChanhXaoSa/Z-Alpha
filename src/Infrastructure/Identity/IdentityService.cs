@@ -123,4 +123,24 @@ public class IdentityService : IIdentityService
 
         return user;
     }
+
+    public async Task<List<UserAccount>> GetListUsersAsync()
+    {
+        var users = await _userManager.Users
+            .Include(u => u.InteractWithPosts)
+            .Include(u => u.InteractWithComments)
+            .Include(u => u.WishListPosts)
+            .Include(u => u.CustomerAccounts)
+            .Include(u => u.PsychologistAccounts)
+            .AsNoTracking()
+            .ToListAsync();
+
+        var sortedUsers = users.OrderByDescending(u =>
+            u.InteractWithPosts.Where(i => i.InteractPostStatus == Domain.Enums.InteractPostStatus.Create).Count() +
+            u.InteractWithComments.Where(i => i.InteractCommentStatus == Domain.Enums.InteractCommentStatus.Create).Count()
+        ).ToList();
+
+        return sortedUsers;
+        //return users;
+    }
 }

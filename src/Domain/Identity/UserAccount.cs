@@ -22,6 +22,7 @@ public class UserAccount : IdentityUser
 
     public virtual IList<ManagerAccount>? ManagerAccounts { get; set; }
     public virtual IList<CustomerAccount>? CustomerAccounts { get; set; }
+    public virtual IList<PsychologistAccount>? PsychologistAccounts { get; set; }
     public virtual IList<PackDetail>? PackDetails { get; set; }
     // Bị vòng
     //public virtual IList<Post>? Posts { get; set; }

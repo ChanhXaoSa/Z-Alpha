@@ -31,7 +31,7 @@ public class HomeController : ControllerBaseMVC
     private readonly IWebHostEnvironment _hostingEnvironment;
     private readonly ApplicationDbContext _applicationDbContext;
 
-    public HomeController(IIdentityService identityService, UserManager<UserAccount> userManager, SignInManager<UserAccount> signInManager, IWebHostEnvironment hostingEnvironment , IToastNotification notification)
+    public HomeController(IIdentityService identityService, UserManager<UserAccount> userManager, SignInManager<UserAccount> signInManager, IWebHostEnvironment hostingEnvironment, IToastNotification notification)
     {
         _identityService = identityService;
         _userManager = userManager;
@@ -39,23 +39,36 @@ public class HomeController : ControllerBaseMVC
         _hostingEnvironment = hostingEnvironment;
         _notification = notification;
     }
-    public IActionResult index() 
+    public IActionResult index()
     {
         try
         {
-
+            ViewBag.TotalPosts = Mediator.Send(new GetAllPostQueries()).Result.Count;
+            var listUser = _identityService.GetListUsersAsync();
+            ViewBag.PopularUsers = listUser.Result.Take(10);
+            ViewBag.NewestUsers = listUser.Result
+                .Where(u => u.CustomerAccounts != null && u.CustomerAccounts.Any())
+                .Select(u => new
+                {
+                    User = u,
+                    LatestCustomerAccount = u.CustomerAccounts.OrderByDescending(c => c.Created).FirstOrDefault()
+                })
+                .OrderByDescending(u => u.LatestCustomerAccount.Created)
+                .Select(u => u.User)
+                .Take(10);
+            
             //Send data 
             List<EmotionalStatus> emotionalStatusList = Enum.GetValues(typeof(EmotionalStatus)).Cast<EmotionalStatus>().ToList();
             var tags = Mediator.Send(new GetAllTagQueries() { Page = 1, Size = 50 }).Result;
             ViewBag.tags = tags;
             ViewBag.emotionalStatusList = emotionalStatusList;
-            var result =  Mediator.Send(new GetPostQueries() { Page = 1, Size = 100 }).Result;
+            var result = Mediator.Send(new GetPostQueries() { Page = 1, Size = 100 }).Result;
             return View(result);
             //return View();
         }
         catch (Exception ex)
         {
-           throw new Exception(ex.Message);
+            throw new Exception(ex.Message);
         }
     }
 
@@ -71,7 +84,7 @@ public class HomeController : ControllerBaseMVC
             return View("./Index", result);
         }
         catch (Exception ex)
-        {   
+        {
             throw new Exception(ex.Message);
         }
     }
@@ -87,8 +100,9 @@ public class HomeController : ControllerBaseMVC
             {
                 _notification.AddSuccessToastMessage(message: "Đã bỏ lưu bài viết này");
                 return Json(new { success = true, message = "Đã bỏ lưu bài viết này", wishlistPostId = wishlistPostId });
-            } else
-            { 
+            }
+            else
+            {
                 _notification.AddSuccessToastMessage(message: "Đã lưu bài viết này");
                 return Json(new { success = true, message = "Đã lưu bài viết này", wishlistPostId = wishlistPostId });
             }
@@ -142,7 +156,7 @@ public class HomeController : ControllerBaseMVC
                 postImgUrl = SaveFileImage(file);
             AnonymousStatus isAno = AnonymousStatus.UnActive;
             if (isAnomymous == 1) isAno = AnonymousStatus.Active;
-            
+
             // tao postID
             var postId = Mediator.Send(new CreatePostCommands { PostDescription = postBody, PostImgUrl = postImgUrl, PostTitle = postTitle, emotionalStatus = emostatus, anonymousStatus = isAno }).Result;
             // get UserId
@@ -150,7 +164,7 @@ public class HomeController : ControllerBaseMVC
             // Tao interacId
             var interactId = await Mediator.Send(new CreateInteractWithPostCommand() { UserAccountId = userId.Id, PostId = postId, InteractPostStatus = InteractPostStatus.Create });
 
-            if(checkboxIds != null)
+            if (checkboxIds != null)
             {
                 var tagIds = checkboxIds.Split('_');
                 tagIds = tagIds.SkipLast(1).ToArray();
@@ -161,7 +175,7 @@ public class HomeController : ControllerBaseMVC
                 }
             }
             _notification.AddSuccessToastMessage("Đăng thành công");
-            return Json(new { success = true, message = "Đăng thành công" });        
+            return Json(new { success = true, message = "Đăng thành công" });
         }
         catch (Exception ex)
         {

@@ -10,8 +10,12 @@ using ZAlpha.Domain.Identity;
 using ZAlpha.Application.CustomerAccount.Queries.GetCustomerAccountById;
 using ZAlpha.Application.Post.Queries.GetPostByUserIdQuery;
 using ZAlpha.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
+using ZAlpha.Application.Post.Queries.GetPostWishListByUserIdQuery;
 
 namespace WebUI.Controllers.MVC;
+
+[Authorize]
 public class PsychologistController : ControllerBaseMVC
 {
     private readonly IIdentityService _identityService;
@@ -90,14 +94,6 @@ public class PsychologistController : ControllerBaseMVC
         }
     }
 
-    public IActionResult Rating()
-    {
-        return View();
-    }
-    public IActionResult NewPost()
-    {
-        return View();
-    }
     [HttpGet]
     public async Task<IActionResult> PostSaved()
     {
@@ -105,11 +101,15 @@ public class PsychologistController : ControllerBaseMVC
         {
             List<PostModel> postModels = new List<PostModel>();
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
-            var result = Mediator.Send(new GetWishlistPostQueries() { UserId = user.Id, Page = 1, Size = 100 }).Result;
             if (user != null)
             {
                 SetUpViewData(user);
             }
+            //var result = Mediator.Send(new GetWishlistPostQueries() { UserId = user.Id, Page = 1, Size = 100 }).Result;
+            var result = Mediator.Send(new GetPsychologistAccountByUserIdQueries() { UserAccountId = user.Id }).Result;
+
+            var postList = Mediator.Send(new GetPostWishListByUserIdQuery() { UserId = user.Id, Page = 1, Size = 100 }).Result;
+            ViewBag.postList = postList;
             return View(result);
         }
         catch (Exception ex)
