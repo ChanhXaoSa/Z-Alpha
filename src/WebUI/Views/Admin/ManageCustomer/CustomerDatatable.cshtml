@@ -8,6 +8,8 @@
 @using ZAlpha.Application.Common.Models;
 @using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
 @model ZAlpha.Application.Common.Models.PaginatedList<CustomerAccountModel>
+<!-- Conflict thu vien voi admin layout  -->
+<script src="~/assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
 
 <body>
     <!-- Page wrapper  -->
@@ -54,6 +56,9 @@
                                                 <td>@item.UserAccount.BirthDay</td>
                                                 <td>@item.UserAccount.Email</td>
                                                 <td>@item.UserAccount.Phone</td>
+                                                <td style="text-align: center; vertical-align: middle">
+                                                    <button value="@item.UserAccount.Id" type="submit" id="btn_ban_comment_@item.UserAccount.Id" class="btn btn-danger btn-rounded m-b-10 m-l-5">Ban</button>
+                                                </td>
                                             </tr>
                                         }
                                     </tbody>
@@ -68,4 +73,62 @@
         <!-- End Container fluid  -->
     </div>
     <!-- End Page wrapper  -->
+    <div class="form-popup" style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;"
+         id="banForm">
+        <div class="card">
+            <div class="card-body" style="margin: 1rem"> You Want to Ban This Account </div>
+            <div style="display:inline-block; vertical-align: bottom; text-align: center;">
+                <button type="button" class="btn btn-default btn-rounded m-b-10" onclick="closeFormBan()">Close</button>
+                <h5 hidden id="dialog_hidden_account_id"></h5>
+                <button type="submit" id="btn_submit_ban_comment" class="btn btn-danger btn-rounded m-b-10 m-l-5">Ban</button>
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+    function openFormBan(account_id) {
+        document.getElementById("banForm").style.display = "block";
+        $("#dialog_hidden_account_id").text(account_id);
+    }
+
+    function closeFormBan() {
+        document.getElementById("banForm").style.display = "none";
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $("button[id^='btn_ban_comment_']").click(function () {
+            var account_id = $(this).attr("id").split("_")[3];
+            handle_confirm_ban_comment_dialog(account_id);
+        });
+        $("#btn_submit_ban_comment").click(function () {
+            var account_id = $("#dialog_hidden_account_id").text();
+            ban_comment(account_id);
+        });
+    });
+    function handle_confirm_ban_comment_dialog(account_id) {
+        openFormBan(account_id);
+    }
+    function ban_comment(account_id) {
+        var data = {
+            userId: account_id,
+        };
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "/Admin/BanAccountCustomer",
+            data: data,
+            success: function (data) {
+                setTimeout(function () {
+                    window.location.href = "/Admin/CustomerDatatable";
+                }, 1000);
+                alert(data);
+            }
+        });
+    }
+</script>
