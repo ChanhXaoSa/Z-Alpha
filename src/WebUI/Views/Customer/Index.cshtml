@@ -19,68 +19,91 @@
                 <div class="tns-outer" id="section-navigation-slider-ow">
                     <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">1 to 6</span>  of 6</div><div id="section-navigation-slider-mw" class="tns-ovh">
                         <div class="tns-inner" id="section-navigation-slider-iw">
-                            <div id="section-navigation-slider" class="section-menu  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" style="transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-                                <!-- SECTION MENU ITEM -->
-                                <a class="section-menu-item active tns-item tns-slide-active" href="/Customer/Index/" id="section-navigation-slider-item0">
-                                    <!-- SECTION MENU ITEM ICON -->
-                                    <svg class="section-menu-item-icon icon-profile">
-                                        <use xlink:href="#svg-profile"></use>
-                                    </svg>
-                                    <!-- /SECTION MENU ITEM ICON -->
-                                    <!-- SECTION MENU ITEM TEXT -->
-                                    <p class="section-menu-item-text">Thông tin</p>
-                                    <!-- /SECTION MENU ITEM TEXT -->
-                                </a>
-                                <!-- /SECTION MENU ITEM -->
-                                <!-- SECTION MENU ITEM -->
-                                <a class="section-menu-item tns-item tns-slide-active" href="/Customer/PostList/" id="section-navigation-slider-item1">
-                                    <!-- SECTION MENU ITEM ICON -->
-                                    <svg class="section-menu-item-icon icon-timeline">
-                                        <use xlink:href="#svg-timeline"></use>
-                                    </svg>
-                                    <!-- /SECTION MENU ITEM ICON -->
-                                    <!-- SECTION MENU ITEM TEXT -->
-                                    <p class="section-menu-item-text">Bài viết của bạn</p>
-                                    <!-- /SECTION MENU ITEM TEXT -->
-                                </a>
-                                <!-- /SECTION MENU ITEM -->
-                                <!-- SECTION MENU ITEM -->
-                                <a class="section-menu-item tns-item tns-slide-active" href="/Customer/PostSaved/" id="section-navigation-slider-item2">
-                                    <!-- SECTION MENU ITEM ICON -->
-                                    <svg class="section-menu-item-icon icon-pinned">
-                                        <use xlink:href="#svg-pinned"></use>
-                                    </svg>
-                                    <!-- /SECTION MENU ITEM ICON -->
-                                    <!-- SECTION MENU ITEM TEXT -->
-                                    <p class="section-menu-item-text">Bài viết đã lưu</p>
-                                    <!-- /SECTION MENU ITEM TEXT -->
-                                </a>
-                                <!-- /SECTION MENU ITEM -->
-                                <!-- SECTION MENU ITEM -->
-                                <a class="section-menu-item tns-item tns-slide-active" href="#" id="section-navigation-slider-item2">
-                                    <!-- SECTION MENU ITEM ICON -->
-                                    <svg class="section-menu-item-icon icon-friend">
-                                        <use xlink:href="#svg-friend"></use>
-                                    </svg>
-                                    <!-- /SECTION MENU ITEM ICON -->
-                                    <!-- SECTION MENU ITEM TEXT -->
-                                    <p class="section-menu-item-text">Bạn bè</p>
-                                    <!-- /SECTION MENU ITEM TEXT -->
-                                </a>
-                                <!-- /SECTION MENU ITEM -->
-                                <!-- SECTION MENU ITEM -->
-                                <a class="section-menu-item tns-item tns-slide-active" href="/Customer/Transaction/" id="section-navigation-slider-item2">
-                                    <!-- SECTION MENU ITEM ICON -->
-                                    <svg class="section-menu-item-icon icon-friend">
-                                        <use xlink:href="#svg-blog-posts"></use>
-                                    </svg>
-                                    <!-- /SECTION MENU ITEM ICON -->
-                                    <!-- SECTION MENU ITEM TEXT -->
-                                    <p class="section-menu-item-text">Giao dịch</p>
-                                    <!-- /SECTION MENU ITEM TEXT -->
-                                </a>
-                                <!-- /SECTION MENU ITEM -->
-                            </div>
+                            @{
+                                var userLogined = await _identityServices.GetUserByNameAsync(User.Identity!.Name!);
+                            }
+                            @if (userLogined != null && Model.UserAccount.Id == userLogined.Id)
+                            {
+                                <div id="section-navigation-slider" class="section-menu  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" style="transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item active tns-item tns-slide-active" href="/Customer/Index/" id="section-navigation-slider-item0">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-profile">
+                                            <use xlink:href="#svg-profile"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Thông tin</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item tns-item tns-slide-active" href="/Customer/PostList/" id="section-navigation-slider-item1">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-timeline">
+                                            <use xlink:href="#svg-timeline"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Bài viết của bạn</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item tns-item tns-slide-active" href="/Customer/PostSaved/" id="section-navigation-slider-item2">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-pinned">
+                                            <use xlink:href="#svg-pinned"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Bài viết đã lưu</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item tns-item tns-slide-active" href="#" id="section-navigation-slider-item2">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-friend">
+                                            <use xlink:href="#svg-friend"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Bạn bè</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item tns-item tns-slide-active" href="/Customer/Transaction/" id="section-navigation-slider-item2">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-friend">
+                                            <use xlink:href="#svg-blog-posts"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Giao dịch</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="section-navigation-slider" class="section-menu  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" style="transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
+                                    <!-- SECTION MENU ITEM -->
+                                    <a class="section-menu-item active tns-item tns-slide-active" href="/Customer/Index/" id="section-navigation-slider-item0">
+                                        <!-- SECTION MENU ITEM ICON -->
+                                        <svg class="section-menu-item-icon icon-profile">
+                                            <use xlink:href="#svg-profile"></use>
+                                        </svg>
+                                        <!-- /SECTION MENU ITEM ICON -->
+                                        <!-- SECTION MENU ITEM TEXT -->
+                                        <p class="section-menu-item-text">Thông tin</p>
+                                        <!-- /SECTION MENU ITEM TEXT -->
+                                    </a>
+                                    <!-- /SECTION MENU ITEM -->                                  
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -126,9 +149,9 @@
             <!-- FORM -->
             <form class="form" action="/Customer/UpdateCustomer" method="post">
                 @{
-                    var userLogined = await _identityServices.GetUserByNameAsync(User.Identity!.Name!);
+                    var userLogin = await _identityServices.GetUserByNameAsync(User.Identity!.Name!);
                 }
-                @if (userLogined != null && Model.UserAccount.Id == userLogined.Id)
+                @if (userLogin != null && Model.UserAccount.Id == userLogin.Id)
                 {
                     <!-- FORM ROW -->
                     <div class="form-row split">
