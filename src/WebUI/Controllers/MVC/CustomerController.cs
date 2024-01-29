@@ -315,7 +315,7 @@ public class CustomerController : ControllerBaseMVC
     public async Task<IActionResult> Transaction()
     {
         try
-        {
+        { 
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
             var transactionList = Mediator.Send(new GetTransactionByIdQueries() { UserId = user.Id, Page = 1, Size = 100 }).Result;
             var result = Mediator.Send(new GetCustomerAccountByUserIdQueries() { UserAccountId = user.Id }).Result;
