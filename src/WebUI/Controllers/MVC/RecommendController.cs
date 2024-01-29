@@ -29,7 +29,7 @@ public class RecommendController : ControllerBaseMVC
     }
 
     [HttpPost]
-    public async Task<IActionResult> Search(string keySearch)
+    public async Task<IActionResult> Search(string keySearch, int filter)
     {
         try
         {

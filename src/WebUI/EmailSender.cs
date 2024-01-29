@@ -16,13 +16,13 @@ public class EmailSender
     {
         if (_environment.IsDevelopment() || _environment.IsStaging())
         {
-            subject = "TEST EMAIL" + "'" + subject + "'";
+            subject = "'" + subject + "'";
         }
         var email = new MimeMessage();
 
-        email.From.Add(MailboxAddress.Parse("tuankietgg29@gmail.com"));
+        email.From.Add(MailboxAddress.Parse("zalphacpn@gmail.com"));
         email.To.Add(MailboxAddress.Parse(toMail));
-        var bccAddress = new MailboxAddress("admin","tuankietgg29@gmail.com");
+        var bccAddress = new MailboxAddress("admin","zalphacpn@gmail.com");
 
         email.Bcc.Add(bccAddress);
         email.Subject = subject;
@@ -37,7 +37,7 @@ public class EmailSender
         email.Body = builder.ToMessageBody();
         using var smtp = new SmtpClient();
         smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-        smtp.Authenticate("tuankietgg29@gmail.com", "pmnx ycmh xcsn itel");
+        smtp.Authenticate("zalphacpn@gmail.com", "iuih qwtu hzba ggfn");
         try
         {
             smtp.Send(email);
@@ -57,11 +57,11 @@ public class EmailSender
 
         if (_environment.IsDevelopment() || _environment.IsStaging())
         {
-            subject = "TEST EMAIL" + "'" + subject + "'";
+            subject = "'" + subject + "'";
         }
         var email = new MimeMessage();
 
-        email.From.Add(MailboxAddress.Parse("tuankietgg29@gmail.com"));
+        email.From.Add(MailboxAddress.Parse("zalphacpn@gmail.com"));
         email.To.Add(MailboxAddress.Parse(toMail));
         email.Subject = subject;
 
@@ -75,7 +75,7 @@ public class EmailSender
         email.Body = builder.ToMessageBody();
         using var smtp = new SmtpClient();
         smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-        smtp.Authenticate("tuankietgg29@gmail.com", "pmnx ycmh xcsn itel");
+        smtp.Authenticate("zalphacpn@gmail.com", "iuih qwtu hzba ggfn");
         try
         {
             smtp.Send(email);
@@ -92,12 +92,12 @@ public class EmailSender
     {
         if (_environment.IsDevelopment() || _environment.IsStaging())
         {
-            subject = "TEST EMAIL" + "'" + subject + "'";
+            subject = "'" + subject + "'";
         }
         var email = new MimeMessage();
 
-        email.From.Add(MailboxAddress.Parse("tuankietgg29@gmail.com"));
-        var bccAdminAddress = new MailboxAddress("admin", "tuankietgg29@gmail.com");
+        email.From.Add(MailboxAddress.Parse("zalphacpn@gmail.com"));
+        var bccAdminAddress = new MailboxAddress("admin", "zalphacpn@gmail.com");
 
         email.Bcc.Add(bccAdminAddress);
         foreach (var item in listMail)
@@ -119,7 +119,7 @@ public class EmailSender
         email.Body = builder.ToMessageBody();
         using var smtp = new MailKit.Net.Smtp.SmtpClient();
         smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-        smtp.Authenticate("tuankietgg29@gmail.com", "pmnx ycmh xcsn itel");
+        smtp.Authenticate("zalphacpn@gmail.com", "iuih qwtu hzba ggfn");
         try
         {
             smtp.Send(email);
