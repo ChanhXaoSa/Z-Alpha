@@ -14,6 +14,7 @@ namespace ZAlpha.Application.PsychologistAccount.Queries.GetPsychologistAccountB
 public class GetPsychologistAccountBySearchQueries : IRequest<PaginatedList<PsychologistAccountModel>>
 {
     public int Page { get; set; }
+    public int filter { get; set; }
     public string KeySearch { get; set; }
     public int Size { get; set; }
 }
@@ -32,10 +33,22 @@ public class GetPsychologistAccountBySearchQueriesHandler : IRequestHandler<GetP
     public async Task<PaginatedList<PsychologistAccountModel>> Handle(GetPsychologistAccountBySearchQueries request, CancellationToken cancellationToken)
     {
         var customerAccount = _context.Get<Domain.Entities.PsychologistAccount>()
+            .Include(x => x.UserAccount)
+            .Include(x => x.UserAccount.InteractWithPosts)
+            .Include(x => x.UserAccount.InteractWithComments)
             .Where(x => x.IsDeleted == false
-            && x.UserAccount.FirstName.Contains(request.KeySearch)
+            && (x.UserAccount.FirstName.Contains(request.KeySearch)
             || x.UserAccount.LastName.Contains(request.KeySearch)
-            || x.UserAccount.UserName.Contains(request.KeySearch)).AsNoTracking();
+            || x.UserAccount.UserName.Contains(request.KeySearch)));
+
+        if (request.filter == 0)
+        {
+            customerAccount = customerAccount.OrderByDescending(x => x.UserAccount.InteractWithPosts.Count);
+        }
+        else if (request.filter == 1)
+        {
+            customerAccount = customerAccount.OrderByDescending(x => x.UserAccount.InteractWithComments.Count);
+        }
 
         var map = _mapper.ProjectTo<PsychologistAccountModel>(customerAccount);
 

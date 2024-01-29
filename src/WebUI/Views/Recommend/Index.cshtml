@@ -26,17 +26,18 @@
             <!-- /SECTION HEADER INFO -->
         </div>
         <!-- /SECTION HEADER -->
+
         <!-- SECTION FILTERS BAR -->
-        <div class="section-filters-bar v1">
-            <!-- SECTION FILTERS BAR ACTIONS -->
-            <div class="section-filters-bar-actions">
-                <!-- FORM -->
-                <form class="form" action="~/Recommend/Search" method="post">
+        <div class="section-filters-bar v2">
+            <!-- FORM -->
+            <form class="form" action="~/Recommend/Search" method="post">
+                <!-- FORM ITEM -->
+                <div class="form-item split medium">
                     <!-- FORM INPUT -->
                     <div class="form-input small with-button">
                         <label for="groups-search">Tìm kiếm </label>
-                        <input type="text" name="keySearch" id="groups-search" name="groups_search">
-                        <!-- BUTTON -->
+                        <input type="text" name="keySearch" id="groups-search" value="@ViewBag.keySearch">
+                        @* <!-- BUTTON -->
                         <button class="button primary" type="submit">
                             <!-- ICON MAGNIFYING GLASS -->
                             <svg class="icon-magnifying-glass">
@@ -44,16 +45,15 @@
                             </svg>
                             <!-- /ICON MAGNIFYING GLASS -->
                         </button>
-                        <!-- /BUTTON -->
+                        <!-- /BUTTON --> *@
                     </div>
                     <!-- /FORM INPUT -->
                     <!-- FORM SELECT -->
                     <div class="form-select">
-                        <label for="groups-filter-category">Tìm kiếm theo</label>
-                        <select id="groups-filter-category" name="groups_filter_category">
-                            <option value="0">Số bài viết</option>
-                            <option value="1">Lượt tương tác</option>
-                            @* <option value="2">Alphabetical</option> *@
+                        <label for="stream-filter-criteria">Filter By</label>
+                        <select id="stream-filter-criteria" name="filter">
+                            <option value="0">Số lượng bài viết</option>
+                            <option value="1">Số lượng bình luận</option>
                         </select>
                         <!-- FORM SELECT ICON -->
                         <svg class="form-select-icon icon-small-arrow">
@@ -62,32 +62,16 @@
                         <!-- /FORM SELECT ICON -->
                     </div>
                     <!-- /FORM SELECT -->
-                </form>
-                <!-- /FORM -->
-                <!-- FILTER TABS -->
-                <div class="filter-tabs">
-                    <!-- FILTER TAB -->
-                    <div class="filter-tab active">
-                        <!-- FILTER TAB TEXT -->
-                        <p class="filter-tab-text">Số bài viết</p>
-                        <!-- /FILTER TAB TEXT -->
-                    </div>
-                    <!-- /FILTER TAB -->
-                    <!-- FILTER TAB -->
-                    <div class="filter-tab">
-                        <!-- FILTER TAB TEXT -->
-                        <p class="filter-tab-text">Lượt tương tác</p>
-                        <!-- /FILTER TAB TEXT -->
-                    </div>
-                    <!-- /FILTER TAB -->
-                   
+                    <!-- BUTTON -->
+                    <button class="button secondary" type="submit">Tìm kiếm</button>
+                    <!-- /BUTTON -->
                 </div>
-                <!-- /FILTER TABS -->
-            </div>
-            <!-- /SECTION FILTERS BAR ACTIONS -->
-           
+                <!-- /FORM ITEM -->
+            </form>
+            <!-- /FORM -->
         </div>
         <!-- /SECTION FILTERS BAR -->
+
         <!-- GRID -->
         <div class="grid grid-3-3-3-3 centered">
             @foreach (var item in Model.Items)

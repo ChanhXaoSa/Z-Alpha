@@ -6,6 +6,7 @@ using ZAlpha.Domain.Identity;
 using ZAlpha.Application.CustomerAccount.Queries.GetCustomerAccountById;
 using ZAlpha.Application.PsychologistAccount.Queries.GetPsychologistAccountBySearch;
 using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
+using ZAlpha.Application.Common.Models;
 
 namespace WebUI.Controllers.MVC;
 public class RecommendController : ControllerBaseMVC
@@ -19,7 +20,7 @@ public class RecommendController : ControllerBaseMVC
         try
         {
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
-            var result = Mediator.Send(new GetAllPsychologistAccountQueries() { Page = 1, Size = 100 }).Result;
+            var result = Mediator.Send(new GetAllPsychologistAccountQueries() { Page = 1, Size = 1000 }).Result;
             return View(result);
         }
         catch (Exception ex)
@@ -34,11 +35,19 @@ public class RecommendController : ControllerBaseMVC
         try
         {
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
-            var result = Mediator.Send(new GetPsychologistAccountBySearchQueries() {KeySearch = keySearch, Page = 1, Size = 100 }).Result;
-            if(keySearch == null) 
+
+            var result = Mediator.Send(new GetAllPsychologistAccountQueries() { filter = filter, Page = 1, Size = 1000 }).Result;
+            if (keySearch != null)
             {
-                result = Mediator.Send(new GetAllPsychologistAccountQueries() { Page = 1, Size = 100 }).Result;
+                result = Mediator.Send(new GetPsychologistAccountBySearchQueries() { KeySearch = keySearch, filter = filter, Page = 1, Size = 1000 }).Result;
+            }else if(keySearch == null) 
+            {
+                result = Mediator.Send(new GetAllPsychologistAccountQueries() { filter = filter, Page = 1, Size = 1000 }).Result;
             }
+
+            ViewBag.keySearch = keySearch;
+            ViewBag.filter = filter;          
+
             return View("Index", result);
         }
         catch (Exception ex)
