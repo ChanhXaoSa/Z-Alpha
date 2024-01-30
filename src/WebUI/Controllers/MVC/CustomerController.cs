@@ -21,6 +21,8 @@ using ZAlpha.Application.Post.Queries.GetPostByUserIdQuery;
 using ZAlpha.Application.Post.Queries.GetPostWishListByUserIdQuery;
 using ZAlpha.Application.Transaction.Queries.GetTransactionById;
 using Microsoft.AspNetCore.Authorization;
+using ZAlpha.Application.Ban.UpdateAvatarUser;
+using ZAlpha.Application.Common.Models;
 
 namespace WebUI.Controllers.MVC;
 
@@ -335,5 +337,21 @@ public class CustomerController : ControllerBaseMVC
         {
             throw new Exception(ex.Message);
         }
+    }
+    [HttpPost]
+    public async Task<IActionResult> UpdateAvatarProfile(IFormFile fileAvatar)
+    {
+        var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+        string avaImgUrl = "";
+        if (fileAvatar == null)
+            return Json("file is null");
+        else if (!(IsImageFile(fileAvatar) && fileAvatar.Length > 0))
+            return Json("not file Image");
+        else
+        {
+            avaImgUrl = SaveFileImage(fileAvatar);
+            var isUpdated = Mediator.Send(new UpdateAvatarUserCommands { Id = user.Id, AvatarUrl = avaImgUrl }).Result;
+        }
+        return Json("Success");
     }
 }
