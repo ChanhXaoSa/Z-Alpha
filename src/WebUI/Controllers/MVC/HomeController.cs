@@ -85,12 +85,7 @@ public class HomeController : ControllerBaseMVC
                     .Select(u => u.User)
                     .Take(10);
                 }
-
-
-
             }
-
-
             //Send data 
             List<EmotionalStatus> emotionalStatusList = Enum.GetValues(typeof(EmotionalStatus)).Cast<EmotionalStatus>().ToList();
             var tags = Mediator.Send(new GetAllTagQueries() { Page = 1, Size = 50 }).Result;
