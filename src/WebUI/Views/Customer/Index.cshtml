@@ -562,4 +562,32 @@
     </div>
     <!-- /PRODUCT PREVIEW -->
 </div>
-
+@section scripts {
+    <script src="~/assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#saveButton").click(function () {
+                saved_avatar();
+            });
+        });
+        // Call the JavaScript function defined in the layout
+        function saved_avatar() {
+            var formData = new FormData();
+            formData.append("fileAvatar", $("#new-post-file")[0].files[0]);
+            $.ajax({
+                type: "POST",
+                cache: false,
+                url: "/Customer/UpdateAvatarProfile",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    setTimeout(function () {
+                        window.location.href = "/Customer";
+                    }, 1000);
+                    alert(data);
+                }
+            });
+        }
+    </script>
+}
