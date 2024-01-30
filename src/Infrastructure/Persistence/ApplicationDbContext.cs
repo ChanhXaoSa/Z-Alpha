@@ -60,9 +60,9 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
             {
                 Id = "871a809a-b3fa-495b-9cc2-c5d738a866cf",
                 UserName = "vinh",
-                Email = "vinhtc191@gmail.com",
+                Email = "test1@gmail.com",
                 PasswordHash = "AQAAAAIAAYagAAAAEJy3zCJul9KHCbPBHbaSbsgb9wFameULYiABmfOqOk4dGeF5cqYu9WcHaFm5ZcQ0vA==",
-                FirstName = "Trần",
+                FirstName = "Tài khoản ảo",
                 LastName = "Vinh",
                 Status = UserStatus.Active,
                 Wallet = 10000000
@@ -71,9 +71,9 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
              {
                  Id = "424ab531-d60a-487e-9625-a74a7f5747be",
                  UserName = "trieu",
-                 Email = "trieu@gmail.com",
+                 Email = "test2@gmail.com",
                  PasswordHash = "AQAAAAIAAYagAAAAEJy3zCJul9KHCbPBHbaSbsgb9wFameULYiABmfOqOk4dGeF5cqYu9WcHaFm5ZcQ0vA==",
-                 FirstName = "Triệu",
+                 FirstName = "Tài khoản ảo",
                  LastName = "Gà",
                  Status = UserStatus.Active,
                  Wallet = 1000
@@ -82,9 +82,9 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
               {
                   Id = "41d8778f-80e0-4dd5-b7db-86eb1c32d40d",
                   UserName = "kiet",
-                  Email = "kiet@gmail.com",
+                  Email = "test3@gmail.com",
                   PasswordHash = "AQAAAAIAAYagAAAAEJy3zCJul9KHCbPBHbaSbsgb9wFameULYiABmfOqOk4dGeF5cqYu9WcHaFm5ZcQ0vA==",
-                  FirstName = "Kiệt",
+                  FirstName = "Tài khoản ảo",
                   LastName = "Kiệt",
                   Status = UserStatus.Active,
                   Wallet = 1000
@@ -93,9 +93,9 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
                {
                    Id = "a1c48523-eee4-4151-9c82-23ebf8b0f762",
                    UserName = "kien",
-                   Email = "kien@gmail.com",
+                   Email = "test4@gmail.com",
                    PasswordHash = "AQAAAAIAAYagAAAAEJy3zCJul9KHCbPBHbaSbsgb9wFameULYiABmfOqOk4dGeF5cqYu9WcHaFm5ZcQ0vA==",
-                   FirstName = "kiên",
+                   FirstName = "Tài khoản ảo",
                    LastName = "kiên",
                    Status = UserStatus.Active,
                    Wallet = 1000
