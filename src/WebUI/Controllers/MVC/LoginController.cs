@@ -94,7 +94,7 @@ public class LoginController : ControllerBaseMVC
         return View();
     }
 
-    [ApiExplorerSettings(IgnoreApi = true)]
+    /*[ApiExplorerSettings(IgnoreApi = true)]
     [AllowAnonymous]
     [HttpGet("login/{provider}")]
     public IActionResult ExternalLogin(string provider, [FromQuery] string redirectUrl)
@@ -123,7 +123,7 @@ public class LoginController : ControllerBaseMVC
         {
             return RedirectToAction("Index", "Home");
         }
-    }
+    }*/
 
     [ApiExplorerSettings(IgnoreApi = true)]
     [AllowAnonymous]
@@ -260,14 +260,14 @@ public class LoginController : ControllerBaseMVC
     {
         var email = new MimeMessage();
 
-        email.From.Add(MailboxAddress.Parse("tuankietgg29@gmail.com"));
+        email.From.Add(MailboxAddress.Parse("zalphacpn@gmail.com"));
         email.To.Add(MailboxAddress.Parse(toMail));
         email.Subject = subject;
 
         email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = confirmLink };
         using var smtp = new MailKit.Net.Smtp.SmtpClient();
         smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-        smtp.Authenticate("tuankietgg29@gmail.com", "pmnx ycmh xcsn itel");
+        smtp.Authenticate("zalphacpn@gmail.com", "iuih qwtu hzba ggfn");
         try
         {
             smtp.Send(email);
@@ -358,7 +358,7 @@ public class LoginController : ControllerBaseMVC
                         protocol: Request.Scheme);
 
                 var temp = await SendEmailAsync(email, "Email Xác Nhận Đặt Lại Mật Khẩu Từ Hệ Thống Zalpha",
-            "<div style=\"font-family: Helvetica, Arial, sans-serif\">\r\n    <div>Xin chào: " + user.FirstName +" "+ user.LastName + "</div>\r\n    <br>\r\n    <div>Chúng tôi đã nhận được yêu cầu ĐẶT LẠI MẬT KHẨU cho tài khoản để dùng cho hệ thống Zalpha.</div>\r\n    <br>\r\n    <div>Đây là link xác thực của bạn: " + $" <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Link xác thực</a>" + ".</div>\r\n    <br>\r\n    <div>\r\n        Nếu không phải bạn vừa yêu cầu ĐẶT LẠI MẬT KHẨU tài khoản Zalpha, hoặc có một ai đó khác đang dùng email\r\n        của bạn để yêu cầu ĐẶT LẠI MẬT KHẨU cho tài khoản; bạn có thể bỏ qua bước xác thực email này.\r\n    </div>\r\n    <br>\r\n    <div style=\"font-weight: bold\">\r\n        Xin cảm ơn, <br>\r\n        <div style=\"color: #FF630E;\">Hệ thống BSmart</div>\r\n    </div>\r\n</div>");
+            "<div style=\"font-family: Helvetica, Arial, sans-serif\">\r\n    <div>Xin chào: " + user.FirstName +" "+ user.LastName + "</div>\r\n    <br>\r\n    <div>Chúng tôi đã nhận được yêu cầu ĐẶT LẠI MẬT KHẨU cho tài khoản để dùng cho hệ thống Zalpha.</div>\r\n    <br>\r\n    <div>Đây là link xác thực của bạn: " + $" <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>Link xác thực</a>" + ".</div>\r\n    <br>\r\n    <div>\r\n        Nếu không phải bạn vừa yêu cầu ĐẶT LẠI MẬT KHẨU tài khoản Zalpha, hoặc có một ai đó khác đang dùng email\r\n        của bạn để yêu cầu ĐẶT LẠI MẬT KHẨU cho tài khoản; bạn có thể bỏ qua bước xác thực email này.\r\n    </div>\r\n    <br>\r\n    <div style=\"font-weight: bold\">\r\n        Xin cảm ơn, <br>\r\n        <div style=\"color: #FF630E;\">Hệ thống Zalpha</div>\r\n    </div>\r\n</div>");
                 _toastNotification.AddSuccessToastMessage("Gửi Email xác nhận thành công, Vui lòng truy cập Email để tiếp tục Đặt lại Mật Khẩu");
                 return Redirect("/login");
             }
