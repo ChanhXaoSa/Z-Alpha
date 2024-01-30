@@ -40,36 +40,69 @@ public class HomeController : ControllerBaseMVC
         _notification = notification;
     }
     [HttpGet]
-    public async Task<IActionResult> Index(string search, bool reload)
+    public async Task<IActionResult> Index(string search, int reload, int index)
     {
         try
         {
             ViewBag.TotalPosts = Mediator.Send(new GetAllPostQueries()).Result.Count;
             var listUser = _identityService.GetListUsersAsync();
+          
+            //Cách hiển thị thanh bên trái   -- set mặc định =1 --
+            ViewBag.Index = 1;
+            // data mặc định
             ViewBag.PopularUsers = listUser.Result.Take(10);
-            ViewBag.NewestUsers = listUser.Result
-                .Where(u => u.CustomerAccounts != null && u.CustomerAccounts.Any())
-                .Select(u => new
+
+            if (index != 0 && (reload == 0 || reload == null))
+            {
+                return Json(new { success = true, message = "thành công" });
+            }
+            if (index != 0 && reload == 1)
+            {
+                ViewBag.Index = index;
+                if(index == 2)
                 {
-                    User = u,
-                    LatestCustomerAccount = u.CustomerAccounts.OrderByDescending(c => c.Created).FirstOrDefault()
-                })
-                .OrderByDescending(u => u.LatestCustomerAccount.Created)
-                .Select(u => u.User)
-                .Take(10);
-            
+                    ViewBag.PopularUsers = listUser.Result
+                    .Where(u => u.CustomerAccounts != null && u.CustomerAccounts.Any())
+                    .Select(u => new
+                    {
+                        User = u,
+                        LatestCustomerAccount = u.CustomerAccounts.OrderByDescending(c => c.Created).FirstOrDefault()
+                    })
+                    .OrderByDescending(u => u.LatestCustomerAccount.Created)
+                    .Select(u => u.User)
+                    .Take(10);
+                }
+                if (index == 3)
+                {
+                    ViewBag.PopularUsers = listUser.Result
+                    .Where(u => u.PsychologistAccounts != null && u.PsychologistAccounts.Any())
+                    .Select(u => new
+                    {
+                        User = u,
+                        LatestCustomerAccount = u.PsychologistAccounts.OrderByDescending(c => c.Created).FirstOrDefault()
+                    })
+                    .OrderByDescending(u => u.LatestCustomerAccount.Created)
+                    .Select(u => u.User)
+                    .Take(10);
+                }
+
+
+
+            }
+
+
             //Send data 
             List<EmotionalStatus> emotionalStatusList = Enum.GetValues(typeof(EmotionalStatus)).Cast<EmotionalStatus>().ToList();
             var tags = Mediator.Send(new GetAllTagQueries() { Page = 1, Size = 50 }).Result;
             ViewBag.tags = tags;
             ViewBag.emotionalStatusList = emotionalStatusList;
-            if(search!=null && reload)
+            if(search!=null && reload == 1)
             {
                 var result = Mediator.Send(new GetPostBySearchQueries() { keySearch = search.Trim(), Page = 1, Size = 100 }).Result;
                 ViewBag.result = result;
                 return View();
             }
-            if(search != null && !reload)
+            if(search != null && (reload == 0 || reload == null))
             {
                 var result = Mediator.Send(new GetPostBySearchQueries() { keySearch = search.Trim(), Page = 1, Size = 100 }).Result;
                 ViewBag.result = result;

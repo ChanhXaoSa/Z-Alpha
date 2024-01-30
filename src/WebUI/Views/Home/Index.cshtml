@@ -20,6 +20,8 @@
     List<ZAlpha.Domain.Enums.EmotionalStatus> emotionalStatusList = ViewBag.emotionalStatusList;
     var userLogined = await _identityServices.GetUserByNameAsync(User.Identity.Name);
     ZAlpha.Application.Common.Models.PaginatedList<PostModel> Result = ViewBag.result;
+
+    int Index = ViewBag.Index;
 }
 <link rel="stylesheet" href="~/assets/css/Home.css" />
 
@@ -31,7 +33,7 @@
         <img class="section-banner-icon" src="~/assets/images/banner/newsfeed-icon.png" alt="newsfeed-icon">
         <!-- /SECTION BANNER ICON -->
         <!-- SECTION BANNER TITLE -->
-        <p class="section-banner-title">Newsfeed</p>
+        <p class="section-banner-title">Bản tin hằng ngày</p>
         <!-- /SECTION BANNER TITLE -->
         <!-- SECTION BANNER TEXT -->
         <p class="section-banner-text">Cùng xem những bài viết mới của chuyên gia và người dùng khác nào!</p>
@@ -44,46 +46,62 @@
         <div class="grid-column">
             <!-- WIDGET BOX -->
             <div class="widget-box">
-                <!-- WIDGET BOX SETTINGS -->
-                @* <div class="widget-box-settings">
-                    <!-- POST SETTINGS WRAP -->
-                    <div class="post-settings-wrap">
-                        <!-- POST SETTINGS -->
-                        <div class="post-settings widget-box-post-settings-dropdown-trigger">
-                            <!-- POST SETTINGS ICON -->
-                            <svg class="post-settings-icon icon-more-dots">
-                                <use xlink:href="#svg-more-dots"></use>
-                            </svg>
-                            <!-- /POST SETTINGS ICON -->
-                        </div>
-                        <!-- /POST SETTINGS -->
-                        <!-- SIMPLE DROPDOWN -->
-                        <div class="simple-dropdown widget-box-post-settings-dropdown">
-                            <!-- SIMPLE DROPDOWN LINK -->
-                            <p class="simple-dropdown-link">Widget Settings</p>
-                            <!-- /SIMPLE DROPDOWN LINK -->
-                        </div>
-                        <!-- /SIMPLE DROPDOWN -->
-                    </div>
-                    <!-- /POST SETTINGS WRAP -->
-                </div> *@
-                <!-- /WIDGET BOX SETTINGS -->
+                
                 <!-- WIDGET BOX TITLE -->
-                <p class="widget-box-title">Members</p>
+                <p class="widget-box-title">Thành viên</p>
                 <!-- /WIDGET BOX TITLE -->
                 <!-- WIDGET BOX CONTENT -->
                 <div class="widget-box-content">
                     <!-- FILTERS -->
                     <div class="filters">
-                        <!-- FILTER -->
-                        <p class="filter">Mới nhất</p>
-                        <!-- /FILTER -->
-                        <!-- FILTER -->
-                        <p class="filter active">Nổi bật</p>
-                        <!-- /FILTER -->
-                        <!-- FILTER -->
-                        <p class="filter">Active</p>
-                        <!-- /FILTER -->
+                        @if(Index == 2)
+                        {
+                            <!-- FILTER -->
+                            <p class="filter" onclick="newUser(1)">Nổi bật</p>
+                            <!-- /FILTER -->
+                            <!-- FILTER -->
+                            <p class="filter active">Người dùng mới</p>
+                            <!-- /FILTER -->
+                            <!-- FILTER -->
+                            <p class="filter" onclick="newUser(3)">Chuyên gia mới</p>
+                            <!-- /FILTER -->
+                            <!-- FILTER -->
+                            @* <p class="filter">Active</p> *@
+                            <!-- /FILTER -->
+                        }
+                        else
+                        {
+                            if (Index == 3)
+                            {
+                                <!-- FILTER -->
+                                <p class="filter" onclick="newUser(1)">Nổi bật</p>
+                                <!-- /FILTER -->
+                                <!-- FILTER -->
+                                <p class="filter" onclick="newUser(2)">Người dùng mới</p>
+                                <!-- /FILTER -->
+                                <!-- FILTER -->
+                                <p class="filter active">Chuyên gia mới</p>
+                                <!-- /FILTER -->
+                                <!-- FILTER -->
+                                @* <p class="filter">Active</p> *@
+                                <!-- /FILTER -->
+                            }
+                            else
+                            {
+                                <!-- FILTER -->
+                                <p class="filter active">Nổi bật</p>
+                                <!-- /FILTER -->
+                                <!-- FILTER -->
+                                <p class="filter" onclick="newUser(2)">Người dùng mới</p>
+                                <!-- /FILTER -->
+                                <!-- FILTER -->
+                                <p class="filter" onclick="newUser(3)">Chuyên gia mới</p>
+                                <!-- /FILTER -->
+                                <!-- FILTER -->
+                                @* <p class="filter">Active</p> *@
+                                <!-- /FILTER -->
+                            }
+                        }
                     </div>
                     <!-- /FILTERS -->
                     <!-- USER STATUS LIST -->
@@ -95,7 +113,7 @@
                             {
                                 <div class="user-status request-small">
                                     <!-- USER STATUS AVATAR -->
-                                    <a class="user-status-avatar" href="#">
+                                    <a class="user-status-avatar">
                                         <!-- USER AVATAR -->
                                         <div class="user-avatar small no-outline">
                                             <!-- USER AVATAR CONTENT -->
@@ -125,33 +143,17 @@
                                                 <!-- /HEXAGON -->
                                             </div>
                                             <!-- /USER AVATAR PROGRESS BORDER -->
-                                            <!-- USER AVATAR BADGE -->
-                                            <div class="user-avatar-badge">
-                                                <!-- USER AVATAR BADGE BORDER -->
-                                                <div class="user-avatar-badge-border">
-                                                    <!-- HEXAGON -->
-                                                    <div class="hexagon-22-24"></div>
-                                                    <!-- /HEXAGON -->
-                                                </div>
-                                                <!-- /USER AVATAR BADGE BORDER -->
-                                                <!-- USER AVATAR BADGE CONTENT -->
-                                                <div class="user-avatar-badge-content">
-                                                    <!-- HEXAGON -->
-                                                    <div class="hexagon-dark-16-18"></div>
-                                                    <!-- /HEXAGON -->
-                                                </div>
-                                                <!-- /USER AVATAR BADGE CONTENT -->
-                                                <!-- USER AVATAR BADGE TEXT -->
-                                                <p class="user-avatar-badge-text">26</p>
-                                                <!-- /USER AVATAR BADGE TEXT -->
-                                            </div>
-                                            <!-- /USER AVATAR BADGE -->
+                                           
                                         </div>
                                         <!-- /USER AVATAR -->
                                     </a>
                                     <!-- /USER STATUS AVATAR -->
                                     <!-- USER STATUS TITLE -->
-                                    <p class="user-status-title"><a class="bold" href="#">@popUser.FirstName @popUser.LastName</a></p>
+                                    @{
+                                        var linkPopUser = "Route/InfomationDetail?userId=" + popUser.Id;
+                                    }
+
+                                    <p class="user-status-title"><a class="bold" href="@linkPopUser">@popUser.FirstName @popUser.LastName</a></p>
                                     <!-- /USER STATUS TITLE -->
                                     <!-- USER STATUS TEXT -->
                                     <p class="user-status-text small">@popUser.InteractWithPosts?.Where(p => p.InteractPostStatus
@@ -160,19 +162,7 @@
                                     </p>
                                     @*<p class="user-status-text small"></p>*@
                                     <!-- /USER STATUS TEXT -->
-                                    <!-- ACTION REQUEST LIST -->
-                                    <div class="action-request-list">
-                                        <!-- ACTION REQUEST -->
-                                        <div class="action-request accept">
-                                            <!-- ACTION REQUEST ICON -->
-                                            <svg class="action-request-icon icon-add-friend">
-                                                <use xlink:href="#svg-add-friend"></use>
-                                            </svg>
-                                            <!-- /ACTION REQUEST ICON -->
-                                        </div>
-                                        <!-- /ACTION REQUEST -->
-                                    </div>
-                                    <!-- ACTION REQUEST LIST -->
+                                   
                                 </div>
                             }
                         }
@@ -1264,6 +1254,24 @@
                     window.location.reload();
                 }, 1000);
                 alert(data.message);
+            }
+        });
+    }
+
+
+
+    function newUser(i) {
+        $.ajax({
+            type: "Get",
+            url: "@Url.Action("Index", "Home")",
+            data: { index: i },
+            success: function (result) {
+                if (result.success) {
+                    window.location.href = '/Home?reload='+1+'&index='+i;
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
             }
         });
     }
