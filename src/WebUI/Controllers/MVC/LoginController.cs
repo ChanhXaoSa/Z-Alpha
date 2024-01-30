@@ -94,7 +94,7 @@ public class LoginController : ControllerBaseMVC
         return View();
     }
 
-    [ApiExplorerSettings(IgnoreApi = true)]
+    /*[ApiExplorerSettings(IgnoreApi = true)]
     [AllowAnonymous]
     [HttpGet("login/{provider}")]
     public IActionResult ExternalLogin(string provider, [FromQuery] string redirectUrl)
@@ -123,7 +123,7 @@ public class LoginController : ControllerBaseMVC
         {
             return RedirectToAction("Index", "Home");
         }
-    }
+    }*/
 
     [ApiExplorerSettings(IgnoreApi = true)]
     [AllowAnonymous]
@@ -267,7 +267,7 @@ public class LoginController : ControllerBaseMVC
         email.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = confirmLink };
         using var smtp = new MailKit.Net.Smtp.SmtpClient();
         smtp.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-        smtp.Authenticate("zalphacpn@gmail.com", "pmnx ycmh xcsn itel");
+        smtp.Authenticate("zalphacpn@gmail.com", "iuih qwtu hzba ggfn");
         try
         {
             smtp.Send(email);
