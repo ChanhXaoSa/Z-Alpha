@@ -389,7 +389,7 @@
         <!-- /NAVIGATION WIDGET SECTION LINK -->
     </nav>
     <!-- /NAVIGATION WIDGET -->
-    <!-- CHAT WIDGET -->
+  @*   <!-- CHAT WIDGET -->
     <aside id="chat-widget-messages" class="chat-widget closed sidebar right">
         <!-- CHAT WIDGET MESSAGES -->
         <div class="chat-widget-messages" data-simplebar>
@@ -857,7 +857,7 @@
         </form>
         <!-- /CHAT WIDGET FORM -->
     </aside>
-    <!-- /CHAT WIDGET -->
+    <!-- /CHAT WIDGET --> *@
     <!-- HEADER -->
     <header class="header">
         <!-- HEADER ACTIONS -->
@@ -2100,6 +2100,29 @@
             });
         }
     </script>
+
+
+    <script>
+        // Lấy đường link URL hiện tại
+        var currentURL = window.location.href;
+
+        // Lấy tất cả các phần tử li trong menu
+        var menuItems = document.querySelectorAll('.menu-item');
+
+        // Duyệt qua từng phần tử và kiểm tra nếu href của nó trùng với đường link URL hiện tại
+        menuItems.forEach(function (menuItem) {
+            var menuItemLink = menuItem.querySelector('.menu-item-link');
+            var menuItemURL = menuItemLink.getAttribute('href');
+
+            // So sánh URL và thêm hoặc xóa class "active"
+            if (currentURL.endsWith(menuItemURL)) {
+                menuItem.classList.add('active');
+            } else {
+                menuItem.classList.remove('active');
+            }
+        });
+    </script>
+
 
 </body>
 </html>
