@@ -292,7 +292,7 @@
                     <!-- QUICK POST FOOTER ACTIONS -->
                     <div class="quick-post-footer-actions" id="quickPostFooter">
                         <!-- QUICK POST FOOTER ACTION -->
-                        <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Insert Photo">
+                        <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Thêm ảnh">
                             <!-- QUICK POST FOOTER ACTION ICON -->
                             <svg class="quick-post-footer-action-icon icon-camera">
                                 <use xlink:href="#svg-camera"></use>
@@ -301,7 +301,7 @@
                            
                             <!-- /QUICK POST FOOTER ACTION ICON -->
                         </div>
-                        <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Insert Photo">
+                        <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Ảnh vừa chọn">
                             @*show cái tên file ảnh*@
                             <p id="selectedFileName"></p>
                         </div>
@@ -1311,11 +1311,16 @@
 
         // Add change event listener to input
         inputFile.addEventListener('change', function () {
-            // Get the selected file name
             var fileName = inputFile.files[0].name;
 
+            // Limit the length of the file name
+            var limitedFileName = fileName.length > 20
+                ? fileName.slice(0, 20) + '...'
+                : fileName;
+
+
             // Display the selected file name
-            selectedFileNameDiv.textContent = fileName;
+            selectedFileNameDiv.textContent = limitedFileName;
         });
     });
 </script>
