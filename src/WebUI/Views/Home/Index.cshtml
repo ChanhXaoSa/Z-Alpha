@@ -234,7 +234,14 @@
                             <!-- /FORM ITEM -->
                         </div>
                         <!-- /FORM ROW -->
-                        <!-- CHỖ HIỆN TAG LIST--------------------------------------------------------------->
+
+
+
+
+
+                        <!-- CHỖ HIỆN TAG LIST-------------------------------------------------------------------------------------------->
+
+
                         <div class="form-row">
                             <div class=""></div>
                             <div style="margin:1rem 0 0.3rem 0;">
@@ -271,8 +278,9 @@
                                 <span style="margin-left: 10px;">@tags.Items.ToArray()[i].TagName</span>
                                 </div> *@
                                 }
-                            </div>
-                            <input id="newpostfile" type="file" accept="image/jpeg" />
+                            </div> 
+                            @*  ẩn cái input, xài cái svg camera ở dưới*@
+                            <input id="newpostfile" style=" display: none;" type="file" accept="image/jpeg" />
                         </div>
                         <!----------------------------------------------------------------->
                     </form>
@@ -282,14 +290,20 @@
                 <!-- QUICK POST FOOTER -->
                 <div class="quick-post-footer">
                     <!-- QUICK POST FOOTER ACTIONS -->
-                    <div class="quick-post-footer-actions">
+                    <div class="quick-post-footer-actions" id="quickPostFooter">
                         <!-- QUICK POST FOOTER ACTION -->
-                        <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Insert Photo">
+                        <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Thêm ảnh">
                             <!-- QUICK POST FOOTER ACTION ICON -->
                             <svg class="quick-post-footer-action-icon icon-camera">
                                 <use xlink:href="#svg-camera"></use>
                             </svg>
+
+                           
                             <!-- /QUICK POST FOOTER ACTION ICON -->
+                        </div>
+                        <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Ảnh vừa chọn">
+                            @*show cái tên file ảnh*@
+                            <p id="selectedFileName"></p>
                         </div>
                         <!-- /QUICK POST FOOTER ACTION -->
                     </div>
@@ -511,7 +525,7 @@
                                 @foreach (var tag in @item.PostTags)
                                 {
                                     <!-- TAG ITEM -->
-                                    <a class="tag-item secondary" href="newsfeed.html">@tag.Tag.TagName</a>
+                                    <a class="tag-item secondary" href="">@tag.Tag.TagName</a>
                                     <!-- /TAG ITEM -->
                                 }
                             </div>
@@ -1278,3 +1292,35 @@
 </script>
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the input element
+        var inputFile = document.getElementById('newpostfile');
+
+        // Get the svg-camera element
+        var svgCamera = document.getElementById('svg-camera');
+
+        // Get the div element to display the selected file name
+        var selectedFileNameDiv = document.getElementById('selectedFileName');
+
+        // Add click event listener to svg-camera
+        svgCamera.addEventListener('click', function () {
+            // Trigger the click event on the input
+            inputFile.click();
+        });
+
+        // Add change event listener to input
+        inputFile.addEventListener('change', function () {
+            var fileName = inputFile.files[0].name;
+
+            // Limit the length of the file name
+            var limitedFileName = fileName.length > 20
+                ? fileName.slice(0, 20) + '...'
+                : fileName;
+
+
+            // Display the selected file name
+            selectedFileNameDiv.textContent = limitedFileName;
+        });
+    });
+</script>
