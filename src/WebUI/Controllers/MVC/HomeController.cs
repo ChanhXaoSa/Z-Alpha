@@ -190,7 +190,11 @@ public class HomeController : ControllerBaseMVC
             }
 
             //check postBody
-            if (postBody == null) return Json("fail;");
+            if (postBody == null)
+            {
+                _notification.AddWarningToastMessage("Vui lòng điền nội dung bài đăng của bạn");
+                return Json(new { success = false, message = "Vui lòng điền nội dung bài đăng của bạn" });
+            }
             string postImgUrl = "";
             // check file co phai la img khong || co file hay ko
             if (file == null)

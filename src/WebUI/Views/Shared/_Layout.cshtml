@@ -194,11 +194,11 @@
             <!-- USER SHORT DESCRIPTION TITLE -->
             @if(userLogined != null)
             {
-                <p class="user-short-description-title"><a href="profile-timeline.html">@userLogined.FirstName @userLogined.LastName</a></p>
+                <p class="user-short-description-title"><a href="/Route/Info">@userLogined.FirstName @userLogined.LastName</a></p>
             }
             else
             {
-                <p class="user-short-description-title"><a href="profile-timeline.html"> ... </a></p>
+                <p class="user-short-description-title"><a href="/Route/Info"> ... </a></p>
             }
             
             <!-- /USER SHORT DESCRIPTION TITLE -->
@@ -222,7 +222,7 @@
                 }                
                 <!-- /USER STAT TITLE -->
                 <!-- USER STAT TEXT -->
-                <p class="user-stat-text">posts</p>
+                <p class="user-stat-text">Bài đăng</p>
                 <!-- /USER STAT TEXT -->
             </div>
             <!-- /USER STAT -->
@@ -236,7 +236,7 @@
                 
                 <!-- /USER STAT TITLE -->
                 <!-- USER STAT TEXT -->
-                <p class="user-stat-text">comments</p>
+                <p class="user-stat-text">Bình luận</p>
                 <!-- /USER STAT TEXT -->
             </div>
             <!-- /USER STAT -->
@@ -250,7 +250,7 @@
                 
                 <!-- /USER STAT TITLE -->
                 <!-- USER STAT TEXT -->
-                <p class="user-stat-text">saved posts</p>
+                <p class="user-stat-text">Bài lưu</p>
                 <!-- /USER STAT TEXT -->
             </div>
             <!-- /USER STAT -->
@@ -275,7 +275,7 @@
             <!-- NAVIGATION WIDGET INFO -->
             <div class="navigation-widget-info">
                 <!-- USER AVATAR -->
-                <a class="user-avatar small no-outline" href="profile-timeline.html">
+                <a class="user-avatar small no-outline" href="/Route/Info">
                     <!-- USER AVATAR CONTENT -->
                     <div class="user-avatar-content">
                         <!-- HEXAGON -->
@@ -322,7 +322,7 @@
             <!-- /NAVIGATION WIDGET INFO -->
             <!-- NAVIGATION WIDGET BUTTON -->
             <a href="~/logout">
-                <p class="navigation-widget-info-button button small secondary">Logout</p>
+                <p class="navigation-widget-info-button button small secondary">Đăng xuất</p>
             </a>
             <!-- /NAVIGATION WIDGET BUTTON -->
         </div>
@@ -361,35 +361,29 @@
         </ul>
         <!-- /MENU -->
         <!-- NAVIGATION WIDGET SECTION TITLE -->
-        <p class="navigation-widget-section-title">My Profile</p>
+        <p class="navigation-widget-section-title">Cá nhân</p>
         <!-- /NAVIGATION WIDGET SECTION TITLE -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="/Route/Info">Profile Info</a>
+        <a class="navigation-widget-section-link" href="/Route/Info">Thông tin cá nhân</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="#">Notifications</a>
+        <a class="navigation-widget-section-link" href="#">Thông báo</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="#">Messages</a>
-        <!-- /NAVIGATION WIDGET SECTION LINK -->
-        <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="#">Friend Requests</a>
+        <a class="navigation-widget-section-link" href="#">Tin nhắn</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION TITLE -->
-        <p class="navigation-widget-section-title">Account</p>
+        <p class="navigation-widget-section-title">Tài khoản</p>
         <!-- /NAVIGATION WIDGET SECTION TITLE -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="/Route/Info">Account Info</a>
+        <a class="navigation-widget-section-link" href="#">Đổi mật khẩu</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
         <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="#">Change Password</a>
-        <!-- /NAVIGATION WIDGET SECTION LINK -->
-        <!-- NAVIGATION WIDGET SECTION LINK -->
-        <a class="navigation-widget-section-link" href="#">General Settings</a>
+        <a class="navigation-widget-section-link" href="#">Cái đặt chung</a>
         <!-- /NAVIGATION WIDGET SECTION LINK -->
     </nav>
     <!-- /NAVIGATION WIDGET -->
-    <!-- CHAT WIDGET -->
+  @*   <!-- CHAT WIDGET -->
     <aside id="chat-widget-messages" class="chat-widget closed sidebar right">
         <!-- CHAT WIDGET MESSAGES -->
         <div class="chat-widget-messages" data-simplebar>
@@ -857,7 +851,7 @@
         </form>
         <!-- /CHAT WIDGET FORM -->
     </aside>
-    <!-- /CHAT WIDGET -->
+    <!-- /CHAT WIDGET --> *@
     <!-- HEADER -->
     <header class="header">
         <!-- HEADER ACTIONS -->
@@ -1915,7 +1909,7 @@
                         <!-- USER STATUS -->
                         <div class="user-status">
                             <!-- USER STATUS AVATAR -->
-                            <a class="user-status-avatar" href="profile-timeline.html">
+                            <a class="user-status-avatar" href="/Route/Info">
                                 <!-- USER AVATAR -->
                                 <div class="user-avatar small no-outline">
                                     <!-- USER AVATAR CONTENT -->
@@ -1947,27 +1941,7 @@
                                         <!-- /HEXAGON -->
                                     </div>
                                     <!-- /USER AVATAR PROGRESS BORDER -->
-                                    <!-- USER AVATAR BADGE -->
-                                    <div class="user-avatar-badge">
-                                        <!-- USER AVATAR BADGE BORDER -->
-                                        <div class="user-avatar-badge-border">
-                                            <!-- HEXAGON -->
-                                            <div class="hexagon-22-24"></div>
-                                            <!-- /HEXAGON -->
-                                        </div>
-                                        <!-- /USER AVATAR BADGE BORDER -->
-                                        <!-- USER AVATAR BADGE CONTENT -->
-                                        <div class="user-avatar-badge-content">
-                                            <!-- HEXAGON -->
-                                            <div class="hexagon-dark-16-18"></div>
-                                            <!-- /HEXAGON -->
-                                        </div>
-                                        <!-- /USER AVATAR BADGE CONTENT -->
-                                        <!-- USER AVATAR BADGE TEXT -->
-                                        <p class="user-avatar-badge-text">24</p>
-                                        <!-- /USER AVATAR BADGE TEXT -->
-                                    </div>
-                                    <!-- /USER AVATAR BADGE -->
+                    
                                 </div>
                                 <!-- /USER AVATAR -->
                             </a>
@@ -1975,7 +1949,7 @@
                             @if (userLogined != null)
                             {
                                 <!-- USER STATUS TITLE -->
-                                <p class="user-status-title"><span class="bold">Hi @userLogined.FirstName @userLogined.LastName!</span></p>
+                                <p class="user-status-title"><span class="bold">@userLogined.FirstName @userLogined.LastName!</span></p>
                                 <!-- /USER STATUS TITLE -->
                                 <!-- USER STATUS TEXT -->
                                 <p class="user-status-text small"><a href="/Route/Info">@userLogined.Email</a></p>
@@ -1988,38 +1962,32 @@
                     </div>
                     <!-- /DROPDOWN NAVIGATION HEADER -->
                     <!-- DROPDOWN NAVIGATION CATEGORY -->
-                    <p class="dropdown-navigation-category">My Profile</p>
+                    <p class="dropdown-navigation-category">Cá nhân</p>
                     <!-- /DROPDOWN NAVIGATION CATEGORY -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="/Route/Info">Profile Info</a>
+                    <a class="dropdown-navigation-link" href="/Route/Info">Thông tin cá nhân</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="#">Notifications</a>
+                    <a class="dropdown-navigation-link" href="#">Thông báo</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="#">Messages</a>
-                    <!-- /DROPDOWN NAVIGATION LINK -->
-                    <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="#">Friend Requests</a>
+                    <a class="dropdown-navigation-link" href="#">Tin nhắn</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION CATEGORY -->
-                    <p class="dropdown-navigation-category">Account</p>
+                    <p class="dropdown-navigation-category">Tài khoản</p>
                     <!-- /DROPDOWN NAVIGATION CATEGORY -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="/Route/Info">Account Info</a>
+                    <a class="dropdown-navigation-link" href="#">Đổi mật khẩu</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="#">Change Password</a>
-                    <!-- /DROPDOWN NAVIGATION LINK -->
-                    <!-- DROPDOWN NAVIGATION LINK -->
-                    <a class="dropdown-navigation-link" href="#">General Settings</a>
+                    <a class="dropdown-navigation-link" href="#">Cài đặt chung</a>
                     <!-- /DROPDOWN NAVIGATION LINK -->
                     
 
 
                     <!-- DROPDOWN NAVIGATION BUTTON -->
                     <a href="~/logout">
-                        <p class="dropdown-navigation-button button small secondary">Logout</p>
+                        <p class="dropdown-navigation-button button small secondary">Đăng xuất</p>
                     </a>
                     <!-- /DROPDOWN NAVIGATION BUTTON -->
                 </div>
@@ -2101,5 +2069,28 @@
         }
     </script>
 
+
+    <script>
+        // Lấy đường link URL hiện tại
+        var currentURL = window.location.href;
+
+        // Lấy tất cả các phần tử li trong menu
+        var menuItems = document.querySelectorAll('.menu-item');
+
+        // Duyệt qua từng phần tử và kiểm tra nếu href của nó trùng với đường link URL hiện tại
+        menuItems.forEach(function (menuItem) {
+            var menuItemLink = menuItem.querySelector('.menu-item-link');
+            var menuItemURL = menuItemLink.getAttribute('href');
+
+            // So sánh URL và thêm hoặc xóa class "active"
+            if (currentURL.endsWith(menuItemURL)) {
+                menuItem.classList.add('active');
+            } else {
+                menuItem.classList.remove('active');
+            }
+        });
+    </script>
+
+    @await Component.InvokeAsync("NToastNotify");
 </body>
 </html>

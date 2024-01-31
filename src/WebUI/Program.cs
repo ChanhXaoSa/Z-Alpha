@@ -55,7 +55,7 @@ builder.Services.AddCors(options =>
 //});
 builder.Services.AddControllersWithViews().AddNToastNotifyNoty(new NToastNotify.NotyOptions(){
     ProgressBar = true,
-    Timeout = 500
+    Timeout = 2000
 });
 builder.Services.AddSignalR();
 
@@ -119,11 +119,11 @@ app.UseCors(MyAllowSpecificOrigins);
 //    name: "default",
 //    pattern: "{controller}/{action=Index}/{id?}");
 //});
-app.UseCookiePolicy(new CookiePolicyOptions
+/*app.UseCookiePolicy(new CookiePolicyOptions
 {
     HttpOnly = HttpOnlyPolicy.Always,
     Secure = CookieSecurePolicy.Always,
-});
+});*/
 app.MapDefaultControllerRoute();
 app.UseEndpoints(endpoints =>
 {

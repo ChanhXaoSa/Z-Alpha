@@ -29,7 +29,7 @@ public class EmailSender
 
         var builder = new BodyBuilder();
 
-        builder.HtmlBody = confirmLink + "<div style=\"font-weight: bold;\">Trân trọng, <br>\r\n        <div style=\"color: #FF630E;\">Bộ phận hỗ trợ học viên BSMART</div>\r\n    </div>\r\n<br>    <img src=\"cid:image1\" alt=\"\" width=\"200px\">\r\n    <br>\r\n    <br>\r\n    <div>\r\n        Email liên hệ: tuankietgg291@gmail.com\r\n    </div>\r\n    <div>Số điện thoại: 028 9999 79 39</div>\r\n</div>";
+        builder.HtmlBody = confirmLink + "<div style=\"font-weight: bold;\">Trân trọng, <br>\r\n        <div style=\"color: #FF630E;\">Bộ phận hỗ trợ Zalpha</div>\r\n    </div>\r\n<br>    <img src=\"cid:image1\" alt=\"\" width=\"200px\">\r\n    <br>\r\n    <br>\r\n    <div>\r\n        Email liên hệ: zalphacpn@gmail.com\r\n    </div>\r\n    <div>Số điện thoại: 028 9999 79 39</div>\r\n</div>";
         // Khởi tạo phần đính kèm của email (ảnh)
         var attachment = builder.LinkedResources.Add("wwwroot/assets/images/zalpha.png");
         attachment.ContentId = "image1"; // Thiết lập Content-ID cho phần đính kèm
@@ -67,7 +67,7 @@ public class EmailSender
 
         var builder = new BodyBuilder();
 
-        builder.HtmlBody = confirmLink + "<div style=\"font-weight: bold;\">Trân trọng, <br>\r\n        <div style=\"color: #FF630E;\">Bộ phận hỗ trợ mạng xã hội Zalpha</div>\r\n    </div>\r\n<br>    <img src=\"cid:image1\" alt=\"\" width=\"200px\">\r\n    <br>\r\n    <br>\r\n    <div>\r\n        Email liên hệ: tuankietgg291@gmail.com\r\n    </div>\r\n    <div>Số điện thoại: 028 9999 79 39</div>\r\n</div>";
+        builder.HtmlBody = confirmLink + "<div style=\"font-weight: bold;\">Trân trọng, <br>\r\n        <div style=\"color: #FF630E;\">Bộ phận hỗ trợ mạng xã hội Zalpha</div>\r\n    </div>\r\n<br>    <img src=\"cid:image1\" alt=\"\" width=\"200px\">\r\n    <br>\r\n    <br>\r\n    <div>\r\n        Email liên hệ: zalphacpn@gmail.com\r\n    </div>\r\n    <div>Số điện thoại: 028 9999 79 39</div>\r\n</div>";
         // Khởi tạo phần đính kèm của email (ảnh)
         var attachment = builder.LinkedResources.Add("wwwroot/assets/images/zalpha.png");
         attachment.ContentId = "image1"; // Thiết lập Content-ID cho phần đính kèm
@@ -111,7 +111,7 @@ public class EmailSender
 
         var builder = new BodyBuilder();
 
-        builder.HtmlBody = confirmLink + "<div style=\"font-weight: bold;\">Trân trọng, <br>\r\n        <div style=\"color: #FF630E;\">Bộ phận hỗ trợ học viên Zalpha</div>\r\n    </div>\r\n<br>    <img src=\"cid:image1\" alt=\"\" width=\"200px\">\r\n    <br>\r\n    <br>\r\n    <div>\r\n        Email liên hệ: tuankietgg291@gmail.com\r\n    </div>\r\n    <div>Số điện thoại: 028 9999 79 39</div>\r\n</div>";
+        builder.HtmlBody = confirmLink + "<div style=\"font-weight: bold;\">Trân trọng, <br>\r\n        <div style=\"color: #FF630E;\">Bộ phận hỗ trợ học viên Zalpha</div>\r\n    </div>\r\n<br>    <img src=\"cid:image1\" alt=\"\" width=\"200px\">\r\n    <br>\r\n    <br>\r\n    <div>\r\n        Email liên hệ: zalphacpn@gmail.com\r\n    </div>\r\n    <div>Số điện thoại: 028 9999 79 39</div>\r\n</div>";
         // Khởi tạo phần đính kèm của email (ảnh)
         var attachment = builder.LinkedResources.Add("wwwroot/assets/images/zalpha.png");
         attachment.ContentId = "image1"; // Thiết lập Content-ID cho phần đính kèm
