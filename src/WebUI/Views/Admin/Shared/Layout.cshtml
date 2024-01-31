@@ -14,8 +14,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/admin/images/favicon.png">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/logo.png">
+    <title>Zalpha - Admin</title>
     <!-- Bootstrap Core CSS -->
 
     <link href="~/assets/admin/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -68,10 +68,10 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="~Views/Admin/AdminHome/Index.cshtml">
                         <!-- Logo icon -->
-                        <b><img src="~/assets/admin/images/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <b><img src="~/assets/images/logo.png" alt="homepage" class="dark-logo" style="height:20%; width:20%" />Zalpha</b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span><img src="~/assets/admin/images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                        @* <span><img src="~/assets/images/hoacuc.png" alt="homepage" class="dark-logo" style="height:20%; width:20%" /></span> *@
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -81,8 +81,9 @@
                         <!-- This is  -->
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
                         <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        
                         <!-- Messages -->
-                        <li class="nav-item dropdown mega-dropdown">
+                        @* <li class="nav-item dropdown mega-dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-th-large"></i></a>
                             <div class="dropdown-menu animated zoomIn">
                                 <ul class="mega-dropdown-menu row">
@@ -139,21 +140,23 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> *@
                         <!-- End Messages -->
+
                     </ul>
                     <!-- User profile and search -->
                     <ul class="navbar-nav my-lg-0">
 
                         <!-- Search -->
-                        <li class="nav-item hidden-sm-down search-box">
+                        @* <li class="nav-item hidden-sm-down search-box">
                             <a class="nav-link hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search">
                                 <input type="text" class="form-control" placeholder="Search here"> <a class="srh-btn"><i class="ti-close"></i></a>
                             </form>
-                        </li>
+                        </li> *@
+
                         <!-- Comment -->
-                        <li class="nav-item dropdown">
+                        @* <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-bell"></i>
                                 <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
@@ -161,7 +164,7 @@
                             <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
                                 <ul>
                                     <li>
-                                        <div class="drop-title">Notifications</div>
+                                        <div class="drop-title">Thông báo</div>
                                     </li>
                                     <li>
                                         <div class="message-center">
@@ -200,8 +203,9 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> *@
                         <!-- End Comment -->
+
                         <!-- Messages -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -252,16 +256,16 @@
                             </div>
                         </li>
                         <!-- End Messages -->
+
                         <!-- Profile -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/assets/admin/images/users/5.jpg" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-                                    <li><a href="#"><i class="ti-user"></i> Profile</a></li>
-                                    <li><a href="#"><i class="ti-wallet"></i> Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="#"><i class="ti-user"></i> Thông tin cá nhân </a></li>
+                                    <li><a href="#"><i class="ti-wallet"></i> Số dư</a></li>
+                                    <li><a href="#"><i class="ti-settings"></i> Cài đặt</a></li>
+                                    <li><a href="~/Logout"><i class="fa fa-power-off"></i> Đăng xuất </a></li>
                                 </ul>
                             </div>
                         </li>
@@ -278,12 +282,12 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li class="nav-label">Home</li>
+                        @* <li class="nav-label">Trang chủ</li> *@
                         <li>
-                            <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard <span class="label label-rouded label-primary pull-right">2</span></span></a>
+                            <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Thống kê <span class="label label-rouded label-primary pull-right">2</span></span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="~/Admin/Index/">Ecommerce </a></li>
-                                <li><a href="~/Admin/Index2/">Analytics </a></li>
+                                <li><a href="~/Admin/Index/">Báo cáo tài chính </a></li>
+                                <li><a href="~/Admin/Index2/"> Báo cáo số liệu </a></li>
                             </ul>
                         </li>
                         <li>
@@ -309,7 +313,8 @@
                                 <li><a href="~/Admin/TransactionDatatable/">Lịch sử giao dịch</a></li>
                             </ul>
                         </li>
-                        <li class="nav-label">Apps</li>
+
+                        @* <li class="nav-label">Apps</li>
                         <li>
                             <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Email</span></a>
                             <ul aria-expanded="false" class="collapse">
@@ -428,7 +433,8 @@
                                 </li>
                                 <li><a href="#">item 1.4</a></li>
                             </ul>
-                        </li>
+                        </li> *@
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

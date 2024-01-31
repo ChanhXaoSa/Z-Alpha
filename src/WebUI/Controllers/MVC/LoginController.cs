@@ -94,7 +94,7 @@ public class LoginController : ControllerBaseMVC
         return View();
     }
 
-    /*[ApiExplorerSettings(IgnoreApi = true)]
+    [ApiExplorerSettings(IgnoreApi = true)]
     [AllowAnonymous]
     [HttpGet("login/{provider}")]
     public IActionResult ExternalLogin(string provider, [FromQuery] string redirectUrl)
@@ -116,14 +116,13 @@ public class LoginController : ControllerBaseMVC
                         return new ChallengeResult("Facebook", propeties);
                     }
             }
-
             throw new Exception($"Provider {provider} not support");
         }
         else
         {
             return RedirectToAction("Index", "Home");
         }
-    }*/
+    }
 
     [ApiExplorerSettings(IgnoreApi = true)]
     [AllowAnonymous]

@@ -12,17 +12,16 @@
 <script src="~/assets/jquery-3.7.1/jquery-3.7.1.min.js"></script>
 
 <body>
-    <!-- Page wrapper  -->
     <div class="page-wrapper">
         <!-- Bread crumb -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-primary">Danh sách người dùng</h3>
+                <h3 class="text-primary">Danh sách nhà tâm lý</h3>
             </div>
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="~/Admin/Index">Admin</a></li>
-                    <li class="breadcrumb-item active">Danh sách người dùng thông thường</li>
+                    <li class="breadcrumb-item active">Danh sách người dùng</li>
                 </ol>
             </div>
         </div>
@@ -31,7 +30,7 @@
         <div class="container-fluid">
             <!-- Start Page Content -->
             <div class="row">
-                <div class="col-12">             
+                <div class="col-12">
                     <div class="card">
                         <div class="card-body" style="margin-top:-60px">
                             <div class="table-responsive m-t-40">
@@ -40,10 +39,10 @@
                                         <tr>
                                             <th>Tên</th>
                                             <th>Username</th>
-                                            <th>Địa chỉ</th>
-                                            <th>Ngày sinh</th>
+                                            <th>Địa chỉ</th>                                      
                                             <th>Email</th>
                                             <th>Số điện thoại</th>
+                                            <th> </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -53,8 +52,7 @@
                                                 <td>@item.UserAccount.FirstName @item.UserAccount.LastName</td>
                                                 <td>@item.UserAccount.UserName</td>
                                                 <td>@item.UserAccount.Address</td>
-                                                <td>@item.UserAccount.BirthDay</td>
-                                                <td>@item.UserAccount.Email</td>
+                                                <td>@item.UserAccount.Email </td>
                                                 <td>@item.UserAccount.Phone</td>
                                                 <td style="text-align: center; vertical-align: middle">
                                                     <button value="@item.UserAccount.Id" type="submit" id="btn_ban_comment_@item.UserAccount.Id" class="btn btn-danger btn-rounded m-b-10 m-l-5">Ban</button>
@@ -65,14 +63,14 @@
                                 </table>
                             </div>
                         </div>
-                    </div>                 
+                    </div>
                 </div>
             </div>
             <!-- End PAge Content -->
         </div>
         <!-- End Container fluid  -->
     </div>
-    <!-- End Page wrapper  -->
+
     <div class="form-popup" style="
     position: absolute;
     top: 50%;
@@ -89,7 +87,9 @@
             </div>
         </div>
     </div>
+
 </body>
+
 <script>
     function openFormBan(account_id) {
         document.getElementById("banForm").style.display = "block";
