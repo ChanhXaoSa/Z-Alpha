@@ -55,7 +55,7 @@ builder.Services.AddCors(options =>
 //});
 builder.Services.AddControllersWithViews().AddNToastNotifyNoty(new NToastNotify.NotyOptions(){
     ProgressBar = true,
-    Timeout = 500
+    Timeout = 2000
 });
 builder.Services.AddSignalR();
 
