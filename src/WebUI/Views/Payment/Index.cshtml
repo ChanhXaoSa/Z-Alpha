@@ -1,0 +1,148 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Identity;
+@using ZAlpha.Domain.Identity;
+@using ZAlpha.Application.Common.Interfaces;
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@inject IIdentityService _identityServices;
+
+
+<!-- CONTENT GRID -->
+<div class="content-grid">
+    <!-- SECTION BANNER -->
+    <div class="section-banner">
+        <!-- SECTION BANNER ICON -->
+        <img class="section-banner-icon" src="~/assets/images/banner/badges-icon.png" alt="badges-icon">
+        <!-- /SECTION BANNER ICON -->
+        <!-- SECTION BANNER TITLE -->
+        <p class="section-banner-title">Gói thành viên</p>
+        <!-- /SECTION BANNER TITLE -->
+        <!-- SECTION BANNER TEXT -->
+        <p class="section-banner-text">Đăng ký gói thành viên để sử dụng đầy đủ tính năng của Zalpha nào !</p>
+        <!-- /SECTION BANNER TEXT -->
+    </div>
+    <!-- /SECTION BANNER -->
+
+
+
+    <div class="section-filters-bar v2">
+        <!-- FORM -->
+        <form class="form" action="/Recommend/Search" method="post">
+            <!-- FORM ITEM -->
+            <div class="form-item split medium">
+               <label>
+                   Thời gian gói thành viên còn lại:
+                    <strong>
+                        30 ngày
+                    </strong>
+               </label>
+
+
+            </div>
+            <!-- /FORM ITEM -->
+        </form>
+        <!-- /FORM -->
+    </div>
+
+
+
+
+    <!-- GRID -->
+    <div class="grid grid-3-3-3-3 top-space centered">
+        <!-- BADGE ITEM STAT -->
+        <div class="badge-item-stat">
+            <!-- TEXT STICKER -->
+            <p class="text-sticker">
+                <!-- TEXT STICKER ICON -->
+                <svg class="text-sticker-icon icon-plus-small">
+                    <use xlink:href="#svg-plus-small"></use>
+                </svg>
+                <!-- TEXT STICKER ICON -->
+                30 ngày
+            </p>
+            <!-- /TEXT STICKER -->
+            <!-- BADGE ITEM STAT IMAGE PREVIEW -->
+            <img class="badge-item-stat-image-preview"  src="~/assets/images/badge/bronze-s.png" alt="badge-bronze-s">
+            <!-- /BADGE ITEM STAT IMAGE PREVIEW -->
+            <!-- BADGE ITEM STAT IMAGE -->
+            <img class="badge-item-stat-image" src="~/assets/images/badge/bronze-b.png" alt="badge-bronze-b">
+            <!-- /BADGE ITEM STAT IMAGE -->
+            <!-- BADGE ITEM STAT TITLE -->
+            <p class="badge-item-stat-title" style="margin-top:16px;">Gói tháng</p>
+            <!-- /BADGE ITEM STAT TITLE -->
+            <!-- BADGE ITEM STAT TEXT -->
+            <p class="badge-item-stat-text">Sử dụng toàn bộ tính năng, không giới hạn trong 30 ngày. (Trong trưởng hợp bạn vẫn còn hạn sử dụng của gói khác, thời gian sử dụng tổng sẽ được cộng dồn)</p>
+            <!-- /BADGE ITEM STAT TEXT -->
+            <div style="display:flex;justify-content: center;align-content: center; margin-top:20px;">
+                <p class="button small secondary" style="width:90px;">Mua gói</p>
+            </div>
+            
+        </div>
+        <!-- /BADGE ITEM STAT -->
+        <!-- BADGE ITEM STAT -->
+        <div class="badge-item-stat">
+            <!-- TEXT STICKER -->
+            <p class="text-sticker">
+                <!-- TEXT STICKER ICON -->
+                <svg class="text-sticker-icon icon-plus-small">
+                    <use xlink:href="#svg-plus-small"></use>
+                </svg>
+                <!-- TEXT STICKER ICON -->
+                90 ngày / 3 tháng
+            </p>
+            <!-- /TEXT STICKER -->
+            <!-- BADGE ITEM STAT IMAGE PREVIEW -->
+            <img class="badge-item-stat-image-preview" src="~/assets/images/badge/silver-s.png" alt="badge-silver-s">
+            <!-- /BADGE ITEM STAT IMAGE PREVIEW -->
+            <!-- BADGE ITEM STAT IMAGE -->
+            <img class="badge-item-stat-image" src="~/assets/images/badge/silver-b.png" alt="badge-silver-b">
+            <!-- /BADGE ITEM STAT IMAGE -->
+            <!-- BADGE ITEM STAT TITLE -->
+            <p class="badge-item-stat-title">Gói quý</p>
+            <!-- /BADGE ITEM STAT TITLE -->
+            <!-- BADGE ITEM STAT TEXT -->
+            <p class="badge-item-stat-text">Sử dụng toàn bộ tính năng, không giới hạn trong 90 ngày. (Trong trưởng hợp bạn vẫn còn hạn sử dụng của gói khác, thời gian sử dụng tổng sẽ được cộng dồn)</p>
+            <!-- /BADGE ITEM STAT TEXT -->
+            <div style="display:flex;justify-content: center;align-content: center; margin-top:20px;">
+                <p class="button small secondary" style="width:90px;">Mua gói</p>
+            </div>
+        </div>
+        <!-- /BADGE ITEM STAT -->
+        <!-- BADGE ITEM STAT -->
+        <div class="badge-item-stat">
+            <!-- TEXT STICKER -->
+            <p class="text-sticker">
+                <!-- TEXT STICKER ICON -->
+                <svg class="text-sticker-icon icon-plus-small">
+                    <use xlink:href="#svg-plus-small"></use>
+                </svg>
+                <!-- TEXT STICKER ICON -->
+                1 năm
+            </p>
+            <!-- /TEXT STICKER -->
+            <!-- BADGE ITEM STAT IMAGE PREVIEW -->
+            <img class="badge-item-stat-image-preview" src="~/assets/images/badge/gold-s.png" alt="badge-gold-s">
+            <!-- /BADGE ITEM STAT IMAGE PREVIEW -->
+            <!-- BADGE ITEM STAT IMAGE -->
+            <img class="badge-item-stat-image" src="~/assets/images/badge/gold-b.png" alt="badge-gold-b">
+            <!-- /BADGE ITEM STAT IMAGE -->
+            <!-- BADGE ITEM STAT TITLE -->
+            <p class="badge-item-stat-title">Gói năm</p>
+            <!-- /BADGE ITEM STAT TITLE -->
+            <!-- BADGE ITEM STAT TEXT -->
+            <p class="badge-item-stat-text">Sử dụng toàn bộ tính năng, không giới hạn trong 1 năm. (Trong trưởng hợp bạn vẫn còn hạn sử dụng của gói khác, thời gian sử dụng tổng sẽ được cộng dồn)</p>
+            <!-- /BADGE ITEM STAT TEXT -->
+            <div style="display:flex;justify-content: center;align-content: center; margin-top:20px;">
+                <p class="button small secondary" style="width:90px;">Mua gói</p>
+            </div>
+        </div>
+        <!-- /BADGE ITEM STAT -->
+
+    </div>
+    <!-- /GRID -->
+</div>
+<!-- /CONTENT GRID -->
