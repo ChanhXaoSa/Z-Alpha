@@ -235,6 +235,11 @@ public class HomeController : ControllerBaseMVC
 
     }
 
+    public IActionResult ChangePassword()
+    {
+        return View();
+    }
+
     private bool IsImageFile(IFormFile file)
     {
         if (Path.GetExtension(file.FileName).ToLower() != ".jpg"
