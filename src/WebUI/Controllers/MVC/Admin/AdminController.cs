@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Design;
+using System.Drawing;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Ban.BanAccount;
@@ -44,6 +45,12 @@ public class AdminController : ControllerBaseMVC
 
     public IActionResult Index2()
     {
+        ViewBag.Post = Mediator.Send(new GetAllPostQueries()).Result.Count;
+        ViewBag.Comment = Mediator.Send(new GetCommentRequest()).Result.TotalCount;
+        int UserCount = Mediator.Send(new GetCustomerAccountRequest()).Result.TotalCount 
+            + Mediator.Send(new GetAllPsychologistAccountQueries()).Result.TotalCount
+            + Mediator.Send(new GetManagerAccountQueries()).Result.TotalCount;
+        ViewBag.User = UserCount;
         return View("./AdminHome/Index2");
     }
 
