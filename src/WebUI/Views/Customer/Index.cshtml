@@ -5,7 +5,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewBag.Title = "Customer Info";
+    ViewBag.Title = "Thông tin người dùng";
     Layout = "~/Views/Shared/Customer_Layout.cshtml";
 }
 @inject IIdentityService _identityServices;
@@ -233,7 +233,7 @@
                             <div class="form-input-decorated">
                                 <!-- FORM INPUT -->
                                 <div class="form-input small active">
-                                    <label for="profile-birthday">Birthday</label>
+                                    <label for="profile-birthday">Ngày sinh</label>
                                     <input type="date" id="profile-birthday" name="Birthday" value="@Model.UserAccount.BirthDay?.ToString("yyyy-MM-dd")">
                                 </div>
                                 <!-- /FORM INPUT -->
@@ -250,8 +250,8 @@
                         <div class="form-item">
                             <!-- FORM INPUT -->
                             <div class="form-input small active">
-                                <label for="profile-name">Wallet</label>
-                                <input type="text" id="profile-name" name="Wallet" readonly value="@Model.UserAccount.Wallet">
+                                <label for="profile-name">Số dư</label>
+                                <input type="password" required id="login-password" name="Wallet" readonly value="@Model.UserAccount.Wallet">
                             </div>
                             <!-- /FORM INPUT -->
                         </div>
@@ -389,13 +389,13 @@
         <!-- PRODUCT PREVIEW INFO -->
         <div class="product-preview-info">
             <!-- TEXT STICKER -->
-            <p class="text-sticker">Free</p>
+            <p class="text-sticker">Miễn phí</p>
             <!-- /TEXT STICKER -->
             <!-- PRODUCT PREVIEW TITLE -->
-            <p class="product-preview-title"><a href="#">Freemium Pack</a></p>
+            <p class="product-preview-title"><a href="#">Gói miễn phí</a></p>
             <!-- /PRODUCT PREVIEW TITLE -->
             <!-- PRODUCT PREVIEW CATEGORY -->
-            <p class="product-preview-category digital"><a href="#">Account</a></p>
+            <p class="product-preview-category digital"><a href="#">Tài khoản</a></p>
             <!-- /PRODUCT PREVIEW CATEGORY -->
             <!-- PRODUCT PREVIEW TEXT -->
             <ul class="bullet-item-list" style="margin-top:32px;">
@@ -475,10 +475,10 @@
             <p class="text-sticker">1.000 <span class="highlighted">đ</span></p>
             <!-- /TEXT STICKER -->
             <!-- PRODUCT PREVIEW TITLE -->
-            <p class="product-preview-title"><a href="#">Premium Pack</a></p>
+            <p class="product-preview-title"><a href="#">Gói cao cấp</a></p>
             <!-- /PRODUCT PREVIEW TITLE -->
             <!-- PRODUCT PREVIEW CATEGORY -->
-            <p class="product-preview-category physical"><a href="marketplace-category.html">Account</a></p>
+            <p class="product-preview-category physical"><a href="marketplace-category.html">Tài khoản</a></p>
             <!-- /PRODUCT PREVIEW CATEGORY -->
             <!-- PRODUCT PREVIEW TEXT -->
             <ul class="bullet-item-list" style="margin-top:32px;">
