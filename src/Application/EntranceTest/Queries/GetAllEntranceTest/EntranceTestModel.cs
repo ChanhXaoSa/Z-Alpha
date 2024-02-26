@@ -9,5 +9,6 @@ using ZAlpha.Application.Common.Mappings;
 namespace ZAlpha.Application.EntranceTest.Queries.GetAllEntranceTest;
 public class EntranceTestModel : IMapFrom<Domain.Entities.EntranceTest>
 {
+    public Guid Id { get; set; }    
     public string? Question { get; set; }
 }

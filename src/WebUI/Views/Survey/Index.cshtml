@@ -23,7 +23,7 @@
 <body>
     <h1 id="title">Khảo sát tâm lý người dùng</h1>
     <p id="description"> Hãy trải lòng, chúng tôi có thể giúp đỡ bạn nhiều hơn </p>
-    <form id="survey-form">
+    <form id="survey-form" method="post" action="~/Survey/CreateAnswer">
         @if(listEntranceTest.Items.Count>0){
         @foreach (var item in listEntranceTest.Items)
         {
@@ -31,6 +31,7 @@
             @if (count == 0)
             {
                 <fieldset>
+                    <input type="hidden" name="Ques0" value="@item.Id" />
                     <label>
                             @* Mức độ lo âu của bạn như thế nào? *@
                         @item.Question
@@ -47,7 +48,9 @@
             }
             if (count == 1)
             {
+                    
                 <fieldset>
+                    <input type="hidden" name="Ques1" value="@item.Id" />
                     <label>
                             @* Nếu bạn đang lo âu, có thể chia sẻ nó với chúng tôi không ? *@
                         @item.Question <textarea id="bio" name="problemDes" rows="3" cols="30" placeholder="Mô tả vấn đề bạn đang gặp ở đây"></textarea>
@@ -57,6 +60,7 @@
             if(count==2)
             {
                 <fieldset>
+                        <input type="hidden" name="Ques2" value="@item.Id" />
                         <label>
                             @* Bạn có cảm thấy hài lòng với các mối quan hệ xã hội của mình? *@
                             @item.Question</label>
@@ -68,21 +72,22 @@
             if(count==3)
             {
                 <fieldset>
+                        <input type="hidden" name="Ques3" value="@item.Id" />
                         <label> @* Những điều bạn thường làm là gì ? *@   @item.Question </label>
                     <label>
-                        <input type="checkbox" value="sleep" class="inline" /> Ngủ
+                            <input type="checkbox" value="sleep" name="activities" class="inline" /> Ngủ
                     </label>
                     <label>
-                        <input type="checkbox" value="MoveMusic" class="inline" /> Xem phim, nghe nhạc
+                            <input type="checkbox" value="MoveMusic" name="activities" class="inline" /> Xem phim, nghe nhạc
                     </label>
                     <label>
-                        <input type="checkbox" value="Coffe" class="inline" /> Đi cà phê, quán ăn với bạn bè
+                            <input type="checkbox" value="Coffe" name="activities" class="inline" /> Đi cà phê, quán ăn với bạn bè
                     </label>
                     <label>
-                        <input type="checkbox" value="Social" class="inline" /> ngồi một chỗ, xem mạng xã hội
+                            <input type="checkbox" value="Social" name="activities" class="inline" /> ngồi một chỗ, xem mạng xã hội
                     </label>
                     <label>
-                        <input type="checkbox" value="OverThinking" class="inline" /> suy nghĩ về vấn đề của bản thân
+                            <input type="checkbox" value="OverThinking" name="activities" class="inline" /> suy nghĩ về vấn đề của bản thân
                     </label>
                 </fieldset>
             }
