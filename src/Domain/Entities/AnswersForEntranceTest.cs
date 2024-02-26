@@ -15,6 +15,4 @@ public class AnswersForEntranceTest : BaseAuditableEntity
     [ForeignKey("CustomerAccount")]
     public Guid CustomerAccountId { get; set; }
     public virtual CustomerAccount? CustomerAccount { get; set; }
-
-    //Chưa làm
 }

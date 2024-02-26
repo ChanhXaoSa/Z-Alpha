@@ -4,6 +4,15 @@
 @{
     ViewBag.Title = "Survey Page";
 }
+@using ZAlpha.Application.EntranceTest.Queries.GetAllEntranceTest;
+@using ZAlpha.Application.Common.Models;
+
+@model EntranceTestModel;
+@{
+    int count = -1;
+    PaginatedList<EntranceTestModel> listEntranceTest = ViewBag.listquestion;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,54 +24,66 @@
     <h1 id="title">Khảo sát tâm lý người dùng</h1>
     <p id="description"> Hãy trải lòng, chúng tôi có thể giúp đỡ bạn nhiều hơn </p>
     <form id="survey-form">
-        <fieldset>
-            <label>
-                Mức độ lo âu của bạn như thế nào?
-                <select id="dropdown">
-                    <option value=" ">Bấm vào đây để lựa chọn mức độ</option>
-                    <option value="1">Không lo âu</option>
-                    <option value="2">Ít lo âu </option>
-                    <option value="3">Lo âu vừa phải</option>
-                    <option value="4">Lo âu nhiều</option>
-                    <option value="5">Rất lo âu</option>
-                </select>
-            </label>
-        </fieldset>
-
-        <fieldset>
-            <label>
-                Nếu bạn đang lo âu, có thể chia sẻ nó với chúng tôi không ? <textarea id="bio" name="bio" rows="3" cols="30" placeholder="Mô tả vấn đề bạn đang gặp ở đây"></textarea>
-            </label>
-        </fieldset>
-
-        <fieldset>
-            <label>Bạn có cảm thấy hài lòng với các mối quan hệ xã hội của mình?</label>
-            <label><input type="radio" name="recommendation" value="definitely" class="inline" />  Có  </label>
-            <label><input type="radio" name="recommendation" value="maybe" class="inline" /> Không chắc chắn</label>
-            <label><input type="radio" name="recommendation" value="notsure" class="inline" /> Không </label>
-        </fieldset>
-
-        <fieldset>
-            <label> Những điều bạn thường làm là gì ? </label>
-
-            <label>
-                <input type="checkbox" value="a" class="inline" /> Ngủ
-            </label>
-            <label>
-                <input type="checkbox" value="b" class="inline" /> Xem phim, nghe nhạc
-            </label>
-            <label>
-                <input type="checkbox" value="c" class="inline" /> Đi cà phê, quán ăn với bạn bè
-            </label>
-            <label>
-                <input type="checkbox" value="d" class="inline" /> ngồi một chỗ, xem mạng xã hội
-            </label>
-            <label>
-                <input type="checkbox" value="e" class="inline" /> suy nghĩ về vấn đề của bản thân
-            </label>
-
-        </fieldset>
-
+        @if(listEntranceTest.Items.Count>0){
+        @foreach (var item in listEntranceTest.Items)
+        {
+            count++;
+            @if (count == 0)
+            {
+                <fieldset>
+                    <label>
+                        @item.Question
+                        <select id="dropdown" name="worrylevel">
+                            <option value=" ">Bấm vào đây để lựa chọn mức độ</option>
+                            <option value="1">Không lo âu</option>
+                            <option value="2">Ít lo âu </option>
+                            <option value="3">Lo âu vừa phải</option>
+                            <option value="4">Lo âu nhiều</option>
+                            <option value="5">Rất lo âu</option>
+                        </select>
+                    </label>
+                </fieldset>
+            }
+            if (count == 1)
+            {
+                <fieldset>
+                    <label>
+                        @item.Question <textarea id="bio" name="problemDes" rows="3" cols="30" placeholder="Mô tả vấn đề bạn đang gặp ở đây"></textarea>
+                    </label>
+                </fieldset>
+            }
+            if(count==2)
+            {
+                <fieldset>
+                        <label>@item.Question</label>
+                    <label><input type="radio" name="recommendation" value="definitely" class="inline" />  Có  </label>
+                    <label><input type="radio" name="recommendation" value="maybe" class="inline" /> Không chắc chắn</label>
+                    <label><input type="radio" name="recommendation" value="notsure" class="inline" /> Không </label>
+                </fieldset>
+            }
+            if(count==3)
+            {
+                <fieldset>
+                    <label> @item.Question </label>
+                    <label>
+                        <input type="checkbox" value="sleep" class="inline" /> Ngủ
+                    </label>
+                    <label>
+                        <input type="checkbox" value="MoveMusic" class="inline" /> Xem phim, nghe nhạc
+                    </label>
+                    <label>
+                        <input type="checkbox" value="Coffe" class="inline" /> Đi cà phê, quán ăn với bạn bè
+                    </label>
+                    <label>
+                        <input type="checkbox" value="Social" class="inline" /> ngồi một chỗ, xem mạng xã hội
+                    </label>
+                    <label>
+                        <input type="checkbox" value="OverThinking" class="inline" /> suy nghĩ về vấn đề của bản thân
+                    </label>
+                </fieldset>
+            }
+        }
+        }
         <input type="submit" value="Gửi khảo sát" id="submit" />
     </form>
 </body>
