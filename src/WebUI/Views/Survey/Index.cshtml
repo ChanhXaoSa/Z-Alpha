@@ -32,6 +32,7 @@
             {
                 <fieldset>
                     <label>
+                            @* Mức độ lo âu của bạn như thế nào? *@
                         @item.Question
                         <select id="dropdown" name="worrylevel">
                             <option value=" ">Bấm vào đây để lựa chọn mức độ</option>
@@ -48,6 +49,7 @@
             {
                 <fieldset>
                     <label>
+                            @* Nếu bạn đang lo âu, có thể chia sẻ nó với chúng tôi không ? *@
                         @item.Question <textarea id="bio" name="problemDes" rows="3" cols="30" placeholder="Mô tả vấn đề bạn đang gặp ở đây"></textarea>
                     </label>
                 </fieldset>
@@ -55,7 +57,9 @@
             if(count==2)
             {
                 <fieldset>
-                        <label>@item.Question</label>
+                        <label>
+                            @* Bạn có cảm thấy hài lòng với các mối quan hệ xã hội của mình? *@
+                            @item.Question</label>
                     <label><input type="radio" name="recommendation" value="definitely" class="inline" />  Có  </label>
                     <label><input type="radio" name="recommendation" value="maybe" class="inline" /> Không chắc chắn</label>
                     <label><input type="radio" name="recommendation" value="notsure" class="inline" /> Không </label>
@@ -64,7 +68,7 @@
             if(count==3)
             {
                 <fieldset>
-                    <label> @item.Question </label>
+                        <label> @* Những điều bạn thường làm là gì ? *@   @item.Question </label>
                     <label>
                         <input type="checkbox" value="sleep" class="inline" /> Ngủ
                     </label>
