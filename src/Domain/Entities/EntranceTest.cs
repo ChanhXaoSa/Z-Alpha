@@ -8,5 +8,6 @@ namespace ZAlpha.Domain.Entities;
 public class EntranceTest : BaseAuditableEntity
 {
     // Chưa làm nha
+    public string? Question { get; set; }
     public virtual IList<AnswersForEntranceTest>? AnswersForEntranceTests { get; set; }
 }

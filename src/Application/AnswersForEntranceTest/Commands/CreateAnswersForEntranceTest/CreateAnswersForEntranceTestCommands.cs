@@ -14,6 +14,7 @@ public class CreateAnswersForEntranceTestCommands : IRequest<Guid>
 {
     public Guid EntranceTestId { get; set; }
     public string? Answer { get; set; }
+    public bool? IsCorrect { get; set; }
     public Guid CustomerAccountId { get; set; }
 }
 
@@ -32,6 +33,7 @@ public class CreateAnswersForEntranceTestCommandsHandler : IRequestHandler<Creat
         {
             EntranceTestId = request.EntranceTestId,
             Answer = request.Answer,
+            IsCorrect = request.IsCorrect,
             CustomerAccountId = request.CustomerAccountId,           
         };
 
