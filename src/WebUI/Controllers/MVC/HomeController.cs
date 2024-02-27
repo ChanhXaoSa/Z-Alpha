@@ -44,7 +44,7 @@ public class HomeController : ControllerBaseMVC
     {
         try
         {
-            ViewBag.TotalPosts = Mediator.Send(new GetAllPostQueries()).Result.Count;
+            ViewBag.TotalPosts = Mediator.Send(new GetAllPostInMonthQueries()).Result.Count;
             var listUser = _identityService.GetListUsersAsync();
           
             //Cách hiển thị thanh bên trái   -- set mặc định =1 --
