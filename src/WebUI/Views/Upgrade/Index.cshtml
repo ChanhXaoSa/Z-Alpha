@@ -5,6 +5,7 @@
     ViewBag.Title = "Upgrade Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model ZAlpha.Domain.Entities.Pack
 
 <div class="content-grid" style="transform: translate(310px, 0px); transition: transform 0.4s ease-in-out 0s;">
     <!-- SECTION BANNER -->
@@ -100,7 +101,7 @@
                                                         <!-- PRODUCT PREVIEW INFO -->
                                                         <div class="product-preview-info">
                                                             <!-- PRODUCT PREVIEW TITLE -->
-                                                            <p class="product-preview-title"><a href="marketplace-product.html">Premium Account Pack</a></p>
+                                                            <p class="product-preview-title"><a href="marketplace-product.html">Gói @Model.PackName</a></p>
                                                             <!-- /PRODUCT PREVIEW TITLE -->
                                                             <!-- PRODUCT PREVIEW CATEGORY -->
                                                             <p class="product-preview-category digital"><a href="marketplace-category.html">Account Packs</a></p>
@@ -167,7 +168,7 @@
                                                 <!-- TABLE COLUMN -->
                                                 <div class="table-column centered padded-left">
                                                     <!-- PRICE TITLE -->
-                                                    <p class="price-title">10.000 <span class="currency">₫</span></p>
+                                                    <p class="price-title">@Model.PackPrice <span class="currency">₫</span></p>
                                                     <!-- /PRICE TITLE -->
                                                 </div>
                                                 <!-- /TABLE COLUMN -->
@@ -230,7 +231,7 @@
                     <!-- SIDEBAR BOX ITEMS -->
                     <div class="sidebar-box-items">
                         <!-- PRICE TITLE -->
-                        <p class="price-title big">10.000 <span class="currency">₫</span></p>
+                        <p class="price-title big">@Model.PackPrice <span class="currency">₫</span></p>
                         <!-- /PRICE TITLE -->
                         <!-- TOTALS LINE LIST -->
                         <div class="totals-line-list">
@@ -260,13 +261,14 @@
                                 <p class="totals-line-title">Total</p>
                                 <!-- /TOTALS LINE TITLE -->
                                 <!-- PRICE TITLE -->
-                                <p class="price-title">10.000 <span class="currency">₫</span></p>
+                                <p class="price-title">@Model.PackPrice <span class="currency">₫</span></p>
                                 <!-- /PRICE TITLE -->
                             </div>
                             <!-- /TOTALS LINE -->
                         </div>
                         <!-- /TOTALS LINE LIST -->
                         <!-- BUTTON -->
+                        <input type="hidden" name="price" value="@Model.PackPrice" />
                         <button class="button primary" href="marketplace-checkout.html">Thanh toán ngay</button>
                         <!-- /BUTTON -->
                         <!-- BUTTON -->

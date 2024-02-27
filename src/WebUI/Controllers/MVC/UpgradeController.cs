@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Common.Interfaces;
 using ZAlpha.Application.Pack.Queries.GetPack;
+using ZAlpha.Application.Pack.Queries.GetPackById;
 using ZAlpha.Application.PackDetail.Commands.CreatePackDetail;
 using ZAlpha.Application.Transaction.Commands.CreateTransaction;
 using ZAlpha.Application.Transaction.Commands.UpdateTransaction;
@@ -25,13 +26,28 @@ public class UpgradeController : ControllerBaseMVC
     }
 
     [HttpGet]
-    public IActionResult Index()
+    public async Task<IActionResult> Index(int pack)
     {
-        return View();
+        Task<ZAlpha.Domain.Entities.Pack> packed;
+
+        if (pack == 1)
+        {
+            packed = Mediator.Send(new GetPackByIdQueries() { Id = Guid.Parse("e609e43f-b6ad-468e-91d1-785b282d345b") });
+        }
+        else if (pack == 2)
+        {
+            packed = Mediator.Send(new GetPackByIdQueries() { Id = Guid.Parse("92b2fb8c-866c-445b-87b4-dc7bb3c828ac") });
+        }
+        else
+        {
+            packed = Mediator.Send(new GetPackByIdQueries() { Id = Guid.Parse("8853faf2-87f1-4c17-8e20-7253720265be") });
+        }
+
+        return View(await packed);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Index(string Method)
+    public async Task<IActionResult> Index(string Method, int price)
     {
 
         if (User.Identity.Name?.Length <= 0)
@@ -47,7 +63,7 @@ public class UpgradeController : ControllerBaseMVC
                 PaymentMethodId = Guid.Parse("94422c85-1d58-4f47-b5cb-a2794e757268"),
                 Balance = 0,
                 Description = "VNPAY",
-                Money = 10000,
+                Money = price,
                 Status = 0,
                 TransactionFee = 0,
             });
@@ -61,7 +77,7 @@ public class UpgradeController : ControllerBaseMVC
             //Get payment input
             OrderInfo order = new OrderInfo();
             order.OrderId = DateTime.Now.Ticks; // Giả lập mã giao dịch hệ thống merchant gửi sang VNPAY
-            order.Amount = 10000; // Giả lập số tiền thanh toán hệ thống merchant gửi sang VNPAY 1,000 VND
+            order.Amount = price; // Giả lập số tiền thanh toán hệ thống merchant gửi sang VNPAY 1,000 VND
             order.Status = "0"; //0: Trạng thái thanh toán "chờ thanh toán" hoặc "Pending" khởi tạo giao dịch chưa có IPN
             order.CreatedDate = DateTime.Now;
             //Save order to db
@@ -158,14 +174,38 @@ public class UpgradeController : ControllerBaseMVC
                         Status = ZAlpha.Domain.Enums.TransactionStatus.COMPLETED,
                     });
                     var packs = Mediator.Send(new GetAllPackQueries());
-                    var packChosen = packs.Result.FirstOrDefault(r => r.Id == Guid.Parse("e609e43f-b6ad-468e-91d1-785b282d345b"));
-                    var packDetailNew = await Mediator.Send(new CreatePackDetailsCommands()
+                    var packChosen = packs.Result.FirstOrDefault(r => r.PackPrice == vnp_Amount / 100);
+                    if (packChosen.PackName == "Tháng")
                     {
-                        UserAccountId = userLogined.Id,
-                        PackId = packChosen.Id,
-                        StartDay = DateTime.Now,
-                        EndDay = DateTime.Now.AddDays(30),
-                    });
+                        var packDetailNew = await Mediator.Send(new CreatePackDetailsCommands()
+                        {
+                            UserAccountId = userLogined.Id,
+                            PackId = packChosen.Id,
+                            StartDay = DateTime.Now,
+                            EndDay = DateTime.Now.AddDays(30),
+                        });
+                    }
+                    else if (packChosen.PackName == "Quý")
+                    {
+                        var packDetailNew = await Mediator.Send(new CreatePackDetailsCommands()
+                        {
+                            UserAccountId = userLogined.Id,
+                            PackId = packChosen.Id,
+                            StartDay = DateTime.Now,
+                            EndDay = DateTime.Now.AddDays(90),
+                        });
+                    }
+                    else if (packChosen.PackName == "Năm")
+                    {
+                        var packDetailNew = await Mediator.Send(new CreatePackDetailsCommands()
+                        {
+                            UserAccountId = userLogined.Id,
+                            PackId = packChosen.Id,
+                            StartDay = DateTime.Now,
+                            EndDay = DateTime.Now.AddDays(365),
+                        });
+                    }
+                    
                 }
                 else
                 {
