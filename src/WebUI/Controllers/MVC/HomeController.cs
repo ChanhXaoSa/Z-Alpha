@@ -200,11 +200,17 @@ public class HomeController : ControllerBaseMVC
             {
                 int totalDay = 0;
                 int distanceDay = 0;
+                bool isPremium = false;
                 foreach (var item in pack.Items)
                 { 
                     if(item != null)
                     {
+                        if(item.EndDay>DateTime.Now) isPremium =true;
+                        if (item.Pack.PackName.Equals("Tháng"))
+                        {
+                            
 
+                        }
                     }
                 }
 
