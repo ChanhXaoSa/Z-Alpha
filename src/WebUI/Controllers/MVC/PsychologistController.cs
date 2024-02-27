@@ -12,6 +12,8 @@ using ZAlpha.Application.Post.Queries.GetPostByUserIdQuery;
 using ZAlpha.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using ZAlpha.Application.Post.Queries.GetPostWishListByUserIdQuery;
+using ZAlpha.Application.Ban.UpdateAvatarUser;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace WebUI.Controllers.MVC;
 
@@ -21,12 +23,14 @@ public class PsychologistController : ControllerBaseMVC
     private readonly IIdentityService _identityService;
     private readonly UserManager<UserAccount> _userManager;
     private readonly SignInManager<UserAccount> _signInManager;
+    private readonly IWebHostEnvironment _hostingEnvironment;
 
-    public PsychologistController(IIdentityService identityService, UserManager<UserAccount> userManager, SignInManager<UserAccount> signInManager)
+    public PsychologistController(IIdentityService identityService, UserManager<UserAccount> userManager, SignInManager<UserAccount> signInManager, IWebHostEnvironment hostingEnvironment)
     {
         _identityService = identityService;
         _userManager = userManager;
         _signInManager = signInManager;
+        _hostingEnvironment = hostingEnvironment;
     }
 
     public async Task<IActionResult> Index()
@@ -165,5 +169,58 @@ public class PsychologistController : ControllerBaseMVC
             Json(new { success = false, message = "Bạn cần phải đăng nhập" });
             return Redirect("~/login");
         }
+    }
+    [HttpPost]
+    public async Task<IActionResult> UpdateAvatarProfile(IFormFile fileAvatar)
+    {
+        var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+        string avaImgUrl = "";
+        if (fileAvatar == null)
+            return Json("file is null");
+        else if (!(IsImageFile(fileAvatar) && fileAvatar.Length > 0))
+            return Json("not file Image");
+        else
+        {
+            avaImgUrl = SaveFileImage(fileAvatar);
+            var isUpdated = Mediator.Send(new UpdateAvatarUserCommands { Id = user.Id, AvatarUrl = avaImgUrl }).Result;
+        }
+        return Json("Success");
+    }
+    private bool IsImageFile(IFormFile file)
+    {
+        if (Path.GetExtension(file.FileName).ToLower() != ".jpg"
+            && Path.GetExtension(file.FileName).ToLower() != ".png"
+            && Path.GetExtension(file.FileName).ToLower() != ".gif"
+            && Path.GetExtension(file.FileName).ToLower() != ".jpeg")
+        {
+            return false;
+        }
+        return true;
+    }
+    private string SaveFileImage(IFormFile file)
+    {
+        string fileUrl = "";
+        var webRootPath = _hostingEnvironment.WebRootPath;
+        var uploadsFolder = Path.Combine(webRootPath, "uploads");
+
+        // Ensure the uploads folder exists, create if not
+        if (!Directory.Exists(uploadsFolder))
+        {
+            Directory.CreateDirectory(uploadsFolder);
+        }
+
+        // Generate a unique file name (you might want to use a GUID or something similar)
+        var uniqueFileName = $"{file.FileName}";
+
+        // Combine the uploads folder with the unique file name to get the full file path
+        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+        // Copy the file to the target location
+        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        {
+            file.CopyTo(fileStream);
+            fileUrl = Path.Combine("uploads", file.FileName);
+        }
+        return fileUrl;
     }
 }

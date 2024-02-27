@@ -179,7 +179,8 @@
             <!-- USER SHORT DESCRIPTION -->
             <div class="user-short-description big">
                 <!-- USER SHORT DESCRIPTION AVATAR -->
-                <a class="user-short-description-avatar user-avatar big" href="profile-timeline.html">
+                <label class="user-short-description-avatar user-avatar big">
+                    <input hidden type="file" id="new-post-file" name="fileAvatar" onchange="previewImage()" accept="image/jpeg" />
                     <!-- USER AVATAR BORDER -->
                     <div class="user-avatar-border">
                         <!-- HEXAGON -->
@@ -189,12 +190,31 @@
                     <!-- /USER AVATAR BORDER -->
                     <!-- USER AVATAR CONTENT -->
                     <div class="user-avatar-content">
-
-
                         <!-- HEXAGON -->
-                        <div class="hexagon-image-100-110" data-src="@((Model.UserAccount.AvatarUrl == null ? "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" : Model.UserAccount.AvatarUrl ))" style="width: 100px; height: 110px; position: relative;"><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
+                        <div id="avatarId" class="hexagon-image-100-110" data-src="@((Model.UserAccount.AvatarUrl == null ? "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" : Model.UserAccount.AvatarUrl))" style="width: 100px; height: 110px; position: relative;"><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas><canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas></div>
                         <!-- /HEXAGON -->
+                        <div class="form-popup" style="
+                            position: absolute;
+                            width: 15rem;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            display: none;"
+                             id="picForm">
+                            <div class="card" style="align-items: center;">
+                                <div class="card-body" style="margin: 1rem">
+                                    <div id="preview" class="hexagon-image-100-110" data-src="uploads\IMG_1453.JPG" style="width: 100px; height: 110px; position: relative; display: block;">
+                                        <canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas>
+                                        <canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas>
+                                    </div>
+                                </div>
+                                <div style="display:inline-block; vertical-align: bottom; text-align: center;">
+                                    <button type="button" class="button full danger" style="width: 100px; margin-bottom: 1rem;" onclick="closeForm()">Close</button>
+                                    <button id="saveButton" class="button full primary" style="width:100px; margin-bottom: 1rem;"> Lưu ảnh </button>
+                                </div>
 
+                            </div>
+                        </div>
                     </div>
                     <!-- /USER AVATAR CONTENT -->
                     <!-- USER AVATAR PROGRESS -->
@@ -212,7 +232,7 @@
                     </div>
                     <!-- /USER AVATAR PROGRESS BORDER -->
 
-                </a>
+                </label>
                 <!-- /USER SHORT DESCRIPTION AVATAR -->
                 <!-- USER SHORT DESCRIPTION AVATAR -->
                 <a class="user-short-description-avatar user-short-description-avatar-mobile user-avatar medium" href="profile-timeline.html">
@@ -313,3 +333,48 @@
 
     <script src="/_framework/aspnetcore-browser-refresh.js"></script>
 </div>
+@RenderSection("scripts", required: false)
+<script>
+    function previewImage() {
+        var input = document.getElementById('new-post-file');
+        var preview = document.getElementById('preview');
+        var avatarImg = document.getElementById('avatarId');
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var image = new Image();
+                image.onload = function () {
+                    // Set background images of the canvases
+                    var canvases = preview.getElementsByTagName('canvas');
+                    for (var i = 0; i < canvases.length; i++) {
+                        var ctx = canvases[i].getContext('2d');
+                        ctx.clearRect(0, 0, canvases[i].width, canvases[i].height);
+                        ctx.drawImage(image, 0, 0, canvases[i].width, canvases[i].height);
+                    }
+
+                    preview.style.display = 'block';
+
+                    // Add base64-encoded image data to data-src attribute
+                    preview.setAttribute('data-src', "uploads\IMG_1453.JPG");
+                };
+
+                image.onerror = function () {
+                    console.log('File is not an image.');
+
+                    // Show avatar image and hide canvas preview
+                    avatarImg.style.display = 'block';
+                    preview.style.display = 'none';
+                    // Your code for handling non-image file
+                };
+
+                image.src = e.target.result;
+            };
+            document.getElementById("picForm").style.display = "block";
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function closeForm() {
+        document.getElementById("picForm").style.display = "none";
+    }
+</script>
