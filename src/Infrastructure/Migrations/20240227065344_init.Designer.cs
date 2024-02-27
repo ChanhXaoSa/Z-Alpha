@@ -12,8 +12,8 @@ using ZAlpha.Infrastructure.Persistence;
 namespace ZAlpha.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240125114134_addNullForPostTitle")]
-    partial class addNullForPostTitle
+    [Migration("20240227065344_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -320,6 +320,9 @@ namespace ZAlpha.Infrastructure.Migrations
                     b.Property<Guid>("EntranceTestId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool?>("IsCorrect")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -376,32 +379,6 @@ namespace ZAlpha.Infrastructure.Migrations
                     b.HasIndex("ReplyCommentId");
 
                     b.ToTable("Comments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("65191898-080f-4c24-b39a-653e57323400"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9398),
-                            Description = "Nội dung comment",
-                            IsDeleted = false,
-                            PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578")
-                        },
-                        new
-                        {
-                            Id = new Guid("cca90e51-b859-4830-8fcf-989163aaa4d9"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9405),
-                            Description = "Em chỉ đang cảm thấy mệt mỏi, quá tải và cần sẻ chia thôi. Anh luôn ở đây hỗ trợ em, bản chất em có những suy nghĩ trên đã là một điểm tích cực, là điều đáng quý. Hãy bắt đầu từ việc viết lại mục đích, lý do chọn lựa con đường của em, để lấy nó làm điểm tựa mỗi khi đối diện với cảm xúc khó chịu mà em đề cập. Còn nếu được hãy tham gia một buổi hẹn ngắn với anh nếu em vẫn cảm thấy struggle",
-                            IsDeleted = false,
-                            PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578")
-                        },
-                        new
-                        {
-                            Id = new Guid("981c2b78-2662-4929-ab07-75e36d58e9bb"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9408),
-                            Description = "Nội dung comment test",
-                            IsDeleted = false,
-                            PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d")
-                        });
                 });
 
             modelBuilder.Entity("ZAlpha.Domain.Entities.CustomerAccount", b =>
@@ -455,6 +432,9 @@ namespace ZAlpha.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -540,26 +520,6 @@ namespace ZAlpha.Infrastructure.Migrations
                     b.HasIndex("UserAccountId");
 
                     b.ToTable("InteractWithPosts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("61291732-1599-46e4-93e2-01aa8fca3801"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9426),
-                            InteractPostStatus = 0,
-                            IsDeleted = false,
-                            PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
-                            UserAccountId = "871a809a-b3fa-495b-9cc2-c5d738a866cf"
-                        },
-                        new
-                        {
-                            Id = new Guid("795154a3-aa8a-4337-8f45-35529a400fd3"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9431),
-                            InteractPostStatus = 0,
-                            IsDeleted = false,
-                            PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
-                            UserAccountId = "424ab531-d60a-487e-9625-a74a7f5747be"
-                        });
                 });
 
             modelBuilder.Entity("ZAlpha.Domain.Entities.ManagerAccount", b =>
@@ -622,12 +582,50 @@ namespace ZAlpha.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("PackPrice")
+                    b.Property<double>("PackPrice")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
                     b.ToTable("Packs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("8e5b48df-713e-4fe3-844b-8258c785ff7e"),
+                            Created = new DateTime(2024, 2, 27, 13, 53, 44, 40, DateTimeKind.Local).AddTicks(6192),
+                            IsDeleted = false,
+                            PackInfomation = "Giới hạn lượt đăng bài và tương tác",
+                            PackName = "Dùng thử",
+                            PackPrice = 0.0
+                        },
+                        new
+                        {
+                            Id = new Guid("e609e43f-b6ad-468e-91d1-785b282d345b"),
+                            Created = new DateTime(2024, 2, 27, 13, 53, 44, 40, DateTimeKind.Local).AddTicks(6203),
+                            IsDeleted = false,
+                            PackInfomation = "30 ngày",
+                            PackName = "Tháng",
+                            PackPrice = 49000.0
+                        },
+                        new
+                        {
+                            Id = new Guid("92b2fb8c-866c-445b-87b4-dc7bb3c828ac"),
+                            Created = new DateTime(2024, 2, 27, 13, 53, 44, 40, DateTimeKind.Local).AddTicks(6223),
+                            IsDeleted = false,
+                            PackInfomation = "3 tháng, tương đương 90 ngày",
+                            PackName = "Quý",
+                            PackPrice = 129000.0
+                        },
+                        new
+                        {
+                            Id = new Guid("8853faf2-87f1-4c17-8e20-7253720265be"),
+                            Created = new DateTime(2024, 2, 27, 13, 53, 44, 40, DateTimeKind.Local).AddTicks(6228),
+                            IsDeleted = false,
+                            PackInfomation = "tương đương 365 ngày",
+                            PackName = "Năm",
+                            PackPrice = 499000.0
+                        });
                 });
 
             modelBuilder.Entity("ZAlpha.Domain.Entities.PackDetail", b =>
@@ -642,7 +640,7 @@ namespace ZAlpha.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EndDay")
+                    b.Property<DateTime?>("EndDay")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
@@ -657,7 +655,7 @@ namespace ZAlpha.Infrastructure.Migrations
                     b.Property<Guid>("PackId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("StartDay")
+                    b.Property<DateTime?>("StartDay")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserAccountId")
@@ -704,6 +702,24 @@ namespace ZAlpha.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PaymentMethods");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("94422c85-1d58-4f47-b5cb-a2794e757268"),
+                            Created = new DateTime(2024, 2, 27, 13, 53, 44, 40, DateTimeKind.Local).AddTicks(6292),
+                            IsDeleted = false,
+                            PaymentMethodName = "VNPay",
+                            PaymentMethodStatus = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("d49773a8-6f63-4803-8c46-69f1349a5c20"),
+                            Created = new DateTime(2024, 2, 27, 13, 53, 44, 40, DateTimeKind.Local).AddTicks(6302),
+                            IsDeleted = false,
+                            PaymentMethodName = "MoMo",
+                            PaymentMethodStatus = 0
+                        });
                 });
 
             modelBuilder.Entity("ZAlpha.Domain.Entities.Post", b =>
@@ -712,7 +728,7 @@ namespace ZAlpha.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("AnonymousStatus")
+                    b.Property<int?>("AnonymousStatus")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
@@ -746,28 +762,6 @@ namespace ZAlpha.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Posts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
-                            AnonymousStatus = 1,
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9294),
-                            IsDeleted = false,
-                            PostBody = "Nhà em cũng không phải khá giả nên em bỏ học đi làm từ sớm, muốn chạy đi kiếm tiền luôn. Hiện tại là một shipper ngày nào cũng ráng giao cả ngàn đơn, dãi nắng cả buổi, ráng cày thêm đơn để được thưởng KPI. Vậy nên mỗi khi về nhà, ngoài kiệt sức ra em thường xuyên cảm thấy căng thẳng, mệt mỏi và có những suy nghĩ tiêu cực về bản thân, mình cải cha cãi má bỏ học đi làm mà. Em chỉ muốn được nghỉ ngơi nhưng mẹ bảo em xuống làm cơm cho ba má ăn với lo dọn dẹp nhà. Điều này khiến em cảm thấy mệt mỏi và khó chịu.",
-                            PostImagesUrl = "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C",
-                            PostTitle = "Nội dung bài đăng test 1"
-                        },
-                        new
-                        {
-                            Id = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
-                            AnonymousStatus = 1,
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9322),
-                            IsDeleted = false,
-                            PostBody = "Nội dung bài đăng test thử ",
-                            PostImagesUrl = "https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/387798154_632107352457871_5690110333313757656_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_ohc=OpZIs7vdMK8AX9Hgjkq&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAvpIg3y_s3UEGS0ilM8J6x6spEamFSC3sjhVn3V7G5-A&oe=65A6DF8C",
-                            PostTitle = "Nội dung bài đăng test 2"
-                        });
                 });
 
             modelBuilder.Entity("ZAlpha.Domain.Entities.PostTag", b =>
@@ -804,32 +798,6 @@ namespace ZAlpha.Infrastructure.Migrations
                     b.HasIndex("TagId");
 
                     b.ToTable("PostTags");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("647b2bd5-ea1b-42a6-a92e-8263fb160754"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9373),
-                            IsDeleted = false,
-                            PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
-                            TagId = new Guid("150b7aba-a76f-40b2-b7e5-19961bda108f")
-                        },
-                        new
-                        {
-                            Id = new Guid("5d7deaf1-d72b-457e-bf56-877a89d37fac"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9379),
-                            IsDeleted = false,
-                            PostId = new Guid("14b76851-0f86-4dd2-a59c-ae45893c9578"),
-                            TagId = new Guid("6598d9c2-ef4d-4295-a06a-e45a3cfc7b9d")
-                        },
-                        new
-                        {
-                            Id = new Guid("bcc26154-4ca0-4b51-808a-911bb4e09447"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9382),
-                            IsDeleted = false,
-                            PostId = new Guid("f2c5a3b4-8885-4673-8bcc-3702dbbae15d"),
-                            TagId = new Guid("79a50b87-3bb3-4acc-b164-ef5795db17e3")
-                        });
                 });
 
             modelBuilder.Entity("ZAlpha.Domain.Entities.PsychologistAccount", b =>
@@ -912,28 +880,28 @@ namespace ZAlpha.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("150b7aba-a76f-40b2-b7e5-19961bda108f"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9346),
+                            Created = new DateTime(2024, 2, 27, 13, 53, 44, 40, DateTimeKind.Local).AddTicks(5572),
                             IsDeleted = false,
                             TagName = "Học đường"
                         },
                         new
                         {
                             Id = new Guid("2b3a61bf-1543-4e9f-900b-d4901be7e78c"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9349),
+                            Created = new DateTime(2024, 2, 27, 13, 53, 44, 40, DateTimeKind.Local).AddTicks(5625),
                             IsDeleted = false,
                             TagName = "Công việc"
                         },
                         new
                         {
                             Id = new Guid("6598d9c2-ef4d-4295-a06a-e45a3cfc7b9d"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9352),
+                            Created = new DateTime(2024, 2, 27, 13, 53, 44, 40, DateTimeKind.Local).AddTicks(5644),
                             IsDeleted = false,
                             TagName = "Gia đình"
                         },
                         new
                         {
                             Id = new Guid("79a50b87-3bb3-4acc-b164-ef5795db17e3"),
-                            Created = new DateTime(2024, 1, 25, 18, 41, 34, 559, DateTimeKind.Local).AddTicks(9355),
+                            Created = new DateTime(2024, 2, 27, 13, 53, 44, 40, DateTimeKind.Local).AddTicks(5649),
                             IsDeleted = false,
                             TagName = "Xã hội"
                         });
@@ -971,6 +939,9 @@ namespace ZAlpha.Infrastructure.Migrations
 
                     b.Property<Guid>("PaymentMethodId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<double>("TransactionFee")
                         .HasColumnType("float");
@@ -1050,7 +1021,6 @@ namespace ZAlpha.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -1119,40 +1089,6 @@ namespace ZAlpha.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "871a809a-b3fa-495b-9cc2-c5d738a866cf",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "0f46f13c-f7a2-44f0-914d-cfd98e599df8",
-                            Email = "vinhtc191@gmail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Tran",
-                            LastName = "Vinh",
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "a0a92bf2-1d4e-4e9f-8f00-262193deefec",
-                            Status = 1,
-                            TwoFactorEnabled = false,
-                            Wallet = 10000000.0
-                        },
-                        new
-                        {
-                            Id = "424ab531-d60a-487e-9625-a74a7f5747be",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "804e7c60-08dd-4866-b3ca-8a0a53c8470b",
-                            Email = "test@gmail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Chan",
-                            LastName = "Dinh",
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "d7e50b3f-f005-42a2-830a-876a53e3c23c",
-                            Status = 1,
-                            TwoFactorEnabled = false,
-                            Wallet = 1000.0
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1341,7 +1277,7 @@ namespace ZAlpha.Infrastructure.Migrations
             modelBuilder.Entity("ZAlpha.Domain.Entities.PsychologistAccount", b =>
                 {
                     b.HasOne("ZAlpha.Domain.Identity.UserAccount", "UserAccount")
-                        .WithMany()
+                        .WithMany("PsychologistAccounts")
                         .HasForeignKey("UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1439,6 +1375,8 @@ namespace ZAlpha.Infrastructure.Migrations
                     b.Navigation("ManagerAccounts");
 
                     b.Navigation("PackDetails");
+
+                    b.Navigation("PsychologistAccounts");
 
                     b.Navigation("Transactions");
 
