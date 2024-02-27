@@ -182,7 +182,7 @@ public class HomeController : ControllerBaseMVC
         {
             //Xét gói package đăng ký
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
-            var pack = Mediator.Send(new GetPackDetailByUseridQuery() { UserId = user.Id }).Result;
+            var pack = Mediator.Send(new GetPackDetailByUseridQuery() { Page = 1, Size = 100, UserId = user.Id }).Result;
             //Chưa đăng ký gói
             if (pack == null)
             {
@@ -194,14 +194,24 @@ public class HomeController : ControllerBaseMVC
                     return Json(new { success = false, message = "Bạn đã hết lượt đăng bài trong 30 ngày! Hãy đăng ký gói tài khoản để mở khóa chức năng" });
                 }
             }
-            //hết hạn gói
+            //tính số ngày còn lại
+
             if (pack != null) //phải có k thì nó quăng lỗi
             {
-                if (pack.EndDay < DateTime.Now)
-                {
-                    _notification.AddWarningToastMessage("Gói tài khoản của bạn đã hết hạn. Vui lòng đăng ký");
-                    return Json(new { success = false, message = "Gói tài khoản của bạn đã hết hạn. Vui lòng đăng ký" });
+                int totalDay = 0;
+                int distanceDay = 0;
+                foreach (var item in pack.Items)
+                { 
+                    if(item != null)
+                    {
+
+                    }
                 }
+
+
+
+                _notification.AddWarningToastMessage("Gói tài khoản của bạn đã hết hạn. Vui lòng đăng ký");
+                return Json(new { success = false, message = "Gói tài khoản của bạn đã hết hạn. Vui lòng đăng ký" });
             }
 
             //check postBody
