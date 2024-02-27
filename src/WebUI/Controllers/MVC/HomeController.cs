@@ -18,6 +18,10 @@ using Microsoft.AspNetCore.Http;
 using ZAlpha.Infrastructure.Persistence;
 using ZAlpha.Application.Post.Queries.GetPostByUserIdInMonthQuery;
 using ZAlpha.Application.PackDetail.Queries.GetPackDetailByUserId;
+using ZAlpha.Application.InteractWithComments.Queries.GetAllInteractWithComment;
+using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
+using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
+using ZAlpha.Application.InteractWithPost.Queries.GetAllInteractWithPost;
 
 namespace WebUI.Controllers.MVC;
 
@@ -44,7 +48,18 @@ public class HomeController : ControllerBaseMVC
     {
         try
         {
+            // Thống kê Zalpha
+            // Tổng số post 1 tháng
             ViewBag.TotalPosts = Mediator.Send(new GetAllPostInMonthQueries()).Result.Count;
+            // Tổng số user đăng kí mới 1 tháng
+            int totalcus = Mediator.Send(new GetCustomerAccountCreateInOneMonthRequest()).Result.TotalCount;
+            int totalpsy = Mediator.Send(new GetAllPsychologistAccountCreateInOneMonthRequest()).Result.TotalCount;
+            ViewBag.TotalNewUsers = totalcus + totalpsy;
+            // Tổng số bình luận trong 1 tháng
+            ViewBag.TotalComments = Mediator.Send(new GetAllPostInMonthQueries()).Result.Count;
+            // Tổng số lượt tương tác trong tháng
+            ViewBag.TotalInteracts = Mediator.Send(new GetAllIInteractWithPostInOneMonthRequest()).Result.TotalCount;
+
             var listUser = _identityService.GetListUsersAsync();
           
             //Cách hiển thị thanh bên trái   -- set mặc định =1 --
