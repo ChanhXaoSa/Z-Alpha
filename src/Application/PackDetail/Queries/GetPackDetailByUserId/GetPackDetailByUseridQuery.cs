@@ -9,18 +9,20 @@ using ZAlpha.Application.Common.Exceptions;
 using ZAlpha.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using ZAlpha.Application.PackDetail.Queries.GetPackDetail;
+using ZAlpha.Application.Common.Models;
+using ZAlpha.Application.Post.Queries.GetAllPost;
 
 namespace ZAlpha.Application.PackDetail.Queries.GetPackDetailByUserId;
 
-public class GetPackDetailByUseridQuery : IRequest<PackDetailsModel>
+public class GetPackDetailByUseridQuery : IRequest<PaginatedList<PackDetailsModel>>
 {
     public string UserId { get; set; }
-
+    public int Page { get; set; }
+    public int Size { get; set; }
 }
 
-
 // IRequestHandler<request type, return type>
-public class GetPackDetailByUseridQueryHandler : IRequestHandler<GetPackDetailByUseridQuery, PackDetailsModel>
+public class GetPackDetailByUseridQueryHandler : IRequestHandler<GetPackDetailByUseridQuery, PaginatedList<PackDetailsModel>>
 {
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
@@ -32,24 +34,21 @@ public class GetPackDetailByUseridQueryHandler : IRequestHandler<GetPackDetailBy
         _mapper = mapper;
     }
 
-    public Task<PackDetailsModel> Handle(GetPackDetailByUseridQuery request, CancellationToken cancellationToken)
+    public async Task<PaginatedList<PackDetailsModel>> Handle(GetPackDetailByUseridQuery request, CancellationToken cancellationToken)
     {
         // get 
         var packDetail = _context.Get<Domain.Entities.PackDetail>()
             .Where(x => x.IsDeleted == false && x.UserAccountId.Equals(request.UserId))
-            .OrderByDescending(x => x.EndDay)
-            .FirstOrDefault();
+            .Include(x => x.Pack)
+            .OrderBy(x => x.Created)
+            .AsNoTracking();
+        
 
-        //null thì thoi chứ trả throw về bên controller bắt lỗi sai
-       /* if (packDetail == null)
-        {
-            throw new NotFoundException(nameof(Domain.Entities.PackDetail), request.UserId);
-        }*/
+        var map = _mapper.ProjectTo<PackDetailsModel>(packDetail);
 
-        // AsNoTracking to remove default tracking on entity framework
-        var map = _mapper.Map<PackDetailsModel>(packDetail);
+        var page = await PaginatedList<PackDetailsModel>
+            .CreateAsync(map, request.Page, request.Size);
 
-        // Paginate data
-        return Task.FromResult(map); //Task.CompletedTask;
+        return page;
     }
 }
