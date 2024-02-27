@@ -173,7 +173,7 @@ public class HomeController : ControllerBaseMVC
             {
                 var postListOfUser = Mediator.Send(new GetPostByUserIdInMonthQuery() { Page = 1, Size = 100, UserId = user.Id }).Result;
                 var countOfPost = postListOfUser.Items.Count();
-                if (countOfPost >= 300)
+                if (countOfPost >= 3)
                 {
                     _notification.AddWarningToastMessage("Bạn đã hết lượt đăng bài trong 30 ngày! Hãy đăng ký gói tài khoản để mở khóa chức năng");
                     return Json(new { success = false, message = "Bạn đã hết lượt đăng bài trong 30 ngày! Hãy đăng ký gói tài khoản để mở khóa chức năng" });
