@@ -22,6 +22,7 @@ using ZAlpha.Application.InteractWithComments.Queries.GetAllInteractWithComment;
 using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
 using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
 using ZAlpha.Application.InteractWithPost.Queries.GetAllInteractWithPost;
+using ZAlpha.Application.Comment.Queries.GetComment;
 
 namespace WebUI.Controllers.MVC;
 
@@ -56,7 +57,7 @@ public class HomeController : ControllerBaseMVC
             int totalpsy = Mediator.Send(new GetAllPsychologistAccountCreateInOneMonthRequest()).Result.TotalCount;
             ViewBag.TotalNewUsers = totalcus + totalpsy;
             // Tổng số bình luận trong 1 tháng
-            ViewBag.TotalComments = Mediator.Send(new GetAllPostInMonthQueries()).Result.Count;
+            ViewBag.TotalComments = Mediator.Send(new GetCommentRequestInOneMonth()).Result.TotalCount;
             // Tổng số lượt tương tác trong tháng
             ViewBag.TotalInteracts = Mediator.Send(new GetAllIInteractWithPostInOneMonthRequest()).Result.TotalCount;
 

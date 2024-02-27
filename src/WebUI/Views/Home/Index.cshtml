@@ -190,26 +190,30 @@
 
                             <p class="option-item-title">Bài viết mới</p>
                         </div>
-                        <!-- /OPTION ITEM -->
-                        @* <!-- OPTION ITEM -->
+
+                        @*
+                        <!-- /OPTION ITEM -->                      
+                        <!-- OPTION ITEM -->
                         <div class="option-item">
                         <svg class="option-item-icon icon-blog-posts">
                         <use xlink:href="#svg-blog-posts"></use>
                         </svg>
-
-                        <p class="option-item-title">Blog Post</p>
+                        <p class="option-item-title">Đăng ẩn danh</p>
                         </div>
                         <!-- /OPTION ITEM -->
+                        *@
 
+                        @*
                         <!-- OPTION ITEM -->
                         <div class="option-item">
                         <svg class="option-item-icon icon-poll">
                         <use xlink:href="#svg-poll"></use>
                         </svg>
-
                         <p class="option-item-title">Poll</p>
                         </div>
-                        <!-- /OPTION ITEM --> *@
+                        <!-- /OPTION ITEM --> 
+                        *@
+
                     </div>
                     <!-- /OPTION ITEMS -->
                 </div>
@@ -220,6 +224,18 @@
                     <form class="form">
                         <!-- FORM ROW -->
                         <div class="form-row">
+
+                            <select class="comboBoxNewPost" id="emostatus" style="margin-top:2px; width:98%; margin-left:1%; padding:10px">
+                                <option class="user-status-text medium" value="emotionalStatusList[0]">Tình trạng của bạn:</option>
+                                @{
+                                    emotionalStatusList.Remove(emotionalStatusList[0]);
+                                };
+                                @foreach (var item in emotionalStatusList)
+                                {
+                                    <option value="@item">@item.ToString()</option>
+                                }
+                            </select>
+
                             <!-- FORM ITEM -->
                             <div class="form-item">
                                 <!-- FORM TEXTAREA -->
@@ -242,18 +258,8 @@
                         <!-- CHỖ HIỆN TAG LIST-------------------------------------------------------------------------------------------->
 
 
-                        <div class="form-row">
-                                <select class="comboBoxNewPost" id="emostatus">
-                                    <option class="user-status-text medium" value="emotionalStatusList[0]">Tình trạng của bạn:</option>
-                                    @{
-                                        emotionalStatusList.Remove(emotionalStatusList[0]);
-                                    };
-                                    @foreach (var item in emotionalStatusList)
-                                    {
-                                        <option value="@item">@item.ToString()</option>
-                                    }
-                                </select>
-                            <div class="group-tag-post">
+                        <div class="form-row">                              
+                            <div class="group-tag-post" style="display:flex">
                                 @for (int i = 0; i < tags.Items.Count; i++)
                                 {
                                     <div class="customCheckBoxHolder">
@@ -297,28 +303,32 @@
                             <p id="selectedFileName"></p>
                         </div>
                         <!-- /QUICK POST FOOTER ACTION -->
+                        @* 
                         <!-- QUICK POST FOOTER ACTIONS -->
                         <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Thêm Tag" style="position: relative;">
-                            <!-- QUICK POST FOOTER ACTION ICON -->
-                            <svg class="quick-post-footer-action-icon icon-tags">
-                                <use xlink:href="#svg-tags"></use>
-                            </svg>
-                            <!-- /QUICK POST FOOTER ACTION ICON -->
-                            <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -32px; left: 50%; margin-left: -36.5px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Thêm Tag</p></div>
+                        <!-- QUICK POST FOOTER ACTION ICON -->
+                        <svg class="quick-post-footer-action-icon icon-tags">
+                        <use xlink:href="#svg-tags"></use>
+                        </svg>
+                        <!-- /QUICK POST FOOTER ACTION ICON -->
+                        <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -32px; left: 50%; margin-left: -36.5px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Thêm Tag</p></div>
                         </div>
                         <!-- /QUICK POST FOOTER ACTIONS -->
                         <!-- QUICK POST FOOTER ACTIONS -->
                         <div class="quick-post-footer-action text-tooltip-tft-medium" data-title="Thêm Trạng Thái" style="position: relative;">
-                            <!-- QUICK POST FOOTER ACTION ICON -->
-                            <!-- ICON THUMBS UP -->
-                            <svg class="quick-post-footer-action-icon icon-thumbs-up">
-                                <use xlink:href="#svg-thumbs-up"></use>
-                            </svg>
-                            <!-- /ICON THUMBS UP -->
-                            <!-- /QUICK POST FOOTER ACTION ICON -->
-                            <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -32px; left: 50%; margin-left: -36.5px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Thêm Trạng Thái</p></div>
+                        <!-- QUICK POST FOOTER ACTION ICON -->
+                        <!-- ICON THUMBS UP -->
+                        <svg class="quick-post-footer-action-icon icon-thumbs-up">
+                        <use xlink:href="#svg-thumbs-up"></use>
+                        </svg>
+                        <!-- /ICON THUMBS UP -->
+                        <!-- /QUICK POST FOOTER ACTION ICON -->
+                        <div class="xm-tooltip" style="white-space: nowrap; position: absolute; z-index: 99999; top: -32px; left: 50%; margin-left: -36.5px; opacity: 0; visibility: hidden; transform: translate(0px, 10px); transition: all 0.3s ease-in-out 0s;"><p class="xm-tooltip-text">Thêm Trạng Thái</p></div>
                         </div>
                         <!-- /QUICK POST FOOTER ACTIONS -->
+                        *@
+                        
+
                     </div>
                     <!-- /QUICK POST FOOTER ACTIONS -->
                     <!-- QUICK POST FOOTER ACTIONS -->
