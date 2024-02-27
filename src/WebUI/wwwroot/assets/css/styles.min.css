@@ -57,7 +57,7 @@ input[type=password], input[type=text], select, textarea {
 }
 
     input[type=password]:focus, input[type=text]:focus, select:focus, textarea:focus {
-        border-color: #615dfa
+        border-color: #E7BCDE
     }
 
 input[type=password], input[type=text] {
@@ -473,12 +473,12 @@ textarea {
     }
 
         .checkbox-wrap input[type=checkbox]:checked + .checkbox-box, .checkbox-wrap input[type=radio]:checked + .checkbox-box {
-            background-color: #23d2e2;
-            border-color: #23d2e2
+            background-color: #BB9CC0;
+            border-color: #BB9CC0
         }
 
             .checkbox-wrap input[type=checkbox]:checked + .checkbox-box.round, .checkbox-wrap input[type=radio]:checked + .checkbox-box.round {
-                border: 6px solid #23d2e2;
+                border: 6px solid #BB9CC0;
                 background-color: #fff
             }
 
@@ -564,7 +564,7 @@ textarea {
 
     .interactive-input.dark input {
         border: none;
-        background-color: #4e4ac8;
+        /*background-color: #4e4ac8;*/
         color: #fff
     }
 
@@ -713,7 +713,7 @@ textarea {
     width: 40px;
     height: 40px;
     border-radius: 8px;
-    background-color: #23d2e2;
+    background-color: #BB9CC0;
     cursor: pointer
 }
 
@@ -840,7 +840,7 @@ textarea {
 }
 
     .form-switch.active {
-        background-color: #23d2e2
+        background-color: #BB9CC0
     }
 
         .form-switch.active .form-switch-button {
@@ -1436,12 +1436,12 @@ textarea {
 
 ::-moz-selection {
     color: #fff;
-    background-color: #23d2e2
+    background-color: #BB9CC0
 }
 
 ::selection {
     color: #fff;
-    background-color: #23d2e2
+    background-color: #BB9CC0
 }
 
 body {
@@ -1552,11 +1552,11 @@ figure > img {
             }
 
         .button.void.void-primary:hover {
-            background-color: #23d2e2
+            background-color: #BB9CC0
         }
 
         .button.void.void-secondary:hover {
-            background-color: #615dfa
+            background-color: #E7BCDE
         }
 
     .button.white-solid {
@@ -1588,7 +1588,7 @@ figure > img {
         }
 
     .button.primary {
-        background-color: #23d2e2;
+        background-color: #BB9CC0;
         box-shadow: 4px 7px 12px 0 rgba(35,210,226,.2)
     }
 
@@ -1597,7 +1597,7 @@ figure > img {
         }
 
     .button.secondary {
-        background-color: #615dfa;
+        background-color: #E7BCDE;
         box-shadow: 4px 7px 12px 0 rgba(97,93,250,.2)
     }
 
@@ -1921,8 +1921,8 @@ figure > img {
         }
 
     .action-request.accept:hover {
-        background-color: #615dfa;
-        border-color: #615dfa
+        background-color: #E7BCDE;
+        border-color: #E7BCDE
     }
 
     .action-request.decline:hover {
@@ -2051,7 +2051,7 @@ figure > img {
                 width: 4px;
                 height: 4px;
                 border-radius: 50%;
-                background-color: #41efff;
+                background-color: #FED9ED;
                 position: absolute;
                 top: 26px;
                 right: 10px
@@ -2140,7 +2140,7 @@ figure > img {
     }
 
         .user-stat .user-stat-title .user-stat-title-icon.positive {
-            fill: #23d2e2
+            fill: #BB9CC0
         }
 
         .user-stat .user-stat-title .user-stat-title-icon.negative {
@@ -2249,13 +2249,13 @@ figure > img {
 }
 
     .tag-item.secondary {
-        background-color: #615dfa;
+        background-color: #E7BCDE;
         transition: background-color .2s ease-in-out
     }
 
         .tag-item.secondary:hover {
             color: #fff;
-            background-color: #23d2e2
+            background-color: #BB9CC0
         }
 
 .xm-tooltip-text {
@@ -2469,7 +2469,7 @@ figure > img {
     }
 
         .tag-sticker .tag-sticker-icon.primary {
-            fill: #23d2e2
+            fill: #BB9CC0
         }
 
 .text-sticker {
@@ -2546,7 +2546,7 @@ figure > img {
         padding: 4px 0;
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 12px;
-        background-color: #23d2e2;
+        background-color: #BB9CC0;
         font-size: .75rem
     }
 
@@ -2559,7 +2559,7 @@ figure > img {
 
     .decorated-text .decorated-text-icon {
         margin-right: 8px;
-        fill: #23d2e2
+        fill: #BB9CC0
     }
 
     .decorated-text .decorated-text-content {
@@ -2696,7 +2696,7 @@ figure > img {
         content: "";
         width: 13px;
         height: 13px;
-        border: 4px solid #23d2e2;
+        border: 4px solid #BB9CC0;
         border-radius: 50%;
         position: absolute;
         top: -2px;
@@ -2798,7 +2798,7 @@ figure > img {
         }
 
         .filters .filter.active {
-            border-bottom: 2px solid #23d2e2
+            border-bottom: 2px solid #BB9CC0
         }
 
         .filters .filter:last-child {
@@ -2843,11 +2843,11 @@ figure > img {
 }
 
     .filter-tab.secondary.active {
-        border-bottom-color: #615dfa
+        border-bottom-color: #E7BCDE
     }
 
     .filter-tab.active {
-        border-bottom-color: #23d2e2
+        border-bottom-color: #BB9CC0
     }
 
         .filter-tab.active .filter-tab-text {
@@ -2946,7 +2946,7 @@ figure > img {
     width: 46px;
     height: 46px;
     padding: 12px 0 0 15px;
-    border: 4px solid #41efff;
+    border: 4px solid #FED9ED;
     border-radius: 50%;
     background-color: rgba(21,21,31,.96)
 }
@@ -3111,7 +3111,7 @@ figure > img {
 }
 
     .popup-close-button:hover {
-        background-color: #23d2e2
+        background-color: #BB9CC0
     }
 
     .popup-close-button .popup-close-button-icon {
@@ -3142,7 +3142,7 @@ figure > img {
         margin-top: 6px;
         -ms-flex-negative: 0;
         flex-shrink: 0;
-        fill: #23d2e2
+        fill: #BB9CC0
     }
 
     .decorated-feature .decorated-feature-info {
@@ -3299,7 +3299,7 @@ figure > img {
     }
 
         .post-option.active .post-option-icon, .post-option:hover .post-option-icon {
-            fill: #23d2e2;
+            fill: #BB9CC0;
             opacity: 1
         }
 
@@ -3474,7 +3474,7 @@ figure > img {
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        background: linear-gradient(-145deg,#41efff,#615dfa);
+        background: linear-gradient(-145deg,#FED9ED,#E7BCDE);
         margin-right: 16px
     }
 
@@ -3589,7 +3589,7 @@ figure > img {
         width: 80px;
         height: 80px;
         border-radius: 28px;
-        /*background-color: #615dfa*/
+        /*background-color: #E7BCDE*/
     }
 
         .page-loader .page-loader-decoration .icon-logo {
@@ -3657,7 +3657,7 @@ figure > img {
 }
 
     .reaction-count.negative .reaction-count-icon {
-        fill: #41efff
+        fill: #FED9ED
     }
 
     .reaction-count.negative .reaction-count-text {
@@ -3665,7 +3665,7 @@ figure > img {
     }
 
     .reaction-count .reaction-count-icon {
-        fill: #23d2e2
+        fill: #BB9CC0
     }
 
     .reaction-count .reaction-count-text {
@@ -3693,7 +3693,7 @@ figure > img {
     -ms-flex-align: center;
     align-items: center;
     height: 168px;
-    background-color: #23d2e2;
+    background-color: #BB9CC0;
     border-radius: 12px;
     cursor: pointer
 }
@@ -3748,7 +3748,7 @@ figure > img {
     }
 
         .simple-accordion .simple-accordion-header .simple-accordion-icon .icon-minus-small, .simple-accordion .simple-accordion-header .simple-accordion-icon .icon-plus-small {
-            fill: #23d2e2
+            fill: #BB9CC0
         }
 
         .simple-accordion .simple-accordion-header .simple-accordion-icon .icon-plus-small {
@@ -3809,7 +3809,7 @@ figure > img {
 }
 
     .week-box-item.active {
-        border-bottom: 4px solid #23d2e2
+        border-bottom: 4px solid #BB9CC0
     }
 
         .week-box-item.active .week-box-item-title {
@@ -3896,7 +3896,7 @@ figure > img {
         padding: 0 8px;
         margin-right: 12px;
         border-radius: 200px;
-        background-color: #23d2e2;
+        background-color: #BB9CC0;
         color: #fff;
         font-size: .75rem;
         font-weight: 700;
@@ -4148,7 +4148,7 @@ figure > img {
 }
 
     .option-item.active {
-        border-bottom: 4px solid #23d2e2
+        border-bottom: 4px solid #BB9CC0
     }
 
         .option-item.active .option-item-icon {
@@ -4279,11 +4279,11 @@ figure > img {
             }
 
             .stats-box .stats-box-diff .stats-box-diff-icon.positive {
-                border-color: #41efff
+                border-color: #FED9ED
             }
 
                 .stats-box .stats-box-diff .stats-box-diff-icon.positive .icon-plus-small {
-                    fill: #41efff
+                    fill: #FED9ED
                 }
 
             .stats-box .stats-box-diff .stats-box-diff-icon.negative {
@@ -4429,7 +4429,7 @@ figure > img {
 }
 
     .simple-tab-item.active {
-        border-bottom: 4px solid #23d2e2;
+        border-bottom: 4px solid #BB9CC0;
         color: #3e3f5e;
         opacity: 1
     }
@@ -4566,7 +4566,7 @@ figure > img {
 }
 
     .quote-box .quote-box-icon {
-        fill: #23d2e2;
+        fill: #BB9CC0;
         opacity: .1;
         position: absolute;
         top: 14px;
@@ -4593,7 +4593,7 @@ figure > img {
     }
 
         .stats-decoration.secondary .stats-decoration-icon-wrap {
-            background-color: #615dfa
+            background-color: #E7BCDE
         }
 
     .stats-decoration.primary {
@@ -4601,7 +4601,7 @@ figure > img {
     }
 
         .stats-decoration.primary .stats-decoration-icon-wrap {
-            background-color: #23d2e2
+            background-color: #BB9CC0
         }
 
     .stats-decoration.v2 {
@@ -4710,11 +4710,11 @@ figure > img {
 }
 
     .percentage-diff-icon-wrap.positive {
-        border-color: #23d2e2
+        border-color: #BB9CC0
     }
 
         .percentage-diff-icon-wrap.positive .percentage-diff-icon {
-            fill: #23d2e2
+            fill: #BB9CC0
         }
 
     .percentage-diff-icon-wrap.negative {
@@ -4883,7 +4883,7 @@ figure > img {
 }
 
     .sidebar-menu-header .sidebar-menu-header-icon {
-        fill: #23d2e2;
+        fill: #BB9CC0;
         position: absolute;
         top: 28px;
         left: 28px
@@ -4920,7 +4920,7 @@ figure > img {
 }
 
     .sidebar-menu-body.secondary .sidebar-menu-link.active, .sidebar-menu-body.secondary .sidebar-menu-link:hover {
-        color: #615dfa
+        color: #E7BCDE
     }
 
     .sidebar-menu-body .sidebar-menu-link {
@@ -5091,7 +5091,7 @@ figure > img {
 
     .bullet-item .bullet-item-icon {
         margin-right: 12px;
-        fill: #23d2e2
+        fill: #BB9CC0
     }
 
     .bullet-item .bullet-item-text {
@@ -5476,7 +5476,7 @@ figure > img {
     }
 
         .account-stat-box.account-stat-active-users .account-stat-box-icon-wrap {
-            background-color: #615dfa
+            background-color: #E7BCDE
         }
 
     .account-stat-box.account-stat-visits {
@@ -5503,7 +5503,7 @@ figure > img {
     }
 
         .account-stat-box.account-stat-returning-visitors .account-stat-box-icon-wrap {
-            background-color: #23d2e2
+            background-color: #BB9CC0
         }
 
     .account-stat-box .percentage-diff {
@@ -5593,7 +5593,7 @@ figure > img {
 }
 
     .reference-bullet.secondary {
-        background-color: #615dfa
+        background-color: #E7BCDE
     }
 
     .reference-bullet.blue {
@@ -5605,7 +5605,7 @@ figure > img {
     }
 
     .reference-bullet.primary {
-        background-color: #23d2e2
+        background-color: #BB9CC0
     }
 
 .country-stat-list .country-stat {
@@ -5720,7 +5720,7 @@ figure > img {
     }
 
         .upload-box:hover .upload-box-icon {
-            fill: #23d2e2
+            fill: #BB9CC0
         }
 
     .upload-box .upload-box-icon {
@@ -5896,11 +5896,11 @@ figure > img {
     }
 
     .notification-box .mark-unread-button {
-        border: 2px solid #23d2e2
+        border: 2px solid #BB9CC0
     }
 
     .notification-box .mark-read-button {
-        background-color: #23d2e2
+        background-color: #BB9CC0
     }
 
 .create-entity-box {
@@ -5962,11 +5962,11 @@ figure > img {
     }
 
         .create-entity-box .create-entity-box-avatar.primary .create-entity-box-avatar-icon {
-            fill: #23d2e2
+            fill: #BB9CC0
         }
 
         .create-entity-box .create-entity-box-avatar .create-entity-box-avatar-icon {
-            fill: #615dfa
+            fill: #E7BCDE
         }
 
     .create-entity-box .create-entity-box-info {
@@ -6049,7 +6049,7 @@ figure > img {
         }
 
         .earning-stat-box .earning-stat-box-icon-wrap.stat-item {
-            background-color: #615dfa
+            background-color: #E7BCDE
         }
 
         .earning-stat-box .earning-stat-box-icon-wrap.stat-earning {
@@ -6061,7 +6061,7 @@ figure > img {
         }
 
         .earning-stat-box .earning-stat-box-icon-wrap.stat-balance {
-            background-color: #23d2e2
+            background-color: #BB9CC0
         }
 
     .earning-stat-box .earning-stat-box-title {
@@ -6091,7 +6091,7 @@ figure > img {
 }
 
     .status-info.success .status-icon-wrap {
-        background-color: #23d2e2
+        background-color: #BB9CC0
     }
 
     .status-info .status-icon-wrap {
@@ -7195,7 +7195,7 @@ figure > img {
         }
 
         .loader-bars .loader-bar:first-child {
-            background-color: #615dfa
+            background-color: #E7BCDE
         }
 
         .loader-bars .loader-bar:nth-child(2) {
@@ -7235,7 +7235,7 @@ figure > img {
         }
 
         .loader-bars .loader-bar:nth-child(8) {
-            background-color: #41efff;
+            background-color: #FED9ED;
             -webkit-animation-delay: .7s;
             animation-delay: .7s
         }
@@ -8120,7 +8120,7 @@ figure > img {
     }
 
         .user-status .user-status-activity.activity-reaction {
-            background-color: #615dfa
+            background-color: #E7BCDE
         }
 
         .user-status .user-status-activity.activity-comment {
@@ -8132,7 +8132,7 @@ figure > img {
         }
 
         .user-status .user-status-activity.activity-update {
-            background-color: #23d2e2
+            background-color: #BB9CC0
         }
 
         .user-status .user-status-activity .user-status-activity-icon {
@@ -8720,7 +8720,7 @@ figure > img {
     }
 
     .dropdown-box-button.primary {
-        background-color: #23d2e2
+        background-color: #BB9CC0
     }
 
         .dropdown-box-button.primary:hover {
@@ -8728,7 +8728,7 @@ figure > img {
         }
 
     .dropdown-box-button.secondary {
-        background-color: #615dfa
+        background-color: #E7BCDE
     }
 
         .dropdown-box-button.secondary:hover {
@@ -8981,7 +8981,7 @@ figure > img {
     }
 
         .chat-widget.static .chat-widget-messages .chat-widget-message.active, .chat-widget.static .chat-widget-messages .chat-widget-message:hover {
-            border-left-color: #23d2e2
+            border-left-color: #BB9CC0
         }
 
     .chat-widget.chat-widget-overlay {
@@ -9125,7 +9125,7 @@ figure > img {
 
             .chat-widget-conversation .chat-widget-speaker.right .chat-widget-speaker-message {
                 border-top-right-radius: 0;
-                background-color: #615dfa;
+                background-color: #E7BCDE;
                 color: #fff
             }
 
@@ -9172,7 +9172,7 @@ figure > img {
     width: 100%;
     height: 80px;
     padding-left: 28px;
-    background-color: #23d2e2;
+    background-color: #BB9CC0;
     cursor: pointer
 }
 
@@ -9728,12 +9728,12 @@ figure > img {
 
         .post-comment .post-comment-text.user-tag.purchased:after {
             content: "Purchased!";
-            background-color: #615dfa
+            background-color: #E7BCDE
         }
 
         .post-comment .post-comment-text.user-tag.author:after {
             content: "Author";
-            background-color: #23d2e2
+            background-color: #BB9CC0
         }
 
     .post-comment .content-actions {
@@ -10147,7 +10147,7 @@ figure > img {
             }
 
             .product-preview .product-preview-info .product-preview-category.physical:before {
-                border-color: #23d2e2
+                border-color: #BB9CC0
             }
 
             .product-preview .product-preview-info .product-preview-category:before {
@@ -10224,11 +10224,11 @@ figure > img {
 }
 
     .product-category-box.category-all {
-        background: url(~/assets/images/marketplace/category/01.png) no-repeat 100% 0,linear-gradient(90deg,#615dfa,#8d7aff)
+        background: url(~/assets/images/marketplace/category/01.png) no-repeat 100% 0,linear-gradient(90deg,#E7BCDE,#8d7aff)
     }
 
         .product-category-box.category-all .product-category-box-tag {
-            color: #615dfa
+            color: #E7BCDE
         }
 
     .product-category-box.category-featured {
@@ -10252,7 +10252,7 @@ figure > img {
     }
 
         .product-category-box.category-physical .product-category-box-tag {
-            color: #23d2e2
+            color: #BB9CC0
         }
 
     .product-category-box .product-category-box-title {
@@ -11860,7 +11860,7 @@ figure > img {
             }
 
             .calendar .calendar-days .calendar-day-row .calendar-day.active .calendar-day-number {
-                background-color: #615dfa;
+                background-color: #E7BCDE;
                 color: #fff
             }
 
@@ -11906,11 +11906,11 @@ figure > img {
             }
 
                 .calendar .calendar-days .calendar-day-row .calendar-day .calendar-day-event.primary {
-                    background-color: #23d2e2
+                    background-color: #BB9CC0
                 }
 
                 .calendar .calendar-days .calendar-day-row .calendar-day .calendar-day-event.secondary {
-                    background-color: #615dfa
+                    background-color: #E7BCDE
                 }
 
 .calendar-weekly {
@@ -11937,7 +11937,7 @@ figure > img {
     }
 
         .calendar-weekly .calendar-weekly-week-day.active .calendar-weekly-week-day-number {
-            color: #615dfa;
+            color: #E7BCDE;
             font-weight: 700
         }
 
@@ -12040,11 +12040,11 @@ figure > img {
             }
 
             .calendar-weekly .calendar-weekly-day-part .calendar-weekly-day-event.primary {
-                background-color: #23d2e2
+                background-color: #BB9CC0
             }
 
             .calendar-weekly .calendar-weekly-day-part .calendar-weekly-day-event.secondary {
-                background-color: #615dfa
+                background-color: #E7BCDE
             }
 
 .calendar-daily {
@@ -12119,11 +12119,11 @@ figure > img {
         }
 
         .calendar-daily .calendar-daily-event.primary {
-            background-color: #23d2e2
+            background-color: #BB9CC0
         }
 
         .calendar-daily .calendar-daily-event.secondary {
-            background-color: #615dfa
+            background-color: #E7BCDE
         }
 
 .calendar-events-preview {
@@ -12190,11 +12190,11 @@ figure > img {
     }
 
     .calendar-event-preview.primary .calendar-event-preview-info:before {
-        border-color: #23d2e2
+        border-color: #BB9CC0
     }
 
     .calendar-event-preview.secondary .calendar-event-preview-info:before {
-        border-color: #615dfa
+        border-color: #E7BCDE
     }
 
     .calendar-event-preview .calendar-event-preview-start-time {
@@ -12819,7 +12819,7 @@ figure > img {
         }
 
             .forum-post .forum-post-user .forum-post-user-tag.organizer {
-                background-color: #615dfa
+                background-color: #E7BCDE
             }
 
     .forum-post .forum-post-info {
@@ -13006,7 +13006,7 @@ figure > img {
         width: 100%;
         height: 100%;
         border-radius: 12px;
-        border: 4px solid #615dfa;
+        border: 4px solid #E7BCDE;
         position: absolute;
         top: 0;
         left: 0
@@ -13064,7 +13064,7 @@ figure > img {
         height: 48px;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
-        background-color: #615dfa;
+        background-color: #E7BCDE;
         position: absolute;
         top: 0;
         left: 0;
@@ -13072,7 +13072,7 @@ figure > img {
     }
 
     .demo-box:nth-child(2n+2):before {
-        background-color: #23d2e2
+        background-color: #BB9CC0
     }
 
     .demo-box .demo-box-icon-wrap {
@@ -13134,7 +13134,7 @@ figure > img {
         }
 
         .demo-box .button.active {
-            background-color: #23d2e2
+            background-color: #BB9CC0
         }
 
             .demo-box .button.active .inactive-text {
@@ -13152,7 +13152,7 @@ figure > img {
     justify-content: space-between;
     width: 100%;
     height: 80px;
-    background-color: #615dfa;
+    background-color: #67729D;
     position: fixed;
     top: 0;
     left: 0;
@@ -13271,7 +13271,7 @@ figure > img {
     justify-content: center;
     width: 100%;
     height: 60px;
-    background-color: #615dfa;
+    background-color: #E7BCDE;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -13448,11 +13448,11 @@ figure > img {
             }
 
         .menu-main .menu-main-item:hover > .menu-main-item-link {
-            color: #41efff
+            color: #FED9ED
         }
 
             .menu-main .menu-main-item:hover > .menu-main-item-link .icon-dots {
-                fill: #41efff
+                fill: #FED9ED
             }
 
         .menu-main .menu-main-item:hover > .menu-main {
@@ -13469,7 +13469,7 @@ figure > img {
             width: 120px;
             padding: 8px 0;
             border-radius: 10px;
-            background-color: #615dfa;
+            background-color: #E7BCDE;
             position: absolute;
             top: 64px;
             -webkit-transform: translateY(-40px);
@@ -13502,7 +13502,7 @@ figure > img {
 
     .menu .menu-item.active .menu-item-link, .menu .menu-item.active .menu-item-link:hover {
         color: #fff;
-        background-color: #23d2e2;
+        background-color: #BB9CC0;
         box-shadow: 4px 7px 12px 0 rgba(35,210,226,.2)
     }
 
@@ -13534,7 +13534,7 @@ figure > img {
         }
 
             .menu .menu-item .menu-item-link:hover .menu-item-link-icon {
-                fill: #23d2e2
+                fill: #BB9CC0
             }
 
         .menu .menu-item .menu-item-link .menu-item-link-icon {
@@ -13576,7 +13576,7 @@ figure > img {
 }
 
     .section-menu.secondary .section-menu-item.active, .section-menu.secondary .section-menu-item:hover {
-        border-bottom: 4px solid #615dfa
+        border-bottom: 4px solid #E7BCDE
     }
 
         .section-menu.secondary .section-menu-item.active .section-menu-item-icon {
@@ -13595,7 +13595,7 @@ figure > img {
     }
 
         .section-menu .section-menu-item.active {
-            border-bottom: 4px solid #23d2e2
+            border-bottom: 4px solid #BB9CC0
         }
 
             .section-menu .section-menu-item.active .section-menu-item-icon {
@@ -13604,7 +13604,7 @@ figure > img {
             }
 
         .section-menu .section-menu-item:hover {
-            border-bottom: 4px solid #23d2e2
+            border-bottom: 4px solid #BB9CC0
         }
 
             .section-menu .section-menu-item:hover .section-menu-item-icon {
@@ -13782,7 +13782,7 @@ figure > img {
     }
 
         .section-header-info .section-title .highlighted.secondary {
-            color: #615dfa
+            color: #E7BCDE
         }
 
     .section-header-info .section-title.pinned:before {
@@ -13791,7 +13791,7 @@ figure > img {
         margin-right: 12px;
         padding: 4px 8px;
         border-radius: 200px;
-        background-color: #23d2e2;
+        background-color: #BB9CC0;
         color: #fff;
         font-size: .75rem;
         font-weight: 700;
@@ -13852,7 +13852,7 @@ figure > img {
                 content: "";
                 width: 2px;
                 height: 10px;
-                background-color: #23d2e2;
+                background-color: #BB9CC0;
                 position: absolute;
                 top: 2px;
                 left: -13px
@@ -13957,7 +13957,7 @@ figure > img {
             width: 2px;
             height: 10px;
             margin: 0 12px;
-            background-color: #23d2e2
+            background-color: #BB9CC0
         }
 
         .section-filters-bar .section-filters-bar-title + .section-filters-bar-text {
@@ -14062,7 +14062,7 @@ figure > img {
 }
 
     .section-pager.secondary .section-pager-item.active .section-pager-item-text, .section-pager.secondary .section-pager-item:hover .section-pager-item-text {
-        color: #615dfa
+        color: #E7BCDE
     }
 
     .section-pager .section-pager-item {
