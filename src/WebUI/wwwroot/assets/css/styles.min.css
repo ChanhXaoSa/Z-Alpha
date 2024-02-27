@@ -57,7 +57,7 @@ input[type=password], input[type=text], select, textarea {
 }
 
     input[type=password]:focus, input[type=text]:focus, select:focus, textarea:focus {
-        border-color: #E7BCDE
+        border-color: #67729D
     }
 
 input[type=password], input[type=text] {
@@ -565,7 +565,7 @@ textarea {
     .interactive-input.dark input {
         border: none;
         /*background-color: #4e4ac8;*/
-        color: #fff
+        color: black;
     }
 
         .interactive-input.dark input::-webkit-input-placeholder {
@@ -1556,7 +1556,7 @@ figure > img {
         }
 
         .button.void.void-secondary:hover {
-            background-color: #E7BCDE
+            background-color: #67729D
         }
 
     .button.white-solid {
@@ -1597,7 +1597,7 @@ figure > img {
         }
 
     .button.secondary {
-        background-color: #E7BCDE;
+        background-color: #67729D;
         box-shadow: 4px 7px 12px 0 rgba(97,93,250,.2)
     }
 
@@ -1921,8 +1921,8 @@ figure > img {
         }
 
     .action-request.accept:hover {
-        background-color: #E7BCDE;
-        border-color: #E7BCDE
+        background-color: #67729D;
+        border-color: #67729D
     }
 
     .action-request.decline:hover {
@@ -2249,7 +2249,7 @@ figure > img {
 }
 
     .tag-item.secondary {
-        background-color: #E7BCDE;
+        background-color: #67729D;
         transition: background-color .2s ease-in-out
     }
 
@@ -2843,7 +2843,7 @@ figure > img {
 }
 
     .filter-tab.secondary.active {
-        border-bottom-color: #E7BCDE
+        border-bottom-color: #67729D
     }
 
     .filter-tab.active {
@@ -3474,7 +3474,7 @@ figure > img {
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        background: linear-gradient(-145deg,#FED9ED,#E7BCDE);
+        background: linear-gradient(-145deg,#FED9ED,#67729D);
         margin-right: 16px
     }
 
@@ -3589,7 +3589,7 @@ figure > img {
         width: 80px;
         height: 80px;
         border-radius: 28px;
-        /*background-color: #E7BCDE*/
+        /*background-color: #67729D*/
     }
 
         .page-loader .page-loader-decoration .icon-logo {
@@ -4593,7 +4593,7 @@ figure > img {
     }
 
         .stats-decoration.secondary .stats-decoration-icon-wrap {
-            background-color: #E7BCDE
+            background-color: #67729D
         }
 
     .stats-decoration.primary {
@@ -4920,7 +4920,7 @@ figure > img {
 }
 
     .sidebar-menu-body.secondary .sidebar-menu-link.active, .sidebar-menu-body.secondary .sidebar-menu-link:hover {
-        color: #E7BCDE
+        color: #67729D
     }
 
     .sidebar-menu-body .sidebar-menu-link {
@@ -5476,7 +5476,7 @@ figure > img {
     }
 
         .account-stat-box.account-stat-active-users .account-stat-box-icon-wrap {
-            background-color: #E7BCDE
+            background-color: #67729D
         }
 
     .account-stat-box.account-stat-visits {
@@ -5593,7 +5593,7 @@ figure > img {
 }
 
     .reference-bullet.secondary {
-        background-color: #E7BCDE
+        background-color: #67729D
     }
 
     .reference-bullet.blue {
@@ -5966,7 +5966,7 @@ figure > img {
         }
 
         .create-entity-box .create-entity-box-avatar .create-entity-box-avatar-icon {
-            fill: #E7BCDE
+            fill: #67729D
         }
 
     .create-entity-box .create-entity-box-info {
@@ -6049,7 +6049,7 @@ figure > img {
         }
 
         .earning-stat-box .earning-stat-box-icon-wrap.stat-item {
-            background-color: #E7BCDE
+            background-color: #67729D
         }
 
         .earning-stat-box .earning-stat-box-icon-wrap.stat-earning {
@@ -7195,7 +7195,7 @@ figure > img {
         }
 
         .loader-bars .loader-bar:first-child {
-            background-color: #E7BCDE
+            background-color: #67729D
         }
 
         .loader-bars .loader-bar:nth-child(2) {
@@ -8120,7 +8120,7 @@ figure > img {
     }
 
         .user-status .user-status-activity.activity-reaction {
-            background-color: #E7BCDE
+            background-color: #67729D
         }
 
         .user-status .user-status-activity.activity-comment {
@@ -8728,7 +8728,7 @@ figure > img {
         }
 
     .dropdown-box-button.secondary {
-        background-color: #E7BCDE
+        background-color: #67729D
     }
 
         .dropdown-box-button.secondary:hover {
@@ -9125,7 +9125,7 @@ figure > img {
 
             .chat-widget-conversation .chat-widget-speaker.right .chat-widget-speaker-message {
                 border-top-right-radius: 0;
-                background-color: #E7BCDE;
+                background-color: #67729D;
                 color: #fff
             }
 
@@ -9728,7 +9728,7 @@ figure > img {
 
         .post-comment .post-comment-text.user-tag.purchased:after {
             content: "Purchased!";
-            background-color: #E7BCDE
+            background-color: #67729D
         }
 
         .post-comment .post-comment-text.user-tag.author:after {
@@ -10224,11 +10224,11 @@ figure > img {
 }
 
     .product-category-box.category-all {
-        background: url(~/assets/images/marketplace/category/01.png) no-repeat 100% 0,linear-gradient(90deg,#E7BCDE,#8d7aff)
+        background: url(~/assets/images/marketplace/category/01.png) no-repeat 100% 0,linear-gradient(90deg,#67729D,#8d7aff)
     }
 
         .product-category-box.category-all .product-category-box-tag {
-            color: #E7BCDE
+            color: #67729D
         }
 
     .product-category-box.category-featured {
@@ -11860,7 +11860,7 @@ figure > img {
             }
 
             .calendar .calendar-days .calendar-day-row .calendar-day.active .calendar-day-number {
-                background-color: #E7BCDE;
+                background-color: #67729D;
                 color: #fff
             }
 
@@ -11910,7 +11910,7 @@ figure > img {
                 }
 
                 .calendar .calendar-days .calendar-day-row .calendar-day .calendar-day-event.secondary {
-                    background-color: #E7BCDE
+                    background-color: #67729D
                 }
 
 .calendar-weekly {
@@ -11937,7 +11937,7 @@ figure > img {
     }
 
         .calendar-weekly .calendar-weekly-week-day.active .calendar-weekly-week-day-number {
-            color: #E7BCDE;
+            color: #67729D;
             font-weight: 700
         }
 
@@ -12044,7 +12044,7 @@ figure > img {
             }
 
             .calendar-weekly .calendar-weekly-day-part .calendar-weekly-day-event.secondary {
-                background-color: #E7BCDE
+                background-color: #67729D
             }
 
 .calendar-daily {
@@ -12123,7 +12123,7 @@ figure > img {
         }
 
         .calendar-daily .calendar-daily-event.secondary {
-            background-color: #E7BCDE
+            background-color: #67729D
         }
 
 .calendar-events-preview {
@@ -12194,7 +12194,7 @@ figure > img {
     }
 
     .calendar-event-preview.secondary .calendar-event-preview-info:before {
-        border-color: #E7BCDE
+        border-color: #67729D
     }
 
     .calendar-event-preview .calendar-event-preview-start-time {
@@ -12819,7 +12819,7 @@ figure > img {
         }
 
             .forum-post .forum-post-user .forum-post-user-tag.organizer {
-                background-color: #E7BCDE
+                background-color: #67729D
             }
 
     .forum-post .forum-post-info {
@@ -13006,7 +13006,7 @@ figure > img {
         width: 100%;
         height: 100%;
         border-radius: 12px;
-        border: 4px solid #E7BCDE;
+        border: 4px solid #67729D;
         position: absolute;
         top: 0;
         left: 0
@@ -13064,7 +13064,7 @@ figure > img {
         height: 48px;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
-        background-color: #E7BCDE;
+        background-color: #67729D;
         position: absolute;
         top: 0;
         left: 0;
@@ -13271,7 +13271,7 @@ figure > img {
     justify-content: center;
     width: 100%;
     height: 60px;
-    background-color: #E7BCDE;
+    background-color: #67729D;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -13469,7 +13469,7 @@ figure > img {
             width: 120px;
             padding: 8px 0;
             border-radius: 10px;
-            background-color: #E7BCDE;
+            background-color: #67729D;
             position: absolute;
             top: 64px;
             -webkit-transform: translateY(-40px);
@@ -13576,7 +13576,7 @@ figure > img {
 }
 
     .section-menu.secondary .section-menu-item.active, .section-menu.secondary .section-menu-item:hover {
-        border-bottom: 4px solid #E7BCDE
+        border-bottom: 4px solid #67729D
     }
 
         .section-menu.secondary .section-menu-item.active .section-menu-item-icon {
@@ -13782,7 +13782,7 @@ figure > img {
     }
 
         .section-header-info .section-title .highlighted.secondary {
-            color: #E7BCDE
+            color: #67729D
         }
 
     .section-header-info .section-title.pinned:before {
@@ -14062,7 +14062,7 @@ figure > img {
 }
 
     .section-pager.secondary .section-pager-item.active .section-pager-item-text, .section-pager.secondary .section-pager-item:hover .section-pager-item-text {
-        color: #E7BCDE
+        color: #67729D
     }
 
     .section-pager .section-pager-item {
@@ -14118,7 +14118,8 @@ figure > img {
     padding: 52px 60px 0 200px;
     border-radius: 12px;
     background: url(../images/banner/banner-bg.png) no-repeat 50%;
-    position: relative
+    position: relative;
+    
 }
 
     .section-banner .section-banner-icon {
