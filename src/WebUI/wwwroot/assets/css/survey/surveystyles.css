@@ -12,6 +12,10 @@ body {
     background-position: center;
 }
 
+#dropdown option:first-of-type {
+    display: none;
+}
+
 label {
   display: block;
   margin: 0.5rem 0;
