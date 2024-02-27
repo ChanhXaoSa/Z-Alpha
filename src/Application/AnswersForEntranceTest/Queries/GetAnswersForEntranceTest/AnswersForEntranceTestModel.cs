@@ -13,6 +13,7 @@ public class AnswersForEntranceTestModel : IMapFrom<Domain.Entities.AnswersForEn
     public Guid EntranceTestId { get; set; }
     public string? Answer { get; set; }
     public bool? IsCorrect { get; set; }
+    public DateTime Created { get; set; }
     [ForeignKey("CustomerAccount")]
     public Guid CustomerAccountId { get; set; }
 }

@@ -37,11 +37,11 @@
                         @item.Question
                         <select id="dropdown" name="worrylevel">
                             <option value=" ">Bấm vào đây để lựa chọn mức độ</option>
-                            <option value="1">Không lo âu</option>
-                            <option value="2">Ít lo âu </option>
-                            <option value="3">Lo âu vừa phải</option>
-                            <option value="4">Lo âu nhiều</option>
-                            <option value="5">Rất lo âu</option>
+                            <option value="level1">Không lo âu</option>
+                            <option value="level2">Ít lo âu </option>
+                            <option value="level3">Lo âu vừa phải</option>
+                            <option value="level4">Lo âu nhiều</option>
+                            <option value="level5">Rất lo âu</option>
                         </select>
                     </label>
                 </fieldset>
@@ -52,8 +52,8 @@
                 <fieldset>
                     <input type="hidden" name="Ques1" value="@item.Id" />
                     <label>
-                            @* Nếu bạn đang lo âu, có thể chia sẻ nó với chúng tôi không ? *@
-                        @item.Question <textarea id="bio" name="problemDes" rows="3" cols="30" placeholder="Mô tả vấn đề bạn đang gặp ở đây"></textarea>
+                            Nếu bạn đang lo âu, có thể chia sẻ nó với chúng tôi không ?
+                        @* @item.Question *@ <textarea id="bio" name="problemDes" rows="3" cols="30" placeholder="Mô tả vấn đề bạn đang gặp ở đây"></textarea>
                     </label>
                 </fieldset>
             }
@@ -62,8 +62,8 @@
                 <fieldset>
                         <input type="hidden" name="Ques2" value="@item.Id" />
                         <label>
-                            @* Bạn có cảm thấy hài lòng với các mối quan hệ xã hội của mình? *@
-                            @item.Question</label>
+                            Bạn có cảm thấy hài lòng với các mối quan hệ xã hội của mình?
+                            @* @item.Question *@</label>
                     <label><input type="radio" name="recommendation" value="definitely" class="inline" />  Có  </label>
                     <label><input type="radio" name="recommendation" value="maybe" class="inline" /> Không chắc chắn</label>
                     <label><input type="radio" name="recommendation" value="notsure" class="inline" /> Không </label>
@@ -73,21 +73,21 @@
             {
                 <fieldset>
                         <input type="hidden" name="Ques3" value="@item.Id" />
-                        <label> @* Những điều bạn thường làm là gì ? *@   @item.Question </label>
+                        <label> Những điều bạn thường làm là gì ?   @* @item.Question *@ </label>
                     <label>
-                            <input type="checkbox" value="sleep" name="activities" class="inline" /> Ngủ
+                            <input type="checkbox" value="sleep" name="sleep" class="inline" /> Ngủ
                     </label>
                     <label>
-                            <input type="checkbox" value="MoveMusic" name="activities" class="inline" /> Xem phim, nghe nhạc
+                            <input type="checkbox" value="MoveMusic" name="MusicMovie" class="inline" /> Xem phim, nghe nhạc
                     </label>
                     <label>
-                            <input type="checkbox" value="Coffe" name="activities" class="inline" /> Đi cà phê, quán ăn với bạn bè
+                            <input type="checkbox" value="Coffe" name="Coffe" class="inline" /> Đi cà phê, quán ăn với bạn bè
                     </label>
                     <label>
-                            <input type="checkbox" value="Social" name="activities" class="inline" /> ngồi một chỗ, xem mạng xã hội
+                            <input type="checkbox" value="Social" name="Social" class="inline" /> ngồi một chỗ, xem mạng xã hội
                     </label>
                     <label>
-                            <input type="checkbox" value="OverThinking" name="activities" class="inline" /> suy nghĩ về vấn đề của bản thân
+                            <input type="checkbox" value="OverThinking" name="Overthinking" class="inline" /> suy nghĩ về vấn đề của bản thân
                     </label>
                 </fieldset>
             }
