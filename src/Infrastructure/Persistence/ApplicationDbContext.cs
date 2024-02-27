@@ -81,10 +81,42 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<UserAccount>, IApp
               }
           );
 
-      
-     
 
-       
+        builder.Entity<EntranceTest>()
+      .HasData(
+           new EntranceTest
+           {
+               Id = new Guid("6295c6b7-fdf6-4245-810f-89d61226f341"),
+               Question = "Mức độ lo âu của bạn như thế nào?",
+               Created = DateTime.Now,
+               IsDeleted = false
+           },
+           new EntranceTest
+           {
+               Id = new Guid("6295c6b7-fdf6-4245-810f-89d61226f342"),
+               Question = "Nếu bạn đang lo âu, có thể chia sẻ nó với chúng tôi không ?",
+               Created = DateTime.Now,
+               IsDeleted = false
+           },
+           new EntranceTest
+           {
+               Id = new Guid("6295c6b7-fdf6-4245-810f-89d61226f343"),
+               Question = "Bạn có cảm thấy hài lòng với các mối quan hệ xã hội của mình? ",
+               Created = DateTime.Now,
+               IsDeleted = false
+           },
+           new EntranceTest
+           {
+               Id = new Guid("6295c6b7-fdf6-4245-810f-89d61226f344"),
+               Question = "Những điều bạn thường làm là gì ?",
+               Created = DateTime.Now,
+               IsDeleted = false
+           }
+      );
+
+
+
+
         builder.Entity<Pack>()
       .HasData(
            new Pack
