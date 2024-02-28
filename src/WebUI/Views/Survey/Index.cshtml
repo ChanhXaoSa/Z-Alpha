@@ -23,6 +23,8 @@
 <body>
     <h1 id="title">Khảo sát tâm lý người dùng</h1>
     <p id="description"> Hãy trải lòng, chúng tôi có thể giúp đỡ bạn nhiều hơn </p>
+    <p>Nếu bạn muốn chúng tôi chuẩn đoán chính xác hơn, <a href="https://docs.google.com/forms/d/e/1FAIpQLSc2U0pQs58_Pw8Mh6eojxPrGbpdk-eDJQolgVX3JfZ8izpPGw/viewform" style="color:white">bấm vào đây</a></p>
+    
     <form id="survey-form" method="post" action="~/Survey/CreateAnswer">
         @if(listEntranceTest.Items.Count>0){
         @foreach (var item in listEntranceTest.Items)

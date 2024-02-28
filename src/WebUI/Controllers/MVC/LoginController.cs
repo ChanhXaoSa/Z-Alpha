@@ -58,7 +58,7 @@ public class LoginController : ControllerBaseMVC
         }
         if (_signInManager.IsSignedIn(User))
         {
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Survey");
         }
         else
         {
@@ -79,14 +79,14 @@ public class LoginController : ControllerBaseMVC
                 var result = await _signInManager.PasswordSignInAsync(login_username, login_password, true, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Survey");
                 }
             } else
             {
                 var result = await _signInManager.PasswordSignInAsync(user.UserName, login_password, true, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Survey");
                 }
             }
         }
@@ -120,7 +120,7 @@ public class LoginController : ControllerBaseMVC
         }
         else
         {
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Survey");
         }
     }
 
@@ -303,7 +303,7 @@ public class LoginController : ControllerBaseMVC
         if (User.Identity.IsAuthenticated)
         {
             _toastNotification.AddWarningToastMessage("Bạn đã đăng nhập vào tài khoản!");
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Survey");
         }
         else
         {
