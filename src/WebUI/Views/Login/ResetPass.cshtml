@@ -5,6 +5,15 @@
     ViewBag.Title = "Reset Password";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using Microsoft.AspNetCore.Identity;
+@using ZAlpha.Application.Common.Interfaces;
+@using ZAlpha.Domain.Identity;
+@using Newtonsoft.Json;
+@inject IHttpContextAccessor httpContextaccessor
+@inject SignInManager<UserAccount> _signInManager
+@inject UserManager<UserAccount> userManager
+@inject IIdentityService _identityService
+
 <body>
     <div class="content-grid" style="transform: translate(0px, 0px); transition: transform 0.4s ease-in-out 0s;">
         <!-- SECTION BANNER -->
@@ -45,7 +54,7 @@
                         <!-- WIDGET BOX CONTENT -->
                         <div class="widget-box-content">
                             <!-- FORM -->
-                            <form class="form" action="~/ResetPass" method="post">
+                            <form class="form" action="/ResetPass?redirectUrl=@ViewBag.RedirectUrl" method="post">
                                 <!-- FORM ROW -->
                                 <div class="form-row split">
                                     <!-- FORM ITEM -->
@@ -53,7 +62,9 @@
                                         <!-- FORM INPUT -->
                                         <div class="form-input small">
                                             <label for="account-new-password">Mật khẩu mới</label>
-                                            <input type="password" id="account-new-password" name="account_new_password">
+                                            <input type="password" id="account-new-password" name="newPass"
+                                                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@@$!%*#_/,()';:?&])[A-Za-z\d@@$!%*#_/,()';:?&]{6,}$" 
+                                            title="Mật khẩu phải có ít nhất 6 ký tự, phải có ít nhất một chữ cái viết hoa, một chữ cái viết thường, một số và một ký tự đặc biệt">
                                         </div>
                                         <!-- /FORM INPUT -->
                                     </div>
@@ -63,10 +74,15 @@
                                         <!-- FORM INPUT -->
                                         <div class="form-input small">
                                             <label for="account-new-password-confirm">Nhập lại mật khẩu mới</label>
-                                            <input type="password" id="account-new-password-confirm" name="account_new_password_confirm">
+                                            <input type="password" id="account-new-password-confirm" name="confirmPass"
+                                                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@@$!%*#_/,()';:?&])[A-Za-z\d@@$!%*#_/,()';:?&]{6,}$" 
+                                            title="Mật khẩu phải có ít nhất 6 ký tự, phải có ít nhất một chữ cái viết hoa, một chữ cái viết thường, một số và một ký tự đặc biệt">
                                         </div>
                                         <!-- /FORM INPUT -->
                                     </div>
+
+                                    <input type="hidden" name="email" value="@ViewBag.email" placeholder="Nhập Lại Mật Khẩu" class="form-control" />
+                                    <input type="hidden" name="token" value="@ViewBag.token" placeholder="Nhập Lại Mật Khẩu" class="form-control" />
                                     <!-- /FORM ITEM -->
                                 </div>
                                 <!-- /FORM ROW -->

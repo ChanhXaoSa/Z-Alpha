@@ -191,15 +191,14 @@ public class HomeController : ControllerBaseMVC
             {
                 var postListOfUser = Mediator.Send(new GetPostByUserIdInMonthQuery() { Page = 1, Size = 100, UserId = user.Id }).Result;
                 var countOfPost = postListOfUser.Items.Count();
-                if (countOfPost >= 3)
+                if (countOfPost >= 300) //giới hạn đăng bài
                 {
                     _notification.AddWarningToastMessage("Bạn đã hết lượt đăng bài trong 30 ngày! Hãy đăng ký gói tài khoản để mở khóa chức năng");
                     return Json(new { success = false, message = "Bạn đã hết lượt đăng bài trong 30 ngày! Hãy đăng ký gói tài khoản để mở khóa chức năng" });
                 }
             }
             //tính số ngày còn lại
-
-            if (pack != null) //phải có k thì nó quăng lỗi
+            if (pack != null) 
             {
                 int totalDay = 0;
                 int distanceDay = 0;
@@ -216,11 +215,9 @@ public class HomeController : ControllerBaseMVC
                         }
                     }
                 }
-
-
-
-                _notification.AddWarningToastMessage("Gói tài khoản của bạn đã hết hạn. Vui lòng đăng ký");
-                return Json(new { success = false, message = "Gói tài khoản của bạn đã hết hạn. Vui lòng đăng ký" });
+               /* _notification.AddWarningToastMessage("Gói tài khoản của bạn đã hết hạn. Vui lòng đăng ký");
+                return Json(new { success = false, message = "Gói tài khoản của bạn đã hết hạn. Vui lòng đăng ký" });*/
+               //tạm khóa
             }
 
             //check postBody

@@ -58,7 +58,7 @@ public class LoginController : ControllerBaseMVC
         }
         if (_signInManager.IsSignedIn(User))
         {
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Survey");
         }
         else
         {
@@ -79,14 +79,14 @@ public class LoginController : ControllerBaseMVC
                 var result = await _signInManager.PasswordSignInAsync(login_username, login_password, true, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Survey");
                 }
             } else
             {
                 var result = await _signInManager.PasswordSignInAsync(user.UserName, login_password, true, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Survey");
                 }
             }
         }
@@ -120,7 +120,7 @@ public class LoginController : ControllerBaseMVC
         }
         else
         {
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Survey");
         }
     }
 
@@ -199,7 +199,7 @@ public class LoginController : ControllerBaseMVC
 
                 if (radio.Equals("Customer"))
                 {
-                    callbackUrl = Url.Action("register", "confirm", new { code, userId = user.Id, redirect = redirectUrl }, protocol : Request.Scheme);
+                    callbackUrl = Url.Action("register", "login", new { code, userId = user.Id, redirect = redirectUrl }, protocol : Request.Scheme);
 
                     var newCustomer = await Mediator.Send(new CreateCustomerAccountCommands
                     {
@@ -225,19 +225,19 @@ public class LoginController : ControllerBaseMVC
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         _toastNotification.AddSuccessToastMessage("Gửi Mail xác nhận thành công!");
-                        return Redirect("~/login");
+                        return Redirect("~/login?RedirectUrl="+redirectUrl);
                     }
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         _toastNotification.AddSuccessToastMessage("Gửi Mail xác nhận thành công!");
-                        return Redirect("~/login");
+                        return Redirect("~/login?RedirectUrl="+redirectUrl);
                     }
                 }
                 else
                 {
                     _toastNotification.AddErrorToastMessage("Gửi Email Thất bại! Vui lòng kiểm tra lại địa chỉ email");
-                    return Redirect("~/login");
+                    return Redirect("~/register?RedirectUrl="+redirectUrl);
                 }
                 // Kết thúc gửi email xác nhận  
             }
@@ -303,7 +303,7 @@ public class LoginController : ControllerBaseMVC
         if (User.Identity.IsAuthenticated)
         {
             _toastNotification.AddWarningToastMessage("Bạn đã đăng nhập vào tài khoản!");
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Survey");
         }
         else
         {
@@ -436,7 +436,7 @@ public class LoginController : ControllerBaseMVC
         if (email == null || email.Equals("") || token == null || token.Equals(""))
         {
             _toastNotification.AddWarningToastMessage("Bạn không thể đặt lại mật khẩu! Vui lòng sử dụng link đã được gửi tới trong Email của bạn!");
-            return RedirectToAction("Login", "login");
+            return RedirectToAction("index", "login");
         }
 
         if (string.IsNullOrEmpty(redirectUrl)) redirectUrl = "~/";
@@ -467,7 +467,7 @@ public class LoginController : ControllerBaseMVC
                     return RedirectToAction("login", "login");
                 }
                 _toastNotification.AddSuccessToastMessage("Bạn đã đặt lại mật khẩu thành công!");
-                return RedirectToAction("login", "login", new { RedirectUrl = redirectUrl });
+                return RedirectToAction("index", "login", new { RedirectUrl = redirectUrl });
             }
             else
             {

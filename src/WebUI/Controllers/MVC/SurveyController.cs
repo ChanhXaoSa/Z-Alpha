@@ -23,6 +23,13 @@ public class SurveyController : ControllerBaseMVC
         try
         {
             var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+
+            var checkrole = await _identityService.IsInRoleAsync(user.Id, "Customer");
+            // Nếu không phải là Customer thì không được phép truy cập
+            if (checkrole == false)
+            {
+                return Redirect("~/Home");
+            }
             var result = Mediator.Send(new GetCustomerAccountByUserIdQueries() { UserAccountId = user.Id }).Result;
             var listquestion = await Mediator.Send(new GetEntranceTestRequest() { Page = 1, Size = 100 });
             
