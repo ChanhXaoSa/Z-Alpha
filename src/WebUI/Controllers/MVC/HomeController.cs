@@ -23,6 +23,8 @@ using ZAlpha.Application.PsychologistAccount.Queries.GetAllPsychologistAccount;
 using ZAlpha.Application.CustomerAccount.Queries.GetAllCustomerAccount;
 using ZAlpha.Application.InteractWithPost.Queries.GetAllInteractWithPost;
 using ZAlpha.Application.Comment.Queries.GetComment;
+using ZAlpha.Application.Common.Models;
+using System.Text.RegularExpressions;
 
 namespace WebUI.Controllers.MVC;
 
@@ -263,9 +265,45 @@ public class HomeController : ControllerBaseMVC
         }
 
     }
-
+    [HttpGet]
     public IActionResult ChangePassword()
     {
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> ChangePassword([FromForm] ChangePasswordModel model)
+    {
+        bool checker = true;
+        var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+        var isCorrectPassword = await _userManager.CheckPasswordAsync(user, model.OldPassword);
+        if (!isCorrectPassword)
+        {
+            ViewBag.OldPasswordValidate = "*Mật khẩu không hợp lệ hoặc không đúng ( Mật khẩu lớn hơn 8 kí tự, chứa 1 chữ hoa, 1 chữ thường và 1 kí tự đặc biệt.)";
+            checker = false;
+        }
+        
+        if (!Regex.IsMatch(model.NewPassword, "^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()<>?|{}~:]).*$"))
+        {
+            ViewBag.NewPasswordValidate = "*Mật khẩu không hợp lệ ( Mật khẩu lớn hơn 8 kí tự, chứa 1 chữ hoa, 1 chữ thường và 1 kí tự đặc biệt.)";
+            checker = false;
+        }
+        else if (!model.NewPassword.Equals(model.ConfirmPassword))
+        {
+            ViewBag.PasswordConfirmValidate = "*Mật khẩu xác nhận không khớp với mật khẩu đã nhập";
+            checker = false;
+        }
+        else if (isCorrectPassword && model.NewPassword.Equals(model.OldPassword))
+        {
+            ViewBag.NewPasswordValidate = "Mật khẩu mới trùng với mật khẩu cũ";
+            checker = false;
+        }
+
+        if (checker)
+        {
+            var result = await _identityService.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+            return Redirect("~/Home");
+        }
+
         return View();
     }
 
