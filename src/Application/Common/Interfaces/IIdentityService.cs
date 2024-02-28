@@ -24,4 +24,5 @@ public interface IIdentityService
     Task<UserAccount> GetUserAsync(string userId);
 
     Task<List<UserAccount>> GetListUsersAsync();
+    Task<Result> ChangePasswordAsync(UserAccount account, string oldPassword, string newPassword);
 }

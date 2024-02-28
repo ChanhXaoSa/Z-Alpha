@@ -143,4 +143,10 @@ public class IdentityService : IIdentityService
         return sortedUsers;
         //return users;
     }
+    public async Task<Result> ChangePasswordAsync(UserAccount userAccount, string oldPassword, string newPassword)
+    {
+        var result = await _userManager.ChangePasswordAsync(userAccount, oldPassword, newPassword);
+
+        return result.ToApplicationResult();
+    }
 }
