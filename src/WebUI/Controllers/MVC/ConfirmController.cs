@@ -30,7 +30,7 @@ public class ConfirmController : ControllerBaseMVC
     [AllowAnonymous]
     public async Task<IActionResult> ExternalLoginCallback(string RedirectUrl, string remoteError = null)
     {
-        RedirectUrl = RedirectUrl ?? Url.Content("~/");
+        RedirectUrl = RedirectUrl ?? Url.Content("~/Survey");
 
         if (remoteError != null)
         {
