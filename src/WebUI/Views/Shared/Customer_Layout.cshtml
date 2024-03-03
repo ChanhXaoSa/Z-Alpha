@@ -196,7 +196,7 @@
                     <!-- USER AVATAR CONTENT -->
                     <div class="user-avatar-content">
                         <!-- HEXAGON -->
-                        <div id="avatarId" class="hexagon-image-100-110" data-src="@((Model.UserAccount.AvatarUrl == null ? "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" : Model.UserAccount.AvatarUrl))" style="width: 100px; height: 110px; position: relative;">
+                        <div id="avatarId" class="hexagon-image-100-110" data-src="@((Model.UserAccount.AvatarUrl == null ? "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" : $"/{Model.UserAccount.AvatarUrl}"))" style="width: 100px; height: 110px; position: relative;">
                             <canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas>
                             <canvas width="100" height="110" style="position: absolute; top: 0px; left: 0px;"></canvas>
                         </div>
