@@ -68,7 +68,18 @@ public class RouteController : Controller
         var isCustomer = await _identityService.IsInRoleAsync(userId, AppRole.Customer);
         if (isCustomer)
         {
-            return Redirect("~/Customer?userId=" + userId);
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = await _identityService.GetUserByNameAsync(User.Identity.Name);
+                if(user != null)
+                {
+                    if(user.Id == userId)
+                    {
+                        return Redirect("~/Customer?userId=" + userId);
+                    }
+                }
+            }
+            return Redirect("~/");
         }
         else
         {
