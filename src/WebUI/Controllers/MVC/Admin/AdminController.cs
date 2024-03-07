@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Design;
 using System.Drawing;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ZAlpha.Application.Ban.BanAccount;
@@ -23,6 +24,8 @@ using ZAlpha.Domain.Entities;
 using ZAlpha.Domain.Identity;
 
 namespace WebUI.Controllers.MVC.Admin;
+
+/*[Authorize(Roles ="Administrator")]*/
 public class AdminController : ControllerBaseMVC
 {
     private readonly IIdentityService _identityService;
