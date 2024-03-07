@@ -168,6 +168,11 @@
                                                     <p class="table-header-title">Số dư</p>
                                                     <!-- /TABLE HEADER TITLE -->
                                                 </div>
+                                                <div class="table-header-column centered padded">
+                                                    <!-- TABLE HEADER TITLE -->
+                                                    <p class="table-header-title">Trạng thái</p>
+                                                    <!-- /TABLE HEADER TITLE -->
+                                                </div>
                                                 <!-- /TABLE HEADER COLUMN -->
                                                 <!-- TABLE HEADER COLUMN -->
                                                 <div class="table-header-column centered padded">
@@ -216,6 +221,26 @@
                                                         <div class="table-column centered padded">
                                                             <!-- TABLE TEXT -->
                                                             <p class="table-text"><span class="light">@item.Balance</span></p>
+                                                            <!-- /TABLE TEXT -->
+                                                        </div>
+                                                        <div class="table-column centered padded">
+                                                            <!-- TABLE TEXT -->
+                                                            @if (item.Status == ZAlpha.Domain.Enums.TransactionStatus.CANCELED)
+                                                            {
+                                                                <p class="table-text"><span style="color: red">@item.Status</span></p>
+                                                            }
+                                                            else if (item.Status == ZAlpha.Domain.Enums.TransactionStatus.COMPLETED)
+                                                            {
+                                                                <p class="table-text"><span style="color: green">@item.Status</span></p>
+                                                            }
+                                                            else if (item.Status == ZAlpha.Domain.Enums.TransactionStatus.PENDING)
+                                                            {
+                                                                <p class="table-text"><span style="color: yellow">@item.Status</span></p>
+                                                            }
+                                                            else if (item.Status == ZAlpha.Domain.Enums.TransactionStatus.FAILED)
+                                                            {
+                                                                <p class="table-text"><span style="color: orange">@item.Status</span></p>
+                                                            }
                                                             <!-- /TABLE TEXT -->
                                                         </div>
                                                         <!-- /TABLE COLUMN -->
