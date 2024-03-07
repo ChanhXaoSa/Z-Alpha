@@ -42,6 +42,7 @@
                                             <th>Số tiền</th>
                                             <th>Phí giao dịch</th>
                                             <th>Số dư</th>
+                                            <th>Trạng thái</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -55,6 +56,22 @@
                                                 <td>@item.Money</td>
                                                 <td>@item.TransactionFee</td>
                                                 <td>@item.Balance</td>
+                                                @if (item.Status == ZAlpha.Domain.Enums.TransactionStatus.CANCELED)
+                                                {
+                                                    <td style="color: red">@item.Status</td>
+                                                }
+                                                else if (item.Status == ZAlpha.Domain.Enums.TransactionStatus.COMPLETED)
+                                                {
+                                                    <td style="color: green">@item.Status</td>
+                                                }
+                                                else if (item.Status == ZAlpha.Domain.Enums.TransactionStatus.PENDING)
+                                                {
+                                                    <td style="color: yellow">@item.Status</td>
+                                                }
+                                                else if (item.Status == ZAlpha.Domain.Enums.TransactionStatus.FAILED)
+                                                {
+                                                    <td style="color: orange">@item.Status</td>
+                                                }
                                                 <td>
                                                     <button value="@item.Id" type="button" id="" class="btn btn-success">Xem chi tiết</button>
                                                 </td>
